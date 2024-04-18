@@ -1,0 +1,490 @@
+:root {
+  --main-bg-color: #376d1d;
+  --main-text-color: #ffffff;
+  --second-text-color: #74b113;
+  --third-text-color: #000000;
+  --second-bg-color: #c1efde;
+}
+
+/* Common Styles */
+.rounded-full {
+  border-radius: 100%;
+}
+
+/* Wrapper and Page Content Styles */
+#wrapper {
+  overflow-x: hidden;
+  background-image: linear-gradient(to right,#1c7905, #299b0d);
+}
+
+#page-content-wrapper form {
+  max-width: 400px;
+  margin: 15px auto;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+}
+
+#training-console {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  white-space: pre-wrap;
+}
+
+/* Sidebar Styles */
+#sidebar-wrapper {
+  min-height: 100vh;
+  width: 10rem; /* Initial width, set to 0 to hide it */
+  transition: width 0.25s ease-out;
+  background-image: linear-gradient(to right, #1a7903, #197702);
+  color: var(--main-text-color); /* Text color */
+  position: fixed;
+  top: 0;
+  overflow: auto;
+
+  @media (max-width: 1200px) {
+    width: 15rem;
+  }
+
+  @media (max-width: 992px) {
+    width: 10rem;
+  }
+
+  @media (max-width: 768px) {
+    width: 7rem;
+  }
+
+  @media (max-width: 576px) {
+    width: 5rem;
+  }
+}
+
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 1rem 1.25rem; /* Increase the padding for better readability */
+  font-size: 1.2rem;
+  color: var(--second-text-color); /* Use secondary text color for the heading */
+}
+
+#sidebar-wrapper .list-group {
+  width: 100%; /* Make the list group full width of the sidebar */
+  
+}
+
+#sidebar-wrapper .list-group-item {
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+  background-color: var(rgb(224, 224, 19)); /* Change to your desired hover background color */
+  color: var(yellow); /* Change to your desired text color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add a subtle shadow on hover */
+  /* Add any other style changes for hover effect */
+}
+
+/* Responsive Styles */
+#page-content-wrapper {
+  min-width: 0;
+  width: 100%;
+  color:white;
+  padding-left: 14rem; /* Adjust initial padding for the sidebar */
+  padding-right: 4rem; /* Adjust as needed */
+   /* Initially hide the content */
+
+  /* Adjust padding for different screen sizes */
+  @media (max-width: 1200px) {
+    padding-left: 20rem;
+    padding-right: 3rem; /* Adjust right padding as needed */
+  }
+
+  @media (max-width: 992px) {
+    padding-left: 20rem;
+    padding-right: 2rem; /* Adjust right padding as needed */
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 20rem;
+    padding-right: 1rem; /* Adjust right padding as needed */
+  }
+
+  @media (max-width: 576px) {
+    padding-left: 20rem;
+    padding-right: 0.5rem; /* Adjust right padding as needed */
+  }
+
+  @media (max-width: 480px) {
+    padding-left: 18rem;
+    padding-right: 0.25rem; /* Adjust right padding as needed */
+  }
+  
+  @media (max-width: 360px) {
+    padding-left: 15rem;
+    padding-right: 0.25rem; /* Adjust right padding as needed */
+  }
+  @media (max-width: 320px) {
+    padding-left: 12rem;
+    padding-right: 0.25rem; /* Adjust right padding as needed */
+  }
+  
+  @media (max-width: 280px) {
+    padding-left: 10rem;
+    padding-right: 0.25rem; /* Adjust right padding as needed */
+  }
+
+  /* Add more media queries as needed */
+  #wrapper.toggled & {
+    padding-left: 5rem;
+  }
+}
+
+  /* Add more media queries as needed */
+
+
+
+
+
+
+
+#wrapper.d-flex #page-content-wrapper {
+  display: none; /* Initially hide the content */
+}
+
+/* Responsive display of content */
+@media (min-width: 576px) {
+  #wrapper.d-flex #page-content-wrapper {
+    display: block; /* Show the content on screens larger than 576px */
+  }
+}
+
+@media (min-width: 768px) {
+  #wrapper.d-flex #page-content-wrapper {
+    display: block; /* Show the content on screens larger than 768px */
+  }
+}
+
+/* Add more media queries as needed for different screen sizes */
+
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -20rem;
+  }
+}
+
+#menu-toggle {
+  cursor: pointer;
+}
+
+.list-group-item {
+  
+  padding: 25px 30px;
+  
+}
+
+.list-group-item.active {
+  background-color: transparent;
+  color: var(--main-text-color);
+  font-weight: bold;
+  border: 1px 
+}
+
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #272626;
+  color: #fff; /* Set the default text color to white in dark mode */
+}
+
+body.dark-mode #page-content-wrapper form,
+body.dark-mode #sidebar-wrapper {
+  background-color: #070707;
+  color: #fff; /* Set the text color to white in dark mode */
+  background-image: none;
+}
+
+body.dark-mode #wrapper {
+  background-image: linear-gradient(to right, #111, #222, #333);
+  color: #ffffff; /* Set the text color to white in dark mode */
+}
+
+body.dark-mode table {
+  background-color: #333;
+  color: #ffffff; /* Set the text color to white in dark mode */
+  border: 1px solid #131212;
+}
+
+body.dark-mode table th {
+  background-color: #222;
+  color: #ffffff; /* Set the text color to white in dark mode */
+}
+
+body.dark-mode table td {
+  background-color: #111;
+  color: #ffffff; /* Set the text color to white in dark mode */
+}
+
+body.dark-mode table tbody {
+  background-color: #111;
+  color: #ffffff; /* Set the text color to white in dark mode */
+}
+
+/* Additional styling for table rows and cells if needed */
+body.dark-mode table tr:nth-child(even) {
+  background-color: #222;
+  color: #ffffff; /* Set the text color to white in dark mode */
+}
+
+body.dark-mode table tr:nth-child(odd) {
+  background-color: #111;
+  color: #ffffff; /* Set the text color to white in dark mode */
+}
+
+/* Add this to your CSS */
+/* Dark Mode Styles for Modals */
+body.dark-mode .modal-content {
+  background-color: #333333; /* Set dark mode modal background color */
+}
+
+body.dark-mode .modal-content h5.modal-title,
+body.dark-mode .modal-content .modal-body,
+body.dark-mode .modal-content .modal-footer button {
+  color: #ffffff; /* Set dark mode modal text color */
+}
+
+body.dark-mode .modal-content .modal-header {
+  background-color: #555555; /* Set dark mode modal header background color */
+}
+
+body.dark-mode .modal-content .modal-header button {
+  color: #ffffff; /* Set close button text color */
+}
+
+
+body.dark-mode .btn-primary {
+  background-color: #4db6ac; /* Tealish Green */
+  border-color: #4db6ac;
+  color: #ffffff;
+}
+
+body.dark-mode .btn-success {
+  background-color: #4db6ac; /* Tealish Green */
+  border-color: #4db6ac;
+  color: #ffffff;
+}
+
+body.dark-mode .btn-danger {
+  background-color: #D32F2F; /* Dark Red */
+  border-color: #D32F2F;
+  color: #ffffff;
+}
+
+body.dark-mode table td {
+  background-color: #1a1a1a; /* Adjust the color to your preference */
+  color: #ffffff; /* Set the text color to white in dark mode */
+}
+
+.actions-column {
+  width: 150px; /* Adjust the width as needed */
+}
+
+
+
+/* Style for the feedback button */
+.feedback-button {
+  background-color: #4CAF50; /* Green background color */
+  color: #FFFFFF; /* White font color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px; /* Add rounded corners for a curved shape */
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.feedback-button:hover {
+  background-color: #45A049; /* Darker green on hover */
+}
+
+.feedback-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px; /* Adjust as needed */
+}
+
+/* Add this to your style.css file */
+.feedback-button {
+  background-color: #007bff; /* Change to your desired background color */
+  color: #fff; /* Change to your desired text color */
+  border: none;
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer;
+}
+
+.feedback-button:hover {
+  background-color: #0056b3; /* Change to your desired hover background color */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.back-to-top {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #17b31f;
+  color: rgb(8, 3, 3);
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.back-to-top i {
+  margin-right: 5px;
+}
+
+.back-to-top:hover {
+  background-color: #0885b6;
+}
+
+
+@media (min-width: 576px) {
+  #sidebar-wrapper {
+    width: 200px; /* Adjust sidebar width for smaller screens */
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -50rem; /* Adjust sidebar margin for smaller screens */
+  }
+}
+
+/* For medium-sized screens (e.g., laptops) */
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    width: 250px; /* Default sidebar width for medium screens */
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -50rem; /* Default sidebar margin for medium screens */
+  }
+}
+
+/* For larger screens (e.g., desktops) */
+@media (min-width: 992px) {
+  #sidebar-wrapper {
+    width: 300px; /* Adjust sidebar width for larger screens */
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -50rem; /* Adjust sidebar margin for larger screens */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Example: Modify styles for elements on screens smaller than 768px */
+  .list-group-item {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  /* Other specific style adjustments for smaller screens */
+  /* Add your specific adjustments here */
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) {
+  /* Styles for landscape orientation */
+  /* Add landscape-specific styles here */
+  /* For example: */
+  #sidebar-wrapper {
+    width: 200px; /* Adjust sidebar width for landscape orientation */
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -50rem; /* Adjust sidebar margin for landscape orientation */
+  }
+}
+
+
+.bg-secondary-soft {
+  background-color: rgba(208, 212, 217, 0.1) !important;
+}
+.rounded {
+  border-radius: 5px !important;
+}
+.py-5 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+.px-4 {
+  padding-right: 1.5rem !important;
+  padding-left: 1.5rem !important;
+}
+.file-upload .square {
+  height: 250px;
+  width: 250px;
+  margin: auto;
+  vertical-align: middle;
+  border: 1px solid #e5dfe4;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.text-secondary {
+  --bs-text-opacity: 1;
+  color: rgba(208, 212, 217, 0.5) !important;
+}
+.btn-success-soft {
+  color: #28a745;
+  background-color: rgba(40, 167, 69, 0.1);
+}
+.btn-danger-soft {
+  color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.1);
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #29292e;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #e5dfe4;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}

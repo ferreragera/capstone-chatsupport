@@ -1,0 +1,21 @@
+Flask==1.1.2
+better-profanity==0.7.0
+flask-cors==3.1.1
+mysql-connector-python==8.0.28
+
+
+ <div class="container">
+        <img src="static/images/CvSU-logo-trans.png" alt="image">
+        <form action="loginAdmin.php" method="post">
+            <?php if (isset($_GET['error'])) { ?>
+                <p class="error"><?php echo $_GET['error']; ?></p>
+            <?php } ?>
+
+            <label for="uname">Username</label>
+            <input type="text" id="uname" name="uname" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button class="btn btn-success btn-md" type="submit" style="color: rgb(174, 173, 170); background-color: rgb(24, 101, 41); border-color: rgb(28, 117, 48);">Login</button>
+        </form>
