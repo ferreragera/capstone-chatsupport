@@ -22,16 +22,13 @@
 @endsection  --}}
 
 @section('main-content')
-<div class="content">
-    <div class="container-fluid">
+<div class="content" style="height: 100%; overflow-y: auto;">
+    <div class="container-fluid px-3">
         <div>
             {{-- <h2 class="" style="">Automated Response System Dataset</h2> --}}
             <div class="d-flex justify-content-end">
                 <div class="col-sm-1 d-block mt-3 rounded text-lg">
                     <button class="btn btn-sm bg-gradient-success mr-1" data-toggle="modal" data-target="#createIntent"><i class="fas fa-plus mr-1"></i>Create Intent</button>
-                </div>
-                <div class="col-sm-1 d-block mt-3 rounded text-lg">
-                    <button class="btn btn-sm bg-gradient-success mr-1" data-toggle="modal" data-target="#trainModal"><i class="fas fa-plus mr-1"></i>Train</button>
                 </div>
             </div>
         </div>
@@ -57,8 +54,8 @@
                             <div id="patternsContainer">
                             <textarea class="form-control" name="patterns[]" rows="2" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="addPattern()">Add Pattern</button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="removePattern()">Remove Pattern</button>
+                            <button type="button" class="btn btn-primary mt-2" onclick="">Add Pattern</button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="">Remove Pattern</button>
 
                         </div>
 
@@ -67,70 +64,14 @@
                             <div id="responsesContainer">
                                 <textarea class="form-control" name="responses[]" rows="3" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="addResponse()">Add Response</button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="removeResponse()">Remove Response</button>
+                            <button type="button" class="btn btn-primary mt-2" onclick="">Add Response</button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="">Remove Response</button>
                         </div>
 
                         <div class="text-center">
                             <button class="btn btn-success" type="submit">Add Intent</button>
                         </div>
                     </form>
-                </div>
-            </div>
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="trainModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Train</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body text-center">
-                    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                        <button id="trainButton" class="btn btn-success btn-md mb-4" type="submit" name="train_chatbot">
-                            Train Chatbot
-                        </button>
-                    </form>
-                    <div id="training-console" class="text-left">
-                        <?php
-                        if (isset($_POST['train_chatbot'])) {
-                            try {
-                                // Execute the Python training script and capture output and errors
-                                $output = shell_exec("python train.py 2>&1");
-    
-                                // Check if there was an error
-                                if ($output === null) {
-                                    throw new Exception("Command execution failed");
-                                }
-    
-                                // Display the training progress or logs (including errors)
-                                echo '<div class="container mt-4">';
-                                echo '<div class="row justify-content-center">';
-                                echo '<div class="col-md-10">';
-                                echo '<pre>' . $output . '</pre>';
-                                echo '</div>';
-                                echo '</div>';
-                                echo '</div>';
-                            } catch (Exception $e) {
-                                // Handle the exception (e.g., display an error message)
-                                echo '<div class="container mt-4">';
-                                echo '<div class="row justify-content-center">';
-                                echo '<div class="col-md-10">';
-                                echo '<div class="alert alert-danger" role="alert">';
-                                echo 'An error occurred: ' . $e->getMessage();
-                                echo '</div>';
-                                echo '</div>';
-                                echo '</div>';
-                                echo '</div>';
-                            }
-                        }
-                        ?>
-                    </div>
                 </div>
             </div>
             </div>
@@ -147,38 +88,93 @@
                     </div>
                     <div class="card-body">
                         <div class="position-relative mb-4">
-
+                            @php
+                                $json_data = file_get_contents('C:/xampp/htdocs/capstone/python/intents.json');
+                                $data = json_decode($json_data, true);
+        
+                                // Pagination
+                                $total_intents = count($data['intents']);
+                                $limit = 5; // Number of items per page
+                                $total_pages = ceil($total_intents / $limit);
+                                $page = isset($_GET['page']) ? max(1, min($_GET['page'], $total_pages)) : 1; // Current page
+                                $offset = ($page - 1) * $limit; // Offset for data retrieval
+                                $paginated_intents = array_slice($data['intents'], $offset, $limit);
+                            @endphp
+        
                             <table class="table table-striped">
                                 <thead>
-                                  <tr>
-                                    <th scope="col">Tags</th>
-                                    <th scope="col">Patterns</th>
-                                    <th scope="col">Responses</th>
-                                    <th scope="col" class="actions-column">Actions</th>
-                                  </tr>
+                                    <tr>
+                                        <th scope="col">Tags</th>
+                                        <th scope="col">Patterns</th>
+                                        <th scope="col">Responses</th>
+                                        <th scope="col" class="actions-column" width="100">Actions</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
-                                    </td>
-                                  </tr>
+                                    @foreach ($paginated_intents as $intent)
+                                    <tr>
+                                        <td>{{ $intent['tag'] }}</td>
+                                        <td>{{ implode(', ', $intent['patterns']) }}</td>
+                                        <td>{{ implode(', ', $intent['responses']) }}</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm btn-block me-2" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+                                            <button class="btn btn-success btn-sm btn-block text-light" data-bs-toggle="modal" data-bs-target="#deleteModal">Archive</button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
-                              </table>
+                            </table>
+        
+                            <!-- Pagination -->
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-end">
+                                    <li class="page-item {{ $page == 1 ? 'disabled' : '' }}">
+                                        <a class="page-link" href="?page={{ $page - 1 }}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    @for ($i = 1; $i <= $total_pages; $i++)
+                                    <li class="page-item {{ $i == $page ? 'active' : '' }}"><a class="page-link" href="?page={{ $i }}">{{ $i }}</a></li>
+                                    @endfor
+                                    <li class="page-item {{ $page == $total_pages ? 'disabled' : '' }}">
+                                        <a class="page-link" href="?page={{ $page + 1 }}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
 
+@endsection
 
+@section('script')
+<script>
 
+</script>
+@endsection
 
+{{-- <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header border-0">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="card-title">Automated Response System Dataset</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="position-relative mb-4">
 
                             
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             {{-- <div class="col-lg-4 col-12">
                 <div class="card">
                     <div class="card-header">
@@ -193,9 +189,15 @@
                     </div>
                 </div>
             </div> --}}
-        </div>
-    </div>
-</div>
+            
 
-@endsection
-
+            {{-- rating
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="ratings">
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div> --}}

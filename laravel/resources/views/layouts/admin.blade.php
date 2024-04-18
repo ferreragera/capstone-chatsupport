@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
         <!-- Sweet Alert 2 -->
         <link rel="stylesheet" href="{{asset('plugins/sweetalert2/sweetalert2.min.css')}}">
+        <!-- css -->
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
     </head>
 
     <body>
@@ -60,4 +62,5 @@
             <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
             <!-- Sweet Alert 2 -->
             <script src="{{asset('plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
+            @yield('script')
 </html>
