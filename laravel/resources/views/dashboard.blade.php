@@ -25,7 +25,7 @@
 <div class="content">
     <div class="container-fluid px-3">
         <div>
-            {{-- <h2 class="" style="">Automated Response System Dataset</h2> --}}
+            {{-- <h2 class="">Automated Response System Dataset</h2> --}}
             <div class="d-flex justify-content-end">
                 <div class="col-sm-1 d-block mt-3 rounded text-lg">
                     <button class="btn btn-sm bg-gradient-success mr-1" data-toggle="modal" data-target="#createIntent"><i class="fas fa-plus mr-1"></i>Create Intent</button>
@@ -151,6 +151,11 @@
     @parent
     <script>
         $(document).ready(function() {
+            $('#intentsTable').DataTable({
+                "pageLength": 5, // Show 5 rows per page initially
+                "lengthMenu": [5, 10, 25, 50], // Set the available page lengths
+                "autoWidth": false // Optional: Disable auto width adjustment
+            });
             // Add click event listener to archive buttons
             $('.archive-btn').click(function() {
                 var tag = $(this).data('tag');
@@ -158,7 +163,7 @@
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You are about to archive the intent with tag: " + tag,
-                    icon: 'warning',
+                    icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
