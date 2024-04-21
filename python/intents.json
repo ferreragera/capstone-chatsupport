@@ -1,0 +1,573 @@
+{
+    "intents": [
+        {
+            "id": 2,
+            "tag": "eligibility_criteria",
+            "patterns": [
+                "Eligibility criteria"
+            ],
+            "responses": [
+                "Here is information about Eligibility criteria."
+            ]
+        },
+        {
+            "id": 4,
+            "tag": "application_status",
+            "patterns": [
+                "Application status"
+            ],
+            "responses": [
+                "Here is information about Application status.",
+                "Application status.",
+                "Here is information about Application status."
+            ]
+        },
+        {
+            "id": 5,
+            "tag": "application_period",
+            "patterns": [
+                "Application period"
+            ],
+            "responses": [
+                "Here is information about Application period."
+            ]
+        },
+        {
+            "id": 6,
+            "tag": "other",
+            "patterns": [
+                "Other"
+            ],
+            "responses": [
+                "Just type your inquiry in the chatbox if it doesn't have a specific topic."
+            ]
+        },
+        {
+            "id": 7,
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "Hey",
+                "Hello",
+                "Hello there",
+                "What's up",
+                "Hi there",
+                "How are you",
+                "Is anyone there?",
+                "Hey",
+                "Hola",
+                "Hello",
+                "Good day",
+                "yo"
+            ],
+            "responses": [
+                "Hello!",
+                "Hi there!",
+                "How can I assist you?",
+                "Hello there!"
+            ]
+        },
+        {
+            "id": 8,
+            "tag": "greeting",
+            "patterns": [
+                "Hello How are you",
+                "Hi How are you",
+                "Hello what's up",
+                "Hi I have some questions about admissions.",
+                "How are you"
+            ],
+            "responses": [
+                "Welcome to the CVSU Admission System chatbot. How can I assist you?",
+                "I'm here to help with your admission questions.",
+                "How can I assist you?",
+                "Feel free to ask your admission questions."
+            ]
+        },
+        {
+            "id": 9,
+            "tag": "goodbye",
+            "patterns": [
+                "Bye",
+                "See you later",
+                "Goodbye"
+            ],
+            "responses": [
+                "Goodbye! Have a great day.",
+                "Take care!",
+                "Until next time!"
+            ]
+        },
+        {
+            "id": 10,
+            "tag": "noanswer",
+            "patterns": [],
+            "responses": [
+                "Sorry, I can't understand you",
+                "Please give me more info",
+                "I'm not sure I understand that"
+            ]
+        },
+        {
+            "id": 11,
+            "tag": "bot_identity",
+            "patterns": [
+                "What are you?",
+                "Who are you?",
+                "Tell me about yourself.",
+                "Introduce yourself.",
+                "What's your role?",
+                "Explain your purpose."
+            ],
+            "responses": [
+                "I'm here to assist with CVSU admission information.",
+                "I provide support for CVSU admissions.",
+                "I help with CVSU admission inquiries."
+            ]
+        },
+        {
+            "id": 12,
+            "tag": "thanks",
+            "patterns": [
+                "Thanks",
+                "Thank you"
+            ],
+            "responses": [
+                "You're welcome!",
+                "No problem!",
+                "Glad I could help."
+            ]
+        },
+        {
+            "id": 13,
+            "tag": "university_application_date",
+            "patterns": [
+                "When can I start applying for college admission?",
+                "When is the admission date?",
+                "When is the deadline for college admission applications?"
+            ],
+            "responses": [
+                "Application starts on January 24, 2022. Deadline is April 24, 2022."
+            ]
+        },
+        {
+            "id": 14,
+            "tag": "course_information",
+            "patterns": [
+                "Tell me about computer science courses.",
+                "What courses are available for business majors?"
+            ],
+            "responses": [
+                "Computer Science covers algorithms, programming languages, and data structures. Business majors have Marketing, Finance, and Ethics courses."
+            ]
+        },
+        {
+            "id": 15,
+            "tag": "availability",
+            "patterns": [
+                "When are your customer support hours?",
+                "What's your availability?"
+            ],
+            "responses": [
+                "Support is available from 9 AM to 6 PM, Mon to Fri.",
+                "You can reach us between 9 AM and 6 PM on weekdays."
+            ]
+        },
+        {
+            "id": 16,
+            "tag": "transfer_students",
+            "patterns": [
+                "Can I transfer to your university?",
+                "Are there specific requirements for transfer students?"
+            ],
+            "responses": [
+                "Transferring is possible; provide transcripts and course descriptions.",
+                "Transfers are welcome; submit transcripts and course descriptions."
+            ]
+        },
+        {
+            "id": 17,
+            "tag": "international_students",
+            "patterns": [
+                "I'm an international student. How can I apply?",
+                "What's the application process for international students?"
+            ],
+            "responses": [
+                "International students are welcome; provide English scores and immigration documents.",
+                "International students need English scores and immigration documents."
+            ]
+        },
+        {
+            "id": 18,
+            "tag": "generic_question",
+            "patterns": [
+                "What can you tell me?",
+                "How does this work?",
+                "Can you help me?",
+                "Do you have information?",
+                "Tell me more."
+            ],
+            "responses": [
+                "I provide information about CVSU admissions. Ask specific questions.",
+                "I assist with CVSU admission inquiries. Feel free to ask.",
+                "I help with admission at CVSU. Ask your questions."
+            ]
+        },
+        {
+            "id": 19,
+            "tag": "cvsu_info",
+            "patterns": [
+                "Tell me about CVSU programs.",
+                "What courses does CVSU offer?",
+                "Give me details about CVSU facilities.",
+                "Tell me about CVSU's history.",
+                "What's unique about CVSU?",
+                "Can you provide CVSU contact information?"
+            ],
+            "responses": [
+                "CVSU offers diverse programs. Explore specific majors on the website. ",
+                "CVSU provides courses spanning multiple fields. Check our website for details.",
+                "CVSU has modern facilities. Visit the website for more.",
+                "CVSU has a rich history and a commitment to community engagement.",
+                "CVSU's uniqueness lies in its dedication to research and innovation. For contact info, visit the website."
+            ]
+        },
+        {
+            "id": 20,
+            "tag": "admission_fee",
+            "patterns": [
+                "What is the admission fee for CVSU?",
+                "How much does it cost to apply to CVSU?",
+                "Can you tell me the fees for admission at CVSU?"
+            ],
+            "responses": [
+                "Admission fees vary by program. Visit the CVSU website or contact the admission office for current fees."
+            ]
+        },
+        {
+            "id": 21,
+            "tag": "stem_graduate_courses",
+            "patterns": [
+                "I am a STEM graduate. What courses can I take?",
+                "What are the options for STEM graduates?"
+            ],
+            "responses": [
+                "STEM graduates at CVSU can choose from Computer Science, Engineering, Mathematics, Physics, Biology, Chemistry, Environmental Science, and Information Technology. Ask for program details."
+            ]
+        },
+        {
+            "id": 26,
+            "tag": "admission_result",
+            "patterns": [
+                "Admission Result"
+            ],
+            "responses": [
+
+                " When will the admission result be posted?",
+                " Where can you find the results?",
+                " How can I know if I passed the entrance examination?",
+                " How do I know if I passed the exam?"
+            ]
+        },
+        {
+            "id": 27,
+            "tag": "admission1",
+            "patterns": [
+                "When can I see the exact date of the admission result?"
+            ],
+            "responses": [
+                "To check if admission results are out, visit our CVSU website's \"Admissions\" section or the \"Check Admission Results\" portal. Enter your application details to view your status. Watch your email or SMS for notifications too. Need help? Contact our admissions office."
+            ]
+        },
+        {
+            "id": 28,
+            "tag": "admission2",
+            "patterns": [
+                "When will the admission result be posted?"
+            ],
+            "responses": [
+                "The admission results will typically be posted on the CVSU website according to the specified timeline provided in the admission calendar. Please refer to the \"Admission Calendar\" section on our website for the exact date of result publication. Keep an eye on updates through our official communication channels for any changes or announcements regarding the release date."
+            ]
+        },
+        {
+            "id": 29,
+            "tag": "admission3",
+            "patterns": [
+                "Where can you find the results?"
+            ],
+            "responses": [
+                "The admission results can be found on the official CVSU website. Navigate to the \"Admissions\" section or specifically to the \"Check Admission Results\" portal. Input your application details to access your individual result. Additionally, look out for notifications via email or SMS, and check our social media channels for updates on result availability."
+            ]
+        },
+        {
+            "id": 30,
+            "tag": "admission4",
+            "patterns": [
+                "How can I know if I passed the entrance examination?"
+            ],
+            "responses": [
+                "To confirm if you passed the entrance examination, visit the CVSU website's \"Admission Result\" section, input your exam details, and check your individual status. Also, watch for notifications via email or SMS for updates on your exam results."
+            ]
+        },
+        {
+            "id": 31,
+            "tag": "admission5",
+            "patterns": [
+                "How do I know if I passed the exam?"
+            ],
+            "responses": [
+                "To check if you've passed the exam, visit the 'Admission Result' section on the CVSU website, input your exam details, and watch for result notifications via email or SMS. Reach out to admissions if you need further assistance."
+            ]
+        },
+        {
+            "id": 32,
+            "tag": "admission6",
+            "patterns": [
+                "When can we see the admission results?",
+                "When will the admission results be announced?\r\n",
+                "When will the entrance exam results be posted?\r\n",
+                "Where can we see the admission results?",
+                "How do we know if the admission result has been published?\r\n",
+                "When is the result of students who took the entrance exam?"
+            ],
+            "responses": [
+                "The admission results for the First Semester, SY 2023-2024, will be posted on the CVSU website's \"Admission Result\" section. Qualified applicants can confirm their slots from May 2 to June 13, 2023. Reapplication is available for specific courses with open slots. Detailed procedures for confirmation, pre-registration medical steps, and registration are outlined on the website. Individual entrance exam results are also available there."
+            ]
+        },
+        {
+            "id": 33,
+            "tag": "documentation_requirements",
+            "patterns": [
+                "Documentation Requirements"
+            ],
+            "responses": [
+                "What are the required documents that need to be submitted?",
+                "What is the required documents need in admission?",
+                "What kind of requirement I need to submit?",
+                "What are the documents or requirements for admission?",
+                "What are the requirements that needed to submit?",
+                "What are the requirements for admission?",
+                "What documents are required for applying?",
+                "What are the documents required for  the incoming first year students?",
+                "What are the requirements needed for CvSU admission?",
+                "What are the documents that needed to submit? ",
+                "What are the requirements for the application?",
+                "What requirements should be passed?"
+            ]
+        },
+        {
+            "id": 34,
+            "tag": "documentation_requirements_responses_1",
+            "patterns": [
+                "What are the required documents that need to be submitted?\r\n",
+                "What is the required documents need in admission?\r\n",
+                "What kind of requirement I need to submit?\r\n",
+                "What are the documents or requirements for admission?\r\n",
+                "What are the requirements that needed to submit?\r\n",
+                "What are the requirements for admission?\r\n",
+                "What documents are required for applying?\r\n",
+                "What are the documents required for the incoming first year students?\r\nWhat are the requirements needed for CvSU admission?\r\nWhat are the documents that needed to submit?\r\nWhat documents do I need to submit?\r\n",
+                "What are the requirements for first year admission?\r\n",
+                "What are the requirements to get enrolled?\r\n",
+                "What are the requirements should prepare in application for college?\r\n",
+                "What are the specific documents need to pass during college admission process?\r\n",
+                "What are the specific documents needed?\r\n",
+                "What documents to prepare before enrolling?\r\n",
+                "What are the main requirements?\r\n",
+                "What are the complete list of requirements to be submitted?\r\n",
+                "What is the exact and complete requirements need to pass in admission?\r\n",
+                "What are the other requirements for admission?\r\n",
+                "What are required documents that needs to be submitted to enroll?\r\n",
+                "What are the required documents for submission?\r\n",
+                "What are the requirements for the application?\r\n",
+                "What requirements should be passed?"
+            ],
+            "responses": [
+                "The specific documents required for admission to CVSU include:\r\n\r\nAccomplished Student Information Sheet (UREG-QF-02)\r\nForm 138 or Senior High School Report Card\r\nLatest Certification of Good Moral Character\r\nNotice of Admission (NOA)\r\nMedical Clearance (CvSU Infirmary)\r\nShort Brown Envelope\r\nPrinted Requirements Checklist (A4 size)"
+            ]
+        },
+        {
+            "id": 35,
+            "tag": "documentation_requirements_responses_2",
+            "patterns": [
+                "Is it possible for the students who cannot submit the requirements personally?  ",
+                "Will my requirements be accepted even if I did not submit it personally?             ",
+                "Can your admission papers be submitted by someone else?         ",
+                "Is it possible for students who are unable to personally submit the requirements?           ",
+                "Can students who are unable to personally submit the requirements acceptable?        ",
+                "Can I let other people pass my requirements?            ",
+                "Is it possible if I let someone submit my requirements on behalf of me?"
+            ],
+            "responses": [
+                "Yes, if the applicant cannot submit the application personally, he\\\/she can have his\/her parents to submit his\/her application. If it will be submitted by a friend or a classmate, the applicant must provide an authorization letter.   "
+            ]
+        },
+        {
+            "id": 36,
+            "tag": "documentation_requirements_responses_3",
+            "patterns": [
+                "Where to submit the required documents?",
+                "Where should I pass my requirements?",
+                "Where do I submit the documents?\r\n             ",
+                "Where to submit the documentation requirements?\r\n            ",
+                "Where can I pass the requirements?",
+                "Where can I submit my documents?"
+            ],
+            "responses": [
+                "The required documents are usually submitted to the University Registrar's Office or the designated admissions office at CVSU. You can check their website or contact the admissions office directly for the specific location and instructions on where to submit your documents."
+            ]
+        },
+        {
+            "id": 37,
+            "tag": "documentation_requirements_responses_4",
+            "patterns": [
+                "When is the start and the end of the submission period for the required documents?",
+                "When is the last day of submitting requirements?\r\n",
+                "When is the deadline of completion of requirements?\r\n",
+                " When is the deadline of submission? ",
+                "When does the submission of requirements end?\r\n             ",
+                "Where can I submit my requirements? ",
+                "To whom are we gonna pass the requirements? ",
+                "When will be the submission of requirements?"
+            ],
+            "responses": [
+                "The submission period for required documents typically starts around the admission confirmation period, usually in May, and ends on June 13, 2023, based on the provided admission details. It's essential to verify these dates on the CVSU website or contact the admissions office for the exact deadline and submission details. The requirements are usually submitted to the University Registrar's Office or the designated admissions "
+            ]
+        },
+        {
+            "id": 38,
+            "tag": "documentation_requirements_responses_5",
+            "patterns": [
+                "Does the university have grade criteria during the admission process?\r\n             ",
+                "Is there a grade requirement?",
+                "What are the grade requirements for enrolling in CvSU?\r\n            ",
+                "What is the grade criteria of CvSU for incoming students?"
+            ],
+            "responses": [
+                "The university has grade criteria for transferee students\/applicants. The grade criteria for incoming students might vary based on the program or course applied for. It's best to check the specific grade requirements for each course on the CVSU website or contact the admissions office for detailed information regarding the grade criteria during the admission process."
+            ]
+        },
+        {
+            "id": 39,
+            "tag": "documentation_requirements_responses_6",
+            "patterns": [
+                "Are we required to pass actual\/original requirement or photocopy is acceptable? ",
+                "Does documents required to be original or just photocopied?\r\n            ",
+                "Do we need to photocopy all the requirements?\r\n             ",
+                "Should I pass the original copy or only a xerox copy?\r\n            ",
+                "Are all the requirements must be original copies?\r\n             ",
+                "Are the documents that needs to be submitted are original copies?\r\n             ",
+                "Should I submit a photocopy of the required documents?",
+                "Is it okay to submit a xerox copy only of all the papers needed?\r\n            ",
+                "Do i need to pass the original copy of my document?"
+            ],
+            "responses": [
+                "Depending on the category of the applicant, there are requirement document that need to be original copy and the other just a photocopy. It's advisable to provide both original and photocopies of the required documents unless otherwise specified by CVSU's admission guidelines. You can check their specific requirements on their website or contact the admissions office for clarification."
+            ]
+        },
+        {
+            "id": 40,
+            "tag": "scholarship",
+            "patterns": [
+                "What are the available scholarships in CvSU? ",
+                "Is there a maintaining grade for scholarship?\r\n           ",
+                "How do I apply to scholarship programs?",
+                "What are the needed requirements for obtaining a scholarship? "
+            ],
+            "responses": [
+                "CvSU typically offers various scholarship programs, each with its own set of criteria and requirements. These programs might include maintaining a certain grade, community involvement, or specific qualifications. All queries regarding scholarship concerns can be addressed thru osasmain.scholarship@cvsu.edu.ph"
+            ]
+        },
+        {
+            "id": 41,
+            "tag": "entrance_examination_date",
+            "patterns": [
+                "When is the entrance examination?\r\n             ",
+                "What is the exact date of the entrance exam?\r\n             ",
+                "When will the entrance exam be held?\r\n           ",
+                "When does the entrance exam starts?\r\n           ",
+                "When is the schedule of entrance exam",
+                "When is the entrance exam?"
+            ],
+            "responses": [
+                "The specific date for the entrance examination at CvSU may vary each year. It's essential to check the university's official website or contact the admissions office directly for the exact schedule and details regarding the upcoming entrance exam. They'll provide accurate information about the exam date, schedule, and registration process for the entrance examination. For 1st Semester SY 2024-2025, it will be by February 2024."
+            ]
+        },
+        {
+            "id": 42,
+            "tag": "admission_result_responses",
+            "patterns": [
+                "Where can you find the results?",
+                "How can I know if I passed the entrance examination?",
+                "When can we see the admission results?",
+                "When will the admission results will be released?",
+                "When is the approximate date of our admission result?",
+                "When will the admission results be announced?",
+                "How do we know if the admission result has been published?",
+                "When is the result of students who took the entrance exam?",
+                "When will the entrance exam results be posted?",
+                "Where can we see the admission results?",
+                "When is the release of entrance examination results?",
+                "How do I know if I passed the exam?"
+            ],
+            "responses": [
+                "The specific dates for admission and entrance exam results vary each year. They're typically posted on the CvSU website's \"Admission Result\" section. To know if you've passed the entrance exam, visit the designated section on their website and input your exam details. The release dates for results are usually communicated via email, SMS, or the university's official communication channels. For exact dates, please check the CvSU website or contact the admissions office for the most current information regarding admission and entrance exam result announcements."
+            ]
+        },
+        {
+            "id": 43,
+            "tag": "shifting",
+            "patterns": [
+                "When is the entrance examination? Is it possible to shift to a more than 4-year course without paying?\r\n             ",
+                "Is it possible to shift courses even if the strand is not inline?\r\n            ",
+                "When will the entrance exam be held?\r\n             ",
+                "What is the process of shifting to another program?",
+                "Does shifting need summer classes?"
+            ],
+            "responses": [
+                "The entrance examination dates are typically announced by the university. To shift to a more than 4-year course or change programs, the process often involves specific procedures outlined by the university's administration. Some programs might allow shifts regardless of the strand previously taken, but this can vary. Contact the admissions or registrar's office for detailed guidance on the shifting process, its requirements, any associated fees, and whether summer classes are necessary."
+            ]
+        },
+        {
+            "id": 44,
+            "tag": "tuition_fee",
+            "patterns": [
+                "Does the university have a tuition fee?\r\n             ",
+                "Is everyone qualified for Free Tuition Law?"
+            ],
+            "responses": [
+                "CvSU implements the \"Universal Access to Quality Tertiary Education Act,\" exempting bachelor's degree students from fees. Embrace this chance, face challenges, and uphold values as you strive for success."
+            ]
+        },
+        {
+            "id": 45,
+            "tag": "re_application",
+            "patterns": [
+                "What are the requirements for re-application?"
+            ],
+            "responses": [
+                "The specific requirements for re-application may vary, and it's best to check the university's guidelines or contact the admissions office for details on re-application criteria and documents needed."
+            ]
+        },
+        {
+            "id": 46,
+            "tag": "re_application_2",
+            "patterns": [
+                "Is it possible to give my slot to another student who failed the entrance exam?"
+            ],
+            "responses": [
+                "Regarding giving your slot to another student who failed the entrance exam, the policies might differ among institutions. You can inquire directly with the admissions office to understand if such a transfer or allocation is feasible at CvSU."
+            ]
+        },
+        {
+            "id": 47,
+            "tag": "re_application_3",
+            "patterns": [
+                "How many applicants will be accepted for admission?"
+            ],
+            "responses": [
+                "The number of applicants accepted for admission varies each year and depends on the university's capacity and program availability. CvSU's admissions office or website might provide information on the number of slots available for admission."
+            ]
+        }
+    ]
+}

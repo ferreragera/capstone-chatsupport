@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
         <!-- Sweet Alert 2 -->
         <link rel="stylesheet" href="{{asset('plugins/sweetalert2/sweetalert2.min.css')}}">
-        <!-- css -->
-        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     </head>
 
     <body>
@@ -62,5 +62,9 @@
             <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
             <!-- Sweet Alert 2 -->
             <script src="{{asset('plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
+            <!-- DataTables JavaScript -->
+            <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+
             @yield('script')
 </html>
