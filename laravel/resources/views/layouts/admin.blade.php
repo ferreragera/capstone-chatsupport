@@ -76,5 +76,6 @@
             <!-- Sweet Alert 2 -->
             <script src="{{asset('plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
 
+
             @yield('script')
 </html> 

@@ -1,6 +1,0 @@
-link: https://flask-login.readthedocs.io/en/latest/
-
-app.py: 
-
-from flask_login import LoginManager
-login_manager = LoginManager()

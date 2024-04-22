@@ -122,7 +122,7 @@
                 </div>
             </div>
         </div>
-
+        
         <hr>
         <div class="row">
             <div class="col-lg-12">
@@ -157,6 +157,7 @@
                                     }
                                     ?>
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
@@ -219,7 +220,6 @@
                     text: '{{ session('success') }}',
                 });
             @endif
-        });
 
         // Add Intent Modal
 
@@ -276,12 +276,6 @@
         // End of Add Intent Modal
 
         
-
-        
-
-        
-
-
     </script>
 @endsection
 
