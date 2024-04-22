@@ -78,7 +78,7 @@
                 "How are you"
             ],
             "responses": [
-                "Welcome to the CVSU Admission System chatbot. How can I assist you?",
+                "Welcome to the CvSU Admission System chatbot. How can I assist you?",
                 "I'm here to help with your admission questions.",
                 "How can I assist you?",
                 "Feel free to ask your admission questions."
@@ -120,9 +120,9 @@
                 "Explain your purpose."
             ],
             "responses": [
-                "I'm here to assist with CVSU admission information.",
-                "I provide support for CVSU admissions.",
-                "I help with CVSU admission inquiries."
+                "I'm here to assist with CvSU admission information.",
+                "I provide support for CvSU admissions.",
+                "I help with CvSU admission inquiries."
             ]
         },
         {
@@ -208,40 +208,40 @@
                 "Tell me more."
             ],
             "responses": [
-                "I provide information about CVSU admissions. Ask specific questions.",
-                "I assist with CVSU admission inquiries. Feel free to ask.",
-                "I help with admission at CVSU. Ask your questions."
+                "I provide information about CvSU admissions. Ask specific questions.",
+                "I assist with CvSU admission inquiries. Feel free to ask.",
+                "I help with admission at CvSU. Ask your questions."
             ]
         },
         {
             "id": 19,
-            "tag": "cvsu_info",
+            "tag": "CvSU_info",
             "patterns": [
-                "Tell me about CVSU programs.",
-                "What courses does CVSU offer?",
-                "Give me details about CVSU facilities.",
-                "Tell me about CVSU's history.",
-                "What's unique about CVSU?",
-                "Can you provide CVSU contact information?"
+                "Tell me about CvSU programs.",
+                "What courses does CvSU offer?",
+                "Give me details about CvSU facilities.",
+                "Tell me about CvSU's history.",
+                "What's unique about CvSU?",
+                "Can you provide CvSU contact information?"
             ],
             "responses": [
-                "CVSU offers diverse programs. Explore specific majors on the website. ",
-                "CVSU provides courses spanning multiple fields. Check our website for details.",
-                "CVSU has modern facilities. Visit the website for more.",
-                "CVSU has a rich history and a commitment to community engagement.",
-                "CVSU's uniqueness lies in its dedication to research and innovation. For contact info, visit the website."
+                "CvSU offers diverse programs. Explore specific majors on the website. ",
+                "CvSU provides courses spanning multiple fields. Check our website for details.",
+                "CvSU has modern facilities. Visit the website for more.",
+                "CvSU has a rich history and a commitment to community engagement.",
+                "CvSU's uniqueness lies in its dedication to research and innovation. For contact info, visit the website."
             ]
         },
         {
             "id": 20,
             "tag": "admission_fee",
             "patterns": [
-                "What is the admission fee for CVSU?",
-                "How much does it cost to apply to CVSU?",
-                "Can you tell me the fees for admission at CVSU?"
+                "What is the admission fee for CvSU?",
+                "How much does it cost to apply to CvSU?",
+                "Can you tell me the fees for admission at CvSU?"
             ],
             "responses": [
-                "Admission fees vary by program. Visit the CVSU website or contact the admission office for current fees."
+                "Admission fees vary by program. Visit the CvSU website or contact the admission office for current fees."
             ]
         },
         {
@@ -252,7 +252,7 @@
                 "What are the options for STEM graduates?"
             ],
             "responses": [
-                "STEM graduates at CVSU can choose from Computer Science, Engineering, Mathematics, Physics, Biology, Chemistry, Environmental Science, and Information Technology. Ask for program details."
+                "STEM graduates at CvSU can choose from Computer Science, Engineering, Mathematics, Physics, Biology, Chemistry, Environmental Science, and Information Technology. Ask for program details."
             ]
         },
         {
@@ -262,7 +262,6 @@
                 "Admission Result"
             ],
             "responses": [
-
                 " When will the admission result be posted?",
                 " Where can you find the results?",
                 " How can I know if I passed the entrance examination?",
@@ -276,7 +275,7 @@
                 "When can I see the exact date of the admission result?"
             ],
             "responses": [
-                "To check if admission results are out, visit our CVSU website's \"Admissions\" section or the \"Check Admission Results\" portal. Enter your application details to view your status. Watch your email or SMS for notifications too. Need help? Contact our admissions office."
+                "To check if admission results are out, visit our CvSU website's \"Admissions\" section or the \"Check Admission Results\" portal. Enter your application details to view your status. Watch your email or SMS for notifications too. Need help? Contact our admissions office."
             ]
         },
         {
@@ -286,7 +285,7 @@
                 "When will the admission result be posted?"
             ],
             "responses": [
-                "The admission results will typically be posted on the CVSU website according to the specified timeline provided in the admission calendar. Please refer to the \"Admission Calendar\" section on our website for the exact date of result publication. Keep an eye on updates through our official communication channels for any changes or announcements regarding the release date."
+                "The admission results will typically be posted on the CvSU website according to the specified timeline provided in the admission calendar. Please refer to the \"Admission Calendar\" section on our website for the exact date of result publication. Keep an eye on updates through our official communication channels for any changes or announcements regarding the release date."
             ]
         },
         {
@@ -296,7 +295,7 @@
                 "Where can you find the results?"
             ],
             "responses": [
-                "The admission results can be found on the official CVSU website. Navigate to the \"Admissions\" section or specifically to the \"Check Admission Results\" portal. Input your application details to access your individual result. Additionally, look out for notifications via email or SMS, and check our social media channels for updates on result availability."
+                "The admission results can be found on the official CvSU website. Navigate to the \"Admissions\" section or specifically to the \"Check Admission Results\" portal. Input your application details to access your individual result. Additionally, look out for notifications via email or SMS, and check our social media channels for updates on result availability."
             ]
         },
         {
@@ -306,7 +305,7 @@
                 "How can I know if I passed the entrance examination?"
             ],
             "responses": [
-                "To confirm if you passed the entrance examination, visit the CVSU website's \"Admission Result\" section, input your exam details, and check your individual status. Also, watch for notifications via email or SMS for updates on your exam results."
+                "To confirm if you passed the entrance examination, visit the CvSU website's \"Admission Result\" section, input your exam details, and check your individual status. Also, watch for notifications via email or SMS for updates on your exam results."
             ]
         },
         {
@@ -316,7 +315,7 @@
                 "How do I know if I passed the exam?"
             ],
             "responses": [
-                "To check if you've passed the exam, visit the 'Admission Result' section on the CVSU website, input your exam details, and watch for result notifications via email or SMS. Reach out to admissions if you need further assistance."
+                "To check if you've passed the exam, visit the 'Admission Result' section on the CvSU website, input your exam details, and watch for result notifications via email or SMS. Reach out to admissions if you need further assistance."
             ]
         },
         {
@@ -331,7 +330,7 @@
                 "When is the result of students who took the entrance exam?"
             ],
             "responses": [
-                "The admission results for the First Semester, SY 2023-2024, will be posted on the CVSU website's \"Admission Result\" section. Qualified applicants can confirm their slots from May 2 to June 13, 2023. Reapplication is available for specific courses with open slots. Detailed procedures for confirmation, pre-registration medical steps, and registration are outlined on the website. Individual entrance exam results are also available there."
+                "The admission results for the First Semester, SY 2023-2024, will be posted on the CvSU website's \"Admission Result\" section. Qualified applicants can confirm their slots from May 2 to June 13, 2023. Reapplication is available for specific courses with open slots. Detailed procedures for confirmation, pre-registration medical steps, and registration are outlined on the website. Individual entrance exam results are also available there."
             ]
         },
         {
@@ -383,7 +382,7 @@
                 "What requirements should be passed?"
             ],
             "responses": [
-                "The specific documents required for admission to CVSU include:\r\n\r\nAccomplished Student Information Sheet (UREG-QF-02)\r\nForm 138 or Senior High School Report Card\r\nLatest Certification of Good Moral Character\r\nNotice of Admission (NOA)\r\nMedical Clearance (CvSU Infirmary)\r\nShort Brown Envelope\r\nPrinted Requirements Checklist (A4 size)"
+                "The specific documents required for admission to CvSU include:\r\n\r\nAccomplished Student Information Sheet (UREG-QF-02)\r\nForm 138 or Senior High School Report Card\r\nLatest Certification of Good Moral Character\r\nNotice of Admission (NOA)\r\nMedical Clearance (CvSU Infirmary)\r\nShort Brown Envelope\r\nPrinted Requirements Checklist (A4 size)"
             ]
         },
         {
@@ -414,7 +413,7 @@
                 "Where can I submit my documents?"
             ],
             "responses": [
-                "The required documents are usually submitted to the University Registrar's Office or the designated admissions office at CVSU. You can check their website or contact the admissions office directly for the specific location and instructions on where to submit your documents."
+                "The required documents are usually submitted to the University Registrar's Office or the designated admissions office at CvSU. You can check their website or contact the admissions office directly for the specific location and instructions on where to submit your documents."
             ]
         },
         {
@@ -431,7 +430,7 @@
                 "When will be the submission of requirements?"
             ],
             "responses": [
-                "The submission period for required documents typically starts around the admission confirmation period, usually in May, and ends on June 13, 2023, based on the provided admission details. It's essential to verify these dates on the CVSU website or contact the admissions office for the exact deadline and submission details. The requirements are usually submitted to the University Registrar's Office or the designated admissions "
+                "The submission period for required documents typically starts around the admission confirmation period, usually in May, and ends on June 13, 2023, based on the provided admission details. It's essential to verify these dates on the CvSU website or contact the admissions office for the exact deadline and submission details. The requirements are usually submitted to the University Registrar's Office or the designated admissions "
             ]
         },
         {
@@ -444,7 +443,7 @@
                 "What is the grade criteria of CvSU for incoming students?"
             ],
             "responses": [
-                "The university has grade criteria for transferee students\/applicants. The grade criteria for incoming students might vary based on the program or course applied for. It's best to check the specific grade requirements for each course on the CVSU website or contact the admissions office for detailed information regarding the grade criteria during the admission process."
+                "The university has grade criteria for transferee students\/applicants. The grade criteria for incoming students might vary based on the program or course applied for. It's best to check the specific grade requirements for each course on the CvSU website or contact the admissions office for detailed information regarding the grade criteria during the admission process."
             ]
         },
         {
@@ -462,7 +461,7 @@
                 "Do i need to pass the original copy of my document?"
             ],
             "responses": [
-                "Depending on the category of the applicant, there are requirement document that need to be original copy and the other just a photocopy. It's advisable to provide both original and photocopies of the required documents unless otherwise specified by CVSU's admission guidelines. You can check their specific requirements on their website or contact the admissions office for clarification."
+                "Depending on the category of the applicant, there are requirement document that need to be original copy and the other just a photocopy. It's advisable to provide both original and photocopies of the required documents unless otherwise specified by CvSU's admission guidelines. You can check their specific requirements on their website or contact the admissions office for clarification."
             ]
         },
         {
@@ -475,7 +474,7 @@
                 "What are the needed requirements for obtaining a scholarship? "
             ],
             "responses": [
-                "CvSU typically offers various scholarship programs, each with its own set of criteria and requirements. These programs might include maintaining a certain grade, community involvement, or specific qualifications. All queries regarding scholarship concerns can be addressed thru osasmain.scholarship@cvsu.edu.ph"
+                "CvSU typically offers various scholarship programs, each with its own set of criteria and requirements. These programs might include maintaining a certain grade, community involvement, or specific qualifications. All queries regarding scholarship concerns can be addressed thru osasmain.scholarship@CvSU.edu.ph"
             ]
         },
         {
@@ -567,6 +566,135 @@
             ],
             "responses": [
                 "The number of applicants accepted for admission varies each year and depends on the university's capacity and program availability. CvSU's admissions office or website might provide information on the number of slots available for admission."
+            ]
+        },
+        {
+            "id": 48,
+            "tag": "testing22\/04",
+            "patterns": [
+                "pat"
+            ],
+            "responses": [
+                "res"
+            ]
+        },
+        {
+            "id": 49,
+            "tag": "testing22\/04",
+            "patterns": [
+                "pattern"
+            ],
+            "responses": [
+                "res"
+            ]
+        },
+        {
+            "id": 50,
+            "tag": "testing22\/04",
+            "patterns": [
+                "pattern1"
+            ],
+            "responses": [
+                "response"
+            ]
+        },
+        {
+            "id": 51,
+            "tag": "testing22\/04",
+            "patterns": [
+                "pattern1"
+            ],
+            "responses": [
+                "response"
+            ]
+        },
+        { 
+            "id": 52,
+            "tag": "testing22\/04",
+            "patterns": [
+                "pat1"
+            ],
+            "responses": [
+                "res1"
+            ]
+        },
+        {
+            "id": 53,
+            "tag": "testing22\/041",
+            "patterns": [
+                "pat1"
+            ],
+            "responses": [
+                "res1"
+            ]
+        },
+        {
+            "id": 54,
+            "tag": "testing22\/041",
+            "patterns": [
+                "toji",
+                "gojo"
+            ],
+            "responses": [
+                "jjk",
+                "jjk1"
+            ]
+        },
+        {
+            "id": 55,
+            "tag": "testing22\/04",
+            "patterns": [
+                "try1",
+                "try2"
+            ],
+            "responses": [
+                "response"
+            ]
+        },
+        {
+            "id": 56,
+            "tag": "testing22\/04",
+            "patterns": [
+                "try1",
+                "try2"
+            ],
+            "responses": [
+                "response"
+            ]
+        },
+        {
+            "id": 57,
+            "tag": "testing22\/04",
+            "patterns": [
+                "try1",
+                "try2"
+            ],
+            "responses": [
+                "resp"
+            ]
+        },
+        {
+            "id": 58,
+            "tag": "testing22\/041",
+            "patterns": [
+                "pattern1",
+                "pattern2",
+                "pattern3"
+            ],
+            "responses": [
+                "response"
+            ]
+        },
+        {
+            "id": 59,
+            "tag": "tag",
+            "patterns": [
+                "pattern",
+                "pattern1"
+            ],
+            "responses": [
+                "resp1",
+                "resp2"
             ]
         }
     ]

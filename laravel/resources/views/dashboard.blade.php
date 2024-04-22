@@ -24,8 +24,7 @@
 @section('main-content')
 <div class="content">
     <div class="container-fluid px-3">
-        <div>
-            {{-- <h2 class="">Automated Response System Dataset</h2> --}}
+        <div class="">
             <div class="d-flex justify-content-end">
                 <div class="col-sm-1 d-block mt-3 rounded text-lg">
                     <button class="btn btn-sm bg-gradient-success mr-1" data-toggle="modal" data-target="#createIntent"><i class="fas fa-plus mr-1"></i>Create Intent</button>
@@ -36,42 +35,42 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
-                <h5 class="modal-title" id="staticBackdropLabel">Add Intent</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Create Intent</h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body px-5 py-5">
-
-                    <form action="process_add_intent.php" method="POST">
+                    <form action="{{ route('createIntent') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
-                            <label for="tag" class="form-label">Tag:</label>
-                            <input type="text" class="form-control" id="tag" name="tag" required>
+                            <label for="createTag" class="form-label">Tag:</label>
+                            <input type="text" class="form-control" id="createTag" name="createTag" required>
                         </div>
-
+                    
                         <div class="mb-3">
-                            <label for="patterns" class="form-label">Patterns:</label>
+                            <label for="createPatterns" class="form-label">Patterns:</label>
                             <div id="patternsContainer">
-                            <textarea class="form-control" name="patterns[]" rows="2" required></textarea>
+                                <textarea class="form-control" id="createPatterns" name="createPatterns[]" rows="2" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="">Add Pattern</button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="">Remove Pattern</button>
-
+                            <button type="button" class="btn btn-primary mt-2" onclick="addPattern()"><i class="fas fa-plus mr-1"></i>Add</button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="removePattern()"><i class="fas fa-trash mr-1"></i>Remove</button>
                         </div>
-
+                    
                         <div class="mb-3">
-                            <label for="responses" class="form-label">Responses:</label>
+                            <label for="createResponses" class="form-label">Responses:</label>
                             <div id="responsesContainer">
-                                <textarea class="form-control" name="responses[]" rows="3" required></textarea>
+                                <textarea class="form-control" id="createResponses" name="createResponses[]" rows="3" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="">Add Response</button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="">Remove Response</button>
+                            <button type="button" class="btn btn-primary mt-2" onclick="addResponse()"><i class="fas fa-plus mr-1"></i>Add</button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="removeResponse()"><i class="fas fa-trash mr-1"></i>Remove</button>
                         </div>
-
+                    
                         <div class="text-center">
-                            <button class="btn btn-success" type="submit">Add Intent</button>
+                            <button class="btn btn-success mt-3" type="submit">Add New Intent</button>
                         </div>
                     </form>
+                    
                 </div>
             </div>
             </div>
@@ -88,18 +87,42 @@
                         </button>
                     </div>
                     <div class="modal-body px-5 py-5">
-                        <!-- Your edit form content here -->
-                        <form action="process_edit_intent.php" method="POST">
-                            <!-- Form fields for editing -->
-                        </form>
+                            <form id="">
+                                <!-- Use id instead of tag for editing -->
+                                <div class="form-group mb-3">
+                                    <label for="newTagValue">Tag:</label>
+                                       <div id="newTagValueContainer">
+                                            <input type="text" name="newTagValue" class="form-control mb-2" value="">
+                                       </div>
+                                </div>
+            
+                                <div class="form-group mb-3">
+                                 <label for="patternsToEdit">Patterns:</label>
+                                    <div id="patternsContainer">
+                                        <input type="text" name="patternsToEdit[]" class="form-control mb-2" value="">
+                                        <button type="button" class="btn btn-primary" onclick="">Add Pattern</button>
+                                        <button type="button" class="btn btn-danger" onclick="">Remove Pattern</button>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group mb-3">
+                                    <label for="responsesToEdit">Responses:</label>
+                                    <div id="responsesContainer">
+                                        <input type="text" name="responsesToEdit[]" class="form-control mb-2" value="">
+                                        <button type="button" class="btn btn-primary" onclick="">Add Response</button>
+                                        <button type="button" class="btn btn-danger" onclick="">Remove Response</button>
+                                    </div>
+                                </div>
+            
+                                <div class="text-center">
+                                    <button class="btn btn-success" type="submit">Edit Intent</button>
+                                </div>
+                            </form>
                     </div>
                 </div>
             </div>
         </div>
-
         
-
-
         <hr>
         <div class="row">
             <div class="col-lg-12">
@@ -151,15 +174,18 @@
     @parent
     <script>
         $(document).ready(function() {
-            $('#intentsTable').DataTable({
-                "pageLength": 5, // Show 5 rows per page initially
-                "lengthMenu": [5, 10, 25, 50], // Set the available page lengths
-                "autoWidth": false // Optional: Disable auto width adjustment
+            var table = $('#intentsTable').DataTable({
+                "pageLength": 5,
+                "lengthMenu": [5, 10, 25, 50],
+                "autoWidth": false,
+                dom: 'lBfrtip', 
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
             });
-            // Add click event listener to archive buttons
+
             $('.archive-btn').click(function() {
                 var tag = $(this).data('tag');
-                // Display confirmation dialog
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You are about to archive the intent with tag: " + tag,
@@ -185,49 +211,71 @@
                     }
                 });
             });
-        });
+
+            // SweetAlert2 for intent added successfully
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: '{{ session('success') }}',
+                });
+            @endif
+
+        // Add Intent Modal
+
+        function addPattern() {
+            var patternsContainer = document.getElementById('patternsContainer');
+            var textarea = document.createElement('textarea');
+            textarea.className = 'form-control mt-2';
+            textarea.name = 'createPatterns[]';
+            textarea.rows = 2; 
+            textarea.required = true;
+            patternsContainer.appendChild(textarea);
+        }
+
+        function addResponse() {
+            var responsesContainer = document.getElementById('responsesContainer');
+            var textarea = document.createElement('textarea');
+            textarea.className = 'form-control mt-2';
+            textarea.name = 'createResponses[]';
+            textarea.rows = 3; 
+            textarea.required = true;
+            responsesContainer.appendChild(textarea);
+        }
+
+        function removePattern() {
+        var patternsContainer = document.getElementById('patternsContainer');
+        var patterns = patternsContainer.getElementsByTagName('textarea');
+        
+            if (patterns.length > 1) {
+                patterns[patterns.length - 1].remove();
+            } else {
+                Swal.fire({
+                title: "?",
+                title: "At least one pattern is required.",
+                icon: "warning"
+                });
+            }
+        }
+
+        function removeResponse() {
+            var responsesContainer = document.getElementById('responsesContainer');
+            var responses = responsesContainer.getElementsByTagName('textarea');
+            
+            if (responses.length > 1) {
+                responses[responses.length - 1].remove();
+            } else {
+                Swal.fire({
+                title: "?",
+                title: "At least one pattern is required.",
+                icon: "warning"
+                });
+            }
+        }
+
+        // End of Add Intent Modal
+
+        
     </script>
 @endsection
 
-
-{{-- <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-header border-0">
-                        <div class="d-flex justify-content-between">
-                            <h3 class="card-title">Automated Response System Dataset</h3>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="position-relative mb-4">
-
-                            
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-lg-4 col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Recently Added Wifi Logs</h3>
-                    </div>
-                    <div class="card-body p-0">
-                        <ul class="products-list product-list-in-card pl-2 pr-2">
-                        </ul>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="javascript:void(0)" class="uppercase">View Logs</a>
-                    </div>
-                </div>
-            </div> --}}
-            
-
-            {{-- rating
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="ratings">
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-            </div> --}}
