@@ -34,4 +34,4 @@ Route::post('/create-intent', [IntentsController::class, 'store'])->name('create
 // Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 // Route::get('/auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
 
-require __DIR__.'/../config/auth.php';
+require __DIR__.'/../config/auth.php'; 

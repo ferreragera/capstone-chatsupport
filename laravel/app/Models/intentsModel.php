@@ -9,5 +9,4 @@ class intentsModel extends Model
 {
     use HasFactory;
 
-    
 }

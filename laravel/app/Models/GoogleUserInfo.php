@@ -12,5 +12,4 @@ class GoogleUserInfo extends Model
     protected $table = 'google_userinfo';
 
     protected $fillable = ['gid', 'email', 'givenName', 'familyName', 'name', 'picture', 'verifiedEmail', 'hd'];
-    
 }

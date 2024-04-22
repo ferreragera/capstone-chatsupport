@@ -38,7 +38,6 @@ class IntentsController extends Controller
 
             return redirect()->back()->with('success', 'Intent added successfully, click the train button to refresh the data.');
 
-            
         }
     }
     
