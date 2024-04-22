@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateGoogleUserinfoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,20 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('google_userinfo', function (Blueprint $table) {
             $table->id();
+            $table->text('gid');
+            $table->string('email');
+            $table->string('givenName');
+            $table->string('familyName');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();
-            $table->string('google_id')->nullable();
-            $table->rememberToken();
+            $table->text('picture');
+            $table->boolean('verifiedEmail');
+            $table->string('hd')->nullable();
             $table->timestamps();
         });
+
+        
     }
 
     /**
@@ -32,6 +36,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('google_userinfo');
     }
 }

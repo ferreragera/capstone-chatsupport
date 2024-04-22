@@ -64,7 +64,6 @@
     <style>
         /* Add your CSS styles here */
         body {
-            text-align: center;
             font-family: Arial, sans-serif;
             background-image: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.5) ), url("images/cvsu-aerial.jpg");
             margin: 0;
@@ -116,7 +115,7 @@
             background-color: #007BFF;
             border: none;
             border-radius: 3px;
-            color: white;
+            color: black;
             font-weight: bold;
             cursor: pointer;
         }
@@ -138,33 +137,21 @@
         <img src="images/CvSU-logo-trans.png" alt="image">
         <span class="text-white m-3">AUTOMATED RESPONSE INQUIRY SYSTEM </span>
             <div class="container mt-3">
-                <h2>Login</h2>
-                <form action="loginAdmin.php" method="post">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="uname" name="uname" placeholder="admin">
-                        <label for="floatingInput">Username</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                        <label for="floatingPassword">Password</label>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="gridCheck">
-                          <label class="form-check-label" for="gridCheck">
-                            Check me out
-                          </label>
-                        </div>
-                    </div>
-                    <div class="div">
-                        <label for="forgetpass">Forget Password</label>
-                    </div>
-
-
-
-                    <button class="btn btn-success btn-md mt-4" type="submit" style="color: rgb(174, 173, 170); background-color: rgb(24, 101, 41); border-color: rgb(28, 117, 48);">Login</button>
+                <h2 class="d-flex justify-content-center">Login</h2>
+                <form>
+                    <!-- "Sign in with Google" button -->
+                    <a href="{{ route('google-auth') }}" class="btn btn-primary btn-md mt-3" style="color: #fff; background-color: #4285F4; border-color: #4285F4;">
+                        <i class="fab fa-google"></i> Sign in with Google
+                    </a>
+                    
                 </form>
+                
             </div>
     </div>
 </body>
+<script>
+
+</script>
 </html>
+
+

@@ -22,10 +22,9 @@
 @endsection  --}}
 
 @section('main-content')
-<div class="content" style="height: 100%; overflow-y: auto;">
+<div class="content">
     <div class="container-fluid px-3">
-        <div>
-            {{-- <h2 class="" style="">Automated Response System Dataset</h2> --}}
+        <div class="">
             <div class="d-flex justify-content-end">
                 <div class="col-sm-1 d-block mt-3 rounded text-lg">
                     <button class="btn btn-sm bg-gradient-success mr-1" data-toggle="modal" data-target="#createIntent"><i class="fas fa-plus mr-1"></i>Create Intent</button>
@@ -35,45 +34,92 @@
         <div class="modal fade" id="createIntent" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Add Intent</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="staticBackdropLabel">Create Intent</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body px-5 py-5">
-
-                    <form action="process_add_intent.php" method="POST">
+                    <form action="{{ route('createIntent') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
-                            <label for="tag" class="form-label">Tag:</label>
-                            <input type="text" class="form-control" id="tag" name="tag" required>
+                            <label for="createTag" class="form-label">Tag:</label>
+                            <input type="text" class="form-control" id="createTag" name="createTag" required>
                         </div>
-
+                    
                         <div class="mb-3">
-                            <label for="patterns" class="form-label">Patterns:</label>
+                            <label for="createPatterns" class="form-label">Patterns:</label>
                             <div id="patternsContainer">
-                            <textarea class="form-control" name="patterns[]" rows="2" required></textarea>
+                                <textarea class="form-control" id="createPatterns" name="createPatterns[]" rows="2" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="">Add Pattern</button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="">Remove Pattern</button>
-
+                            <button type="button" class="btn btn-primary mt-2" onclick="addPattern()"><i class="fas fa-plus mr-1"></i>Add</button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="removePattern()"><i class="fas fa-trash mr-1"></i>Remove</button>
                         </div>
-
+                    
                         <div class="mb-3">
-                            <label for="responses" class="form-label">Responses:</label>
+                            <label for="createResponses" class="form-label">Responses:</label>
                             <div id="responsesContainer">
-                                <textarea class="form-control" name="responses[]" rows="3" required></textarea>
+                                <textarea class="form-control" id="createResponses" name="createResponses[]" rows="3" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="">Add Response</button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="">Remove Response</button>
+                            <button type="button" class="btn btn-primary mt-2" onclick="addResponse()"><i class="fas fa-plus mr-1"></i>Add</button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="removeResponse()"><i class="fas fa-trash mr-1"></i>Remove</button>
                         </div>
-
+                    
                         <div class="text-center">
-                            <button class="btn btn-success" type="submit">Add Intent</button>
+                            <button class="btn btn-success mt-3" type="submit">Add New Intent</button>
                         </div>
                     </form>
+                    
                 </div>
             </div>
+            </div>
+        </div>
+
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title" id="editModalLabel">Edit Intent</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-5 py-5">
+                            <form id="">
+                                <!-- Use id instead of tag for editing -->
+                                <div class="form-group mb-3">
+                                    <label for="newTagValue">Tag:</label>
+                                       <div id="newTagValueContainer">
+                                            <input type="text" name="newTagValue" class="form-control mb-2" value="">
+                                       </div>
+                                </div>
+            
+                                <div class="form-group mb-3">
+                                 <label for="patternsToEdit">Patterns:</label>
+                                    <div id="patternsContainer">
+                                        <input type="text" name="patternsToEdit[]" class="form-control mb-2" value="">
+                                        <button type="button" class="btn btn-primary" onclick="">Add Pattern</button>
+                                        <button type="button" class="btn btn-danger" onclick="">Remove Pattern</button>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group mb-3">
+                                    <label for="responsesToEdit">Responses:</label>
+                                    <div id="responsesContainer">
+                                        <input type="text" name="responsesToEdit[]" class="form-control mb-2" value="">
+                                        <button type="button" class="btn btn-primary" onclick="">Add Response</button>
+                                        <button type="button" class="btn btn-danger" onclick="">Remove Response</button>
+                                    </div>
+                                </div>
+            
+                                <div class="text-center">
+                                    <button class="btn btn-success" type="submit">Edit Intent</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -81,27 +127,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header border-0">
-                        <div class="d-flex justify-content-between">
-                            <h3 class="card-title">Automated Response System Dataset</h3>
-                        </div>
-                    </div>
-                    <div class="card-body">
+                    <div class="card-body" style="max-height: 80vh; overflow-y: auto;">
                         <div class="position-relative mb-4">
-                            @php
-                                $json_data = file_get_contents('C:/xampp/htdocs/capstone/python/intents.json');
-                                $data = json_decode($json_data, true);
-        
-                                // Pagination
-                                $total_intents = count($data['intents']);
-                                $limit = 5; // Number of items per page
-                                $total_pages = ceil($total_intents / $limit);
-                                $page = isset($_GET['page']) ? max(1, min($_GET['page'], $total_pages)) : 1; // Current page
-                                $offset = ($page - 1) * $limit; // Offset for data retrieval
-                                $paginated_intents = array_slice($data['intents'], $offset, $limit);
-                            @endphp
-        
-                            <table class="table table-striped">
+                            <table id="intentsTable" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col">Tags</th>
@@ -111,38 +139,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($paginated_intents as $intent)
-                                    <tr>
-                                        <td>{{ $intent['tag'] }}</td>
-                                        <td>{{ implode(', ', $intent['patterns']) }}</td>
-                                        <td>{{ implode(', ', $intent['responses']) }}</td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm btn-block me-2" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                                            <button class="btn btn-success btn-sm btn-block text-light" data-bs-toggle="modal" data-bs-target="#deleteModal">Archive</button>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                                    <?php
+                                    $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
+                                    $data = json_decode($json_data, true);
+                                    $paginated_intents = $data['intents'];
+
+                                    foreach ($paginated_intents as $intent) {
+                                        echo "<tr>";
+                                        echo "<td>" . $intent['tag'] . "</td>";
+                                        echo "<td>" . implode(', ', $intent['patterns']) . "</td>";
+                                        echo "<td>" . implode(', ', $intent['responses']) . "</td>";
+                                        echo "<td>
+                                            <button class='btn btn-primary btn-sm me-2' data-toggle='modal' data-target='#editModal'><i class='fas fa-edit'></i></button>
+                                            <button class='btn btn-success btn-sm text-light archive-btn' data-tag='" . $intent['tag'] . "'><i class='fas fa-archive'></i></button>
+                                            </td>";
+                                        echo "</tr>";
+                                    }
+                                    ?>
                                 </tbody>
+
                             </table>
-        
-                            <!-- Pagination -->
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-end">
-                                    <li class="page-item {{ $page == 1 ? 'disabled' : '' }}">
-                                        <a class="page-link" href="?page={{ $page - 1 }}" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    @for ($i = 1; $i <= $total_pages; $i++)
-                                    <li class="page-item {{ $i == $page ? 'active' : '' }}"><a class="page-link" href="?page={{ $i }}">{{ $i }}</a></li>
-                                    @endfor
-                                    <li class="page-item {{ $page == $total_pages ? 'disabled' : '' }}">
-                                        <a class="page-link" href="?page={{ $page + 1 }}" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>
@@ -155,49 +171,118 @@
 @endsection
 
 @section('script')
-<script>
+    @parent
+    <script>
+        $(document).ready(function() {
+            var table = $('#intentsTable').DataTable({
+                "pageLength": 5,
+                "lengthMenu": [5, 10, 25, 50],
+                "autoWidth": false,
+                dom: 'lBfrtip', 
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
 
-</script>
+            $('.archive-btn').click(function() {
+                var tag = $(this).data('tag');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You are about to archive the intent with tag: " + tag,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, archive it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Perform the archiving action here
+                        // For example, you can make an AJAX request to your server to archive the intent
+                        // $.post('/archive-intent', { tag: tag }, function(response) {
+                        //     if (response.success) {
+                        //         // Show success message
+                        //         Swal.fire('Archived!', 'The intent has been archived.', 'success');
+                        //     } else {
+                        //         // Show error message
+                        //         Swal.fire('Error!', 'Failed to archive the intent.', 'error');
+                        //     }
+                        // });
+                        Swal.fire('Archived!', 'The intent with tag: ' + tag + ' has been archived.', 'success');
+                    }
+                });
+            });
+
+            // SweetAlert2 for intent added successfully
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: '{{ session('success') }}',
+                });
+            @endif
+        });
+
+        // Add Intent Modal
+
+        function addPattern() {
+            var patternsContainer = document.getElementById('patternsContainer');
+            var textarea = document.createElement('textarea');
+            textarea.className = 'form-control mt-2';
+            textarea.name = 'createPatterns[]';
+            textarea.rows = 2; 
+            textarea.required = true;
+            patternsContainer.appendChild(textarea);
+        }
+
+        function addResponse() {
+            var responsesContainer = document.getElementById('responsesContainer');
+            var textarea = document.createElement('textarea');
+            textarea.className = 'form-control mt-2';
+            textarea.name = 'createResponses[]';
+            textarea.rows = 3; 
+            textarea.required = true;
+            responsesContainer.appendChild(textarea);
+        }
+
+        function removePattern() {
+        var patternsContainer = document.getElementById('patternsContainer');
+        var patterns = patternsContainer.getElementsByTagName('textarea');
+        
+            if (patterns.length > 1) {
+                patterns[patterns.length - 1].remove();
+            } else {
+                Swal.fire({
+                title: "?",
+                title: "At least one pattern is required.",
+                icon: "warning"
+                });
+            }
+        }
+
+        function removeResponse() {
+            var responsesContainer = document.getElementById('responsesContainer');
+            var responses = responsesContainer.getElementsByTagName('textarea');
+            
+            if (responses.length > 1) {
+                responses[responses.length - 1].remove();
+            } else {
+                Swal.fire({
+                title: "?",
+                title: "At least one pattern is required.",
+                icon: "warning"
+                });
+            }
+        }
+
+        // End of Add Intent Modal
+
+        
+
+        
+
+        
+
+
+    </script>
 @endsection
 
-{{-- <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-header border-0">
-                        <div class="d-flex justify-content-between">
-                            <h3 class="card-title">Automated Response System Dataset</h3>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="position-relative mb-4">
-
-                            
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-lg-4 col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Recently Added Wifi Logs</h3>
-                    </div>
-                    <div class="card-body p-0">
-                        <ul class="products-list product-list-in-card pl-2 pr-2">
-                        </ul>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="javascript:void(0)" class="uppercase">View Logs</a>
-                    </div>
-                </div>
-            </div> --}}
-            
-
-            {{-- rating
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="ratings">
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-            </div> --}}
