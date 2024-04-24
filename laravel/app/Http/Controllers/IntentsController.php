@@ -40,7 +40,59 @@ class IntentsController extends Controller
 
         }
     }
+
+
+    public function edit(Request $request){
+        if ($request->isMethod('post')) {
+            $idToEdit = request()->input('idToEdit');
+            $newTagValue = request()->input('newTagValue');
+            $patternsToEdit = is_array(request()->input('patternsToEdit')) ? request()->input('patternsToEdit') : [request()->input('patternsToEdit')];
+            $responsesToEdit = is_array(request()->input('responsesToEdit')) ? request()->input('responsesToEdit') : [request()->input('responsesToEdit')];
+
+            $jsonPath = public_path('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
+            $json_data = file_get_contents($jsonPath);
+            $intents = json_decode($json_data, true);
+        
+            foreach ($intents['intents'] as &$intent) {
+                if ($intent['id'] == $idToEdit) {
+                    $intent['tag'] = $newTagValue;
+                    $intent['patterns'] = $patternsToEdit;
+                    $intent['responses'] = $responsesToEdit;
+                }
+            }
+        
+            file_put_contents($jsonPath, json_encode($intents, JSON_PRETTY_PRINT));
+            return redirect()->back()->with('success', 'Intent edited successfully, click the train button to refresh the data.');
+        }
+    }
+
+        
+
+    // }
+    // public function edit(Request $request) {
+    //     if ($request->isMethod('post')) {
+    //         $idToEdit = $request->input('idToEdit');
+    //         $newTagValue = $request->input('newTagValue');
+    //         $patternsToEdit = explode("\n", trim($request->input('patternsToEdit')));
+    //         $responsesToEdit = explode("\n", trim($request->input('responsesToEdit')));
     
+    //         $jsonPath = 'C:\xampp\htdocs\capstone-chatsupport\python\intents.json';
+    //         $json_data = file_get_contents($jsonPath);
+    //         $intents = json_decode($json_data, true);
+    
+    //         foreach ($intents['intents'] as &$intent) {
+    //             if ($intent['id'] == $idToEdit) {
+    //                 $intent['tag'] = $newTagValue;
+    //                 $intent['patterns'] = $patternsToEdit;
+    //                 $intent['responses'] = $responsesToEdit;
+    //                 break; 
+    //             }
+    //         }
+    
+    //         file_put_contents($jsonPath, json_encode($intents, JSON_PRETTY_PRINT));
+    //         return redirect()->back()->with('success', 'Intent edited successfully, click the train button to refresh the data.');
+    //     }
+    // }
 
 
 }

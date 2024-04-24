@@ -608,7 +608,7 @@
                 "response"
             ]
         },
-        { 
+        {
             "id": 52,
             "tag": "testing22\/04",
             "patterns": [
@@ -695,6 +695,37 @@
             "responses": [
                 "resp1",
                 "resp2"
+            ]
+        },
+        {
+            "id": 60,
+            "tag": "tag",
+            "patterns": [
+                "pt"
+            ],
+            "responses": [
+                "rs"
+            ]
+        },
+        {
+            "id": 61,
+            "tag": "tag",
+            "patterns": [
+                "pt"
+            ],
+            "responses": [
+                "ra"
+            ]
+        },
+        {
+            "id": 62,
+            "tag": "newTag",
+            "patterns": [
+                "pattern",
+                "pattern1"
+            ],
+            "responses": [
+                "response"
             ]
         }
     ]

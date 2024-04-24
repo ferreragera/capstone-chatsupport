@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class ViewComposerServiceProvider extends ServiceProvider
+class IntentsServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -23,6 +23,6 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('*', "App\Http\ViewComposers\GoogleUserInfo");
+        //
     }
 }

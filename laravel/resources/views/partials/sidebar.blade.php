@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark- elevation-4">
     <!-- Brand Logo -->
     <div class="brand-link d-flex justify-content-between align-items-center">
       <a class="brand-link" href="index3.html">
