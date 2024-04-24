@@ -55,7 +55,7 @@
                 <!-- Main content -->
                 @yield('main-content')
                 <!-- /.content -->
-            </div>
+            </div> 
             <!-- /.content-wrapper -->
                 @include('partials.footer')
             </div>

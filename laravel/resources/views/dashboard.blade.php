@@ -104,7 +104,7 @@
                                 <button type="button" class="btn btn-danger mt-2" onclick="removeEditPattern()"><i class="fas fa-trash mr-1"></i>Remove</button>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3"> 
                                 <label for="responsesToEdit" class="form-label">Responses:</label>
                                 <div id="editresponsesContainer">
                                     <textarea class="form-control" id="responsesToEdit" name="responsesToEdit[]" rows="3" required></textarea>

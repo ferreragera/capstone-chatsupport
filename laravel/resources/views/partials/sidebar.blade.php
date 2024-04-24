@@ -19,7 +19,7 @@
           <a href="#" class="d-block">{{ $googleUserInfo->name }}</a>
         </div>
       </div>
- 
+  
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">

@@ -48,7 +48,7 @@ class IntentsController extends Controller
             $newTagValue = request()->input('newTagValue');
             $patternsToEdit = is_array(request()->input('patternsToEdit')) ? request()->input('patternsToEdit') : [request()->input('patternsToEdit')];
             $responsesToEdit = is_array(request()->input('responsesToEdit')) ? request()->input('responsesToEdit') : [request()->input('responsesToEdit')];
-
+ 
             $jsonPath = public_path('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
             $json_data = file_get_contents($jsonPath);
             $intents = json_decode($json_data, true);
