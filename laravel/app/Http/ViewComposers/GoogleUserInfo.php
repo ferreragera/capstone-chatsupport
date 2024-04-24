@@ -7,12 +7,15 @@ use Illuminate\Contracts\View\View;
 
 class GoogleUserInfo {
 
-    public function compose(View $view) {
+    public function compose(View $view)
+    {
         $authUser = auth()->user();
-        if($authUser) {
+        if ($authUser) {
             $googleUserInfo = GoogleUserInfoModel::where('email', $authUser->email)->first();
 
             $view->with('googleUserInfo', $googleUserInfo);
         }
+
     }
+
 }

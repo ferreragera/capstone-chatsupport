@@ -18,7 +18,7 @@
         <!-- Sweet Alert 2 -->
         <link rel="stylesheet" href="{{asset('plugins/sweetalert2/sweetalert2.min.css')}}">
         <!-- jQuery -->
-        <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>\
+        <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
         <!-- DataTables JavaScript -->
         <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
@@ -38,17 +38,14 @@
 
     </head>
 
-    <body>
-        <header>
-
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
             {{-- Navbar --}}
             @include('partials.navbar')
 
             {{-- Sidebar --}}
             @include('partials.sidebar')
         
-        </header>
-        <main>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
@@ -58,12 +55,10 @@
                 <!-- Main content -->
                 @yield('main-content')
                 <!-- /.content -->
-                </div>
+            </div> 
             <!-- /.content-wrapper -->
-        </main>
-        <footer>
-            @include('partials.footer')
-        </footer>
+                @include('partials.footer')
+            </div>
     </body>
         <!-- REQUIRED SCRIPTS -->
             

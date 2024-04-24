@@ -87,42 +87,43 @@
                         </button>
                     </div>
                     <div class="modal-body px-5 py-5">
-                            <form id="">
-                                <!-- Use id instead of tag for editing -->
-                                <div class="form-group mb-3">
-                                    <label for="newTagValue">Tag:</label>
-                                       <div id="newTagValueContainer">
-                                            <input type="text" name="newTagValue" class="form-control mb-2" value="">
-                                       </div>
+                        <form id="{{ route('editIntent') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                {{-- <input type="hidden" name="idToEdit" value="<?= $paginated_intents['id'] ?>"> --}}
+                                <label for="newTagValue" class="form-label">Edit Tag:</label>
+                                <input type="text" class="form-control" id="newTagValue" name="newTagValue" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="patternsToEdit" class="form-label">Patterns:</label>
+                                <div id="editpatternsContainer">
+                                    <textarea class="form-control" id="patternsToEdit" name="patternsToEdit[]" rows="2" required></textarea>
                                 </div>
-            
-                                <div class="form-group mb-3">
-                                 <label for="patternsToEdit">Patterns:</label>
-                                    <div id="patternsContainer">
-                                        <input type="text" name="patternsToEdit[]" class="form-control mb-2" value="">
-                                        <button type="button" class="btn btn-primary" onclick="">Add Pattern</button>
-                                        <button type="button" class="btn btn-danger" onclick="">Remove Pattern</button>
-                                    </div>
+                                <button type="button" class="btn btn-primary mt-2" onclick="addEditPattern()"><i class="fas fa-plus mr-1"></i>Add</button>
+                                <button type="button" class="btn btn-danger mt-2" onclick="removeEditPattern()"><i class="fas fa-trash mr-1"></i>Remove</button>
+                            </div>
+
+                            <div class="mb-3"> 
+                                <label for="responsesToEdit" class="form-label">Responses:</label>
+                                <div id="editresponsesContainer">
+                                    <textarea class="form-control" id="responsesToEdit" name="responsesToEdit[]" rows="3" required></textarea>
                                 </div>
-            
-                                <div class="form-group mb-3">
-                                    <label for="responsesToEdit">Responses:</label>
-                                    <div id="responsesContainer">
-                                        <input type="text" name="responsesToEdit[]" class="form-control mb-2" value="">
-                                        <button type="button" class="btn btn-primary" onclick="">Add Response</button>
-                                        <button type="button" class="btn btn-danger" onclick="">Remove Response</button>
-                                    </div>
-                                </div>
-            
-                                <div class="text-center">
-                                    <button class="btn btn-success" type="submit">Edit Intent</button>
-                                </div>
-                            </form>
+                                <button type="button" class="btn btn-primary mt-2" onclick="addEditResponse()"><i class="fas fa-plus mr-1"></i>Add</button>
+                                <button type="button" class="btn btn-danger mt-2" onclick="removeEditResponse()"><i class="fas fa-trash mr-1"></i>Remove</button>
+                            </div>
+        
+                            <div class="text-center">
+                                <button class="btn btn-success mt-3" type="submit">Add New Intent</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
         
+
         <hr>
         <div class="row">
             <div class="col-lg-12">
@@ -220,6 +221,7 @@
                     text: '{{ session('success') }}',
                 });
             @endif
+        });
 
         // Add Intent Modal
 
@@ -275,7 +277,68 @@
 
         // End of Add Intent Modal
 
+        // Edit Intent Modal
+
+        function addEditPattern() {
+            var editpatternsContainer = document.getElementById('editpatternsContainer');
+            var textarea = document.createElement('textarea');
+            textarea.className = 'form-control mt-2';
+            textarea.name = 'patternsToEdit[]';
+            textarea.rows = 2; 
+            textarea.required = true;
+            editpatternsContainer.appendChild(textarea);
+        }
+
+        function addEditResponse() {
+            var editresponsesContainer = document.getElementById('editresponsesContainer');
+            var textarea = document.createElement('textarea');
+            textarea.className = 'form-control mt-2';
+            textarea.name = 'responsesToEdit[]';
+            textarea.rows = 3; 
+            textarea.required = true;
+            editresponsesContainer.appendChild(textarea);
+        }
+
+        function removeEditPattern() {
+        var editpatternsContainer = document.getElementById('editpatternsContainer');
+        var patterns = editpatternsContainer.getElementsByTagName('textarea');
         
+            if (patterns.length > 1) {
+                patterns[patterns.length - 1].remove();
+            } else {
+                Swal.fire({
+                title: "?",
+                title: "At least one pattern is required.",
+                icon: "warning"
+                });
+            }
+        }
+
+        function removeEditResponse() {
+            var editresponsesContainer = document.getElementById('editresponsesContainer');
+            var responses = editresponsesContainer.getElementsByTagName('textarea');
+            
+            if (responses.length > 1) {
+                responses[responses.length - 1].remove();
+            } else {
+                Swal.fire({
+                title: "?",
+                title: "At least one pattern is required.",
+                icon: "warning"
+                });
+            }
+        }
+
+        // End of Edit Intent Modal
+
+
+        
+
+        
+
+        
+
+
     </script>
 @endsection
 

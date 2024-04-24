@@ -31,7 +31,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 Route::post('/create-intent', [IntentsController::class, 'store'])->name('createIntent');
-// Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
-// Route::get('/auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
+Route::put('/edit-intent', [IntentsController::class, 'edit'])->name('editIntent');
 
-require __DIR__.'/../config/auth.php'; 
+require __DIR__.'/../config/auth.php';  

@@ -52,7 +52,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="322202395649-15c775d5vhh31h5vb0hust6ld9h5te11.apps.googleusercontent.com">
     <title>LOGIN</title>
     <link rel="icon" href="https://cvsu.edu.ph/wp-content/uploads/2018/01/CvSU-logo-trans.png" sizes="192x192">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -139,13 +139,33 @@
             <div class="container mt-3">
                 <h2 class="d-flex justify-content-center">Login</h2>
                 <form>
-                    <!-- "Sign in with Google" button -->
                     <a href="{{ route('google-auth') }}" class="btn btn-primary btn-md mt-3" style="color: #fff; background-color: #4285F4; border-color: #4285F4;">
                         <i class="fab fa-google"></i> Sign in with Google
                     </a>
-                    
                 </form>
-                
+
+                {{-- <div id="my-signin2"></div>
+                <script>
+                    function onSuccess(googleUser) {
+                    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+                    }
+                    function onFailure(error) { 
+                    console.log(error);
+                    }
+                    function renderButton() {
+                    gapi.signin2.render('my-signin2', {
+                        'scope': 'profile email',
+                        'width': 240,
+                        'height': 50,
+                        'longtitle': true,
+                        'theme': 'dark',
+                        'onsuccess': onSuccess,
+                        'onfailure': onFailure
+                    });
+                    }
+                </script> --}}
+
+                <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
             </div>
     </div>
 </body>
