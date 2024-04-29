@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <!-- Edit Modal -->
+        {{-- <!-- Edit Modal -->
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
@@ -90,7 +90,6 @@
                         <form id="{{ route('editIntent') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                {{-- <input type="hidden" name="idToEdit" value="<?= $paginated_intents['id'] ?>"> --}}
                                 <label for="newTagValue" class="form-label">Edit Tag:</label>
                                 <input type="text" class="form-control" id="newTagValue" name="newTagValue" required>
                             </div>
@@ -120,7 +119,54 @@
                     </div>
                 </div>
             </div>
+        </div> --}}
+
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title" id="editModalLabel">Edit Intent</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-5 py-5">
+                        <form id="editForm" method="POST" action="{{ route('editIntent') }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="newTagValue" class="form-label">Edit Tag:</label>
+                                <input type="text" class="form-control" id="newTagValue" name="newTagValue" value="" required>
+                            </div>
+                    
+                            <div class="mb-3">
+                                <label for="patternsToEdit" class="form-label">Patterns:</label>
+                                <div id="editpatternsContainer">
+                                    <textarea class="form-control" id="patternsToEdit" name="patternsToEdit[]" rows="2" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary mt-2" onclick="addEditPattern()"><i class="fas fa-plus mr-1"></i>Add</button>
+                                <button type="button" class="btn btn-danger mt-2" onclick="removeEditPattern()"><i class="fas fa-trash mr-1"></i>Remove</button>
+                            </div>
+                    
+                            <div class="mb-3"> 
+                                <label for="responsesToEdit" class="form-label">Responses:</label>
+                                <div id="editresponsesContainer">
+                                    <textarea class="form-control" id="responsesToEdit" name="responsesToEdit[]" rows="3" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary mt-2" onclick="addEditResponse()"><i class="fas fa-plus mr-1"></i>Add</button>
+                                <button type="button" class="btn btn-danger mt-2" onclick="removeEditResponse()"><i class="fas fa-trash mr-1"></i>Remove</button>
+                            </div>
+                    
+                            <div class="text-center">
+                                <button class="btn btn-success mt-3" type="submit">Update Intent</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
+
 
         
 
@@ -140,25 +186,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
+                                    @php
                                     $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
                                     $data = json_decode($json_data, true);
                                     $paginated_intents = $data['intents'];
-
+                                    
                                     foreach ($paginated_intents as $intent) {
                                         echo "<tr>";
                                         echo "<td>" . $intent['tag'] . "</td>";
                                         echo "<td>" . implode(', ', $intent['patterns']) . "</td>";
                                         echo "<td>" . implode(', ', $intent['responses']) . "</td>";
                                         echo "<td>
-                                            <button class='btn btn-primary btn-sm me-2' data-toggle='modal' data-target='#editModal'><i class='fas fa-edit'></i></button>
+                                            <button class='btn btn-primary btn-sm me-2 edit-btn' 
+                                                    data-toggle='modal' 
+                                                    data-target='#editModal' 
+                                                    data-tag='" . $intent['tag'] . "'
+                                                    onclick='setEditModalData(\"" . $intent['tag'] . "\", \"" . implode(', ', $intent['patterns']) . "\", \"" . implode(', ', $intent['responses']) . "\")'>
+                                                <i class='fas fa-edit'></i>
+                                            </button>
                                             <button class='btn btn-success btn-sm text-light archive-btn' data-tag='" . $intent['tag'] . "'><i class='fas fa-archive'></i></button>
                                             </td>";
                                         echo "</tr>";
                                     }
-                                    ?>
-                                </tbody>
-
+                                    @endphp
+                                </tbody>                                
                             </table>
                         </div>
                     </div>
@@ -213,6 +264,17 @@
                 });
             });
 
+            $('.edit-btn').click(function() {
+                var tag = $(this).data('tag');
+                var patterns = $(this).data('patterns');
+                var responses = $(this).data('responses');
+
+                document.getElementById('newTagValue').value = tag;
+                document.getElementById('patternsToEdit').value = patterns;
+                document.getElementById('responsesToEdit').value = responses;
+                document.getElementById('editForm').action = '/edit-intent/' + tag;
+            });
+
             // SweetAlert2 for intent added successfully
             @if(session('success'))
                 Swal.fire({
@@ -224,7 +286,6 @@
         });
 
         // Add Intent Modal
-
         function addPattern() {
             var patternsContainer = document.getElementById('patternsContainer');
             var textarea = document.createElement('textarea');
@@ -330,6 +391,9 @@
         }
 
         // End of Edit Intent Modal
+
+
+        
 
 
         
