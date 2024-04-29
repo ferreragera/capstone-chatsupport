@@ -47,7 +47,7 @@
                             <label for="createTag" class="form-label">Tag:</label>
                             <input type="text" class="form-control" id="createTag" name="createTag" required>
                         </div>
-                    
+
                         <div class="mb-3">
                             <label for="createPatterns" class="form-label">Patterns:</label>
                             <div id="patternsContainer">
@@ -56,7 +56,7 @@
                             <button type="button" class="btn btn-primary mt-2" onclick="addPattern()"><i class="fas fa-plus mr-1"></i>Add</button>
                             <button type="button" class="btn btn-danger mt-2" onclick="removePattern()"><i class="fas fa-trash mr-1"></i>Remove</button>
                         </div>
-                    
+
                         <div class="mb-3">
                             <label for="createResponses" class="form-label">Responses:</label>
                             <div id="responsesContainer">
@@ -65,110 +65,17 @@
                             <button type="button" class="btn btn-primary mt-2" onclick="addResponse()"><i class="fas fa-plus mr-1"></i>Add</button>
                             <button type="button" class="btn btn-danger mt-2" onclick="removeResponse()"><i class="fas fa-trash mr-1"></i>Remove</button>
                         </div>
-                    
+
                         <div class="text-center">
                             <button class="btn btn-success mt-3" type="submit">Add New Intent</button>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
             </div>
         </div>
 
-        {{-- <!-- Edit Modal -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-dark text-white">
-                        <h5 class="modal-title" id="editModalLabel">Edit Intent</h5>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body px-5 py-5">
-                        <form id="{{ route('editIntent') }}" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="newTagValue" class="form-label">Edit Tag:</label>
-                                <input type="text" class="form-control" id="newTagValue" name="newTagValue" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="patternsToEdit" class="form-label">Patterns:</label>
-                                <div id="editpatternsContainer">
-                                    <textarea class="form-control" id="patternsToEdit" name="patternsToEdit[]" rows="2" required></textarea>
-                                </div>
-                                <button type="button" class="btn btn-primary mt-2" onclick="addEditPattern()"><i class="fas fa-plus mr-1"></i>Add</button>
-                                <button type="button" class="btn btn-danger mt-2" onclick="removeEditPattern()"><i class="fas fa-trash mr-1"></i>Remove</button>
-                            </div>
-
-                            <div class="mb-3"> 
-                                <label for="responsesToEdit" class="form-label">Responses:</label>
-                                <div id="editresponsesContainer">
-                                    <textarea class="form-control" id="responsesToEdit" name="responsesToEdit[]" rows="3" required></textarea>
-                                </div>
-                                <button type="button" class="btn btn-primary mt-2" onclick="addEditResponse()"><i class="fas fa-plus mr-1"></i>Add</button>
-                                <button type="button" class="btn btn-danger mt-2" onclick="removeEditResponse()"><i class="fas fa-trash mr-1"></i>Remove</button>
-                            </div>
-        
-                            <div class="text-center">
-                                <button class="btn btn-success mt-3" type="submit">Add New Intent</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-        <!-- Edit Modal -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-dark text-white">
-                        <h5 class="modal-title" id="editModalLabel">Edit Intent</h5>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body px-5 py-5">
-                        <form id="editForm" method="POST" action="{{ route('editIntent') }}">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="newTagValue" class="form-label">Edit Tag:</label>
-                                <input type="text" class="form-control" id="newTagValue" name="newTagValue" value="" required>
-                            </div>
-                    
-                            <div class="mb-3">
-                                <label for="patternsToEdit" class="form-label">Patterns:</label>
-                                <div id="editpatternsContainer">
-                                    <textarea class="form-control" id="patternsToEdit" name="patternsToEdit[]" rows="2" required></textarea>
-                                </div>
-                                <button type="button" class="btn btn-primary mt-2" onclick="addEditPattern()"><i class="fas fa-plus mr-1"></i>Add</button>
-                                <button type="button" class="btn btn-danger mt-2" onclick="removeEditPattern()"><i class="fas fa-trash mr-1"></i>Remove</button>
-                            </div>
-                    
-                            <div class="mb-3"> 
-                                <label for="responsesToEdit" class="form-label">Responses:</label>
-                                <div id="editresponsesContainer">
-                                    <textarea class="form-control" id="responsesToEdit" name="responsesToEdit[]" rows="3" required></textarea>
-                                </div>
-                                <button type="button" class="btn btn-primary mt-2" onclick="addEditResponse()"><i class="fas fa-plus mr-1"></i>Add</button>
-                                <button type="button" class="btn btn-danger mt-2" onclick="removeEditResponse()"><i class="fas fa-trash mr-1"></i>Remove</button>
-                            </div>
-                    
-                            <div class="text-center">
-                                <button class="btn btn-success mt-3" type="submit">Update Intent</button>
-                            </div>
-                        </form>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-
-
-        
 
         <hr>
         <div class="row">
@@ -190,33 +97,26 @@
                                     $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
                                     $data = json_decode($json_data, true);
                                     $paginated_intents = $data['intents'];
-                                    
+
                                     foreach ($paginated_intents as $intent) {
                                         echo "<tr>";
                                         echo "<td>" . $intent['tag'] . "</td>";
                                         echo "<td>" . implode(', ', $intent['patterns']) . "</td>";
                                         echo "<td>" . implode(', ', $intent['responses']) . "</td>";
                                         echo "<td>
-                                            <button class='btn btn-primary btn-sm me-2 edit-btn' 
-                                                    data-toggle='modal' 
-                                                    data-target='#editModal' 
-                                                    data-tag='" . $intent['tag'] . "'
-                                                    onclick='setEditModalData(\"" . $intent['tag'] . "\", \"" . implode(', ', $intent['patterns']) . "\", \"" . implode(', ', $intent['responses']) . "\")'>
-                                                <i class='fas fa-edit'></i>
-                                            </button>
                                             <button class='btn btn-success btn-sm text-light archive-btn' data-tag='" . $intent['tag'] . "'><i class='fas fa-archive'></i></button>
                                             </td>";
                                         echo "</tr>";
                                     }
                                     @endphp
-                                </tbody>                                
+                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 
@@ -227,180 +127,183 @@
     <script>
         $(document).ready(function() {
             var table = $('#intentsTable').DataTable({
-                "pageLength": 5,
-                "lengthMenu": [5, 10, 25, 50],
-                "autoWidth": false,
-                dom: 'lBfrtip', 
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
-
-            $('.archive-btn').click(function() {
-                var tag = $(this).data('tag');
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You are about to archive the intent with tag: " + tag,
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, archive it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Perform the archiving action here
-                        // For example, you can make an AJAX request to your server to archive the intent
-                        // $.post('/archive-intent', { tag: tag }, function(response) {
-                        //     if (response.success) {
-                        //         // Show success message
-                        //         Swal.fire('Archived!', 'The intent has been archived.', 'success');
-                        //     } else {
-                        //         // Show error message
-                        //         Swal.fire('Error!', 'Failed to archive the intent.', 'error');
-                        //     }
-                        // });
-                        Swal.fire('Archived!', 'The intent with tag: ' + tag + ' has been archived.', 'success');
-                    }
-                });
-            });
-
-            $('.edit-btn').click(function() {
-                var tag = $(this).data('tag');
-                var patterns = $(this).data('patterns');
-                var responses = $(this).data('responses');
-
-                document.getElementById('newTagValue').value = tag;
-                document.getElementById('patternsToEdit').value = patterns;
-                document.getElementById('responsesToEdit').value = responses;
-                document.getElementById('editForm').action = '/edit-intent/' + tag;
-            });
-
-            // SweetAlert2 for intent added successfully
-            @if(session('success'))
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: '{{ session('success') }}',
-                });
-            @endif
+            "pageLength": 5,
+            "lengthMenu": [5, 10, 25, 50],
+            "autoWidth": false,
+            "scrollY": "300px",
+            "scrollCollapse": true,
+            dom: 'lBfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
         });
 
-        // Add Intent Modal
-        function addPattern() {
-            var patternsContainer = document.getElementById('patternsContainer');
-            var textarea = document.createElement('textarea');
-            textarea.className = 'form-control mt-2';
-            textarea.name = 'createPatterns[]';
-            textarea.rows = 2; 
-            textarea.required = true;
-            patternsContainer.appendChild(textarea);
-        }
+        $('#intentsTable tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                intentsTable.row( this ).edit();
+                // $(this).removeClass('selected');
+            } else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
 
-        function addResponse() {
-            var responsesContainer = document.getElementById('responsesContainer');
-            var textarea = document.createElement('textarea');
-            textarea.className = 'form-control mt-2';
-            textarea.name = 'createResponses[]';
-            textarea.rows = 3; 
-            textarea.required = true;
-            responsesContainer.appendChild(textarea);
-        }
 
-        function removePattern() {
+
+        $('.archive-btn').click(function() {
+            var tag = $(this).data('tag');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to archive the intent with tag: " + tag,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, archive it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the archiving action here
+                    // For example, you can make an AJAX request to your server to archive the intent
+                    // $.post('/archive-intent', { tag: tag }, function(response) {
+                    //     if (response.success) {
+                    //         // Show success message
+                    //         Swal.fire('Archived!', 'The intent has been archived.', 'success');
+                    //     } else {
+                    //         // Show error message
+                    //         Swal.fire('Error!', 'Failed to archive the intent.', 'error');
+                    //     }
+                    // });
+                    Swal.fire('Archived!', 'The intent with tag: ' + tag + ' has been archived.', 'success');
+                }
+            });
+        });
+
+        // SweetAlert2 for intent added successfully
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ session('success') }}',
+            });
+        @endif
+    });
+
+    // Add Intent Modal
+    function addPattern() {
         var patternsContainer = document.getElementById('patternsContainer');
-        var patterns = patternsContainer.getElementsByTagName('textarea');
-        
-            if (patterns.length > 1) {
-                patterns[patterns.length - 1].remove();
-            } else {
-                Swal.fire({
-                title: "?",
-                title: "At least one pattern is required.",
-                icon: "warning"
-                });
-            }
+        var textarea = document.createElement('textarea');
+        textarea.className = 'form-control mt-2';
+        textarea.name = 'createPatterns[]';
+        textarea.rows = 2;
+        textarea.required = true;
+        patternsContainer.appendChild(textarea);
+    }
+
+    function addResponse() {
+        var responsesContainer = document.getElementById('responsesContainer');
+        var textarea = document.createElement('textarea');
+        textarea.className = 'form-control mt-2';
+        textarea.name = 'createResponses[]';
+        textarea.rows = 3;
+        textarea.required = true;
+        responsesContainer.appendChild(textarea);
+    }
+
+    function removePattern() {
+    var patternsContainer = document.getElementById('patternsContainer');
+    var patterns = patternsContainer.getElementsByTagName('textarea');
+
+        if (patterns.length > 1) {
+            patterns[patterns.length - 1].remove();
+        } else {
+            Swal.fire({
+            title: "?",
+            title: "At least one pattern is required.",
+            icon: "warning"
+            });
         }
+    }
 
-        function removeResponse() {
-            var responsesContainer = document.getElementById('responsesContainer');
-            var responses = responsesContainer.getElementsByTagName('textarea');
-            
-            if (responses.length > 1) {
-                responses[responses.length - 1].remove();
-            } else {
-                Swal.fire({
-                title: "?",
-                title: "At least one pattern is required.",
-                icon: "warning"
-                });
-            }
+    function removeResponse() {
+        var responsesContainer = document.getElementById('responsesContainer');
+        var responses = responsesContainer.getElementsByTagName('textarea');
+
+        if (responses.length > 1) {
+            responses[responses.length - 1].remove();
+        } else {
+            Swal.fire({
+            title: "?",
+            title: "At least one pattern is required.",
+            icon: "warning"
+            });
         }
+    }
 
-        // End of Add Intent Modal
+    // End of Add Intent Modal
 
-        // Edit Intent Modal
+    // Edit Intent Modal
 
-        function addEditPattern() {
-            var editpatternsContainer = document.getElementById('editpatternsContainer');
-            var textarea = document.createElement('textarea');
-            textarea.className = 'form-control mt-2';
-            textarea.name = 'patternsToEdit[]';
-            textarea.rows = 2; 
-            textarea.required = true;
-            editpatternsContainer.appendChild(textarea);
-        }
-
-        function addEditResponse() {
-            var editresponsesContainer = document.getElementById('editresponsesContainer');
-            var textarea = document.createElement('textarea');
-            textarea.className = 'form-control mt-2';
-            textarea.name = 'responsesToEdit[]';
-            textarea.rows = 3; 
-            textarea.required = true;
-            editresponsesContainer.appendChild(textarea);
-        }
-
-        function removeEditPattern() {
+    function addEditPattern() {
         var editpatternsContainer = document.getElementById('editpatternsContainer');
-        var patterns = editpatternsContainer.getElementsByTagName('textarea');
-        
-            if (patterns.length > 1) {
-                patterns[patterns.length - 1].remove();
-            } else {
-                Swal.fire({
-                title: "?",
-                title: "At least one pattern is required.",
-                icon: "warning"
-                });
-            }
+        var textarea = document.createElement('textarea');
+        textarea.className = 'form-control mt-2';
+        textarea.name = 'patternsToEdit[]';
+        textarea.rows = 2;
+        textarea.required = true;
+        editpatternsContainer.appendChild(textarea);
+    }
+
+    function addEditResponse() {
+        var editresponsesContainer = document.getElementById('editresponsesContainer');
+        var textarea = document.createElement('textarea');
+        textarea.className = 'form-control mt-2';
+        textarea.name = 'responsesToEdit[]';
+        textarea.rows = 3;
+        textarea.required = true;
+        editresponsesContainer.appendChild(textarea);
+    }
+
+    function removeEditPattern() {
+    var editpatternsContainer = document.getElementById('editpatternsContainer');
+    var patterns = editpatternsContainer.getElementsByTagName('textarea');
+
+        if (patterns.length > 1) {
+            patterns[patterns.length - 1].remove();
+        } else {
+            Swal.fire({
+            title: "?",
+            title: "At least one pattern is required.",
+            icon: "warning"
+            });
         }
+    }
 
-        function removeEditResponse() {
-            var editresponsesContainer = document.getElementById('editresponsesContainer');
-            var responses = editresponsesContainer.getElementsByTagName('textarea');
-            
-            if (responses.length > 1) {
-                responses[responses.length - 1].remove();
-            } else {
-                Swal.fire({
-                title: "?",
-                title: "At least one pattern is required.",
-                icon: "warning"
-                });
-            }
+    function removeEditResponse() {
+        var editresponsesContainer = document.getElementById('editresponsesContainer');
+        var responses = editresponsesContainer.getElementsByTagName('textarea');
+
+        if (responses.length > 1) {
+            responses[responses.length - 1].remove();
+        } else {
+            Swal.fire({
+            title: "?",
+            title: "At least one pattern is required.",
+            icon: "warning"
+            });
         }
+    }
 
-        // End of Edit Intent Modal
-
-
-        
+    // End of Edit Intent Modal
 
 
-        
 
-        
 
-        
+
+
+
+
+
+
 
 
     </script>

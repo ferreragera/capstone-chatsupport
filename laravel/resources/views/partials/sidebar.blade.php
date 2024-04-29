@@ -19,7 +19,7 @@
           <a href="#" class="d-block">{{ $googleUserInfo->name }}</a>
         </div>
       </div>
-  
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
@@ -31,6 +31,12 @@
                   <p>Dashboard</p>
               </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('train') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Train</p>
+            </a>
+        </li>
           <li class="nav-item">
               <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
