@@ -1,0 +1,19 @@
+<button class='btn btn-primary btn-sm me-2 edit-btn'
+                                                    data-toggle='modal'
+                                                    data-target='#editModal'
+                                                    data-tag='" . $intent['tag'] . "'
+                                                    onclick='setEditModalData(\"" . $intent['tag'] . "\", \"" . implode(', ', $intent['patterns']) . "\", \"" . implode(', ', $intent['responses']) . "\")'>
+                                                <i class='fas fa-edit'></i>
+                                            </button>
+
+
+// $('.edit-btn').click(function() {
+        //     var tag = $(this).data('tag');
+        //     var patterns = $(this).data('patterns');
+        //     var responses = $(this).data('responses');
+
+        //     document.getElementById('newTagValue').value = tag;
+        //     document.getElementById('patternsToEdit').value = patterns;
+        //     document.getElementById('responsesToEdit').value = responses;
+        //     document.getElementById('editForm').action = '/edit-intent/' + tag;
+        // });

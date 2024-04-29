@@ -8,6 +8,16 @@ use Illuminate\Routing\Controller;
 class IntentsController extends Controller
 {
 
+    public function index()
+    {
+        // Fetch data from the JSON file
+        $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
+        $data = json_decode($json_data, true);
+        $paginated_intents = $data['intents'];
+
+        // Pass the data to the view
+        return view('dashboard', compact('paginated_intents'));
+    }
     public function store(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -48,11 +58,11 @@ class IntentsController extends Controller
             $tag = $request->input('newTagValue');
             $patterns = $request->input('patternsToEdit');
             $responses = $request->input('responsesToEdit');
-    
+
             // Read the existing intents data
             $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
             $intents = json_decode($json_data, true);
-    
+
             // Find the intent to edit
             foreach ($intents['intents'] as $intent) {
                 if ($intent['tag'] == $tag) {
@@ -60,12 +70,12 @@ class IntentsController extends Controller
                     return view('edit_intent', compact('intent'));
                 }
             }
-    
+
             // Redirect back if intent not found
             return redirect()->back()->with('error', 'Intent not found.');
         }
     }
-    
+
 
 
 
@@ -75,11 +85,11 @@ class IntentsController extends Controller
     //         $newTagValue = request()->input('newTagValue');
     //         $patternsToEdit = is_array(request()->input('patternsToEdit')) ? request()->input('patternsToEdit') : [request()->input('patternsToEdit')];
     //         $responsesToEdit = is_array(request()->input('responsesToEdit')) ? request()->input('responsesToEdit') : [request()->input('responsesToEdit')];
- 
+
     //         $jsonPath = public_path('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
     //         $json_data = file_get_contents($jsonPath);
     //         $intents = json_decode($json_data, true);
-        
+
     //         foreach ($intents['intents'] as &$intent) {
     //             if ($intent['id'] == $idToEdit) {
     //                 $intent['tag'] = $newTagValue;
@@ -87,13 +97,13 @@ class IntentsController extends Controller
     //                 $intent['responses'] = $responsesToEdit;
     //             }
     //         }
-        
+
     //         file_put_contents($jsonPath, json_encode($intents, JSON_PRETTY_PRINT));
     //         return redirect()->back()->with('success', 'Intent edited successfully, click the train button to refresh the data.');
     //     }
     // }
 
-        
+
 
 
 
