@@ -53,26 +53,15 @@ class IntentsController extends Controller
 
     public function edit(Request $request)
     {
-        if ($request->isMethod('post')) {
-            // Retrieve data from the request
-            $tag = $request->input('newTagValue');
-            $patterns = $request->input('patternsToEdit');
-            $responses = $request->input('responsesToEdit');
+        $file = 'C:\xampp\htdocs\capstone-chatsupport\python\intents.json';
+        $data = json_decode(file_get_contents('php://input'), true);
 
-            // Read the existing intents data
-            $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
-            $intents = json_decode($json_data, true);
-
-            // Find the intent to edit
-            foreach ($intents['intents'] as $intent) {
-                if ($intent['tag'] == $tag) {
-                    // Pass the intent data to the view for editing
-                    return view('edit_intent', compact('intent'));
-                }
-            }
-
-            // Redirect back if intent not found
-            return redirect()->back()->with('error', 'Intent not found.');
+        // Write updated JSON data back to the file
+        if ($data !== null) {
+            file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false]);
         }
     }
 
