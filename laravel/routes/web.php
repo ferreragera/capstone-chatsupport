@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\IntentsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GoogleAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,10 @@ Route::post('/register', [UsersController::class, 'store'])->name('createUser');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+// Route::get('/dashboard', [IntentsController::class, 'index'])->name('dashboard');
 Route::post('/create-intent', [IntentsController::class, 'store'])->name('createIntent');
-Route::put('/edit-intent', [IntentsController::class, 'edit'])->name('editIntent');
+// Route::put('/edit-intent', [IntentsController::class, 'edit'])->name('editIntent');
+Route::post('/edit-intent', [IntentsController::class, 'edit'])->name('editIntent');
+
 
 require __DIR__.'/../config/auth.php';  
