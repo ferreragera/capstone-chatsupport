@@ -65,12 +65,13 @@
                             <button type="button" class="btn btn-primary mt-2" onclick="addResponse()"><i class="fas fa-plus mr-1"></i>Add</button>
                             <button type="button" class="btn btn-danger mt-2" onclick="removeResponse()"><i class="fas fa-trash mr-1"></i>Remove</button>
                         </div>
-                    </form>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button class="btn btn-success" type="submit">Add New Intent</button>
                 </div>
+            </form>
             </div>
             </div>
         </div>
@@ -84,27 +85,31 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="editTag" class="form-label">Tag:</label>
-                            <input type="text" class="form-control" id="editTag" name="editTag">
+                    <form id="editForm" action="{{ route('editIntent') }}" method="POST"> <!-- Added id="editForm" -->
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="editTag" class="form-label">Tag:</label>
+                                <input type="text" class="form-control" id="editTag" name="newTagValue">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPatterns" class="form-label">Patterns:</label>
+                                <textarea class="form-control" id="editPatterns" name="patternsToEdit" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="editResponses" class="form-label">Responses:</label>
+                                <textarea class="form-control" id="editResponses" name="responsesToEdit" rows="3"></textarea>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="editPatterns" class="form-label">Patterns:</label>
-                            <textarea class="form-control" id="editPatterns" name="editPatterns" rows="3"></textarea>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" id="saveChangesBtn">Save Changes</button> <!-- Removed duplicate type="submit" -->
                         </div>
-                        <div class="form-group">
-                            <label for="editResponses" class="form-label">Responses:</label>
-                            <textarea class="form-control" id="editResponses" name="editResponses" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+        
 
         <!-- end of create & edit modal -->
 
@@ -257,23 +262,37 @@
             // });
 
             $('#intentsTable').on('click', '.edit-btn', function() {
-                var data = table.row($(this).closest('tr')).data(); // Get row data
+                var rowData = table.row($(this).closest('tr')).data(); // Get row data
                 editModal.modal('show');
 
                 // Populate modal fields with row data
-                $('#editTag').val(data[0]); // Assuming the first column is tag
-                $('#editPatterns').val(data[1]); // Assuming the second column is patterns
-                $('#editResponses').val(data[2]); // Assuming the third column is responses
+                $('#editTag').val(rowData[0]); // Assuming the first column is tag
+
+                // Retrieve and set patterns data
+                var patternsData = $(rowData[1]).find('td').map(function() {
+                    return $(this).text().trim();
+                }).get().join('\n');
+                $('#editPatterns').val(patternsData);
+
+                // Retrieve and set responses data
+                var responsesData = $(rowData[2]).find('td').map(function() {
+                    return $(this).text().trim();
+                }).get().join('\n');
+                $('#editResponses').val(responsesData);
 
                 // Handle save button click inside the modal
-                $('#saveChangesBtn').on('click', function() {
+                $('#saveChangesBtn').off('click').on('click', function() {
                     // Update the row data
-                    data[0] = $('#editTag').val();
-                    data[1] = $('#editPatterns').val();
-                    data[2] = $('#editResponses').val();
+                    rowData[0] = $('#editTag').val();
+                    rowData[1] = '<div>' + $('#editPatterns').val().split('\n').map(function(pattern) {
+                        return '<td>' + pattern + '</td>';
+                    }).join('') + '</div>';
+                    rowData[2] = '<div>' + $('#editResponses').val().split('\n').map(function(response) {
+                        return '<td>' + response + '</td>';
+                    }).join('') + '</div>';
 
                     // Update table with new data
-                    table.row($(this).closest('tr')).data(data).draw(false);
+                    table.row($(this).closest('tr')).data(rowData).draw(false);
 
                     // Hide the modal
                     editModal.modal('hide');
@@ -284,40 +303,20 @@
             });
 
             function saveChangesToJSON() {
-                var newData = [];
-
-                // Iterate through table rows to collect updated data
-                table.rows().every(function () {
-                    var rowData = this.data();
-                    newData.push({
-                        'tag': rowData[0],
-                        'patterns': rowData[1].split(',').map(pattern => pattern.trim()),
-                        'responses': rowData[2].split(',').map(response => response.trim())
-                    });
-                });
-
-                // Construct updated JSON object
-                var updatedJSON = {
-                    'intents': newData
-                };
-
-                // Convert JSON to string
-                var jsonString = JSON.stringify(updatedJSON);
-
-                
+            // Submit the form data using AJAX
                 $.ajax({
-                    url: "{{ route('editIntent') }}", 
+                    url: "{{ route('editIntent') }}",
                     method: 'POST',
-                    contentType: 'application/json',
-                    data: jsonString,
-                    success: function (response) {
-                        console.log('JSON data saved successfully!');
+                    data: $('#editForm').serialize(), // Serialize form data
+                    success: function(response) {
+                        console.log('Form data saved successfully!');
                     },
-                    error: function (error) {
-                        console.error('Error saving JSON data:', error);
+                    error: function(error) {
+                        console.error('Error saving form data:', error);
                     }
                 });
             }
+
 
             
 
