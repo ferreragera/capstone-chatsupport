@@ -31,6 +31,8 @@ body {
 }
 
 
+
+
 /* CONTENT IS CLOSE */
 .chatbox__support {
   display: flex;
@@ -77,13 +79,13 @@ button i.fas {
 }
 
 .send__button {
-  background-color: #376D1D;
+  background-color: #f9fff6;
  
   color: #fff;
   border: none;
   padding: 10px 15px;
   font-size: 16px;
-  border-radius: 25% 25% 25% 25%;
+  border-radius: 50%;
   cursor: pointer;
 }
 .send__button:hover {
@@ -97,9 +99,10 @@ button i.fas {
   top: 0.1;
   max-height: 70px;
   
-  border-top-left-radius: 15px;
+  border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 
 /* MESSAGES */
@@ -143,6 +146,7 @@ button i.fas {
   background: #f9f9f9;
   width: 40vw;
   height: 70vh;
+  border-top-left-radius: 25px;
 }
 
 /* HEADER */
@@ -165,13 +169,12 @@ button i.fas {
 
 .chatbox__heading--header {
   font-size: 1rem;
-  color: white;
   justify-content: center;
   margin-right: 80px;
 }
 
 .chatbox__description--header {
-  font-size: .7rem;
+  font-size: 1rem;
   color: white;
   justify-content: center;
   margin-right: 80px;
@@ -468,7 +471,7 @@ button i.fas {
 }
 
 .jumping-dots .dot-1 {
-  background-color: #25d60e;
+  background-color: #376d1d;
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -477,7 +480,7 @@ button i.fas {
 }
 
 .jumping-dots .dot-2 {
-  background-color: #25d60e;
+  background-color: #376d1d;
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -486,13 +489,17 @@ button i.fas {
 }
 
 .jumping-dots .dot-3 {
-  background-color: #25d60e;
+  background-color: #376d1d;
   width: 12px;
   height: 12px;
   border-radius: 50%;
   margin-right: 3px;
   animation-delay: 600ms;
 }
+
+/* .gray_jumping-dots {
+
+} */
 
 @keyframes jump {
   0% {
@@ -572,4 +579,11 @@ button i.fas {
   margin-right: 10px; /* Move avatar to the right for visitor messages */
 }
 
-
+/* circle */
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}

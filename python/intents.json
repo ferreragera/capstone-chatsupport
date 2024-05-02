@@ -1,6 +1,7 @@
 {
     "intents": [
         {
+            "id": 1,
             "tag": "greeting",
             "patterns": [
                 "Hi",
@@ -24,6 +25,7 @@
             ]
         },
         {
+            "id": 2,
             "tag": "greeting2",
             "patterns": [
                 "Hello How are you",
@@ -40,6 +42,7 @@
             ]
         },
         {
+            "id": 3,
             "tag": "goodbye",
             "patterns": [
                 "Bye",
@@ -53,6 +56,7 @@
             ]
         },
         {
+            "id": 4,
             "tag": "bot_identity",
             "patterns": [
                 "What are you?",
@@ -69,6 +73,7 @@
             ]
         },
         {
+            "id": 5,
             "tag": "assistance",
             "patterns": [
                 "How can you assist me?",
@@ -82,6 +87,7 @@
             ]
         },
         {
+            "id": 6,
             "tag": "thanks",
             "patterns": [
                 "Thanks",
@@ -94,6 +100,7 @@
             ]
         },
         {
+            "id": 7,
             "tag": "admissions_process",
             "patterns": [
                 "Can you explain the admissions process?",
@@ -105,6 +112,7 @@
             ]
         },
         {
+            "id": 8,
             "tag": "requirements",
             "patterns": [
                 "What are the admission requirements?",
@@ -116,6 +124,7 @@
             ]
         },
         {
+            "id": 9,
             "tag": "application_deadline",
             "patterns": [
                 "When is the application deadline?",
@@ -127,6 +136,7 @@
             ]
         },
         {
+            "id": 10,
             "tag": "program_information",
             "patterns": [
                 "Can you provide information about the programs offered?",
@@ -138,6 +148,7 @@
             ]
         },
         {
+            "id": 11,
             "tag": "admission_requirements",
             "patterns": [
                 "What are the admission requirements?",
@@ -149,6 +160,7 @@
             ]
         },
         {
+            "id": 12,
             "tag": "application_process",
             "patterns": [
                 "How do I apply?",
@@ -160,6 +172,7 @@
             ]
         },
         {
+            "id": 13,
             "tag": "important_dates",
             "patterns": [
                 "What are the important dates?",
@@ -171,6 +184,7 @@
             ]
         },
         {
+            "id": 14,
             "tag": "transferring",
             "patterns": [
                 "How do I transfer?",
@@ -181,6 +195,7 @@
             ]
         },
         {
+            "id": 15,
             "tag": "fee_structure",
             "patterns": [
                 "How much is the application fee?",
@@ -191,6 +206,7 @@
             ]
         },
         {
+            "id": 16,
             "tag": "document_submission",
             "patterns": [
                 "Where do I submit my documents?",
@@ -201,6 +217,7 @@
             ]
         },
         {
+            "id": 17,
             "tag": "application_status",
             "patterns": [
                 "How do I check my application status?",
@@ -211,6 +228,7 @@
             ]
         },
         {
+            "id": 18,
             "tag": "technical_issues",
             "patterns": [
                 "I'm facing technical issues with the application portal",
@@ -221,6 +239,7 @@
             ]
         },
         {
+            "id": 19,
             "tag": "scholarships",
             "patterns": [
                 "Are there any scholarships available?",
@@ -231,6 +250,7 @@
             ]
         },
         {
+            "id": 20,
             "tag": "program_information",
             "patterns": [
                 "What programs does CvSU offer?",
@@ -241,6 +261,7 @@
             ]
         },
         {
+            "id": 21,
             "tag": "admission_counseling",
             "patterns": [
                 "Is there any admission counseling available?",
@@ -251,6 +272,7 @@
             ]
         },
         {
+            "id": 22,
             "tag": "transfer_students",
             "patterns": [
                 "Can I transfer credits from another institution?",
@@ -261,6 +283,7 @@
             ]
         },
         {
+            "id": 23,
             "tag": "accommodation",
             "patterns": [
                 "Is on-campus accommodation available?",
@@ -271,6 +294,7 @@
             ]
         },
         {
+            "id": 24,
             "tag": "orientation",
             "patterns": [
                 "Is there a student orientation program?",
@@ -281,6 +305,7 @@
             ]
         },
         {
+            "id": 25,
             "tag": "international_students",
             "patterns": [
                 "Do you accept international students?",
@@ -291,6 +316,7 @@
             ]
         },
         {
+            "id": 26,
             "tag": "contact_information",
             "patterns": [
                 "How can I contact the admissions office?",
@@ -301,6 +327,7 @@
             ]
         },
         {
+            "id": 27,
             "tag": "financial_aid",
             "patterns": [
                 "Is financial aid available?",
@@ -311,6 +338,7 @@
             ]
         },
         {
+            "id": 28,
             "tag": "health_services",
             "patterns": [
                 "Are health services available on campus?",
@@ -321,6 +349,7 @@
             ]
         },
         {
+            "id": 29,
             "tag": "online_resources",
             "patterns": [
                 "Can I access online resources as a student?",
@@ -331,6 +360,7 @@
             ]
         },
         {
+            "id": 30,
             "tag": "academic_support",
             "patterns": [
                 "Is there academic support available for students?",
@@ -341,6 +371,7 @@
             ]
         },
         {
+            "id": 31,
             "tag": "application_deadlines",
             "patterns": [
                 "What are the deadlines for application submission?",
@@ -351,6 +382,7 @@
             ]
         },
         {
+            "id": 32,
             "tag": "admission_criteria",
             "patterns": [
                 "What criteria does CvSU consider for admission?",
@@ -361,6 +393,7 @@
             ]
         },
         {
+            "id": 33,
             "tag": "application_status_check",
             "patterns": [
                 "How can I check my application status?",
@@ -371,6 +404,7 @@
             ]
         },
         {
+            "id": 34,
             "tag": "application_fee_payment",
             "patterns": [
                 "How do I pay the application fee?",
@@ -381,6 +415,7 @@
             ]
         },
         {
+            "id": 35,
             "tag": "admission_notification",
             "patterns": [
                 "When will I receive the admission notification?",
@@ -391,6 +426,7 @@
             ]
         },
         {
+            "id": 36,
             "tag": "application_withdrawal",
             "patterns": [
                 "Can I withdraw my admission application?",
@@ -401,6 +437,7 @@
             ]
         },
         {
+            "id": 37,
             "tag": "entrance_examination",
             "patterns": [
                 "Is there an entrance examination for admission?",
@@ -411,6 +448,7 @@
             ]
         },
         {
+            "id": 38,
             "tag": "application_review_process",
             "patterns": [
                 "How does CvSU review admission applications?",
@@ -421,6 +459,7 @@
             ]
         },
         {
+            "id": 39,
             "tag": "application_document_submission_deadline",
             "patterns": [
                 "When is the deadline to submit application documents?",
@@ -431,6 +470,7 @@
             ]
         },
         {
+            "id": 40,
             "tag": "application_feedback",
             "patterns": [
                 "Can I provide feedback on the application process?",
@@ -441,6 +481,7 @@
             ]
         },
         {
+            "id": 41,
             "tag": "admission_cancelation",
             "patterns": [
                 "Can my admission be canceled after acceptance?",
@@ -451,6 +492,7 @@
             ]
         },
         {
+            "id": 42,
             "tag": "application_inquiry",
             "patterns": [
                 "How can I inquire about my submitted application?",
@@ -461,6 +503,7 @@
             ]
         },
         {
+            "id": 43,
             "tag": "application_data_update",
             "patterns": [
                 "Can I update my application information after submission?",
@@ -471,6 +514,18 @@
             ]
         },
         {
+            "id": 44,
+            "tag": "application_data_update",
+            "patterns": [
+                "Can I update my application information after submission?",
+                "Is it possible to make changes to my application?"
+            ],
+            "responses": [
+                "Update your application information by contacting the CvSU admission office."
+            ]
+        },
+        {
+            "id": 45,
             "tag": "admission_orientation",
             "patterns": [
                 "Is there an orientation program for admitted students?",
@@ -481,6 +536,7 @@
             ]
         },
         {
+            "id": 46,
             "tag": "application_reconsideration",
             "patterns": [
                 "Can my application be reconsidered after rejection?",
@@ -491,6 +547,7 @@
             ]
         },
         {
+            "id": 47,
             "tag": "application_interview",
             "patterns": [
                 "Do I need to attend an interview as part of the admission process?",
@@ -501,6 +558,7 @@
             ]
         },
         {
+            "id": 48,
             "tag": "admission_notification_format",
             "patterns": [
                 "How will I receive the admission notification?",
@@ -511,6 +569,7 @@
             ]
         },
         {
+            "id": 49,
             "tag": "application_confirmation",
             "patterns": [
                 "How can I confirm that my application has been received?",
@@ -521,6 +580,7 @@
             ]
         },
         {
+            "id": 50,
             "tag": "application_review_duration",
             "patterns": [
                 "How long does it take to review admission applications?",
@@ -531,6 +591,7 @@
             ]
         },
         {
+            "id": 51,
             "tag": "application_materials_submission",
             "patterns": [
                 "Where do I submit additional application materials?",
@@ -541,6 +602,7 @@
             ]
         },
         {
+            "id": 52,
             "tag": "application_process_overview",
             "patterns": [
                 "Can you provide an overview of the admission process?",
@@ -551,6 +613,7 @@
             ]
         },
         {
+            "id": 53,
             "tag": "admission_disclaimer",
             "patterns": [
                 "Is there a disclaimer regarding admission decisions?",
@@ -561,6 +624,7 @@
             ]
         },
         {
+            "id": 54,
             "tag": "application_verification",
             "patterns": [
                 "How do I know if my application documents have been verified?",
@@ -571,6 +635,7 @@
             ]
         },
         {
+            "id": 55,
             "tag": "application_review_committee",
             "patterns": [
                 "Who reviews the admission applications?",
@@ -581,6 +646,7 @@
             ]
         },
         {
+            "id": 56,
             "tag": "admission_acceptance_deadline",
             "patterns": [
                 "Is there a deadline for accepting the admission offer?",
@@ -591,6 +657,7 @@
             ]
         },
         {
+            "id": 57,
             "tag": "application_rejection_feedback",
             "patterns": [
                 "Can I receive feedback on my rejected application?",
@@ -601,6 +668,7 @@
             ]
         },
         {
+            "id": 58,
             "tag": "application_submission_confirmation",
             "patterns": [
                 "How will I know if my application has been successfully submitted?",
@@ -611,6 +679,7 @@
             ]
         },
         {
+            "id": 59,
             "tag": "admission_withdrawal_deadline",
             "patterns": [
                 "Is there a deadline for withdrawing my admission acceptance?",
@@ -621,6 +690,7 @@
             ]
         },
         {
+            "id": 60,
             "tag": "application_revision",
             "patterns": [
                 "Can I revise my application after submission?",
@@ -631,6 +701,7 @@
             ]
         },
         {
+            "id": 61,
             "tag": "admission_waitlist",
             "patterns": [
                 "What does it mean to be placed on the admission waitlist?",
@@ -641,6 +712,7 @@
             ]
         },
         {
+            "id": 62,
             "tag": "application_feedback_channel",
             "patterns": [
                 "How can I provide feedback on the application process?",
@@ -651,6 +723,7 @@
             ]
         },
         {
+            "id": 63,
             "tag": "admission_deferral_request",
             "patterns": [
                 "Can I request deferral of my admission offer?",
@@ -661,6 +734,7 @@
             ]
         },
         {
+            "id": 64,
             "tag": "application_evaluation_criteria",
             "patterns": [
                 "What criteria does CvSU use to evaluate admission applications?",
@@ -671,6 +745,7 @@
             ]
         },
         {
+            "id": 65,
             "tag": "application_materials_submission_deadline_extension",
             "patterns": [
                 "Can I request an extension for submitting application materials?",
@@ -681,6 +756,7 @@
             ]
         },
         {
+            "id": 66,
             "tag": "application_review_delay_notification",
             "patterns": [
                 "What happens if there's a delay in reviewing my application?",
@@ -691,6 +767,7 @@
             ]
         },
         {
+            "id": 67,
             "tag": "admission_confirmation_requirement",
             "patterns": [
                 "Is there any action required to confirm my admission acceptance?",
@@ -701,6 +778,7 @@
             ]
         },
         {
+            "id": 68,
             "tag": "application_submission_assistance",
             "patterns": [
                 "I need help with submitting my application",
@@ -711,6 +789,7 @@
             ]
         },
         {
+            "id": 69,
             "tag": "admission_rollback",
             "patterns": [
                 "Can my admission offer be rolled back after acceptance?",
@@ -721,6 +800,7 @@
             ]
         },
         {
+            "id": 70,
             "tag": "application_review_progress_check",
             "patterns": [
                 "How can I check the progress of my application review?",
@@ -731,6 +811,7 @@
             ]
         },
         {
+            "id": 71,
             "tag": "admission_reconsideration_appeal",
             "patterns": [
                 "Can I appeal for reconsideration of my admission rejection?",
@@ -741,6 +822,7 @@
             ]
         },
         {
+            "id": 72,
             "tag": "application_submission_confirmation_resend",
             "patterns": [
                 "Can I request a resend of the application submission confirmation?",
@@ -751,6 +833,7 @@
             ]
         },
         {
+            "id": 73,
             "tag": "admission_offer_acceptance_confirmation",
             "patterns": [
                 "How do I confirm my acceptance of the admission offer?",
@@ -761,6 +844,7 @@
             ]
         },
         {
+            "id": 74,
             "tag": "application_verification_progress_check",
             "patterns": [
                 "How can I check the progress of my application document verification?",
@@ -771,6 +855,7 @@
             ]
         },
         {
+            "id": 75,
             "tag": "admission_rejection_reasons",
             "patterns": [
                 "Can I know the reasons for my admission rejection?",
@@ -781,6 +866,7 @@
             ]
         },
         {
+            "id": 76,
             "tag": "application_confirmation_resend_request",
             "patterns": [
                 "How can I request another resend of the application confirmation?",
@@ -791,6 +877,7 @@
             ]
         },
         {
+            "id": 77,
             "tag": "admission_deferral_reasons",
             "patterns": [
                 "What are the reasons for requesting admission deferral?",
@@ -801,6 +888,7 @@
             ]
         },
         {
+            "id": 78,
             "tag": "application_review_delay_explanation",
             "patterns": [
                 "Why is there a delay in reviewing my application?",
@@ -811,6 +899,7 @@
             ]
         },
         {
+            "id": 79,
             "tag": "admission_rejection_appeal_process",
             "patterns": [
                 "What is the process for appealing an admission rejection?",
@@ -821,6 +910,7 @@
             ]
         },
         {
+            "id": 80,
             "tag": "application_portal_troubleshooting",
             "patterns": [
                 "I'm experiencing issues with the application portal",
@@ -831,6 +921,7 @@
             ]
         },
         {
+            "id": 81,
             "tag": "admission_deferral_request_approval",
             "patterns": [
                 "How will I know if my admission deferral request is approved?",
@@ -841,6 +932,7 @@
             ]
         },
         {
+            "id": 82,
             "tag": "application_feedback_submission",
             "patterns": [
                 "Where can I submit feedback on the admission process?",
@@ -851,6 +943,7 @@
             ]
         },
         {
+            "id": 83,
             "tag": "admission_deferral_request_denial",
             "patterns": [
                 "What happens if my admission deferral request is denied?",
@@ -861,6 +954,7 @@
             ]
         },
         {
+            "id": 84,
             "tag": "application_portal_access_issues",
             "patterns": [
                 "I'm unable to access the admission portal",
@@ -871,6 +965,7 @@
             ]
         },
         {
+            "id": 85,
             "tag": "admission_withdrawal_notification",
             "patterns": [
                 "How will I be notified if my admission acceptance is withdrawn?",
@@ -881,6 +976,7 @@
             ]
         },
         {
+            "id": 86,
             "tag": "application_portal_error_reporting",
             "patterns": [
                 "I encountered an error on the admission portal",
@@ -891,6 +987,7 @@
             ]
         },
         {
+            "id": 87,
             "tag": "admission_waitlist_notification",
             "patterns": [
                 "How will I be notified if I'm placed on the admission waitlist?",
@@ -901,6 +998,7 @@
             ]
         },
         {
+            "id": 88,
             "tag": "application_portal_password_reset",
             "patterns": [
                 "I forgot my password for the admission portal",
@@ -911,6 +1009,7 @@
             ]
         },
         {
+            "id": 89,
             "tag": "admission_waitlist_movement",
             "patterns": [
                 "How does the admission waitlist process work?",
@@ -921,6 +1020,7 @@
             ]
         },
         {
+            "id": 90,
             "tag": "application_portal_browser_compatibility",
             "patterns": [
                 "I'm having issues with the admission portal on my browser",
@@ -931,6 +1031,7 @@
             ]
         },
         {
+            "id": 91,
             "tag": "academic_calendar",
             "patterns": [
                 "What is the academic calendar?",
@@ -941,6 +1042,7 @@
             ]
         },
         {
+            "id": 92,
             "tag": "placement_tests",
             "patterns": [
                 "Are there placement tests for incoming students?",
@@ -951,6 +1053,7 @@
             ]
         },
         {
+            "id": 93,
             "tag": "special_programs",
             "patterns": [
                 "Are there any special programs or initiatives for students?",
@@ -961,6 +1064,7 @@
             ]
         },
         {
+            "id": 94,
             "tag": "student_clubs",
             "patterns": [
                 "Are there student clubs and organizations?",
@@ -971,6 +1075,7 @@
             ]
         },
         {
+            "id": 95,
             "tag": "campus_facilities",
             "patterns": [
                 "What facilities are available on campus?",
@@ -981,6 +1086,7 @@
             ]
         },
         {
+            "id": 96,
             "tag": "career_services",
             "patterns": [
                 "Are there career services available for students?",
@@ -991,14 +1097,14 @@
             ]
         },
         {
-            "id": 1,
-            "tag": "try _0429",
+            "id": 97,
+            "tag": "tag_May",
             "patterns": [
-                "gera",
-                "mae"
+                "test",
+                "test1"
             ],
             "responses": [
-                "ferrera"
+                "resp"
             ]
         }
     ]
