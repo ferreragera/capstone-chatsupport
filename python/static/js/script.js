@@ -141,11 +141,13 @@ class Chatbox {
         const loadingDiv = document.createElement('div');
         loadingDiv.classList.add('my', 'message');
         loadingDiv.innerHTML = `
+        <div class="gray_jumping-dots bg-light">
             <span class="jumping-dots">
                 <span class="dot-1"></span>
                 <span class="dot-2"></span>
                 <span class="dot-3"></span>
-            </span>`;
+            </span>
+        </div>`;
     
         // Hide streaming text initially
         streamingText.style.visibility = 'hidden';

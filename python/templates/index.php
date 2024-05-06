@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <title>CvSU Online Student Admission System</title>
 </head>
 <body>
@@ -46,20 +47,16 @@
             </div>
             <div class="modal-body">
                 <form action="/save_feedback" method="POST">
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="feedbackMessage">Feedback Message</label>
-                        <textarea placeholder="Write a feedback..." class="form-control" id="message" name="feedmessage" rows="3" required></textarea>
-                    </div>
+                <div class="form-group">
+                    <label for="feedbackMessage">Feedback Message</label>
+                    <div id="rateYo"></div>
+                </div>
                     <button type="submit" class="btn btn-success"><i class="fas sm fa-paper-plane"></i> Submit Feedback</button>
                 </form>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
  <div class="container ">
     
@@ -94,9 +91,12 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-          <br>
-          <button class="btn btn-success btn-md" name="saveBranch" id="saveBranch">Save Admission Information</button>            </div>
-        <div class="col-md-4"></div>
+            <br>
+            <button class="btn btn-success btn-md" name="saveBranch" id="saveBranch">Save Admission Information</button>            
+        </div>
+        <div class="col-md-4">
+
+        </div>
 
      </div>
     </form>
@@ -114,7 +114,7 @@
                        
                     </div>
                     <div class="chatbox__content--header">
-                        <h5 class="chatbox__heading--header">Chat support</h5>
+                        <h5 class="chatbox__heading--header text-light">Chat support</h5>
                         <p class="chatbox__description--header">CvSU Admission Response System</p>
                     </div>
                     
@@ -123,28 +123,28 @@
                     <div></div>
                 </div>
                 <div class="chatbox__footer">
-                <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" style="font-size: 12px; padding: 4px 8px;">
-                <i class="fas fa-comments"></i> Feedback
+                <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" style="font-size: 18px; padding: 4px 8px;">
+                <i class="fas fa-star-half-alt"></i> Feedback
                 </button>
-                <input type="text" placeholder="Write a message..." style="font-size: 16px; padding: 12px;" oninput="validateInput(this)" required>
+                <input type="text" class="w-75" placeholder="Write a message..." style="font-size: 16px; padding: 12px;" oninput="validateInput(this)" required>
 
                 <script>
                         function validateInput(input) {
-                                var regex = /^[a-zA-Z0-9@.,!?/\s]*$/; // Updated regex pattern
-                                if (!regex.test(input.value)) {
-                                    input.value = input.value.replace(/[^a-zA-Z@.,!?/\s]/g, ''); // Updated replacement pattern
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Oops...',
-                                        text: 'Please enter only text and the characters .,!?',
-                                    });
-                                }
+                            var regex = /^[a-zA-Z0-9@.,!?/\s]*$/;
+                            if (!regex.test(input.value)) {
+                                input.value = input.value.replace(/[^a-zA-Z@.,!?/\s]/g, ''); 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please enter only text and the characters .,!?',
+                                });
                             }
+                        }
                 </script>
-                    <button class="chatbox__send--footer send__button" id="sendMessageButton" style="font-size: 12px; padding: 4px 8px;">
-                        <i class="fas sm fa-paper-plane"></i> Send
+                    <button class="chatbox__send--footer send__button" id="sendMessageButton" >
+                        <i class="fas sm fa-paper-plane"></i> 
                     </button>
-                   
+                
                 </div>
                 
                 <div class="chatbox__feedback">
@@ -154,7 +154,7 @@
             </div>
             <div class="chatbox__button">
            
-                <button id="chatboxButton"><img src="static/images/CvSU-logo-trans.png" width="50" height="40" /></button>
+                <button id="chatboxButton"><img src="static/images/CvSU-logo-trans.png" width="60" height="50" /></button>
                 
             </div>
         </div>
@@ -162,6 +162,21 @@
 
    
     <script> 
+
+$(function () {
+ 
+        $("#rateYo").rateYo({
+            rating: 1.5,
+            halfStar: true
+            });
+        });
+
+        // Getter
+        var normalFill = $("#rateYo").rateYo("option", "halfStar"); //returns true
+        
+        // Setter
+        $("#rateYo").rateYo("option", "halfStar", true); //returns a jQuery Element
+        
         // Add event listener for the chatbox button
         var chatboxButton = document.getElementById('chatboxButton');
         chatboxButton.addEventListener('click', function () { 
@@ -188,6 +203,7 @@
 
         
     </script>
+
     <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/purify.min.js') }}"></script>
@@ -195,6 +211,8 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
 </body>
 </html>

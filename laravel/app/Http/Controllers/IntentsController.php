@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 
 class IntentsController extends Controller
 {
@@ -18,6 +19,8 @@ class IntentsController extends Controller
         // Pass the data to the view
         return view('dashboard', compact('paginated_intents'));
     }
+
+    
     public function store(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -51,42 +54,73 @@ class IntentsController extends Controller
         }
     }
 
-    public function edit(Request $request)
-    {
-        if ($request->isMethod('post')) {
-            // Retrieve data from the request
-            $tag = $request->input('newTagValue');
-            $patterns = $request->input('patternsToEdit');
-            $responses = $request->input('responsesToEdit');
+    // public function edit(Request $request)
+    // {
+    //     $file = 'C:\xampp\htdocs\capstone-chatsupport\python\intents.json';
+    //     $data = json_decode(file_get_contents('php://input'), true);
 
-            // Read the existing intents data
-            $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
-            $intents = json_decode($json_data, true);
+    //     // Write updated JSON data back to the file
+    //     if ($data !== null) {
+    //         file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
+    //         echo json_encode(['success' => true]);
+    //     } else {
+    //         echo json_encode(['success' => false]);
+    //     }
+    // }
 
-            // Find the intent to edit
-            foreach ($intents['intents'] as $intent) {
-                if ($intent['tag'] == $tag) {
-                    // Pass the intent data to the view for editing
-                    return view('edit_intent', compact('intent'));
-                }
-            }
-
-            // Redirect back if intent not found
-            return redirect()->back()->with('error', 'Intent not found.');
-        }
-    }
-
-
-
-
-    // public function edit(Request $request){
+    // public function editIntent(Request $request) {
+    //     // Retrieve and validate the input data
+    //     $tag = $request->input('editTag');
+    //     $patterns = $request->input('editPatterns');
+    //     $responses = $request->input('editResponses');
+    
+    //     // Read existing intents from the file or external API
+    //     $path = storage_path('C:\xampp\htdocs\capstone-chatsupport\python\intents.json'); // Adjust the path as per your file location
+    
+    //     if (file_exists($path)) {
+    //         // Read JSON file content
+    //         $intentsJson = file_get_contents($path);
+    //         $intents = json_decode($intentsJson, true);
+    
+    //         // Check if JSON decoding was successful
+    //         if ($intents === null) {
+    //             return redirect()->back()->with('error', 'Error decoding intents JSON.');
+    //         }
+    
+    //         // Check if 'intents' key exists in the decoded JSON
+    //         if (!array_key_exists('intents', $intents)) {
+    //             return redirect()->back()->with('error', 'Intents data not found in JSON.');
+    //         }
+    
+    //         // Find the intent to be edited
+    //         $intentIndex = array_search($tag, array_column($intents['intents'], 'tag'));
+    
+    //         if ($intentIndex !== false) {
+    //             // Update patterns and responses
+    //             $intents['intents'][$intentIndex]['patterns'] = explode("\n", $patterns);
+    //             $intents['intents'][$intentIndex]['responses'] = explode("\n", $responses);
+    
+    //             // Write updated intents back to the file
+    //             file_put_contents($path, json_encode($intents));
+    
+    //             return redirect()->back()->with('success', 'Intent updated successfully.');
+    //         } else {
+    //             return redirect()->back()->with('error', 'Intent not found.');
+    //         }
+    //     } else {
+    //         return redirect()->back()->with('error', 'Intents file not found.');
+    //     }
+    // }
+    
+    
+    // public function editIntent(Request $request){
     //     if ($request->isMethod('post')) {
     //         $idToEdit = request()->input('idToEdit');
     //         $newTagValue = request()->input('newTagValue');
     //         $patternsToEdit = is_array(request()->input('patternsToEdit')) ? request()->input('patternsToEdit') : [request()->input('patternsToEdit')];
     //         $responsesToEdit = is_array(request()->input('responsesToEdit')) ? request()->input('responsesToEdit') : [request()->input('responsesToEdit')];
 
-    //         $jsonPath = public_path('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
+    //         $jsonPath = 'C:\xampp\htdocs\capstone-chatsupport\python\intents.json';
     //         $json_data = file_get_contents($jsonPath);
     //         $intents = json_decode($json_data, true);
 
@@ -102,6 +136,47 @@ class IntentsController extends Controller
     //         return redirect()->back()->with('success', 'Intent edited successfully, click the train button to refresh the data.');
     //     }
     // }
+
+    public function editIntent(Request $request)
+    {
+        try {
+            // Validate incoming request data
+            $request->validate([
+                'idToEdit' => 'required|integer',
+                'newTagValue' => 'required|string',
+                'patternsToEdit' => 'required|array',
+                'responsesToEdit' => 'required|array',
+            ]);
+
+            // Retrieve form inputs from request
+            $idToEdit = $request->input('idToEdit');
+            $newTagValue = $request->input('newTagValue');
+            $patternsToEdit = $request->input('patternsToEdit');
+            $responsesToEdit = $request->input('responsesToEdit');
+
+            $jsonPath = 'C:\\xampp\\htdocs\\capstone-chatsupport\\python\\intents.json';
+            $json_data = file_get_contents($jsonPath);
+            $intents = json_decode($json_data, true);
+
+            // Update the intent with the specified ID
+            foreach ($intents['intents'] as &$intent) {
+                if ($intent['id'] == $idToEdit) {
+                    $intent['tag'] = $newTagValue;
+                    $intent['patterns'] = $patternsToEdit;
+                    $intent['responses'] = $responsesToEdit;
+                }
+            }
+
+            file_put_contents($jsonPath, json_encode($intents, JSON_PRETTY_PRINT));
+
+            return redirect()->back()->with('success', 'Intent edited successfully');
+
+        } catch (\Exception $e) {
+            Log::error('Error editing intent: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Failed to edit intent');
+        }
+    }
 
 
 
