@@ -8,8 +8,8 @@ class Chatbox {
 
         this.state = false;
         this.messages = [];
-        this.predictEndpoint = 'http://192.168.43.86:5000/predict';
-       
+      
+        this.predictEndpoint = 'http://192.168.77.148/predict';
     }
 
     display() {

@@ -32,6 +32,9 @@ Route::get('/dashboard', [IntentsController::class, 'index'])->name('dashboard')
 Route::get('/train', function () {
     return view('train');
 })->name('train');
+Route::get('/reports', function () {
+    return view('reports');
+})->name('reports');
 Route::post('/create-intent', [IntentsController::class, 'store'])->name('createIntent');
 Route::post('/edit-intent', [IntentsController::class, 'editIntent'])->name('editIntent');
 

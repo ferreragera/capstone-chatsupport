@@ -119,7 +119,7 @@
                 <div class="card">
                     <div class="card-body" style="max-height: 80vh; overflow-y: auto;">
                         <div class="position-relative mb-4">
-                            <table id="intentsTable" class="table table-striped">
+                            <table id="intentsTable" class="table hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">Tags</th>
