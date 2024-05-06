@@ -100,7 +100,9 @@
 
      </div>
     </form>
-  
+    <!-- <button onclick="chatbox.handlePrompt('FAQs')">FAQs</button> -->
+    <!-- <button onclick="chatbox.handlePrompt('Visit Official Website')">Visit Official Website</button> -->
+    <!-- <button onclick="chatbox.handlePrompt('Contact Us')">Contact Us</button> -->
   </div>
         <div class="chatbox resizable">
             <div class="chatbox__support">
@@ -170,8 +172,8 @@
         // Function to sanitize and display user message
         function sendMessage() {
             const userMessage = document.getElementById('userMessageInput').value;
-            const sanitizedMessage = DOMPurify.sanitize(userMessage);
-            displayUserMessage(sanitizedMessage);
+           
+            displayUserMessage(userMessage);
         }
 
         // Function to display user message in the chatbox
