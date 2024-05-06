@@ -46,18 +46,19 @@
             {{-- Sidebar --}}
             @include('partials.sidebar')
         
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                {{-- @yield('main-content-header') --}}
-                <!-- /.content-header -->
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <!-- Content Header (Page header) -->
+                    @yield('main-content-header')
+                    <!-- /.content-header -->
 
-                <!-- Main content -->
-                @yield('main-content')
-                <!-- /.content -->
-            </div> 
-            <!-- /.content-wrapper -->
-                @include('partials.footer')
+                    <!-- Main content -->
+                    @yield('main-content')
+                    <!-- /.content -->
+                </div> 
+                <!-- /.content-wrapper -->
+
+            @include('partials.footer')
             </div>
     </body>
         <!-- REQUIRED SCRIPTS -->
@@ -70,6 +71,8 @@
             <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
             <!-- Sweet Alert 2 -->
             <script src="{{asset('plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
+            {{-- Chart JS --}}
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
             @yield('script')

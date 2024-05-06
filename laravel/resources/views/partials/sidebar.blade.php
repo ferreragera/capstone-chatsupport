@@ -38,9 +38,9 @@
             </a>
         </li>
           <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('reports') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Feedback</p>
+                  <p>Reports</p>
               </a>
           </li>
           <li class="nav-header text-uppercase">External Links</li>
