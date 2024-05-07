@@ -28,7 +28,7 @@
           <li class="nav-item">
               <a href="{{ route('dashboard') }}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard</p>
+                  <p>Datasets</p>
               </a>
           </li>
           <li class="nav-item">
@@ -56,3 +56,15 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+
+  @section('script')
+  <script>
+    $(document).ready(function() {
+      $(".nav .nav-link").on("click", function(){
+        $(".nav").find(".active").removeClass("active");
+        $(this).closest('.nav-item').addClass("active");
+      });
+    });
+  </script>
+  @endsection
+  

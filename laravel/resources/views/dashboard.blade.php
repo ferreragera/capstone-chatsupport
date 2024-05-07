@@ -1,27 +1,25 @@
 @extends('layouts.admin')
 
-{{-- @section('main-content-header')
-<div class="content-header" style="background-image: url('/images/bg-wifi.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+@section('main-content-header')
+<div class="content-header" style="background-image: url('#'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row px-4">
             <div class="col-sm-6">
-                <br><br><br><br>
-                <h1 class="m-0" style="text-shadow: 4px 4px 6px #838383;"><i class="fas fa-book"></i> Test</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb px-3 elevation-1 bg-white float-sm-right">
-                    <li class="breadcrumb-item"><a href="?view=dashboard">Home</a></li>
-                    <li class="breadcrumb-item active">Integrated Library System</li>
-                    <li class="breadcrumb-item active">Wifi Logs</li>
-                </ol>
+                <br><br>
+                <h1 class="m-0" style="text-shadow: 4px 4px 6px #fdfdfd;"><i class="fas fa-file-alt"></i> Datasets</h1>
             </div>
         </div>
     </div>
 </div>
 
-@endsection  --}}
+@endsection 
 
 @section('main-content')
+<style>
+    .dataTables_wrapper .dt-buttons {
+    margin-right: 10px; /* Adjust the value as needed */
+}
+</style>
 <div class="content">
     <div class="container-fluid px-3">
         <div class="">
@@ -85,7 +83,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form id="editForm" action="{{ route('editIntent') }}" method="POST"> <!-- Added id="editForm" -->
+                    <form id="editForm" action="{{ route('editIntent') }}" method="POST"> 
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
@@ -103,7 +101,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success" id="saveChangesBtn">Save Changes</button> <!-- Removed duplicate type="submit" -->
+                            <button type="submit" class="btn btn-success" id="saveChangesBtn">Save Changes</button>
                         </div>
                     </form>
                 </div>
@@ -117,12 +115,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body" style="max-height: 80vh; overflow-y: auto;">
+                    <div class="card-body" style="max-height: 70vh; overflow-y: auto;">
                         <div class="position-relative mb-4">
                             <table id="intentsTable" class="table hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Tags</th>
+                                        <th scope="col" width="200">Tags</th>
                                         <th scope="col">Patterns</th>
                                         <th scope="col">Responses</th>
                                         <th scope="col" class="actions-column" width="100">Actions</th>
@@ -194,10 +192,27 @@
                 "autoWidth": false,
                 "scrollY": "300px",
                 "scrollCollapse": true,
-                dom: 'lBfrtip',
+                dom: 'l <"space"Bfrtip>',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+                    // 'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'copy',
+                        text: '<h4 style="font-size: 15px;">Copy Dataset</h4>',
+                    },
+                    {
+                        extend: 'csv',
+                        text: '<h4 style="font-size: 15px;">CSV</h4>',
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '<h4 style="font-size: 15px;">PDF</h4>',
+                    },
+                    {
+                        extend: 'print',
+                        text: '<h4 style="font-size: 15px;">Print</h4>',
+                    }
+                    
+                ]   
             });
 
             $('#intentsTable').on('click', 'tbody tr', function() {
@@ -233,33 +248,6 @@
                 });
             });
 
-
-            // $('#intentsTable tbody').on('click', 'tr', function () {
-            //     var data = table.row(this).data(); // Get row data
-            //     editModal.modal('show');
-
-            //     // Populate modal fields with row data
-            //     $('#editTag').val(data[0]); // Assuming the first column is tag
-            //     $('#editPatterns').val(data[1]); // Assuming the second column is patterns
-            //     $('#editResponses').val(data[2]); // Assuming the third column is responses
-
-            //     // Handle save button click inside the modal
-            //     $('#saveChangesBtn').on('click', function () {
-            //         // Update the row data
-            //         data[0] = $('#editTag').val();
-            //         data[1] = $('#editPatterns').val();
-            //         data[2] = $('#editResponses').val();
-
-            //         // Update table with new data
-            //         table.row(this).data(data).draw(false);
-
-            //         // Hide the modal
-            //         editModal.modal('hide');
-
-            //         // Save changes to JSON (implement this function)
-            //         saveChangesToJSON();
-            //     });
-            // });
 
             $('#intentsTable').on('click', '.edit-btn', function() {
                 var rowData = table.row($(this).closest('tr')).data(); // Get row data
@@ -318,9 +306,6 @@
             }
 
 
-            
-
-        // SweetAlert2 for intent added successfully
         @if(session('success'))
             Swal.fire({
                 icon: 'success',

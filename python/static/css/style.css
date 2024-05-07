@@ -261,6 +261,25 @@ button i.fas {
 
 }
 
+.rating-button {
+  background-color: #376D1D;
+  /* Change to your desired background color */
+  color: #fff;
+  /* Change to your desired text color */
+  border: none;
+  padding: 10px 15px;
+  /* Adjust padding as needed */
+  font-size: 16px;
+  /* Adjust font size as needed */
+  border-radius: 20% 20%;
+  cursor: pointer;
+}
+
+.rating-button:hover {
+  background-color: #51b300;
+  /* Change to your desired hover background color */
+}
+
 .feedback-button {
   background-color: #376D1D;
   /* Change to your desired background color */

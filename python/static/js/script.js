@@ -303,7 +303,7 @@ class Chatbox {
                     `   > For inquiries about library matters<br><br>` +
                     `4. University Webmaster - webmaster@cvsu.edu.ph<br>` +
                     `   > For technical problems found on the site and/or any feedback about the systems<br>` +
-                    `For other offices, please visit our directory <br><a href="https://cvsu.edu.ph/contact-us-2/">here</a>.`;
+                    `For other offices, please visit our directory <br><a href="https://cvsu.edu.ph/contact-us-2/" target=”_blank”>here</a>.`;
                 break;
             default:
                 response = 'I apologize, but I cannot provide information for that request.';
