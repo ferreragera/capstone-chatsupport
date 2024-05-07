@@ -36,25 +36,53 @@
             </form>
         </div>
     </nav>
-    <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="feedbackModalLabel">Rate Us!</h5>
+                    <h5 class="modal-title" id="ratingModalLabel">Rate Us!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form id="rating" name="rating" action="/save_rating" method="POST">
                 <div class="modal-body">
-                <form id="feedbackForm" action="/save_feedback" method="POST">
                     <div class="form-group">
-                        <label for="feedbackMessage">Rating:</label>
+                        <label for="ratingMessage">Rating:</label>
                         <div id="rateYo"></div>
                         <input type="hidden" name="rating" id="ratingValue">
                     </div>
-                    <button type="submit" class="btn btn-success"><i class="fas sm fa-paper-plane"></i> Submit Rating</button>
-                </form>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success"><i class="fas sm fa-paper-plane"></i> Submit Rating</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Feedback:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="feedback" name="feedback" action="/save_feedback" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="feedbackMessage">Feedback:</label>
+                        <input type="text" name="feedback" id="feedback">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success"><i class="fas sm fa-paper-plane"></i> Submit Feedback</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -101,9 +129,6 @@
 
      </div>
     </form>
-    <!-- <button onclick="chatbox.handlePrompt('FAQs')">FAQs</button> -->
-    <!-- <button onclick="chatbox.handlePrompt('Visit Official Website')">Visit Official Website</button> -->
-    <!-- <button onclick="chatbox.handlePrompt('Contact Us')">Contact Us</button> -->
 
   </div>
         <div class="chatbox resizable">
@@ -125,10 +150,15 @@
                     <div></div>
                 </div>
                 <div class="chatbox__footer">
-                <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" style="font-size: 18px; padding: 4px 8px;">
-                <i class="fas fa-star-half-alt"></i> Feedback
-                </button>
-                <input type="text" class="w-75" placeholder="Write a message..." style="font-size: 16px; padding: 12px;" oninput="validateInput(this)" required>
+                    <button class="rating-button" data-toggle="modal" data-target="#ratingModal" style="font-size: 18px; padding: 4px 8px;">
+                        <i class="fas fa-star-half-alt"></i> Rating
+                    </button>
+
+                    <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" style="font-size: 18px; padding: 4px 8px;">
+                        <i class="fas fa-comment-alt"></i> Feedback
+                    </button>
+
+                    <input type="text" class="w-75" placeholder="Write a message..." style="font-size: 16px; padding: 12px;" oninput="validateInput(this)" required>
 
                 <script>
                     function validateInput(input) {
@@ -160,7 +190,7 @@
         </div>
     </div>
 
-   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script> 
 
         $(function () {

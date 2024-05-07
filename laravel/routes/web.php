@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\IntentsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GoogleAuthController;
 
 /*
@@ -37,6 +38,8 @@ Route::get('/reports', function () {
 })->name('reports');
 Route::post('/create-intent', [IntentsController::class, 'store'])->name('createIntent');
 Route::post('/edit-intent', [IntentsController::class, 'editIntent'])->name('editIntent');
+Route::get('/chart-data', [FeedbackController::class, 'fetchChartData']);
+Route::get('/feedback-chart-data', [FeedbackController::class, 'fetchFeedbackData']);
 
 
 require __DIR__.'/../config/auth.php';
