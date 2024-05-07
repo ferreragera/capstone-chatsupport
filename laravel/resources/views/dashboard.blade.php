@@ -15,11 +15,11 @@
 @endsection 
 
 @section('main-content')
-<style>
+{{-- <style>
     .dataTables_wrapper .dt-buttons {
     margin-right: 10px; /* Adjust the value as needed */
 }
-</style>
+</style> --}}
 <div class="content">
     <div class="container-fluid px-3">
         <div class="">
@@ -51,8 +51,8 @@
                             <div id="patternsContainer">
                                 <textarea class="form-control" id="createPatterns" name="createPatterns[]" rows="2" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="addPattern()"><i class="fas fa-plus mr-1"></i>Add</button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="removePattern()"><i class="fas fa-trash mr-1"></i>Remove</button>
+                            <button type="button" class="btn btn-primary mt-2" onclick="addPattern()"><i class="fas fa-plus mr-1"></i></button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="removePattern()"><i class="fas fa-trash mr-1"></i></button>
                         </div>
 
                         <div class="mb-3">
@@ -60,8 +60,8 @@
                             <div id="responsesContainer">
                                 <textarea class="form-control" id="createResponses" name="createResponses[]" rows="3" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="addResponse()"><i class="fas fa-plus mr-1"></i>Add</button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="removeResponse()"><i class="fas fa-trash mr-1"></i>Remove</button>
+                            <button type="button" class="btn btn-primary mt-2" onclick="addResponse()"><i class="fas fa-plus mr-1"></i></button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="removeResponse()"><i class="fas fa-trash mr-1"></i></button>
                         </div>
                     
                 </div>
@@ -192,9 +192,8 @@
                 "autoWidth": false,
                 "scrollY": "300px",
                 "scrollCollapse": true,
-                dom: 'l <"space"Bfrtip>',
+                dom: 'lBfrtip',
                 buttons: [
-                    // 'copy', 'csv', 'excel', 'pdf', 'print'
                     {
                         extend: 'copy',
                         text: '<h4 style="font-size: 15px;">Copy Dataset</h4>',
@@ -211,7 +210,6 @@
                         extend: 'print',
                         text: '<h4 style="font-size: 15px;">Print</h4>',
                     }
-                    
                 ]   
             });
 
@@ -360,7 +358,7 @@
         } else {
             Swal.fire({
             title: "?",
-            title: "At least one pattern is required.",
+            title: "At least one response is required.",
             icon: "warning"
             });
         }
