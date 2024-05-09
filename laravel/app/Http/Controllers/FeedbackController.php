@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\feedback;
 use Carbon\Carbon;
 use App\Models\ratings;
+use App\Models\feedback;
+use Illuminate\Support\Facades\DB;
 
 class FeedbackController extends Controller
 {
+    public function index()
+    {
+        $feedback = DB::table('feedback')->select('feedback')->get();
+
+        $data = compact('feedback');
+        return view('reports')->with('$data');
+    }
+    
     public function fetchChartData()
     {
         $currentMonth = Carbon::now()->month;

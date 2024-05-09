@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('main-content-header')
-<div class="content-header" style="background-image: url('#'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+<div class="content-header" style="background-image: url('/images/bg-gray.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container-fluid">
         <div class="row px-4">
             <div class="col-sm-6">
@@ -29,7 +29,7 @@
 
             <div class="col-lg-6 d-flex justify-content-center">
                 <div class="card p-3">
-                    <div class="card-body" style="position: relative; height:60vh; width:40vw">
+                    <div class="card-body" style="position: relative; height:50vh; width:40vw">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">Chat Support Ratings</h3>
                         </div>
@@ -40,7 +40,81 @@
             
             <div class="col-lg-6 d-flex justify-content-center">
                 <div class="card p-3">
-                    <div class="card-body" style="position: relative; height:60vh; width:40vw">
+                    <div class="card-body" style="position: relative; height:50vh; width:40vw">
+                        {{-- <div class="d-flex justify-content-between">
+                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">Feedback</h3>
+                        </div>
+                        <canvas id="feedbackChart" style="display: block;"></canvas> --}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-6 d-flex justify-content-center">
+                <div class="card p-3">
+                    <div class="card-body" style="position:relative; height:40vh; width:40vw">
+                        <div class="d-flex justify-content-between mb-4">
+                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">User Feedbacks</h3>
+                        </div>
+
+                        {{-- <table>
+                            <thead>
+                                <tr>
+                                    <th>User Feedback</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            @foreach($feedback as $value)
+                            <tbody>
+                                <tr>
+                                    <td>{{ $value->feedback }}</td>
+                                    <td>hi</td>
+                                </tr>
+                            </tbody>
+                            @endforeach
+                        </table> --}}
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 d-flex justify-content-center">
+                <div class="card p-3">
+                    <div class="card-body" style="position:relative; height:40vh; width:40vw">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">Feedback</h3>
                         </div>

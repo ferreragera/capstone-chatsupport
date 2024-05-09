@@ -55,10 +55,15 @@ def find_matching_intent(text):
             return intent
     return None
 
+from flask import request
+
 @app.route('/train', methods=['POST'])
 def train_chatbot():
     subprocess.run(['python', 'train.py'])
     return 'Training started'
+
+
+
 
 def contains_profanity(text):
     return profanity.contains_profanity(text)
