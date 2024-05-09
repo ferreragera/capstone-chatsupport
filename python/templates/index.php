@@ -37,7 +37,7 @@
         </div>
     </nav>
     <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="ratingModalLabel">Rate Us!</h5>
@@ -46,7 +46,7 @@
                     </button>
                 </div>
                 <form id="rating" name="rating" action="/save_rating" method="POST">
-                <div class="modal-body">
+                <div class="modal-body d-flex justify-content-center">
                     <div class="form-group">
                         <label for="ratingMessage">Rating:</label>
                         <div id="rateYo"></div>
@@ -135,14 +135,19 @@
             <div class="chatbox__support">
             
                 <div class="chatbox__header">
-                
                     <div class="chatbox__image--header">
-                        <img src="static/images/CvSU-logo-trans.png" alt="image" width="50" height="40" >
-                       
+                        <img src="static/images/CvSU-logo-trans.png" alt="image" width="60" height="50" >
                     </div>
                     <div class="chatbox__content--header">
                         <h5 class="chatbox__heading--header text-light">Chat support</h5>
                         <p class="chatbox__description--header">CvSU Admission Response System</p>
+                        <i class="fas fa-chevron-down"></i>
+                    </div> 
+                    <br><br><br>
+                </div>
+                <div class="chatbox__under">
+                    <div class="chatbox__under--description mt-1 ml-4">
+                        <p>Remember: This chat support only understands English.</p>
                     </div>
                     
                 </div>

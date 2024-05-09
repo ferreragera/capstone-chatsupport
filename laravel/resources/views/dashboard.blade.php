@@ -115,7 +115,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body" style="max-height: 70vh; overflow-y: auto;">
+                    <div class="card-body" style="max-height: 80vh; overflow-y: auto;">
                         <div class="position-relative mb-4">
                             <table id="intentsTable" class="table hover">
                                 <thead>
@@ -163,7 +163,13 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <button class="btn btn-primary btn-sm text-light edit-btn" data-tag="{{ $intent['tag'] }}"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-primary btn-sm text-light edit-btn"
+                                                        data-tag="{{ $intent['tag'] }}"
+                                                        data-patterns="{{ json_encode($intent['patterns']) }}"
+                                                        data-responses="{{ json_encode($intent['responses']) }}">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+
                                                 <button class="btn btn-success btn-sm text-light archive-btn" data-tag="{{ $intent['tag'] }}"><i class="fas fa-archive"></i></button>
                                             </td>
                                         </tr>
@@ -184,19 +190,21 @@
 @section('script')
     @parent
     <script>
+        var intentsData = {!! json_encode($paginated_intents) !!};
+
         $(document).ready(function() {
             var editModal = $('#editModal');
             var table = $('#intentsTable').DataTable({
-                "pageLength": 5,
-                "lengthMenu": [5, 10, 25, 50],
+                "pageLength": 8,
+                "lengthMenu": [8, 15, 25, 50],
                 "autoWidth": false,
-                "scrollY": "300px",
+                "scrollY": "400px",
                 "scrollCollapse": true,
                 dom: 'lBfrtip',
                 buttons: [
                     {
                         extend: 'copy',
-                        text: '<h4 style="font-size: 15px;">Copy Dataset</h4>',
+                        text: '<h4 class="" style="font-size: 15px;">Copy Dataset</h4>',
                     },
                     {
                         extend: 'csv',
@@ -230,79 +238,66 @@
                     confirmButtonText: 'Yes, archive it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Perform the archiving action here
-                        // For example, you can make an AJAX request to your server to archive the intent
-                        // $.post('/archive-intent', { tag: tag }, function(response) {
-                        //     if (response.success) {
-                        //         // Show success message
-                        //         Swal.fire('Archived!', 'The intent has been archived.', 'success');
-                        //     } else {
-                        //         // Show error message
-                        //         Swal.fire('Error!', 'Failed to archive the intent.', 'error');
-                        //     }
-                        // });
+                        
+                        
+
+
+
                         Swal.fire('Archived!', 'The intent with tag: ' + tag + ' has been archived.', 'success');
                     }
                 });
             });
 
-
             $('#intentsTable').on('click', '.edit-btn', function() {
-                var rowData = table.row($(this).closest('tr')).data(); // Get row data
-                editModal.modal('show');
-
-                // Populate modal fields with row data
-                $('#editTag').val(rowData[0]); // Assuming the first column is tag
-
-                // Retrieve and set patterns data
-                var patternsData = $(rowData[1]).find('td').map(function() {
-                    return $(this).text().trim();
-                }).get().join('\n');
-                $('#editPatterns').val(patternsData);
-
-                // Retrieve and set responses data
-                var responsesData = $(rowData[2]).find('td').map(function() {
-                    return $(this).text().trim();
-                }).get().join('\n');
-                $('#editResponses').val(responsesData);
-
-                // Handle save button click inside the modal
-                $('#saveChangesBtn').off('click').on('click', function() {
-                    // Update the row data
-                    rowData[0] = $('#editTag').val();
-                    rowData[1] = '<div>' + $('#editPatterns').val().split('\n').map(function(pattern) {
-                        return '<td>' + pattern + '</td>';
-                    }).join('') + '</div>';
-                    rowData[2] = '<div>' + $('#editResponses').val().split('\n').map(function(response) {
-                        return '<td>' + response + '</td>';
-                    }).join('') + '</div>';
-
-                    // Update table with new data
-                    table.row($(this).closest('tr')).data(rowData).draw(false);
-
-                    // Hide the modal
-                    editModal.modal('hide');
-
-                    // Save changes to JSON (implement this function)
-                    saveChangesToJSON();
+                var tag = $(this).data('tag');
+                
+                var intent = intentsData.find(function(intent) {
+                    return intent.tag === tag;
                 });
+
+                if (intent) {
+                    var patterns = intent.patterns;
+                    var responses = intent.responses;
+
+                    $('#editTag').val(tag); 
+                    $('#editPatterns').val(patterns.join('\n'));
+                    $('#editResponses').val(responses.join('\n'));
+
+                    console.log("Tag:", tag);
+                    console.log("Patterns array:", patterns);
+                    console.log("Responses array:", responses);
+
+                    $('#editModal').modal('show');
+                }
+
+                // $('editForm').submit(function (e) {
+                //     e.preventDefault();
+                //     $('saveChangesBtn').prop('disabled', true);
+
+                //     $.ajax({
+                //         url: "{{ route('editIntent') }}", 
+                //         method: "POST",
+                //         data: {
+                //             "_token": "{{ csrf_token() }}",
+                //             updatedTag: $('editTag').val();
+                //             updatedPatterns: $('editPatterns').val();
+                //             updatedResponses: $('editResponses').val();
+                //         },
+                //         dataType: 'JSON',
+                //         success: function (response) {
+                //             Swal.fire({
+                //                 icon: response.status,
+                //                 title: response.title,
+                //                 text: response.message
+                //             }).then(function (result) {
+                //                 if(response.status == "success") {
+                //                     window.location = "{{ route('dashboard') }}";
+                //                 }
+                //                 $('#saveChangesBtn').prop('disabled', false)});
+                //         }
+                //     });
+                // });
             });
-
-            function saveChangesToJSON() {
-            // Submit the form data using AJAX
-                $.ajax({
-                    url: "{{ route('editIntent') }}",
-                    method: 'POST',
-                    data: $('#editForm').serialize(), // Serialize form data
-                    success: function(response) {
-                        console.log('Form data saved successfully!');
-                    },
-                    error: function(error) {
-                        console.error('Error saving form data:', error);
-                    }
-                });
-            }
-
 
         @if(session('success'))
             Swal.fire({

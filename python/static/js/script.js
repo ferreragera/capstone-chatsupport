@@ -195,12 +195,11 @@ class Chatbox {
     addGreetingMessage(chatbox) {
         const greetingMessage = {
             name: 'CVSU Admission System',
-            message: 'Welcome to CVSU Admission Support. \nHow may I assist you today? <br>\n<button onclick="chatbox.handlePrompt(\'FAQs\')">FAQs</button> <button onclick="chatbox.handlePrompt(\'Visit Official Website\')">Visit Official Website</button> <button onclick="chatbox.handlePrompt(\'Contact Us\')">Contact Us</button>',
-            fullyDisplayed: false, // Mark greeting message as not fully displayed
-            timestamp: new Date() // Add a timestamp for the greeting message
+            message: 'Welcome to CVSU Admission Support. \nHow may I assist you today? <br>\n<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'FAQs\')">FAQs</button> <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Visit Official Website\')">Visit Official Website</button> <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Contact Us\')">Contact Us</button><style>.btn:hover{background:#376d1d; color: white;}</style>',
+            fullyDisplayed: false,
+            timestamp: new Date() 
         };
     
-        // Insert the greeting message at the beginning of the messages array
         this.messages.unshift(greetingMessage);
         this.updatePrompt(chatbox);
     }
@@ -210,29 +209,27 @@ class Chatbox {
 
     updatePrompt(chatbox) {
         const container = chatbox.querySelector('.chatbox__messages');
-        container.innerHTML = ''; // Clear container
-    
-        // Iterate over messages in reverse order
+        container.innerHTML = ''; 
+
         for (let i = this.messages.length - 1; i >= 0; i--) {
             const msg = this.messages[i];
             const messageElement = document.createElement('div');
             messageElement.classList.add('messages__item');
     
-            // Add timestamp message indicator
             const timestamp = document.createElement('div');
             timestamp.classList.add('message__timestamp');
-            timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString(); // Assuming msg.timestamp is a timestamp
+            timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString(); 
             messageElement.appendChild(timestamp);
     
             if (msg.name === 'CVSU Admission System') {
                 const avatar = document.createElement('img');
                 avatar.classList.add('message__avatar');
-                avatar.src = `static/images/avatar1.png`; // Assuming msg.avatar contains the filename of the avatar image
+                avatar.src = `static/images/avatar1.png`; 
                 messageElement.appendChild(avatar);
     
                 const streamingText = document.createElement('span');
                 streamingText.classList.add('streaming-text');
-                streamingText.innerHTML = msg.message; // Render HTML content
+                streamingText.innerHTML = msg.message; 
                 messageElement.classList.add('messages__item--visitor');
                 messageElement.appendChild(streamingText);
             } else {
@@ -241,7 +238,7 @@ class Chatbox {
                     messageElement.classList.add('clickable');
                     messageElement.setAttribute('data-action', msg.action);
                 }
-                messageElement.innerHTML = msg.message; // Render HTML content
+                messageElement.innerHTML = msg.message;
             }
     
             container.appendChild(messageElement);
@@ -266,15 +263,15 @@ class Chatbox {
         switch (prompt) {
             case 'FAQs':
                 response = 'Please select a category:';
-                response += '<br><button class="btn btn-success rounded-pill" onclick="chatbox.handlePrompt(\'Admission Process\')">Admission Process</button>';
-                response += '<br><button class="btn btn-success rounded-pill"onclick="chatbox.handlePrompt(\'Entrance Examination\')">Entrance Examination</button>';
-                response += '<br><button class="btn btn-success rounded-pill-sm"onclick="chatbox.handlePrompt(\'Transferees\')">Transferees</button>';
-                response += '<br><button class="btn btn-success rounded-pill-sm"onclick="chatbox.handlePrompt(\'Scholarship\')">Scholarship</button>';
-                response += '<br><button class="btn btn-success rounded-pill btn-sm"onclick="chatbox.handlePrompt(\'Shifting\')">Shifting</button>';
-                response += '<br><button class="btn btn-success rounded-pill"onclick="chatbox.handlePrompt(\'Tuition Fee\')">Tuition Fee</button>';
-                response += '<br><button class="btn btn-success rounded-pill-sm"onclick="chatbox.handlePrompt(\'Re-application\')">Re-application</button>';
-                response += '<br><button class="btn btn-success rounded-pill"onclick="chatbox.handlePrompt(\'Visit Official Website\')">Visit Official Website</button>';
-                response += '<br><button class="btn btn-success rounded-pill"onclick="chatbox.handlePrompt(\'Contact Us\')">Contact Us</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Admission Process\')">Admission Process</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Entrance Examination</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Transferees\')">Transferees</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Scholarship\')">Scholarship</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Shifting\')">Shifting</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Tuition Fee\')">Tuition Fee</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Re-application\')">Re-application</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Visit Official Website\')">Visit Official Website</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Contact Us\')">Contact Us</button>';
                 break;
             case 'Admission Process':
                 response = 'Here are some frequently asked questions about the Admission Process:';
