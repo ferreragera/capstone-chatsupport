@@ -8,7 +8,7 @@ class Chatbox {
 
         this.state = false;
         this.messages = [];
-        this.predictEndpoint = 'http://192.168.43.86:5000/predict';
+        this.predictEndpoint = 'http://192.168.161.231:5000/predict';
        
     }
 
@@ -85,6 +85,7 @@ class Chatbox {
         }, 500); // Delay of 2 seconds (2000 milliseconds)
     }
 
+    
     updateChatText(chatbox) {
         const container = chatbox.querySelector('.chatbox__messages');
         container.innerHTML = ''; // Clear container
@@ -95,85 +96,109 @@ class Chatbox {
             const messageElement = document.createElement('div');
             messageElement.classList.add('messages__item');
     
+            if (msg.name === 'CVSU Admission System' && !msg.fullyDisplayed) {
+                // Start streaming effect if message is not already fully displayed
+                const existingStreamingText = container.querySelector('.streaming-text');
+                if (existingStreamingText) {
+                    // Update existing streaming text
+                    existingStreamingText.innerHTML = msg.message;
+                } else {
+                    this.startStreamingEffect(container, msg);
+                }
+            } else {
+                if (msg.name === 'CVSU Admission System') {
+                    const visitorElement = document.createElement('div');
+                    //visitorElement.classList.add('messages__item--visitor');
+    
+                    const avatar = document.createElement('img');
+                    avatar.classList.add('message__avatar');
+                    avatar.src = `static/images/avatar1.png`;  // Assuming msg.avatar contains the filename of the avatar image
+                    visitorElement.appendChild(avatar);
+    
+                    const messageContent = document.createElement('div');
+                    messageContent.classList.add('message__content');
+    
+                    messageContent.innerHTML = msg.message; // Render HTML content
+    
+                    visitorElement.appendChild(messageContent);
+                    messageElement.appendChild(visitorElement);
+                } else {
+                    messageElement.classList.add('messages__item--operator');
+                    messageElement.innerHTML = msg.message; // Render HTML content
+                }
+                
+             
+                
+                container.appendChild(messageElement);
+            }
+    
             // Add timestamp message indicator
             const timestamp = document.createElement('div');
             timestamp.classList.add('message__timestamp');
             timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString(); // Assuming msg.timestamp is a timestamp
             messageElement.appendChild(timestamp);
-    
-            if (msg.name === 'CVSU Admission System' && !msg.fullyDisplayed) {
-                // Start streaming effect if message is not already fully displayed
-                this.startStreamingEffect(container, msg);
-            } else {
-                if (msg.name === 'CVSU Admission System') {
-                    const avatar = document.createElement('img');
-                    avatar.classList.add('message__avatar');
-                    avatar.src = `static/images/avatar1.png`;  // Assuming msg.avatar contains the filename of the avatar image
-                    messageElement.appendChild(avatar);
-    
-                    const streamingText = document.createElement('span');
-                    streamingText.classList.add('streaming-text');
-                    streamingText.innerHTML = msg.message; // Render HTML content
-                    messageElement.classList.add('messages__item--visitor');
-                    messageElement.appendChild(streamingText);
-                } else {
-                    messageElement.classList.add('messages__item--operator');
-                    messageElement.innerHTML = msg.message; // Render HTML content
-                }
-                container.appendChild(messageElement);
-            }
         }
     
         container.scrollTop = container.scrollHeight;
     }
+    
 
     startStreamingEffect(container, message) {
-        const streamingText = document.createElement('span');
-        streamingText.classList.add('streaming-text');
-        streamingText.innerHTML = message.message; // Use innerHTML to render HTML content
-    
-        const cursor = document.createElement('span');
-        cursor.textContent = '|';
-        cursor.classList.add('cursor');
-        cursor.style.visibility = 'hidden';
-    
-        // Add loading animation
-        const loadingDiv = document.createElement('div');
-        loadingDiv.classList.add('my', 'message');
-        loadingDiv.innerHTML = `
-            <span class="jumping-dots">
-                <span class="dot-1"></span>
-                <span class="dot-2"></span>
-                <span class="dot-3"></span>
-            </span>`;
-    
-        // Hide streaming text initially
-        streamingText.style.visibility = 'hidden';
-    
-        // Add elements to container
-        container.insertBefore(loadingDiv, container.firstChild); // Insert before the first child
-    
-        // Start jumping dots animation
-        setTimeout(() => {
-            loadingDiv.style.opacity = '0'; // Hide the loading dots
-            streamingText.style.visibility = 'visible'; // Show the streaming text
-            // Start streaming effect after hiding the loading dots
+        if (message.message.includes('<')) {
+            // If message content contains HTML tags, assume it's already rendered
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('messages__item');
+            messageElement.innerHTML = message.message;
+            container.insertBefore(messageElement, container.firstChild); // Insert before the first child
+            message.fullyDisplayed = true; // Mark message as fully displayed
+        } else {
+            const streamingText = document.createElement('span');
+            //streamingText.classList.add('streaming-text'); Remove this line
+            streamingText.innerHTML = message.message; // Use innerHTML to render HTML content
+            
+            const cursor = document.createElement('span');
+            cursor.textContent = '|';
+            cursor.classList.add('cursor');
+            cursor.style.visibility = 'hidden';
+            
+            // Add loading animation
+            const loadingDiv = document.createElement('div');
+            loadingDiv.classList.add('my', 'message');
+            loadingDiv.innerHTML = `
+                <span class="jumping-dots">
+                    <span class="dot-1"></span>
+                    <span class="dot-2"></span>
+                    <span class="dot-3"></span>
+                </span>`;
+            
+            // Hide streaming text initially
+            streamingText.style.visibility = 'hidden';
+            
+            // Add elements to container
+            container.insertBefore(loadingDiv, container.firstChild); // Insert before the first child
+            
+            // Start jumping dots animation
             setTimeout(() => {
-                container.removeChild(loadingDiv); // Remove the loading animation
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('messages__item', 'messages__item--visitor');
-                messageElement.appendChild(streamingText);
-                container.insertBefore(messageElement, container.firstChild); // Insert before the first child
-                this.startStreamingEffectInternal(streamingText, cursor, message);
-            }, 500); // Adjust the timing according to your preference
-        }, 1000); // Adjust the timing according to your preference
+                loadingDiv.style.opacity = '0'; // Hide the loading dots
+                streamingText.style.visibility = 'visible'; // Show the streaming text
+                // Start streaming effect after hiding the loading dots
+                setTimeout(() => {
+                    container.removeChild(loadingDiv); // Remove the loading animation
+                    const messageElement = document.createElement('div');
+                    messageElement.classList.add('messages__item');
+                    messageElement.appendChild(streamingText);
+                    container.insertBefore(messageElement, container.firstChild); // Insert before the first child
+                    this.startStreamingEffectInternal(streamingText, cursor, message); // Pass streamingText to the internal function
+                }, 500); // Adjust the timing according to your preference
+            }, 1000); // Adjust the timing according to your preference
+        }
     }
-
+    
     startStreamingEffectInternal(streamingText, cursor, message) {
         let index = 0;
         const speed = 30; // Typing speed in milliseconds
         const text = message.message;
-
+    
         function typeWriter() {
             if (index < text.length) {
                 cursor.style.visibility = 'visible';
@@ -185,7 +210,7 @@ class Chatbox {
                 message.fullyDisplayed = true; // Mark message as fully displayed
             }
         }
-
+    
         // Start streaming effect
         typeWriter();
     }
@@ -193,15 +218,20 @@ class Chatbox {
     addGreetingMessage(chatbox) {
         const greetingMessage = {
             name: 'CVSU Admission System',
-            message: 'Welcome to CVSU Admission Support. \nHow may I assist you today? <br>\n<button onclick="chatbox.handlePrompt(\'FAQs\')">FAQs</button> <button onclick="chatbox.handlePrompt(\'Visit Official Website\')">Visit Official Website</button> <button onclick="chatbox.handlePrompt(\'Contact Us\')">Contact Us</button>',
-            fullyDisplayed: false, // Mark greeting message as not fully displayed
+            message: `Welcome to CVSU Admission Support. <br> How may I assist you today? <br>
+            <div class= "d-flex flex-column" style="text-align: left;">
+                <button class="btn btn-success rounded-pill btn-sm m-1 " onclick="chatbox.handlePrompt('FAQs')">FAQs</button>
+                <button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt('Visit Official Website')">Visit Official Website</button>
+                <button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt('Contact Us')">Contact Us</button>
+            </div>`,
+            fullyDisplayed: true, // Mark greeting message as not fully displayed
             timestamp: new Date() // Add a timestamp for the greeting message
         };
     
         // Insert the greeting message at the beginning of the messages array
         this.messages.unshift(greetingMessage);
         this.updatePrompt(chatbox);
-    }
+    } 
     
 
 
@@ -213,45 +243,42 @@ class Chatbox {
         // Iterate over messages in reverse order
         for (let i = this.messages.length - 1; i >= 0; i--) {
             const msg = this.messages[i];
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('messages__item');
+            if (msg.name === 'CVSU Admission System' ) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('messages__item');
     
-            // Add timestamp message indicator
-            const timestamp = document.createElement('div');
-            timestamp.classList.add('message__timestamp');
-            timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString(); // Assuming msg.timestamp is a timestamp
-            messageElement.appendChild(timestamp);
+                if (msg.name === 'CVSU Admission System') {
+                    const avatar = document.createElement('img');
+                    avatar.classList.add('message__avatar');
+                    avatar.src = `static/images/avatar1.png`; // Assuming msg.avatar contains the filename of the avatar image
+                    messageElement.appendChild(avatar);
+                }
     
-            if (msg.name === 'CVSU Admission System') {
-                const avatar = document.createElement('img');
-                avatar.classList.add('message__avatar');
-                avatar.src = `static/images/avatar1.png`; // Assuming msg.avatar contains the filename of the avatar image
-                messageElement.appendChild(avatar);
+                // Render HTML content
+                const contentElement = document.createElement('div');
+                
+                contentElement.innerHTML = msg.message;
+                messageElement.appendChild(contentElement);
     
-                const streamingText = document.createElement('span');
-                streamingText.classList.add('streaming-text');
-                streamingText.innerHTML = msg.message; // Render HTML content
-                messageElement.classList.add('messages__item--visitor');
-                messageElement.appendChild(streamingText);
-            } else {
-                messageElement.classList.add('messages__item--operator');
+                // Add timestamp message indicator
+                const timestamp = document.createElement('div');
+                timestamp.classList.add('message__timestamp');
+                timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString(); // Assuming msg.timestamp is a timestamp
+                messageElement.appendChild(timestamp);
+                // Add event listener if message is clickable
                 if (msg.clickable) {
                     messageElement.classList.add('clickable');
                     messageElement.setAttribute('data-action', msg.action);
+                    messageElement.addEventListener('click', () => this.handleConfirmation(msg.action, chatbox));
                 }
-                messageElement.innerHTML = msg.message; // Render HTML content
-            }
     
-            container.appendChild(messageElement);
+                // Add the message element to the container
+                container.appendChild(messageElement);
+            }
         }
     
+        // Scroll to the bottom of the container
         container.scrollTop = container.scrollHeight;
-    
-        // Add event listeners to clickable elements
-        const clickableMessages = chatbox.querySelectorAll('.clickable');
-        clickableMessages.forEach((message) => {
-            message.addEventListener('click', () => this.handleConfirmation(message.getAttribute('data-action'), chatbox));
-        });
     }
     
 
@@ -264,29 +291,71 @@ class Chatbox {
         switch (prompt) {
             case 'FAQs':
                 response = 'Please select a category:';
-                response += '<br><button class="btn btn-success rounded-pill" onclick="chatbox.handlePrompt(\'Admission Process\')">Admission Process</button>';
-                response += '<br><button class="btn btn-success rounded-pill"onclick="chatbox.handlePrompt(\'Entrance Examination\')">Entrance Examination</button>';
-                response += '<br><button class="btn btn-success rounded-pill-sm"onclick="chatbox.handlePrompt(\'Transferees\')">Transferees</button>';
-                response += '<br><button class="btn btn-success rounded-pill-sm"onclick="chatbox.handlePrompt(\'Scholarship\')">Scholarship</button>';
-                response += '<br><button class="btn btn-success rounded-pill btn-sm"onclick="chatbox.handlePrompt(\'Shifting\')">Shifting</button>';
-                response += '<br><button class="btn btn-success rounded-pill"onclick="chatbox.handlePrompt(\'Tuition Fee\')">Tuition Fee</button>';
-                response += '<br><button class="btn btn-success rounded-pill-sm"onclick="chatbox.handlePrompt(\'Re-application\')">Re-application</button>';
-                response += '<br><button class="btn btn-success rounded-pill"onclick="chatbox.handlePrompt(\'Visit Official Website\')">Visit Official Website</button>';
-                response += '<br><button class="btn btn-success rounded-pill"onclick="chatbox.handlePrompt(\'Contact Us\')">Contact Us</button>';
+                response += '<div class= "d-flex flex-column" class="text-left ">';
+                response += '<button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt(\'Admission Process\')">Admission Process</button>';
+                response += '<button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Entrance Examination</button>';
+                response += '<button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt(\'Transferees\')">Transferees</button>';
+                response += '<button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt(\'Scholarship\')">Scholarship</button>';
+                response += '<button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt(\'Shifting\')">Shifting</button>';
+                response += '<button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt(\'Tuition Fee\')">Tuition Fee</button>';
+                response += '<button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt(\'Re-application\')">Re-application</button>';
+               
+                response += '</div>';
                 break;
-            case 'Admission Process':
-                response = 'Here are some frequently asked questions about the Admission Process:';
-                response += '<br>1. What are the required documents that need to be submitted?';
-                response += '<br>2. Are the documents needed original or photocopy?';
-                response += '<br>3. Is it possible to submit the requirements that are already overdue?';
+                case 'Admission Process':
+                response = 'Here are some frequently asked questions <br> about the Admission Process:';
+                response += '<div class="d-flex flex-column text-left">';
+                response += '<button class="btn btn-success rounded-pill fs-1 " onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<button class="btn btn-success rounded-pill " onclick="chatbox.handlePrompt(\'Admission Process\')">What are the required documents that need to be submitted?</button>';
+                response += '<button class="btn btn-success rounded-pill " onclick="chatbox.handlePrompt(\'Admission Process\')">Are the documents needed original or photocopy?</button>';
+                response += '<button class="btn btn-success rounded-pill " onclick="chatbox.handlePrompt(\'Admission Process\')">Is it possible to submit the requirements that are already overdue?</button>';
+                response += '</div>';
                 break;
             case 'Entrance Examination':
-                response = 'Here are some frequently asked questions about the Entrance Examination:';
-                response += '<br>1. Can we reschedule our selected date for the entrance exam?';
-                response += '<br>2. Do they still do interviews in the admission process?';
-                response += '<br>3. Do they accept re-apply students if they fail the entrance exam?';
+                response = 'Here are some frequently asked questions about <br>the Entrance Examination:';
+                response += '<div class="d-flex flex-column text-left">';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Can we reschedule our selected date for the entrance exam?</button>';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Do they still do interviews in the admission process?</button>';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Do they accept re-apply students if they fail the entrance exam?</button>';
+                response += '</div>';
                 break;
-            // Add cases for other categories
+            case 'Transferees':
+                response = 'Here are some frequently asked questions about Transferees:';
+                response += '<div class="d-flex flex-column text-left">';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Transferees\')">Do they accept transferees in the second semester?</button>';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Transferees\')">What is the process of transferring to CvSU?</button>';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Transferees\')">What are the needed requirements when transferring to other schools?</button>';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Transferees\')">How can I apply or transfer to satellite campuses if I pass in the main campus?</button>';
+                response += '</div>';
+                break;
+            case 'Scholarship':
+                response = 'Here are some frequently asked questions about Scholarship:';
+                response = 'For all scholarship concerns, please contact osasmain.scholarship@cvsu.edu.ph';
+                response += '<br>If you have specific questions, feel free to ask.';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                break;
+            case 'Shifting':
+                response = 'Here are some frequently asked questions about Shifting:';
+                response += '<br>Please inquire directly with the respective College for shifting processes and requirements.';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                break;
+            case 'Tuition Fee':
+                response = 'Here are some frequently asked questions about Tuition Fee';
+                response += '<br>If you have specific questions, feel free to ask.';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                break;
+            case 'Re-application':
+                response = 'Here are some frequently asked questions about Re Application:';
+                response += '<div class="d-flex flex-column text-left">';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Re-application\')">What are the requirements for re-application?</button>';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Re-application\')">Is it possible to give my slot to another student who failed the entrance exam?</button>';
+                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Re-application\')">How many applicants will be accepted for admission?</button>';
+                response += '<br>Applicants just have to read the announcement that will be posted in the future to be guided.';
+                response += '</div>';
+                break;
             case 'Visit Official Website':
                 window.open('https://www.cvsu.edu.ph', '_blank');
                 response = 'Opening the official website in a new tab...';
@@ -303,12 +372,29 @@ class Chatbox {
                     `   > For technical problems found on the site and/or any feedback about the systems<br>` +
                     `For other offices, please visit our directory <br><a href="https://cvsu.edu.ph/contact-us-2/">here</a>.`;
                 break;
+            
             default:
                 response = 'I apologize, but I cannot provide information for that request.';
         }
         const message = {
             name: 'CVSU Admission System',
             message: response,
+            timestamp: new Date(),
+            fullyDisplayed: false
+        };
+        this.messages.push(message);
+        this.updatePrompt(this.args.chatBox);
+       
+        const clickableMessages = this.args.chatBox.querySelectorAll('.clickable');
+        clickableMessages.forEach((message) => {
+            message.removeEventListener('click', () => this.handleConfirmation(message.getAttribute('data-action'), this.args.chatBox));
+        });
+    }
+
+    handlePlaceholder(placeholderText) {
+        const message = {
+            name: 'User',
+            message: placeholderText,
             timestamp: new Date(),
             fullyDisplayed: false
         };
