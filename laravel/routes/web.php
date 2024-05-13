@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\IntentsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GoogleAuthController;
 
 /*
@@ -24,20 +25,20 @@ Route::get('/', function () {
 Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('google-auth');
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 Route::get('/logout', [GoogleAuthController::class, 'logout'])->name('logout');
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
-Route::post('/register', [UsersController::class, 'store'])->name('createUser');
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
-Route::get('/dashboard', [IntentsController::class, 'index'])->name('dashboard');
-Route::get('/train', function () {
-    return view('train');
-})->name('train');
-Route::post('/create-intent', [IntentsController::class, 'store'])->name('createIntent');
-// Route::put('/edit-intent', [IntentsController::class, 'edit'])->name('editIntent');
-Route::post('/edit-intent', [IntentsController::class, 'edit'])->name('editIntent');
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/dashboard', [IntentsController::class, 'index'])->name('dashboard');
+        Route::get('/train', function () {
+            return view('train');
+        })->name('train');
+        Route::get('/reports', function () {
+            return view('reports');
+        })->name('reports');
+        Route::post('/create-intent', [IntentsController::class, 'store'])->name('createIntent');
+        Route::post('/edit-intent', [IntentsController::class, 'editIntent'])->name('editIntent');
+        Route::get('/chart-data', [FeedbackController::class, 'fetchChartData']);
+        Route::get('/feedback-chart-data', [FeedbackController::class, 'fetchFeedbackData']);
+    });
 
 
 require __DIR__.'/../config/auth.php';

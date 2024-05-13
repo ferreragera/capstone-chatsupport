@@ -1,583 +1,1111 @@
 {
     "intents": [
         {
-          
-          "tag": "greeting",
-          "patterns": [
-              "Hi","Hey","Hello","Hello there","What's up","Hi there",
-              "How are you",
-              "Is anyone there?",
-              "Hey",
-              "Hello",
-              "Good day",
-              "yo"
-          ],
-          "responses": [
-              "Hello!",
-              "Hi there!",
-              "How can I assist you?",
-              "Hello there!"
-          ]
-      },
-      {
-          
-          "tag": "greeting2",
-          "patterns": [
-              "Hello How are you",
-              "Hi How are you",
-              "Hello what's up",
-              "Hi I have some questions about admissions.",
-              "How are you"
-          ],
-          "responses": [
-              "Welcome to the CVSU Online Admission System . How can I assist you?",
-              "I'm here to help with your admission questions.",
-              "How can I assist you?",
-              "Feel free to ask your admission questions."
-          ]
-      },
-      {
-          
-          "tag": "goodbye",
-          "patterns": [
-              "Bye",
-              "See you later",
-              "Goodbye"
-          ],
-          "responses": [
-              "Goodbye! Have a great day.",
-              "Take care!",
-              "Until next time!"
-          ]
-      },
-      {
-          
-          "tag": "bot_identity",
-          "patterns": [
-              "What are you?",
-              "Who are you?",
-              "Tell me about yourself.",
-              "Introduce yourself.",
-              "What's your role?",
-              "Explain your purpose."
-          ],
-          "responses": [
-              "I'm here to assist with CVSU admission information.",
-              "I provide support for CVSU admissions.",
-              "I help with CVSU admission inquiries."
-          ]
-      },
-      {
-        "tag": "assistance",
-        "patterns": [
-            "How can you assist me?",
-            "Can you help me?",
-            "What assistance can you provide?",
-            "I need assistance.",
-            "Help me please."
-        ],
-        "responses": [
-            "I can assist you with various aspects of CVSU online admissions. You can ask me about the admissions process, requirements, application deadline, or any other questions related to CVSU admissions."
-        ]
-      },
-      {
-          
-          "tag": "thanks",
-          "patterns": [
-              "Thanks",
-              "Thank you"
-          ],
-          "responses": [
-              "You're welcome!",
-              "No problem!",
-              "Glad I could help."
-          ]
-      },
-
-
-      {
-        "tag": "admissions_process",
-        "patterns": [
-            "Can you explain the admissions process?",
-            "How does the admissions process work?",
-            "Tell me about the steps for admission."
-        ],
-        "responses": [
-            "The admissions process typically involves submitting an application form, providing necessary documents, and meeting specific criteria. You can find detailed information on our website or contact our admissions office for assistance."
-        ]
-    },
-    {
-        "tag": "requirements",
-        "patterns": [
-            "What are the admission requirements?",
-            "Can you list the requirements for admission?",
-            "What do I need to apply?"
-        ],
-        "responses": [
-            "Admission requirements may vary depending on the program you're applying for. Generally, you'll need academic transcripts, test scores, recommendation letters, and a personal statement. Check our website for specific requirements for your desired program."
-        ]
-    },
-    {
-        "tag": "application_deadline",
-        "patterns": [
-            "When is the application deadline?",
-            "What is the deadline for applying?",
-            "Can you tell me when applications close?"
-        ],
-        "responses": [
-            "The application deadline varies depending on the program and semester. It's important to check our website or contact the admissions office to confirm the deadline for your specific situation."
-        ]
-    },
-    {
-        "tag": "program_information",
-        "patterns": [
-            "Can you provide information about the programs offered?",
-            "What programs does CVSU offer?",
-            "Tell me about the available courses."
-        ],
-        "responses": [
-            "CVSU offers a wide range of programs across various disciplines, including arts, sciences, engineering, and business. You can explore our website for detailed information on each program, including curriculum, faculty, and career prospects."
-        ]
-    },
-    
-      {
-        "tag": "admission_requirements",
-        "patterns": ["What are the admission requirements?", "Requirements for admission?", "What do I need to apply?"],
-        "responses": ["To apply online for CvSU Main Campus, you'll need your high school diploma, transcript of records, and valid identification."]
-      },
-      {
-        "tag": "application_process",
-        "patterns": ["How do I apply?", "What is the application process?", "Can you guide me through the application?"],
-        "responses": ["To apply, fill out the online form, submit required documents, and pay the application fee."]
-      },
-      {
-        "tag": "important_dates",
-        "patterns": ["What are the important dates?", "When is the application deadline?", "When does the admission period start?"],
-        "responses": ["Admission deadlines and dates vary. Check the official CvSU website for accurate information."]
-      },
-      {
-        "tag": "transferring",
-        "patterns": ["How do I transfer?", "What is the process for transferring?"],
-        "responses": ["To transfer to CvSU, submit your transcripts and fulfill transfer requirements."]
-      },
-      {
-        "tag": "fee_structure",
-        "patterns": ["How much is the application fee?", "What are the fees for admission?"],
-        "responses": ["The application fee for CvSU Main Campus online admission can be found on the official CvSU website."]
-      },
-      {
-        "tag": "document_submission",
-        "patterns": ["Where do I submit my documents?", "How can I send my documents?"],
-        "responses": ["Submit your documents online through the CvSU admission portal."]
-      },
-      {
-        "tag": "application_status",
-        "patterns": ["How do I check my application status?", "Can I track my application?"],
-        "responses": ["Check your application status by logging into your CvSU admission portal account."]
-      },
-      {
-        "tag": "technical_issues",
-        "patterns": ["I'm facing technical issues with the application portal", "The website is not working properly"],
-        "responses": ["Please provide details of the issue you're facing, and we'll assist you."]
-      },
-      {
-        "tag": "scholarships",
-        "patterns": ["Are there any scholarships available?", "How can I apply for scholarships?"],
-        "responses": ["CvSU Main Campus offers scholarships for eligible students. Details are available on the official CvSU website."]
-      },
-      {
-        "tag": "program_information",
-        "patterns": ["What programs does CvSU offer?", "Can I get information about specific courses?"],
-        "responses": ["CvSU Main Campus offers various undergraduate and graduate programs. Explore them on the CvSU website."]
-      },
-      {
-        "tag": "admission_counseling",
-        "patterns": ["Is there any admission counseling available?", "Can I speak to an admissions counselor?"],
-        "responses": ["CvSU Main Campus provides admission counseling services. Schedule an appointment through the website."]
-      },
-      {
-        "tag": "transfer_students",
-        "patterns": ["Can I transfer credits from another institution?", "How does credit transfer work?"],
-        "responses": ["Transfer credits from accredited institutions by submitting official transcripts for evaluation."]
-      },
-      {
-        "tag": "accommodation",
-        "patterns": ["Is on-campus accommodation available?", "Can I get housing facilities?"],
-        "responses": ["On-campus accommodation options are available. Find details on the CvSU website."]
-      },
-      {
-        "tag": "orientation",
-        "patterns": ["Is there a student orientation program?", "When is the orientation for new students?"],
-        "responses": ["New student orientation programs are conducted to familiarize you with campus resources and student life."]
-      },
-      {
-        "tag": "international_students",
-        "patterns": ["Do you accept international students?", "What are the requirements for international students?"],
-        "responses": ["CvSU Main Campus welcomes international students. Visit the website for requirements."]
-      },
-      {
-        "tag": "contact_information",
-        "patterns": ["How can I contact the admissions office?", "What is the contact number/email of the admissions department?"],
-        "responses": ["Office of the Student Affairs and Services - cvsumainosas@cvsu.edu.ph for inquiries about course offering and admission inquiries \n  Office of the University Registrar - registrarmain@cvsu.edu.ph> for inquiries about TOR, Diploma, and Registrar related concerns \n University Library - cvsulibrary@cvsu.edu.ph> for inquiries about library matters \n University Webmaster - webmaster@cvsu.edu.ph> for technical problems found on the site and/or any feedback about the systems"]
-      },
-      {
-        "tag": "financial_aid",
-        "patterns": ["Is financial aid available?", "How can I apply for financial assistance?"],
-        "responses": ["CvSU Main Campus offers financial aid options. Complete the FAFSA and CvSU-specific forms."]
-      },
-      {
-        "tag": "health_services",
-        "patterns": ["Are health services available on campus?", "How can I access healthcare facilities?"],
-        "responses": ["Health services, including medical care and counseling, are available on campus."]
-      },
-      
-      {
-        "tag": "online_resources",
-        "patterns": ["Can I access online resources as a student?", "What online tools are available?"],
-        "responses": ["Access online resources like library databases through the CvSU student portal."]
-      },
-  
-      
-          {
+            "id": 1,
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "Hey",
+                "Hello",
+                "Hello there",
+                "What's up",
+                "Hi there",
+                "How are you",
+                "Is anyone there?",
+                "Hey",
+                "Hello",
+                "Good day",
+                "yo"
+            ],
+            "responses": [
+                "Hello!",
+                "Hi there!",
+                "How can I assist you?",
+                "Hello there!"
+            ]
+        },
+        {
+            "id": 2,
+            "tag": "greeting2",
+            "patterns": [
+                "Hello How are you",
+                "Hi How are you",
+                "Hello what's up",
+                "Hi I have some questions about admissions.",
+                "How are you"
+            ],
+            "responses": [
+                "Welcome to the CVSU Online Admission System . How can I assist you?",
+                "I'm here to help with your admission questions.",
+                "How can I assist you?",
+                "Feel free to ask your admission questions."
+            ]
+        },
+        {
+            "id": 3,
+            "tag": "goodbye",
+            "patterns": [
+                "Bye",
+                "See you later",
+                "Goodbye"
+            ],
+            "responses": [
+                "Goodbye! Have a great day.",
+                "Take care!",
+                "Until next time!"
+            ]
+        },
+        {
+            "id": 4,
+            "tag": "bot_identity",
+            "patterns": [
+                "What are you?",
+                "Who are you?",
+                "Tell me about yourself.",
+                "Introduce yourself.",
+                "What's your role?",
+                "Explain your purpose."
+            ],
+            "responses": [
+                "I'm here to assist with CVSU admission information.",
+                "I provide support for CVSU admissions.",
+                "I help with CVSU admission inquiries."
+            ]
+        },
+        {
+            "id": 5,
+            "tag": "assistance",
+            "patterns": [
+                "How can you assist me?",
+                "Can you help me?",
+                "What assistance can you provide?",
+                "I need assistance.",
+                "Help me please."
+            ],
+            "responses": [
+                "I can assist you with various aspects of CVSU online admissions. You can ask me about the admissions process, requirements, application deadline, or any other questions related to CVSU admissions."
+            ]
+        },
+        {
+            "id": 6,
+            "tag": "thanks",
+            "patterns": [
+                "Thanks",
+                "Thank you"
+            ],
+            "responses": [
+                "You're welcome!",
+                "No problem!",
+                "Glad I could help."
+            ]
+        },
+        {
+            "id": 7,
+            "tag": "admissions_process",
+            "patterns": [
+                "Can you explain the admissions process?",
+                "How does the admissions process work?",
+                "Tell me about the steps for admission."
+            ],
+            "responses": [
+                "The admissions process typically involves submitting an application form, providing necessary documents, and meeting specific criteria. You can find detailed information on our website or contact our admissions office for assistance."
+            ]
+        },
+        {
+            "id": 8,
+            "tag": "requirements",
+            "patterns": [
+                "What are the admission requirements?",
+                "Can you list the requirements for admission?",
+                "What do I need to apply?"
+            ],
+            "responses": [
+                "Admission requirements may vary depending on the program you're applying for. Generally, you'll need academic transcripts, test scores, recommendation letters, and a personal statement. Check our website for specific requirements for your desired program."
+            ]
+        },
+        {
+            "id": 9,
+            "tag": "application_deadline",
+            "patterns": [
+                "When is the application deadline?",
+                "What is the deadline for applying?",
+                "Can you tell me when applications close?"
+            ],
+            "responses": [
+                "The application deadline varies depending on the program and semester. It's important to check our website or contact the admissions office to confirm the deadline for your specific situation."
+            ]
+        },
+        {
+            "id": 10,
+            "tag": "program_information",
+            "patterns": [
+                "Can you provide information about the programs offered?",
+                "What programs does CVSU offer?",
+                "Tell me about the available courses."
+            ],
+            "responses": [
+                "CVSU offers a wide range of programs across various disciplines, including arts, sciences, engineering, and business. You can explore our website for detailed information on each program, including curriculum, faculty, and career prospects."
+            ]
+        },
+        {
+            "id": 11,
+            "tag": "admission_requirements",
+            "patterns": [
+                "What are the admission requirements?",
+                "Requirements for admission?",
+                "What do I need to apply?"
+            ],
+            "responses": [
+                "To apply online for CvSU Main Campus, you'll need your high school diploma, transcript of records, and valid identification."
+            ]
+        },
+        {
+            "id": 12,
+            "tag": "application_process",
+            "patterns": [
+                "How do I apply?",
+                "What is the application process?",
+                "Can you guide me through the application?"
+            ],
+            "responses": [
+                "To apply, fill out the online form, submit required documents, and pay the application fee."
+            ]
+        },
+        {
+            "id": 13,
+            "tag": "important_dates",
+            "patterns": [
+                "What are the important dates?",
+                "When is the application deadline?",
+                "When does the admission period start?"
+            ],
+            "responses": [
+                "Admission deadlines and dates vary. Check the official CvSU website for accurate information."
+            ]
+        },
+        {
+            "id": 14,
+            "tag": "transferring",
+            "patterns": [
+                "How do I transfer?",
+                "What is the process for transferring?"
+            ],
+            "responses": [
+                "To transfer to CvSU, submit your transcripts and fulfill transfer requirements."
+            ]
+        },
+        {
+            "id": 15,
+            "tag": "fee_structure",
+            "patterns": [
+                "How much is the application fee?",
+                "What are the fees for admission?"
+            ],
+            "responses": [
+                "The application fee for CvSU Main Campus online admission can be found on the official CvSU website."
+            ]
+        },
+        {
+            "id": 16,
+            "tag": "document_submission",
+            "patterns": [
+                "Where do I submit my documents?",
+                "How can I send my documents?"
+            ],
+            "responses": [
+                "Submit your documents online through the CvSU admission portal."
+            ]
+        },
+        {
+            "id": 17,
+            "tag": "application_status",
+            "patterns": [
+                "How do I check my application status?",
+                "Can I track my application?"
+            ],
+            "responses": [
+                "Check your application status by logging into your CvSU admission portal account."
+            ]
+        },
+        {
+            "id": 18,
+            "tag": "technical_issues",
+            "patterns": [
+                "I'm facing technical issues with the application portal",
+                "The website is not working properly"
+            ],
+            "responses": [
+                "Please provide details of the issue you're facing, and we'll assist you."
+            ]
+        },
+        {
+            "id": 19,
+            "tag": "scholarships",
+            "patterns": [
+                "Are there any scholarships available?",
+                "How can I apply for scholarships?"
+            ],
+            "responses": [
+                "CvSU Main Campus offers scholarships for eligible students. Details are available on the official CvSU website."
+            ]
+        },
+        {
+            "id": 20,
+            "tag": "program_information",
+            "patterns": [
+                "What programs does CvSU offer?",
+                "Can I get information about specific courses?"
+            ],
+            "responses": [
+                "CvSU Main Campus offers various undergraduate and graduate programs. Explore them on the CvSU website."
+            ]
+        },
+        {
+            "id": 21,
+            "tag": "admission_counseling",
+            "patterns": [
+                "Is there any admission counseling available?",
+                "Can I speak to an admissions counselor?"
+            ],
+            "responses": [
+                "CvSU Main Campus provides admission counseling services. Schedule an appointment through the website."
+            ]
+        },
+        {
+            "id": 22,
+            "tag": "transfer_students",
+            "patterns": [
+                "Can I transfer credits from another institution?",
+                "How does credit transfer work?"
+            ],
+            "responses": [
+                "Transfer credits from accredited institutions by submitting official transcripts for evaluation."
+            ]
+        },
+        {
+            "id": 23,
+            "tag": "accommodation",
+            "patterns": [
+                "Is on-campus accommodation available?",
+                "Can I get housing facilities?"
+            ],
+            "responses": [
+                "On-campus accommodation options are available. Find details on the CvSU website."
+            ]
+        },
+        {
+            "id": 24,
+            "tag": "orientation",
+            "patterns": [
+                "Is there a student orientation program?",
+                "When is the orientation for new students?"
+            ],
+            "responses": [
+                "New student orientation programs are conducted to familiarize you with campus resources and student life."
+            ]
+        },
+        {
+            "id": 25,
+            "tag": "international_students",
+            "patterns": [
+                "Do you accept international students?",
+                "What are the requirements for international students?"
+            ],
+            "responses": [
+                "CvSU Main Campus welcomes international students. Visit the website for requirements."
+            ]
+        },
+        {
+            "id": 26,
+            "tag": "contact_information",
+            "patterns": [
+                "How can I contact the admissions office?",
+                "What is the contact number\/email of the admissions department?"
+            ],
+            "responses": [
+                "Office of the Student Affairs and Services - cvsumainosas@cvsu.edu.ph for inquiries about course offering and admission inquiries \n  Office of the University Registrar - registrarmain@cvsu.edu.ph> for inquiries about TOR, Diploma, and Registrar related concerns \n University Library - cvsulibrary@cvsu.edu.ph> for inquiries about library matters \n University Webmaster - webmaster@cvsu.edu.ph> for technical problems found on the site and\/or any feedback about the systems"
+            ]
+        },
+        {
+            "id": 27,
+            "tag": "financial_aid",
+            "patterns": [
+                "Is financial aid available?",
+                "How can I apply for financial assistance?"
+            ],
+            "responses": [
+                "CvSU Main Campus offers financial aid options. Complete the FAFSA and CvSU-specific forms."
+            ]
+        },
+        {
+            "id": 28,
+            "tag": "health_services",
+            "patterns": [
+                "Are health services available on campus?",
+                "How can I access healthcare facilities?"
+            ],
+            "responses": [
+                "Health services, including medical care and counseling, are available on campus."
+            ]
+        },
+        {
+            "id": 29,
+            "tag": "online_resources",
+            "patterns": [
+                "Can I access online resources as a student?",
+                "What online tools are available?"
+            ],
+            "responses": [
+                "Access online resources like library databases through the CvSU student portal."
+            ]
+        },
+        {
+            "id": 30,
             "tag": "academic_support",
-            "patterns": ["Is there academic support available for students?", "How can I get tutoring help?"],
-            "responses": ["CvSU Main Campus provides academic support services like tutoring, advising, and workshops. Visit the Academic Support Center or contact them for assistance."]
-          },
-          {
+            "patterns": [
+                "Is there academic support available for students?",
+                "How can I get tutoring help?"
+            ],
+            "responses": [
+                "CvSU Main Campus provides academic support services like tutoring, advising, and workshops. Visit the Academic Support Center or contact them for assistance."
+            ]
+        },
+        {
+            "id": 31,
             "tag": "application_deadlines",
-            "patterns": ["What are the deadlines for application submission?", "When is the last date to apply for admission?"],
-            "responses": ["Application deadlines vary by program and intake. Check the official CvSU website for specific deadlines relevant to your application."]
-          },
-          {
+            "patterns": [
+                "What are the deadlines for application submission?",
+                "When is the last date to apply for admission?"
+            ],
+            "responses": [
+                "Application deadlines vary by program and intake. Check the official CvSU website for specific deadlines relevant to your application."
+            ]
+        },
+        {
+            "id": 32,
             "tag": "admission_criteria",
-            "patterns": ["What criteria does CvSU consider for admission?", "How are applicants evaluated for admission?"],
-            "responses": ["CvSU considers factors like academic performance, entrance exam scores, extracurricular activities, and relevant qualifications for admission. Each program may have specific criteria."]
-          },
-          {
+            "patterns": [
+                "What criteria does CvSU consider for admission?",
+                "How are applicants evaluated for admission?"
+            ],
+            "responses": [
+                "CvSU considers factors like academic performance, entrance exam scores, extracurricular activities, and relevant qualifications for admission. Each program may have specific criteria."
+            ]
+        },
+        {
+            "id": 33,
             "tag": "application_status_check",
-            "patterns": ["How can I check my application status?", "Is there a way to track my admission application?"],
-            "responses": ["Track your application status by logging into your CvSU admission portal account for real-time updates."]
-          },
-          {
+            "patterns": [
+                "How can I check my application status?",
+                "Is there a way to track my admission application?"
+            ],
+            "responses": [
+                "Track your application status by logging into your CvSU admission portal account for real-time updates."
+            ]
+        },
+        {
+            "id": 34,
             "tag": "application_fee_payment",
-            "patterns": ["How do I pay the application fee?", "What are the payment options for the application fee?"],
-            "responses": ["Pay the application fee online through the CvSU admission portal using credit/debit cards, online banking, or electronic wallets."]
-          },
-          {
+            "patterns": [
+                "How do I pay the application fee?",
+                "What are the payment options for the application fee?"
+            ],
+            "responses": [
+                "Pay the application fee online through the CvSU admission portal using credit\/debit cards, online banking, or electronic wallets."
+            ]
+        },
+        {
+            "id": 35,
             "tag": "admission_notification",
-            "patterns": ["When will I receive the admission notification?", "How long does it take to hear back after applying?"],
-            "responses": ["Admission notifications are sent after the application review process. Expect to receive one within a few weeks to months after submitting your application."]
-          },
-          {
+            "patterns": [
+                "When will I receive the admission notification?",
+                "How long does it take to hear back after applying?"
+            ],
+            "responses": [
+                "Admission notifications are sent after the application review process. Expect to receive one within a few weeks to months after submitting your application."
+            ]
+        },
+        {
+            "id": 36,
             "tag": "application_withdrawal",
-            "patterns": ["Can I withdraw my admission application?", "What is the procedure for canceling my application?"],
-            "responses": ["You can withdraw your admission application by submitting a formal request to the CvSU admission office."]
-          },
-          {
+            "patterns": [
+                "Can I withdraw my admission application?",
+                "What is the procedure for canceling my application?"
+            ],
+            "responses": [
+                "You can withdraw your admission application by submitting a formal request to the CvSU admission office."
+            ]
+        },
+        {
+            "id": 37,
             "tag": "entrance_examination",
-            "patterns": ["Is there an entrance examination for admission?", "Do I need to take an entrance test?"],
-            "responses": ["Some programs at CvSU Main Campus may require an entrance examination. Details will be provided after completing your application."]
-          },
-         
-          {
+            "patterns": [
+                "Is there an entrance examination for admission?",
+                "Do I need to take an entrance test?"
+            ],
+            "responses": [
+                "Some programs at CvSU Main Campus may require an entrance examination. Details will be provided after completing your application."
+            ]
+        },
+        {
+            "id": 38,
             "tag": "application_review_process",
-            "patterns": ["How does CvSU review admission applications?", "What is the process for evaluating applications?"],
-            "responses": ["Admission applications undergo a thorough review, including academic assessment and document verification by the admission committee."]
-          },
-        
-          {
+            "patterns": [
+                "How does CvSU review admission applications?",
+                "What is the process for evaluating applications?"
+            ],
+            "responses": [
+                "Admission applications undergo a thorough review, including academic assessment and document verification by the admission committee."
+            ]
+        },
+        {
+            "id": 39,
             "tag": "application_document_submission_deadline",
-            "patterns": ["When is the deadline to submit application documents?", "What is the last date to upload required documents?"],
-            "responses": ["The deadline for submitting application documents is provided upon application submission."]
-          },
-          {
+            "patterns": [
+                "When is the deadline to submit application documents?",
+                "What is the last date to upload required documents?"
+            ],
+            "responses": [
+                "The deadline for submitting application documents is provided upon application submission."
+            ]
+        },
+        {
+            "id": 40,
             "tag": "application_feedback",
-            "patterns": ["Can I provide feedback on the application process?", "Is there a way to share my experience with the admission process?"],
-            "responses": ["Share your experience and suggestions by contacting the CvSU admission office or filling out the feedback form on the official website."]
-          },
-          {
+            "patterns": [
+                "Can I provide feedback on the application process?",
+                "Is there a way to share my experience with the admission process?"
+            ],
+            "responses": [
+                "Share your experience and suggestions by contacting the CvSU admission office or filling out the feedback form on the official website."
+            ]
+        },
+        {
+            "id": 41,
             "tag": "admission_cancelation",
-            "patterns": ["Can my admission be canceled after acceptance?", "Under what circumstances can admission be revoked?"],
-            "responses": ["Admission may be canceled for reasons like providing false information or disciplinary issues."]
-          },
-          {
+            "patterns": [
+                "Can my admission be canceled after acceptance?",
+                "Under what circumstances can admission be revoked?"
+            ],
+            "responses": [
+                "Admission may be canceled for reasons like providing false information or disciplinary issues."
+            ]
+        },
+        {
+            "id": 42,
             "tag": "application_inquiry",
-            "patterns": ["How can I inquire about my submitted application?", "Is there a contact point for application inquiries?"],
-            "responses": ["Inquire about your application by contacting the CvSU admission office via email or phone."]
-          },
-          {
+            "patterns": [
+                "How can I inquire about my submitted application?",
+                "Is there a contact point for application inquiries?"
+            ],
+            "responses": [
+                "Inquire about your application by contacting the CvSU admission office via email or phone."
+            ]
+        },
+        {
+            "id": 43,
             "tag": "application_data_update",
-            "patterns": ["Can I update my application information after submission?", "Is it possible to make changes to my application?"],
-            "responses": ["Update your application information by contacting the CvSU admission office."]
-          },
-          {
+            "patterns": [
+                "Can I update my application information after submission?",
+                "Is it possible to make changes to my application?"
+            ],
+            "responses": [
+                "Update your application information by contacting the CvSU admission office."
+            ]
+        },
+        {
+            "id": 44,
+            "tag": "application_data_update",
+            "patterns": [
+                "Can I update my application information after submission?",
+                "Is it possible to make changes to my application?"
+            ],
+            "responses": [
+                "Update your application information by contacting the CvSU admission office."
+            ]
+        },
+        {
+            "id": 45,
             "tag": "admission_orientation",
-            "patterns": ["Is there an orientation program for admitted students?", "When is the orientation session for new students?"],
-            "responses": ["CvSU organizes orientation programs for admitted students to introduce them to campus life and policies."]
-          },
-          {
+            "patterns": [
+                "Is there an orientation program for admitted students?",
+                "When is the orientation session for new students?"
+            ],
+            "responses": [
+                "CvSU organizes orientation programs for admitted students to introduce them to campus life and policies."
+            ]
+        },
+        {
+            "id": 46,
             "tag": "application_reconsideration",
-            "patterns": ["Can my application be reconsidered after rejection?", "Is there an appeal process for rejected applications?"],
-            "responses": ["Request reconsideration by submitting a formal appeal letter along with supporting documents."]
-          }
-        ,
-        
-     
-      {
-        "tag": "application_interview",
-        "patterns": ["Do I need to attend an interview as part of the admission process?", "Will there be an interview session for applicants?"],
-        "responses": ["Some programs at CvSU Main Campus may require applicants to participate in an interview as part of the admission process. You'll be notified if an interview is required."]
-      },
-      {
-        "tag": "admission_notification_format",
-        "patterns": ["How will I receive the admission notification?", "In what format will the admission decision be communicated?"],
-        "responses": ["Admission notifications are typically sent via email or through the CvSU admission portal. You'll receive a formal notification regarding the status of your application."]
-      },
-      {
-        "tag": "application_confirmation",
-        "patterns": ["How can I confirm that my application has been received?", "Is there a way to verify my application submission?"],
-        "responses": ["Upon successful submission, you'll receive a confirmation email or message acknowledging receipt of your application. You can also check the status of your application on the CvSU admission portal."]
-      },
-      
-      {
-        "tag": "application_review_duration",
-        "patterns": ["How long does it take to review admission applications?", "What is the average processing time for applications?"],
-        "responses": ["The duration for reviewing admission applications varies depending on the volume of applications received and the complexity of the review process. You can expect to receive a decision within a few weeks to months after submission."]
-      },
-      {
-        "tag": "application_materials_submission",
-        "patterns": ["Where do I submit additional application materials?", "Is there a separate portal for submitting supplementary documents?"],
-        "responses": ["You can upload additional application materials or supplementary documents through the CvSU admission portal. Be sure to follow the instructions provided and submit the required documents within the specified deadline."]
-      },
-      {
-        "tag": "application_process_overview",
-        "patterns": ["Can you provide an overview of the admission process?", "How does the entire application process work?"],
-        "responses": ["The admission process at CvSU Main Campus involves several steps, including application submission, document verification, review, and admission decision. For a detailed overview, you can refer to the admission guidelines on the official CvSU website."]
-      },
-      {
-        "tag": "admission_disclaimer",
-        "patterns": ["Is there a disclaimer regarding admission decisions?", "Are there any terms and conditions associated with admission offers?"],
-        "responses": ["Yes, admission offers are subject to terms and conditions outlined by CvSU Main Campus. It's essential to carefully review the admission disclaimer and terms before accepting the offer."]
-      },
-      {
-        "tag": "application_verification",
-        "patterns": ["How do I know if my application documents have been verified?", "Is there a verification process for submitted documents?"],
-        "responses": ["Once you've submitted your application documents, the CvSU admission office will verify the authenticity and completeness of the documents. You'll receive confirmation once the verification process is complete."]
-      },
-      {
-        "tag": "application_review_committee",
-        "patterns": ["Who reviews the admission applications?", "Is there a committee responsible for application review?"],
-        "responses": ["Admission applications are reviewed by a dedicated committee comprising faculty members and admissions staff. The committee ensures fair and thorough evaluation of all applications."]
-      },
-      {
-        "tag": "admission_acceptance_deadline",
-        "patterns": ["Is there a deadline for accepting the admission offer?", "When do I need to confirm my enrollment?"],
-        "responses": ["Admitted students are typically required to accept the admission offer by a specified deadline. The deadline for accepting the offer will be communicated along with the admission notification."]
-      },
-      {
-        "tag": "application_rejection_feedback",
-        "patterns": ["Can I receive feedback on my rejected application?", "Is there a way to understand why my application was not accepted?"],
-        "responses": ["Yes, you may request feedback on your rejected application to understand the reasons for the decision. Contact the CvSU admission office to request feedback, and they will provide insights into the decision."]
-      },
-      {
-        "tag": "application_submission_confirmation",
-        "patterns": ["How will I know if my application has been successfully submitted?", "Is there a confirmation message upon application submission?"],
-        "responses": ["Upon successful submission of your application, you'll receive a confirmation message or email acknowledging receipt of your application. This confirms that your application has been successfully submitted for review."]
-      },
-      {
-        "tag": "admission_withdrawal_deadline",
-        "patterns": ["Is there a deadline for withdrawing my admission acceptance?", "When can I cancel my enrollment without penalties?"],
-        "responses": ["Admitted students can typically withdraw their admission acceptance without penalties within a specified deadline. Be sure to review the admission offer letter for details on the withdrawal deadline."]
-      },
-      {
-        "tag": "application_revision",
-        "patterns": ["Can I revise my application after submission?", "Is there a way to make changes to my application details?"],
-        "responses": ["Yes, you can request revisions or updates to your application details by contacting the CvSU admission office. Be sure to provide accurate and updated information for the necessary changes."]
-      },
-      {
-        "tag": "admission_waitlist",
-        "patterns": ["What does it mean to be placed on the admission waitlist?", "Can I still be admitted if I'm on the waitlist?"],
-        "responses": ["Being placed on the admission waitlist means that your application is under consideration, but admission is pending availability of spots or further review. If spots become available, waitlisted applicants may be admitted."]
-      },
-      {
-        "tag": "application_feedback_channel",
-        "patterns": ["How can I provide feedback on the application process?", "Is there a channel for sharing feedback on the admission process?"],
-        "responses": ["Your feedback is valuable to us! You can share your feedback on the application process by contacting the CvSU admission office directly or filling out the feedback form available on the official website."]
-      },
-      {
-        "tag": "admission_deferral_request",
-        "patterns": ["Can I request deferral of my admission offer?", "Is it possible to defer my enrollment to a later term?"],
-        "responses": ["Yes, admitted students may request deferral of their admission offer to a later term under certain circumstances. Contact the CvSU admission office to initiate the deferral request process."]
-      },
-      {
-        "tag": "application_evaluation_criteria",
-        "patterns": ["What criteria does CvSU use to evaluate admission applications?", "How are applications assessed for admission?"],
-        "responses": ["Admission applications are evaluated based on various criteria, including academic performance, standardized test scores (if applicable), extracurricular activities, personal statements, and letters of recommendation."]
-      },
-      {
-        "tag": "application_materials_submission_deadline_extension",
-        "patterns": ["Can I request an extension for submitting application materials?", "Is it possible to get more time for document submission?"],
-        "responses": ["In exceptional circumstances, you may request an extension for submitting application materials by contacting the CvSU admission office and explaining your situation. The decision on the extension request will be communicated to you."]
-      },
-      {
-        "tag": "application_review_delay_notification",
-        "patterns": ["What happens if there's a delay in reviewing my application?", "Will I be notified if there's a delay in the application review process?"],
-        "responses": ["If there's a delay in reviewing your application, the CvSU admission office will notify you of the situation and provide updates on the expected timeline for application review."]
-      },
-      {
-        "tag": "admission_confirmation_requirement",
-        "patterns": ["Is there any action required to confirm my admission acceptance?", "What do I need to do after receiving the admission offer?"],
-        "responses": ["Upon receiving the admission offer, you'll typically need to confirm your acceptance by following the instructions provided in the admission offer letter. This may involve submitting a confirmation form or paying an admission deposit."]
-      },
-      {
-        "tag": "application_submission_assistance",
-        "patterns": ["I need help with submitting my application", "Can you assist me in completing my admission application?"],
-        "responses": ["Certainly! I can provide guidance and assistance with completing your admission application for CvSU Main Campus. Please let me know what specific help you need."]
-      },
-      {
-        "tag": "admission_rollback",
-        "patterns": ["Can my admission offer be rolled back after acceptance?", "Is there a possibility of losing my admission acceptance?"],
-        "responses": ["Admission offers may be rolled back under exceptional circumstances, such as academic misconduct or failure to meet admission conditions. However, such instances are rare, and the decision is made by the CvSU administration."]
-      },
-      {
-        "tag": "application_review_progress_check",
-        "patterns": ["How can I check the progress of my application review?", "Is there a way to monitor the status of my application review?"],
-        "responses": ["You can monitor the progress of your application review by logging into your CvSU admission portal account. The portal provides real-time updates on the status of your application and any additional requirements."]
-      },
-      {
-        "tag": "admission_reconsideration_appeal",
-        "patterns": ["Can I appeal for reconsideration of my admission rejection?", "Is there a formal process for appealing the admission decision?"],
-        "responses": ["Yes, you may appeal for reconsideration of your admission rejection by submitting a formal appeal letter to the CvSU admission office. Be sure to include any relevant supporting documents or evidence."]
-      },
-      {
-        "tag": "application_submission_confirmation_resend",
-        "patterns": ["Can I request a resend of the application submission confirmation?", "Is it possible to receive another confirmation of my application submission?"],
-        "responses": ["If you require another confirmation of your application submission, you can contact the CvSU admission office and request a resend of the confirmation message or email."]
-      },
-      {
-        "tag": "admission_offer_acceptance_confirmation",
-        "patterns": ["How do I confirm my acceptance of the admission offer?", "What is the process for accepting the admission offer?"],
-        "responses": ["To confirm your acceptance of the admission offer, you'll typically need to follow the instructions provided in the admission offer letter. This may involve submitting a confirmation form or paying an admission deposit."]
-      },
-      {
-        "tag": "application_verification_progress_check",
-        "patterns": ["How can I check the progress of my application document verification?", "Is there a way to track the status of document verification?"],
-        "responses": ["You can track the progress of your application document verification by logging into your CvSU admission portal account. The portal provides updates on the status of document verification and any additional requirements."]
-      },
-      {
-        "tag": "admission_rejection_reasons",
-        "patterns": ["Can I know the reasons for my admission rejection?", "Is there an explanation for why my application was not accepted?"],
-        "responses": ["Yes, you may request feedback on the reasons for your admission rejection by contacting the CvSU admission office. They will provide insights into the decision and any areas for improvement."]
-      },
-      {
-        "tag": "application_confirmation_resend_request",
-        "patterns": ["How can I request another resend of the application confirmation?", "Is it possible to receive another confirmation of my application submission?"],
-        "responses": ["If you require another resend of the application confirmation, you can contact the CvSU admission office and request reissuance of the confirmation message or email."]
-      },
-      {
-        "tag": "admission_deferral_reasons",
-        "patterns": ["What are the reasons for requesting admission deferral?", "Under what circumstances can I defer my admission offer?"],
-        "responses": ["Admission deferral may be requested under circumstances such as medical emergencies, personal reasons, or unforeseen circumstances that prevent immediate enrollment. Contact the CvSU admission office to discuss your specific situation."]
-      },
-      {
-        "tag": "application_review_delay_explanation",
-        "patterns": ["Why is there a delay in reviewing my application?", "Can I know the reason for the delay in application review?"],
-        "responses": ["Delays in application review may occur due to high application volume, additional verification requirements, or technical issues. The CvSU admission office will provide an explanation for the delay and updates on the review progress."]
-      },
-      {
-        "tag": "admission_rejection_appeal_process",
-        "patterns": ["What is the process for appealing an admission rejection?", "How can I appeal the decision to reject my application?"],
-        "responses": ["To appeal the decision to reject your admission application, you'll need to submit a formal appeal letter to the CvSU admission office. The letter should include reasons for the appeal and any supporting documentation."]
-      },
-      {
-        "tag": "application_portal_troubleshooting",
-        "patterns": ["I'm experiencing issues with the application portal", "Can you help me troubleshoot problems with the admission portal?"],
-        "responses": ["Certainly! I can assist you in troubleshooting issues with the CvSU admission portal. Please describe the problem you're encountering, and I'll do my best to provide a solution."]
-      },
-      {
-        "tag": "admission_deferral_request_approval",
-        "patterns": ["How will I know if my admission deferral request is approved?", "Is there a confirmation of admission deferral approval?"],
-        "responses": ["Once your admission deferral request is approved, you'll receive a confirmation email or message from the CvSU admission office. The confirmation will include details of the approved deferral period."]
-      },
-      {
-        "tag": "application_feedback_submission",
-        "patterns": ["Where can I submit feedback on the admission process?", "Is there a designated channel for providing feedback on the application process?"],
-        "responses": ["You can submit feedback on the admission process by contacting the CvSU admission office directly or using the feedback form available on the official website. Your feedback helps us improve the admission experience for future applicants."]
-      },
-      {
-        "tag": "admission_deferral_request_denial",
-        "patterns": ["What happens if my admission deferral request is denied?", "Is there an appeal process for denied deferral requests?"],
-        "responses": ["If your admission deferral request is denied, you'll be notified by the CvSU admission office. In some cases, you may have the option to appeal the decision by providing additional justification for the deferral."]
-      },
-      {
-        "tag": "application_portal_access_issues",
-        "patterns": ["I'm unable to access the admission portal", "Can you help me resolve issues with accessing the application portal?"],
-        "responses": ["I apologize for the inconvenience. Please provide details of the access issues you're experiencing with the CvSU admission portal, and I'll assist you in resolving them."]
-      },
-      {
-        "tag": "admission_withdrawal_notification",
-        "patterns": ["How will I be notified if my admission acceptance is withdrawn?", "Is there a formal notification for admission withdrawal?"],
-        "responses": ["If your admission acceptance is withdrawn, you'll receive a formal notification from the CvSU admission office via email or message. The notification will include reasons for the withdrawal and any relevant instructions."]
-      },
-      {
-        "tag": "application_portal_error_reporting",
-        "patterns": ["I encountered an error on the admission portal", "Where can I report errors or glitches in the application portal?"],
-        "responses": ["Thank you for bringing this to our attention. Please provide details of the error or glitch you encountered on the CvSU admission portal, and I'll ensure it's reported to the technical team for resolution."]
-      },
-      {
-        "tag": "admission_waitlist_notification",
-        "patterns": ["How will I be notified if I'm placed on the admission waitlist?", "Is there a notification for being waitlisted?"],
-        "responses": ["If you're placed on the admission waitlist, you'll receive a notification from the CvSU admission office informing you of your waitlist status. The notification will include details on further steps or updates."]
-      },
-      {
-        "tag": "application_portal_password_reset",
-        "patterns": ["I forgot my password for the admission portal", "Can you help me reset my password?"],
-        "responses": ["Sure! To reset your password for the CvSU admission portal, please follow the 'Forgot Password' link on the login page. You'll receive instructions on resetting your password via email or message."]
-      },
-      {
-        "tag": "admission_waitlist_movement",
-        "patterns": ["How does the admission waitlist process work?", "Is there movement on the admission waitlist?"],
-        "responses": ["The admission waitlist process involves offering admission spots to waitlisted applicants as vacancies become available. Movement on the waitlist depends on factors such as enrollment confirmations and space availability in the program."]
-      },
-      {
-        "tag": "application_portal_browser_compatibility",
-        "patterns": ["I'm having issues with the admission portal on my browser", "Is the admission portal compatible with all browsers?"],
-        "responses": ["The CvSU admission portal is optimized for compatibility with modern web browsers. If you're experiencing issues, please ensure you're using an updated browser version or try accessing the portal from a different browser."]
-      },
-
-      
-        {
-          "tag": "academic_calendar",
-          "patterns": ["What is the academic calendar?", "Are there important dates for the academic year?"],
-          "responses": ["The academic calendar contains important dates such as start and end of classes, holidays, and examination periods. You can find the academic calendar on the official CvSU website."]
+            "patterns": [
+                "Can my application be reconsidered after rejection?",
+                "Is there an appeal process for rejected applications?"
+            ],
+            "responses": [
+                "Request reconsideration by submitting a formal appeal letter along with supporting documents."
+            ]
         },
         {
-          "tag": "placement_tests",
-          "patterns": ["Are there placement tests for incoming students?", "Do I need to take placement exams?"],
-          "responses": ["Some programs may require placement tests to assess your proficiency level in certain subjects. Check with the respective department for details."]
+            "id": 47,
+            "tag": "application_interview",
+            "patterns": [
+                "Do I need to attend an interview as part of the admission process?",
+                "Will there be an interview session for applicants?"
+            ],
+            "responses": [
+                "Some programs at CvSU Main Campus may require applicants to participate in an interview as part of the admission process. You'll be notified if an interview is required."
+            ]
         },
         {
-          "tag": "special_programs",
-          "patterns": ["Are there any special programs or initiatives for students?", "What special programs does CvSU offer?"],
-          "responses": ["CvSU offers various special programs and initiatives to enhance student learning and development. These may include research opportunities, internships, and community outreach projects."]
+            "id": 48,
+            "tag": "admission_notification_format",
+            "patterns": [
+                "How will I receive the admission notification?",
+                "In what format will the admission decision be communicated?"
+            ],
+            "responses": [
+                "Admission notifications are typically sent via email or through the CvSU admission portal. You'll receive a formal notification regarding the status of your application."
+            ]
         },
         {
-          "tag": "student_clubs",
-          "patterns": ["Are there student clubs and organizations?", "How can I join student clubs?"],
-          "responses": ["CvSU has a vibrant student life with numerous clubs and organizations covering various interests such as academic, cultural, and recreational. You can join clubs during club recruitment periods or inquire at the Student Affairs Office."]
+            "id": 49,
+            "tag": "application_confirmation",
+            "patterns": [
+                "How can I confirm that my application has been received?",
+                "Is there a way to verify my application submission?"
+            ],
+            "responses": [
+                "Upon successful submission, you'll receive a confirmation email or message acknowledging receipt of your application. You can also check the status of your application on the CvSU admission portal."
+            ]
         },
         {
-          "tag": "campus_facilities",
-          "patterns": ["What facilities are available on campus?", "Can I get information about campus amenities?"],
-          "responses": ["CvSU provides modern facilities including libraries, laboratories, sports complexes, and recreational areas to support student life and learning. You can explore campus facilities on the official CvSU website."]
+            "id": 50,
+            "tag": "application_review_duration",
+            "patterns": [
+                "How long does it take to review admission applications?",
+                "What is the average processing time for applications?"
+            ],
+            "responses": [
+                "The duration for reviewing admission applications varies depending on the volume of applications received and the complexity of the review process. You can expect to receive a decision within a few weeks to months after submission."
+            ]
         },
         {
-          "tag": "career_services",
-          "patterns": ["Are there career services available for students?", "How can I get assistance with career planning?"],
-          "responses": ["CvSU offers career services to help students explore career options, develop job search skills, and connect with employers. You can access career resources and counseling through the Career Development Services Office."]
+            "id": 51,
+            "tag": "application_materials_submission",
+            "patterns": [
+                "Where do I submit additional application materials?",
+                "Is there a separate portal for submitting supplementary documents?"
+            ],
+            "responses": [
+                "You can upload additional application materials or supplementary documents through the CvSU admission portal. Be sure to follow the instructions provided and submit the required documents within the specified deadline."
+            ]
+        },
+        {
+            "id": 52,
+            "tag": "application_process_overview",
+            "patterns": [
+                "Can you provide an overview of the admission process?",
+                "How does the entire application process work?"
+            ],
+            "responses": [
+                "The admission process at CvSU Main Campus involves several steps, including application submission, document verification, review, and admission decision. For a detailed overview, you can refer to the admission guidelines on the official CvSU website."
+            ]
+        },
+        {
+            "id": 53,
+            "tag": "admission_disclaimer",
+            "patterns": [
+                "Is there a disclaimer regarding admission decisions?",
+                "Are there any terms and conditions associated with admission offers?"
+            ],
+            "responses": [
+                "Yes, admission offers are subject to terms and conditions outlined by CvSU Main Campus. It's essential to carefully review the admission disclaimer and terms before accepting the offer."
+            ]
+        },
+        {
+            "id": 54,
+            "tag": "application_verification",
+            "patterns": [
+                "How do I know if my application documents have been verified?",
+                "Is there a verification process for submitted documents?"
+            ],
+            "responses": [
+                "Once you've submitted your application documents, the CvSU admission office will verify the authenticity and completeness of the documents. You'll receive confirmation once the verification process is complete."
+            ]
+        },
+        {
+            "id": 55,
+            "tag": "application_review_committee",
+            "patterns": [
+                "Who reviews the admission applications?",
+                "Is there a committee responsible for application review?"
+            ],
+            "responses": [
+                "Admission applications are reviewed by a dedicated committee comprising faculty members and admissions staff. The committee ensures fair and thorough evaluation of all applications."
+            ]
+        },
+        {
+            "id": 56,
+            "tag": "admission_acceptance_deadline",
+            "patterns": [
+                "Is there a deadline for accepting the admission offer?",
+                "When do I need to confirm my enrollment?"
+            ],
+            "responses": [
+                "Admitted students are typically required to accept the admission offer by a specified deadline. The deadline for accepting the offer will be communicated along with the admission notification."
+            ]
+        },
+        {
+            "id": 57,
+            "tag": "application_rejection_feedback",
+            "patterns": [
+                "Can I receive feedback on my rejected application?",
+                "Is there a way to understand why my application was not accepted?"
+            ],
+            "responses": [
+                "Yes, you may request feedback on your rejected application to understand the reasons for the decision. Contact the CvSU admission office to request feedback, and they will provide insights into the decision."
+            ]
+        },
+        {
+            "id": 58,
+            "tag": "application_submission_confirmation",
+            "patterns": [
+                "How will I know if my application has been successfully submitted?",
+                "Is there a confirmation message upon application submission?"
+            ],
+            "responses": [
+                "Upon successful submission of your application, you'll receive a confirmation message or email acknowledging receipt of your application. This confirms that your application has been successfully submitted for review."
+            ]
+        },
+        {
+            "id": 59,
+            "tag": "admission_withdrawal_deadline",
+            "patterns": [
+                "Is there a deadline for withdrawing my admission acceptance?",
+                "When can I cancel my enrollment without penalties?"
+            ],
+            "responses": [
+                "Admitted students can typically withdraw their admission acceptance without penalties within a specified deadline. Be sure to review the admission offer letter for details on the withdrawal deadline."
+            ]
+        },
+        {
+            "id": 60,
+            "tag": "application_revision",
+            "patterns": [
+                "Can I revise my application after submission?",
+                "Is there a way to make changes to my application details?"
+            ],
+            "responses": [
+                "Yes, you can request revisions or updates to your application details by contacting the CvSU admission office. Be sure to provide accurate and updated information for the necessary changes."
+            ]
+        },
+        {
+            "id": 61,
+            "tag": "admission_waitlist",
+            "patterns": [
+                "What does it mean to be placed on the admission waitlist?",
+                "Can I still be admitted if I'm on the waitlist?"
+            ],
+            "responses": [
+                "Being placed on the admission waitlist means that your application is under consideration, but admission is pending availability of spots or further review. If spots become available, waitlisted applicants may be admitted."
+            ]
+        },
+        {
+            "id": 62,
+            "tag": "application_feedback_channel",
+            "patterns": [
+                "How can I provide feedback on the application process?",
+                "Is there a channel for sharing feedback on the admission process?"
+            ],
+            "responses": [
+                "Your feedback is valuable to us! You can share your feedback on the application process by contacting the CvSU admission office directly or filling out the feedback form available on the official website."
+            ]
+        },
+        {
+            "id": 63,
+            "tag": "admission_deferral_request",
+            "patterns": [
+                "Can I request deferral of my admission offer?",
+                "Is it possible to defer my enrollment to a later term?"
+            ],
+            "responses": [
+                "Yes, admitted students may request deferral of their admission offer to a later term under certain circumstances. Contact the CvSU admission office to initiate the deferral request process."
+            ]
+        },
+        {
+            "id": 64,
+            "tag": "application_evaluation_criteria",
+            "patterns": [
+                "What criteria does CvSU use to evaluate admission applications?",
+                "How are applications assessed for admission?"
+            ],
+            "responses": [
+                "Admission applications are evaluated based on various criteria, including academic performance, standardized test scores (if applicable), extracurricular activities, personal statements, and letters of recommendation."
+            ]
+        },
+        {
+            "id": 65,
+            "tag": "application_materials_submission_deadline_extension",
+            "patterns": [
+                "Can I request an extension for submitting application materials?",
+                "Is it possible to get more time for document submission?"
+            ],
+            "responses": [
+                "In exceptional circumstances, you may request an extension for submitting application materials by contacting the CvSU admission office and explaining your situation. The decision on the extension request will be communicated to you."
+            ]
+        },
+        {
+            "id": 66,
+            "tag": "application_review_delay_notification",
+            "patterns": [
+                "What happens if there's a delay in reviewing my application?",
+                "Will I be notified if there's a delay in the application review process?"
+            ],
+            "responses": [
+                "If there's a delay in reviewing your application, the CvSU admission office will notify you of the situation and provide updates on the expected timeline for application review."
+            ]
+        },
+        {
+            "id": 67,
+            "tag": "admission_confirmation_requirement",
+            "patterns": [
+                "Is there any action required to confirm my admission acceptance?",
+                "What do I need to do after receiving the admission offer?"
+            ],
+            "responses": [
+                "Upon receiving the admission offer, you'll typically need to confirm your acceptance by following the instructions provided in the admission offer letter. This may involve submitting a confirmation form or paying an admission deposit."
+            ]
+        },
+        {
+            "id": 68,
+            "tag": "application_submission_assistance",
+            "patterns": [
+                "I need help with submitting my application",
+                "Can you assist me in completing my admission application?"
+            ],
+            "responses": [
+                "Certainly! I can provide guidance and assistance with completing your admission application for CvSU Main Campus. Please let me know what specific help you need."
+            ]
+        },
+        {
+            "id": 69,
+            "tag": "admission_rollback",
+            "patterns": [
+                "Can my admission offer be rolled back after acceptance?",
+                "Is there a possibility of losing my admission acceptance?"
+            ],
+            "responses": [
+                "Admission offers may be rolled back under exceptional circumstances, such as academic misconduct or failure to meet admission conditions. However, such instances are rare, and the decision is made by the CvSU administration."
+            ]
+        },
+        {
+            "id": 70,
+            "tag": "application_review_progress_check",
+            "patterns": [
+                "How can I check the progress of my application review?",
+                "Is there a way to monitor the status of my application review?"
+            ],
+            "responses": [
+                "You can monitor the progress of your application review by logging into your CvSU admission portal account. The portal provides real-time updates on the status of your application and any additional requirements."
+            ]
+        },
+        {
+            "id": 71,
+            "tag": "admission_reconsideration_appeal",
+            "patterns": [
+                "Can I appeal for reconsideration of my admission rejection?",
+                "Is there a formal process for appealing the admission decision?"
+            ],
+            "responses": [
+                "Yes, you may appeal for reconsideration of your admission rejection by submitting a formal appeal letter to the CvSU admission office. Be sure to include any relevant supporting documents or evidence."
+            ]
+        },
+        {
+            "id": 72,
+            "tag": "application_submission_confirmation_resend",
+            "patterns": [
+                "Can I request a resend of the application submission confirmation?",
+                "Is it possible to receive another confirmation of my application submission?"
+            ],
+            "responses": [
+                "If you require another confirmation of your application submission, you can contact the CvSU admission office and request a resend of the confirmation message or email."
+            ]
+        },
+        {
+            "id": 73,
+            "tag": "admission_offer_acceptance_confirmation",
+            "patterns": [
+                "How do I confirm my acceptance of the admission offer?",
+                "What is the process for accepting the admission offer?"
+            ],
+            "responses": [
+                "To confirm your acceptance of the admission offer, you'll typically need to follow the instructions provided in the admission offer letter. This may involve submitting a confirmation form or paying an admission deposit."
+            ]
+        },
+        {
+            "id": 74,
+            "tag": "application_verification_progress_check",
+            "patterns": [
+                "How can I check the progress of my application document verification?",
+                "Is there a way to track the status of document verification?"
+            ],
+            "responses": [
+                "You can track the progress of your application document verification by logging into your CvSU admission portal account. The portal provides updates on the status of document verification and any additional requirements."
+            ]
+        },
+        {
+            "id": 75,
+            "tag": "admission_rejection_reasons",
+            "patterns": [
+                "Can I know the reasons for my admission rejection?",
+                "Is there an explanation for why my application was not accepted?"
+            ],
+            "responses": [
+                "Yes, you may request feedback on the reasons for your admission rejection by contacting the CvSU admission office. They will provide insights into the decision and any areas for improvement."
+            ]
+        },
+        {
+            "id": 76,
+            "tag": "application_confirmation_resend_request",
+            "patterns": [
+                "How can I request another resend of the application confirmation?",
+                "Is it possible to receive another confirmation of my application submission?"
+            ],
+            "responses": [
+                "If you require another resend of the application confirmation, you can contact the CvSU admission office and request reissuance of the confirmation message or email."
+            ]
+        },
+        {
+            "id": 77,
+            "tag": "admission_deferral_reasons",
+            "patterns": [
+                "What are the reasons for requesting admission deferral?",
+                "Under what circumstances can I defer my admission offer?"
+            ],
+            "responses": [
+                "Admission deferral may be requested under circumstances such as medical emergencies, personal reasons, or unforeseen circumstances that prevent immediate enrollment. Contact the CvSU admission office to discuss your specific situation."
+            ]
+        },
+        {
+            "id": 78,
+            "tag": "application_review_delay_explanation",
+            "patterns": [
+                "Why is there a delay in reviewing my application?",
+                "Can I know the reason for the delay in application review?"
+            ],
+            "responses": [
+                "Delays in application review may occur due to high application volume, additional verification requirements, or technical issues. The CvSU admission office will provide an explanation for the delay and updates on the review progress."
+            ]
+        },
+        {
+            "id": 79,
+            "tag": "admission_rejection_appeal_process",
+            "patterns": [
+                "What is the process for appealing an admission rejection?",
+                "How can I appeal the decision to reject my application?"
+            ],
+            "responses": [
+                "To appeal the decision to reject your admission application, you'll need to submit a formal appeal letter to the CvSU admission office. The letter should include reasons for the appeal and any supporting documentation."
+            ]
+        },
+        {
+            "id": 80,
+            "tag": "application_portal_troubleshooting",
+            "patterns": [
+                "I'm experiencing issues with the application portal",
+                "Can you help me troubleshoot problems with the admission portal?"
+            ],
+            "responses": [
+                "Certainly! I can assist you in troubleshooting issues with the CvSU admission portal. Please describe the problem you're encountering, and I'll do my best to provide a solution."
+            ]
+        },
+        {
+            "id": 81,
+            "tag": "admission_deferral_request_approval",
+            "patterns": [
+                "How will I know if my admission deferral request is approved?",
+                "Is there a confirmation of admission deferral approval?"
+            ],
+            "responses": [
+                "Once your admission deferral request is approved, you'll receive a confirmation email or message from the CvSU admission office. The confirmation will include details of the approved deferral period."
+            ]
+        },
+        {
+            "id": 82,
+            "tag": "application_feedback_submission",
+            "patterns": [
+                "Where can I submit feedback on the admission process?",
+                "Is there a designated channel for providing feedback on the application process?"
+            ],
+            "responses": [
+                "You can submit feedback on the admission process by contacting the CvSU admission office directly or using the feedback form available on the official website. Your feedback helps us improve the admission experience for future applicants."
+            ]
+        },
+        {
+            "id": 83,
+            "tag": "admission_deferral_request_denial",
+            "patterns": [
+                "What happens if my admission deferral request is denied?",
+                "Is there an appeal process for denied deferral requests?"
+            ],
+            "responses": [
+                "If your admission deferral request is denied, you'll be notified by the CvSU admission office. In some cases, you may have the option to appeal the decision by providing additional justification for the deferral."
+            ]
+        },
+        {
+            "id": 84,
+            "tag": "application_portal_access_issues",
+            "patterns": [
+                "I'm unable to access the admission portal",
+                "Can you help me resolve issues with accessing the application portal?"
+            ],
+            "responses": [
+                "I apologize for the inconvenience. Please provide details of the access issues you're experiencing with the CvSU admission portal, and I'll assist you in resolving them."
+            ]
+        },
+        {
+            "id": 85,
+            "tag": "admission_withdrawal_notification",
+            "patterns": [
+                "How will I be notified if my admission acceptance is withdrawn?",
+                "Is there a formal notification for admission withdrawal?"
+            ],
+            "responses": [
+                "If your admission acceptance is withdrawn, you'll receive a formal notification from the CvSU admission office via email or message. The notification will include reasons for the withdrawal and any relevant instructions."
+            ]
+        },
+        {
+            "id": 86,
+            "tag": "application_portal_error_reporting",
+            "patterns": [
+                "I encountered an error on the admission portal",
+                "Where can I report errors or glitches in the application portal?"
+            ],
+            "responses": [
+                "Thank you for bringing this to our attention. Please provide details of the error or glitch you encountered on the CvSU admission portal, and I'll ensure it's reported to the technical team for resolution."
+            ]
+        },
+        {
+            "id": 87,
+            "tag": "admission_waitlist_notification",
+            "patterns": [
+                "How will I be notified if I'm placed on the admission waitlist?",
+                "Is there a notification for being waitlisted?"
+            ],
+            "responses": [
+                "If you're placed on the admission waitlist, you'll receive a notification from the CvSU admission office informing you of your waitlist status. The notification will include details on further steps or updates."
+            ]
+        },
+        {
+            "id": 88,
+            "tag": "application_portal_password_reset",
+            "patterns": [
+                "I forgot my password for the admission portal",
+                "Can you help me reset my password?"
+            ],
+            "responses": [
+                "Sure! To reset your password for the CvSU admission portal, please follow the 'Forgot Password' link on the login page. You'll receive instructions on resetting your password via email or message."
+            ]
+        },
+        {
+            "id": 89,
+            "tag": "admission_waitlist_movement",
+            "patterns": [
+                "How does the admission waitlist process work?",
+                "Is there movement on the admission waitlist?"
+            ],
+            "responses": [
+                "The admission waitlist process involves offering admission spots to waitlisted applicants as vacancies become available. Movement on the waitlist depends on factors such as enrollment confirmations and space availability in the program."
+            ]
+        },
+        {
+            "id": 90,
+            "tag": "application_portal_browser_compatibility",
+            "patterns": [
+                "I'm having issues with the admission portal on my browser",
+                "Is the admission portal compatible with all browsers?"
+            ],
+            "responses": [
+                "The CvSU admission portal is optimized for compatibility with modern web browsers. If you're experiencing issues, please ensure you're using an updated browser version or try accessing the portal from a different browser."
+            ]
+        },
+        {
+            "id": 91,
+            "tag": "academic_calendar",
+            "patterns": [
+                "What is the academic calendar?",
+                "Are there important dates for the academic year?"
+            ],
+            "responses": [
+                "The academic calendar contains important dates such as start and end of classes, holidays, and examination periods. You can find the academic calendar on the official CvSU website."
+            ]
+        },
+        {
+            "id": 92,
+            "tag": "placement_tests",
+            "patterns": [
+                "Are there placement tests for incoming students?",
+                "Do I need to take placement exams?"
+            ],
+            "responses": [
+                "Some programs may require placement tests to assess your proficiency level in certain subjects. Check with the respective department for details."
+            ]
+        },
+        {
+            "id": 93,
+            "tag": "special_programs",
+            "patterns": [
+                "Are there any special programs or initiatives for students?",
+                "What special programs does CvSU offer?"
+            ],
+            "responses": [
+                "CvSU offers various special programs and initiatives to enhance student learning and development. These may include research opportunities, internships, and community outreach projects."
+            ]
+        },
+        {
+            "id": 94,
+            "tag": "student_clubs",
+            "patterns": [
+                "Are there student clubs and organizations?",
+                "How can I join student clubs?"
+            ],
+            "responses": [
+                "CvSU has a vibrant student life with numerous clubs and organizations covering various interests such as academic, cultural, and recreational. You can join clubs during club recruitment periods or inquire at the Student Affairs Office."
+            ]
+        },
+        {
+            "id": 95,
+            "tag": "campus_facilities",
+            "patterns": [
+                "What facilities are available on campus?",
+                "Can I get information about campus amenities?"
+            ],
+            "responses": [
+                "CvSU provides modern facilities including libraries, laboratories, sports complexes, and recreational areas to support student life and learning. You can explore campus facilities on the official CvSU website."
+            ]
+        },
+        {
+            "id": 96,
+            "tag": "career_services",
+            "patterns": [
+                "Are there career services available for students?",
+                "How can I get assistance with career planning?"
+            ],
+            "responses": [
+                "CvSU offers career services to help students explore career options, develop job search skills, and connect with employers. You can access career resources and counseling through the Career Development Services Office."
+            ]
+        },
+        {
+            "id": 97,
+            "tag": "tag_May",
+            "patterns": [
+                "test",
+                "test1"
+            ],
+            "responses": [
+                "resp"
+            ]
         }
-      
-      
     ]
-  }
-  
+}

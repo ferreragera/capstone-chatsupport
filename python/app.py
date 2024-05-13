@@ -9,16 +9,16 @@ from chat import get_response
 from better_profanity import profanity
 
 conn = mysql.connector.connect(
-    host='localhost',
+    host='127.0.0.1',
     user='root',
     password='',
-    database='test_db'
+    database='capstone-chatsupport'
 )
 
 cursor = conn.cursor()
 app = Flask(__name__)
 
-CORS(app, resources={r"/train": {"origins": "*"}})  # Allow requests to /train from any origin
+CORS(app, resources={r"/train": {"origins": "*"}}) 
 
 with open('intents.json', 'r') as intents_file:
     intents = json.load(intents_file)
@@ -55,37 +55,59 @@ def find_matching_intent(text):
             return intent
     return None
 
+from flask import request
+
 @app.route('/train', methods=['POST'])
 def train_chatbot():
     subprocess.run(['python', 'train.py'])
     return 'Training started'
 
+
+
+
 def contains_profanity(text):
     return profanity.contains_profanity(text)
 
+from datetime import datetime
+
+@app.route('/save_rating', methods=['POST'])
+def save_rating():
+    rating = request.form["rating"]
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    try:
+        # Use parameterized query to insert data safely
+        insert_query = "INSERT INTO ratings (rating_value, created_at, updated_at) VALUES (%s, %s, %s)"
+        cursor.execute(insert_query, (rating, current_time, current_time))
+        conn.commit()
+        return '''
+            <script>
+                alert("Thanks for the rating!");
+                window.location.href = '/';
+            </script>
+        '''
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+
 @app.route('/save_feedback', methods=['POST'])
 def save_feedback():
-    email = request.form["email"]
-    feedmessage = request.form["feedmessage"]
+    feedback = request.form["feedback"]
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-    if contains_profanity(feedmessage):
+    try:
+        # Use parameterized query to insert data safely
+        insert_query = "INSERT INTO feedback (feedback, created_at, updated_at) VALUES (%s, %s, %s)"
+        cursor.execute(insert_query, (feedback, current_time, current_time))
+        conn.commit()
         return '''
-        <script>
-            alert("Feedback contains profanity and cannot be saved.");
-            window.location.href = '/';  
-        </script>
+            <script>
+                alert("Thanks for the feedback!");
+                window.location.href = '/';
+            </script>
         '''
-    # Use parameterized query to insert data safely
-    insert_query = "INSERT INTO feedback (email, message) VALUES (%s, %s)"
-    cursor.execute(insert_query, (email, feedmessage))
-    conn.commit()
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
 
-    return '''
-    <script>
-        alert("Thanks for the feedback!");
-        window.location.href = '/';  
-    </script>
-    '''
 if __name__ == "__main__":
     http_server = WSGIServer(('0.0.0.0', 5000), app)
     http_server.serve_forever()

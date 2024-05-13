@@ -27,20 +27,20 @@
               with font-awesome or any other icon font library -->
           <li class="nav-item">
               <a href="{{ route('dashboard') }}" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard</p>
+                  <i class="fas fa-file-alt"></i>
+                  <p>Datasets</p>
               </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('train') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-stream"></i>
                 <p>Train</p>
             </a>
         </li>
           <li class="nav-item">
-              <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Feedback</p>
+              <a href="{{ route('reports') }}" class="nav-link">
+                  <i class="fas fa-chart-line"></i>
+                  <p>Reports</p>
               </a>
           </li>
           <li class="nav-header text-uppercase">External Links</li>
@@ -56,3 +56,15 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+
+  @section('script')
+  <script>
+    $(document).ready(function() {
+      $(".nav .nav-link").on("click", function(){
+        $(".nav").find(".active").removeClass("active");
+        $(this).closest('.nav-item').addClass("active");
+      });
+    });
+  </script>
+  @endsection
+  
