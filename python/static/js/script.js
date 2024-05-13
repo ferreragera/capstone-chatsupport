@@ -121,7 +121,6 @@ class Chatbox {
                     messageElement.innerHTML = msg.message; 
                 }
                 
-             
                 
                 container.appendChild(messageElement);
             }

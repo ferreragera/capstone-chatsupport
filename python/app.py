@@ -38,7 +38,7 @@ def predict():
         response = "\n".join(responses)
     else:
         response = "I don't have specific information for that topic."
-
+ 
     censored_response = profanity.censor(response)
     message = {"answer": censored_response}
     return jsonify(message)

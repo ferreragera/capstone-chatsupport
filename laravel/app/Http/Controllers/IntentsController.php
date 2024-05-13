@@ -61,7 +61,7 @@ class IntentsController extends Controller
         if ($request->isMethod('post')) {
             // Retrieve data from the request
             $newTagValue = $request->input('tag');
-            $patternsToEdit = $request->input('patterns');
+            $patternsToEdit = $request->input('patterns'); 
             $responsesToEdit = $request->input('responses');
 
             // Load the contents of the intents.json file

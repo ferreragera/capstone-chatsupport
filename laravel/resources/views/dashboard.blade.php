@@ -414,7 +414,7 @@
 
     // End of Edit Intent Modal
 
-
+  
     // Handle form submission for editing intent
     $('#editForm').submit(function(event) {
         event.preventDefault(); 
