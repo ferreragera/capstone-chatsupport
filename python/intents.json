@@ -1106,6 +1106,27 @@
             "responses": [
                 "resp"
             ]
+        },
+        {
+            "id": 98,
+            "tag": "may_7",
+            "patterns": [
+                "try"
+            ],
+            "responses": [
+                "resp"
+            ]
+        },
+        {
+            "id": 99,
+            "tag": "May_13",
+            "patterns": [
+                "What's your name?",
+                "name"
+            ],
+            "responses": [
+                "Toji Fushiguro"
+            ]
         }
     ]
 }

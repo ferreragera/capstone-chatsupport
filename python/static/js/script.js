@@ -64,31 +64,27 @@ class Chatbox {
             })
             .then(r => r.json())
             .then(r => {
-                // Process the server's response
                 let msg2 = { name: 'CVSU Admission System', message: r.answer, timestamp: new Date(), fullyDisplayed: false };
                 this.messages.push(msg2);
 
-                // Update the chat text and clear the input field
                 this.updateChatText(chatbox);
                 textField.value = '';
-                textField.disabled = false; // Re-enable input field
+                textField.disabled = false; 
             })
             .catch((error) => {
-                // Handle errors from the server
                 console.error('Error:', error);
 
-                // Update the chat text and clear the input field
                 this.updateChatText(chatbox);
                 textField.value = '';
-                textField.disabled = false; // Re-enable input field
+                textField.disabled = false; 
             });
-        }, 500); // Delay of 2 seconds (2000 milliseconds)
+        }, 500); 
     }
 
     
     updateChatText(chatbox) {
         const container = chatbox.querySelector('.chatbox__messages');
-        container.innerHTML = ''; // Clear container
+        container.innerHTML = ''; 
     
         // Iterate over messages in reverse order
         for (let i = this.messages.length - 1; i >= 0; i--) {
@@ -97,10 +93,8 @@ class Chatbox {
             messageElement.classList.add('messages__item');
     
             if (msg.name === 'CVSU Admission System' && !msg.fullyDisplayed) {
-                // Start streaming effect if message is not already fully displayed
                 const existingStreamingText = container.querySelector('.streaming-text');
                 if (existingStreamingText) {
-                    // Update existing streaming text
                     existingStreamingText.innerHTML = msg.message;
                 } else {
                     this.startStreamingEffect(container, msg);
@@ -108,23 +102,23 @@ class Chatbox {
             } else {
                 if (msg.name === 'CVSU Admission System') {
                     const visitorElement = document.createElement('div');
-                    //visitorElement.classList.add('messages__item--visitor');
+                    visitorElement.classList.add('messages__item--visitor');
     
                     const avatar = document.createElement('img');
                     avatar.classList.add('message__avatar');
-                    avatar.src = `static/images/avatar1.png`;  // Assuming msg.avatar contains the filename of the avatar image
+                    avatar.src = `static/images/avatar1.png`;  
                     visitorElement.appendChild(avatar);
     
                     const messageContent = document.createElement('div');
                     messageContent.classList.add('message__content');
     
-                    messageContent.innerHTML = msg.message; // Render HTML content
+                    messageContent.innerHTML = msg.message;
     
                     visitorElement.appendChild(messageContent);
                     messageElement.appendChild(visitorElement);
                 } else {
                     messageElement.classList.add('messages__item--operator');
-                    messageElement.innerHTML = msg.message; // Render HTML content
+                    messageElement.innerHTML = msg.message; 
                 }
                 
              
@@ -135,7 +129,7 @@ class Chatbox {
             // Add timestamp message indicator
             const timestamp = document.createElement('div');
             timestamp.classList.add('message__timestamp');
-            timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString(); // Assuming msg.timestamp is a timestamp
+            timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString(); 
             messageElement.appendChild(timestamp);
         }
     
@@ -222,14 +216,19 @@ class Chatbox {
             name: 'CVSU Admission System',
 
             message: `Welcome to CVSU Admission Support. <br> How may I assist you today? <br>
+            <style>
+                .btn:hover {
+                    background-color: #04AA6D;
+                    color: white;
+                  }
+            </style>
             <div class= "d-flex flex-column" style="text-align: left;">
-                <button class="btn btn-success rounded-pill btn-sm m-1 " onclick="chatbox.handlePrompt('FAQs')">FAQs</button>
-                <button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt('Visit Official Website')">Visit Official Website</button>
-                <button class="btn btn-success rounded-pill btn-sm m-1" onclick="chatbox.handlePrompt('Contact Us')">Contact Us</button>
+                <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt('FAQs')">FAQs</button>
+                <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt('Visit Official Website')">Visit Official Website</button>
+                <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt('Contact Us')">Contact Us</button>
             </div>`,
-            fullyDisplayed: true, // Mark greeting message as not fully displayed
-            timestamp: new Date() // Add a timestamp for the greeting message
-
+            fullyDisplayed: true, 
+            timestamp: new Date()
         };
     
         this.messages.unshift(greetingMessage);
@@ -245,7 +244,7 @@ class Chatbox {
 
         for (let i = this.messages.length - 1; i >= 0; i--) {
             const msg = this.messages[i];
-            if (msg.name === 'CVSU Admission System' ) {
+            if (msg.name === 'CVSU Admission System') {
                 const messageElement = document.createElement('div');
                 messageElement.classList.add('messages__item');
     
@@ -253,7 +252,7 @@ class Chatbox {
                 if (msg.name === 'CVSU Admission System') {
                     const avatar = document.createElement('img');
                     avatar.classList.add('message__avatar');
-                    avatar.src = `static/images/avatar1.png`; // Assuming msg.avatar contains the filename of the avatar image
+                    avatar.src = `static/images/avatar1.png`; 
                     messageElement.appendChild(avatar);
                 }
     
@@ -266,7 +265,7 @@ class Chatbox {
                 // Add timestamp message indicator
                 const timestamp = document.createElement('div');
                 timestamp.classList.add('message__timestamp');
-                timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString(); // Assuming msg.timestamp is a timestamp
+                timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString(); 
                 messageElement.appendChild(timestamp);
                 // Add event listener if message is clickable
 
@@ -285,17 +284,11 @@ class Chatbox {
         container.scrollTop = container.scrollHeight;
     }
     
-
-
-
-
-
     handlePrompt(prompt) {
         let response;
         switch (prompt) {
             case 'FAQs':
                 response = 'Please select a category:';
-
                 response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Admission Process\')">Admission Process</button>';
                 response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Entrance Examination</button>';
                 response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Transferees\')">Transferees</button>';
@@ -305,65 +298,65 @@ class Chatbox {
                 response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Re-application\')">Re-application</button>';
                 response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Visit Official Website\')">Visit Official Website</button>';
                 response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Contact Us\')">Contact Us</button>';
-
                 break;
                 case 'Admission Process':
-                response = 'Here are some frequently asked questions <br> about the Admission Process:';
+                response = 'Here are some frequently asked questions about the Admission Process:';
                 response += '<div class="d-flex flex-column text-left">';
-                response += '<button class="btn btn-success rounded-pill fs-1 " onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
-                response += '<button class="btn btn-success rounded-pill " onclick="chatbox.handlePrompt(\'Admission Process\')">What are the required documents that need to be submitted?</button>';
-                response += '<button class="btn btn-success rounded-pill " onclick="chatbox.handlePrompt(\'Admission Process\')">Are the documents needed original or photocopy?</button>';
-                response += '<button class="btn btn-success rounded-pill " onclick="chatbox.handlePrompt(\'Admission Process\')">Is it possible to submit the requirements that are already overdue?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Admission Process\')">What are the required documents that need to be submitted?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Admission Process\')">Are the documents needed original or photocopy?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Admission Process\')">Is it possible to submit the requirements that are already overdue?</button>';
                 response += '</div>';
                 break;
             case 'Entrance Examination':
-                response = 'Here are some frequently asked questions about <br>the Entrance Examination:';
+                response = 'Here are some frequently asked questions about the Entrance Examination:';
                 response += '<div class="d-flex flex-column text-left">';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Can we reschedule our selected date for the entrance exam?</button>';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Do they still do interviews in the admission process?</button>';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Do they accept re-apply students if they fail the entrance exam?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Can we reschedule our selected date for the entrance exam?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Do they still do interviews in the admission process?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Entrance Examination\')">Do they accept re-apply students if they fail the entrance exam?</button>';
                 response += '</div>';
                 break;
             case 'Transferees':
                 response = 'Here are some frequently asked questions about Transferees:';
                 response += '<div class="d-flex flex-column text-left">';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Transferees\')">Do they accept transferees in the second semester?</button>';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Transferees\')">What is the process of transferring to CvSU?</button>';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Transferees\')">What are the needed requirements when transferring to other schools?</button>';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Transferees\')">How can I apply or transfer to satellite campuses if I pass in the main campus?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Transferees\')">Do they accept transferees in the second semester?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Transferees\')">What is the process of transferring to CvSU?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Transferees\')">What are the needed requirements when transferring to other schools?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Transferees\')">How can I apply or transfer to satellite campuses if I pass in the main campus?</button>';
                 response += '</div>';
                 break;
             case 'Scholarship':
                 response = 'Here are some frequently asked questions about Scholarship:';
                 response = 'For all scholarship concerns, please contact osasmain.scholarship@cvsu.edu.ph';
                 response += '<br>If you have specific questions, feel free to ask.';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
                 break;
             case 'Shifting':
                 response = 'Here are some frequently asked questions about Shifting:';
                 response += '<br>Please inquire directly with the respective College for shifting processes and requirements.';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
                 break;
             case 'Tuition Fee':
                 response = 'Here are some frequently asked questions about Tuition Fee';
                 response += '<br>If you have specific questions, feel free to ask.';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
                 break;
             case 'Re-application':
                 response = 'Here are some frequently asked questions about Re Application:';
                 response += '<div class="d-flex flex-column text-left">';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Re-application\')">What are the requirements for re-application?</button>';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Re-application\')">Is it possible to give my slot to another student who failed the entrance exam?</button>';
-                response += '<button class="btn btn-success rounded-pill btn-xs m-1" onclick="chatbox.handlePrompt(\'Re-application\')">How many applicants will be accepted for admission?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Re-application\')">What are the requirements for re-application?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Re-application\')">Is it possible to give my slot to another student who failed the entrance exam?</button>';
+                response += '<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'Re-application\')">How many applicants will be accepted for admission?</button>';
                 response += '<br>Applicants just have to read the announcement that will be posted in the future to be guided.';
                 response += '</div>';
                 break;
             case 'Visit Official Website':
                 window.open('https://www.cvsu.edu.ph', '_blank');
                 response = 'Opening the official website in a new tab...';
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
                 break;
             case 'Contact Us':
                 response = `Here are the contact details for various offices:<br><br>` +
@@ -376,6 +369,7 @@ class Chatbox {
                     `4. University Webmaster - webmaster@cvsu.edu.ph<br>` +
                     `   > For technical problems found on the site and/or any feedback about the systems<br>` +
                     `For other offices, please visit our directory <br><a href="https://cvsu.edu.ph/contact-us-2/" target=”_blank”>here</a>.`;
+                response += '<br><button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handlePrompt(\'FAQs\')">Back to FAQs</button>';
                 break;
             
             default:

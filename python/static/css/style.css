@@ -113,7 +113,7 @@ button i.fas {
   margin-top: auto;
   display: flex;
   flex-direction: column-reverse;
-  overflow-y: auto; /* Add a vertical scrollbar */
+  overflow-y: auto; 
   max-height: 300px;
 }
 
@@ -123,9 +123,12 @@ button i.fas {
   margin-top: 10px;
   padding: 8px 12px;
   background: #f0f0f0;
+  margin-bottom: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
-
-
 
 .messages__item--operator {
   margin-left: auto;
