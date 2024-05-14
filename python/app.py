@@ -28,26 +28,26 @@ def index_get():
     return render_template("index.php")
 
 
-@app.post("/predict")
-def predict():
-    text = escape(request.get_json().get("message"))
-    matching_intent = find_matching_intent(text)
+# @app.post("/predict")
+# def predict():
+#     text = escape(request.get_json().get("message"))
+#     matching_intent = find_matching_intent(text)
 
-    if matching_intent:
-        responses = matching_intent["responses"]
-        response = "\n".join(responses)
-    else:
-        response = "I don't have specific information for that topic."
+#     if matching_intent:
+#         responses = matching_intent["responses"]
+#         response = "\n".join(responses)
+#     else:
+#         response = "I don't have specific information for that topic."
  
-    censored_response = profanity.censor(response)
-    message = {"answer": censored_response}
-    return jsonify(message)
+#     censored_response = profanity.censor(response)
+#     message = {"answer": censored_response}
+#     return jsonify(message)
 
-def find_matching_intent(text):
-    for intent in intents["intents"]:
-        if text.lower() in [pattern.lower() for pattern in intent["patterns"]]:
-            return intent
-    return None
+# def find_matching_intent(text):
+#     for intent in intents["intents"]:
+#         if text.lower() in [pattern.lower() for pattern in intent["patterns"]]:
+#             return intent
+#     return None
 
 from flask import request
 

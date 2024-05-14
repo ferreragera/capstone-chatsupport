@@ -15,10 +15,9 @@ class CreateArchiveTable extends Migration
     {
         Schema::create('archive', function (Blueprint $table) {
             $table->id();
-            $table->string("intentId");
-            $table->string("intent");
-            $table->string("patterns");
-            $table->string("responses");
+            $table->string('tag');
+            $table->text('patterns'); 
+            $table->text('responses'); 
             $table->timestamps();
         });
     }

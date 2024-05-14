@@ -1031,17 +1031,6 @@
             ]
         },
         {
-            "id": 91,
-            "tag": "academic_calendar",
-            "patterns": [
-                "What is the academic calendar?",
-                "Are there important dates for the academic year?"
-            ],
-            "responses": [ 
-                "The academic calendar contains important dates such as start and end of classes, holidays, and examination periods. You can find the academic calendar on the official CvSU website."
-            ]
-        },
-        {
             "id": 92,
             "tag": "placement_tests",
             "patterns": [
@@ -1094,38 +1083,6 @@
             ],
             "responses": [
                 "CvSU offers career services to help students explore career options, develop job search skills, and connect with employers. You can access career resources and counseling through the Career Development Services Office."
-            ]
-        },
-        {
-            "id": 97,
-            "tag": "tag_May",
-            "patterns": [
-                "test",
-                "test1"
-            ],
-            "responses": [
-                "resp"
-            ]
-        },
-        {
-            "id": 98,
-            "tag": "may_7",
-            "patterns": [
-                "try"
-            ],
-            "responses": [
-                "resp"
-            ]
-        },
-        {
-            "id": 99,
-            "tag": "May_13",
-            "patterns": [
-                "What's your name?",
-                "name"
-            ],
-            "responses": [
-                "Toji Fushiguro"
             ]
         }
     ]

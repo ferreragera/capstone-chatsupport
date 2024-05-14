@@ -3,7 +3,7 @@
 @section('main-content-header')
 <div class="content-header" style="background-image: url('#'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container-fluid">
-        <div class="row px-4">
+        <div class="row px-5">
             <div class="col-sm-6">
                 <br><br>
                 <h1 class="m-0" style="text-shadow: 4px 4px 6px #fdfdfd;"><i class="fas fa-file-alt"></i> Datasets</h1>
@@ -15,13 +15,8 @@
 @endsection 
 
 @section('main-content')
-{{-- <style>
-    .dataTables_wrapper .dt-buttons {
-    margin-right: 10px; /* Adjust the value as needed */
-}
-</style> --}}
 <div class="content">
-    <div class="container-fluid px-3">
+    <div class="container-fluid px-5">
         <div class="">
             <div class="d-flex justify-content-end">
                 <div class="col-sm-1 d-block mt-3 rounded text-lg">
@@ -90,13 +85,19 @@
                                 <label for="editTag" class="form-label">Tag:</label>
                                 <input type="text" class="form-control" id="editTag" name="newTagValue" readonly>
                             </div>
-                            <label for="editPatterns" class="form-label">Patterns:</label>
-                            <div class="form-group" id="editpatternsContainer">
-                                
+                            <div>
+                                <label for="editPatterns" class="form-label">Patterns:</label>
+                                    <div class="form-group" id="editpatternsContainer">
+                                    </div>
+                                <button type="button" class="btn btn-primary" onclick="addEditPattern()"><i class="fas fa-plus mr-1"></i></button>
+                                <button type="button" class="btn btn-danger" onclick="removeEditPattern()"><i class="fas fa-trash mr-1"></i></button>
                             </div>
-                            <label for="editResponses" class="form-label">Responses:</label>
-                            <div class="form-group" id="editresponsesContainer">
-                                
+                            <div>
+                                <label for="editResponses" class="form-label">Responses:</label>
+                                    <div class="form-group" id="editresponsesContainer">
+                                    </div>
+                                <button type="button" class="btn btn-primary" onclick="addEditResponse()"><i class="fas fa-plus mr-1"></i></button>
+                                <button type="button" class="btn btn-danger" onclick="removeEditResponse()"><i class="fas fa-trash mr-1"></i></button>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -223,6 +224,9 @@
 
             $('#intentsTable').on('click', '.archive-btn', function() {
                 var tag = $(this).data('tag');
+                var patterns = $(this).data('patterns');
+                var responses = $(this).data('responses');
+                // console.log(tag,patterns,responses);
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You are about to archive the intent with tag: " + tag,
@@ -234,7 +238,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                        url: "{{ route('archive') }}", 
+                        url: "{{ route('archiveIntent') }}", 
                         method: 'POST',
                         data: 
                             {
@@ -277,17 +281,17 @@
 
                     $('#editTag').val(tag); 
 
-                    console.log("Tag:", tag);
+                    // console.log("Tag:", tag);
                     $('#editpatternsContainer').empty();
                     $('#editresponsesContainer').empty();
 
-                    console.log("Patterns:", patterns);
+                    // console.log("Patterns:", patterns);
                     patterns.forEach(function(pattern) {
                         var textarea = $('<textarea class="form-control mt-2" rows="2">' + pattern + '</textarea>');
                         $('#editpatternsContainer').append(textarea);
                     });
 
-                    console.log("Responses:", responses);
+                    // console.log("Responses:", responses);
                     responses.forEach(function(response) {
                         var textarea = $('<textarea class="form-control mt-2" rows="3">' + response + '</textarea>');
                         $('#editresponsesContainer').append(textarea);
@@ -450,8 +454,6 @@
                         window.location = "{{ route('dashboard') }}";
                     }
                 });
-                // $('#editModal').modal('hide');
-                // window.location = "{{ route('dashboard') }}";
             },
             error: function(xhr, status, error) {
                 alert('Failed to update intent: ' + error);
