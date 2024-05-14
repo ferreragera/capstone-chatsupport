@@ -27,24 +27,18 @@ with open('intents.json', 'r') as intents_file:
 def index_get():
     return render_template("index.php")
 
+
 @app.post("/predict")
 def predict():
     text = escape(request.get_json().get("message"))
-    suggested_topics = ['Admission result', 'Eligibility criteria', 'Documentation requirements', 'Application status', 'Application period', 'Other']
-    # Check if the clicked topic is in the suggested topics
-    if text in suggested_topics:
-        # If it's a suggested topic, find the matching intent
-        matching_intent = find_matching_intent(text)
+    matching_intent = find_matching_intent(text)
 
-        if matching_intent:
-            responses = matching_intent["responses"]
-            response = "\n".join(responses)
-        else:
-            response = "I don't have specific information for that topic."
+    if matching_intent:
+        responses = matching_intent["responses"]
+        response = "\n".join(responses)
     else:
-        # Otherwise, proceed with the regular chatbot response
-        response = get_response(text)
-
+        response = "I don't have specific information for that topic."
+ 
     censored_response = profanity.censor(response)
     message = {"answer": censored_response}
     return jsonify(message)
@@ -62,9 +56,6 @@ def train_chatbot():
     subprocess.run(['python', 'train.py'])
     return 'Training started'
 
-
-
-
 def contains_profanity(text):
     return profanity.contains_profanity(text)
 
@@ -76,7 +67,6 @@ def save_rating():
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     try:
-        # Use parameterized query to insert data safely
         insert_query = "INSERT INTO ratings (rating_value, created_at, updated_at) VALUES (%s, %s, %s)"
         cursor.execute(insert_query, (rating, current_time, current_time))
         conn.commit()
@@ -93,9 +83,7 @@ def save_rating():
 def save_feedback():
     feedback = request.form["feedback"]
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
     try:
-        # Use parameterized query to insert data safely
         insert_query = "INSERT INTO feedback (feedback, created_at, updated_at) VALUES (%s, %s, %s)"
         cursor.execute(insert_query, (feedback, current_time, current_time))
         conn.commit()
@@ -107,6 +95,11 @@ def save_feedback():
         '''
     except Exception as e:
         return f"An error occurred: {str(e)}"
+    
+
+    
+
+
 
 if __name__ == "__main__":
     http_server = WSGIServer(('0.0.0.0', 5000), app)

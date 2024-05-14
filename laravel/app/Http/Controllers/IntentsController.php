@@ -54,76 +54,81 @@ class IntentsController extends Controller
         }
     }
     
+
+
     public function editIntent(Request $request)
     {
-        try {
-            $request->validate([
-                'updatedTag' => 'required|string',
-                'updatedPatterns' => 'required|array',
-                'updatedResponses' => 'required|array',
-            ]);
+        if ($request->isMethod('post')) {
+            // Retrieve data from the request
+            $newTagValue = $request->input('tag');
+            $patternsToEdit = $request->input('patterns'); 
+            $responsesToEdit = $request->input('responses');
 
-            $tag = $request->input('updatedTag');
-            $patterns = $request->input('updatedPatterns');
-            $responses = $request->input('updatedResponses');
+            // Load the contents of the intents.json file
+            $filePath = 'C:\xampp\htdocs\capstone-chatsupport\python\intents.json';
+            $jsonContents = file_get_contents($filePath);
 
-            $jsonPath = 'C:\\xampp\\htdocs\\capstone-chatsupport\\python\\intents.json';
-            $json_data = file_get_contents($jsonPath);
-            $intents = json_decode($json_data, true);
+            // Decode the JSON contents into a PHP associative array
+            $intents = json_decode($jsonContents, true);
 
+            // Find the intent in the array by id and update its tag, patterns, and responses
+            $updated = false;
             foreach ($intents['intents'] as &$intent) {
-                if ($intent['tag'] == $tag) {
-                    $intent['tag'] == $tag;
-                    $intent['patterns'] = $patterns;
-                    $intent['responses'] = $responses;
+                if ($intent['tag'] == $newTagValue) {
+                    $intent['patterns'] = $patternsToEdit;
+                    $intent['responses'] = $responsesToEdit;
+                    $updated = true;
+                    break;
                 }
             }
 
-            file_put_contents($jsonPath, json_encode($intents, JSON_PRETTY_PRINT));
+            if ($updated) {
+                $updatedContents = json_encode($intents, JSON_PRETTY_PRINT);
 
-            return redirect()->back()->with('success', 'Intent edited successfully');
+                file_put_contents($filePath, $updatedContents);
 
-        } catch (\Exception $e) {
-            Log::error('Error editing intent: ' . $e->getMessage());
-
-            return redirect()->back()->with('error', 'Failed to edit intent');
+                return response()->json(['message' => 'Intent updated successfully'], 200);
+            } else {
+                Log::error('Intent not found for ID: ');
+                return redirect()->back()->with('error', 'Failed to update intent: Intent not found');
+            }
         }
+
+        return redirect()->back()->with('error', 'Invalid request');
     }
 
 
-    // public function archive(Request $request)
-    // {
-    //     if ($request->isMethod('post')) {
+    public function archive(Request $request)
+    {
+        if ($request->isMethod('post')) {
 
-    //         $tag = $request->input('createTag');
-    //         $patterns = $request->input('createPatterns');
-    //         $responses = $request->input('createResponses');
+            $tag = $request->input('createTag');
+            $patterns = $request->input('createPatterns');
+            $responses = $request->input('createResponses');
 
-    //         $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
-    //         $intents = json_decode($json_data, true);
+            $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
+            $intents = json_decode($json_data, true);
 
-    //         $last_entry = end($intents['intents']);
+            $last_entry = end($intents['intents']);
 
-    //         $last_id = isset($last_entry['id']) ? $last_entry['id'] : 0;
+            $last_id = isset($last_entry['id']) ? $last_entry['id'] : 0;
 
-    //         $new_id = ++$last_id;
+            $new_id = ++$last_id;
 
-    //         $new_intent = [
-    //             "id" => $new_id,
-    //             "tag" => $tag,
-    //             "patterns" => $patterns,
-    //             "responses" => $responses
-    //         ];
+            $new_intent = [
+                "id" => $new_id,
+                "tag" => $tag,
+                "patterns" => $patterns,
+                "responses" => $responses
+            ];
 
-    //         $intents['intents'][] = $new_intent;
+            $intents['intents'][] = $new_intent;
 
-    //         file_put_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json', json_encode($intents, JSON_PRETTY_PRINT));
+            file_put_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json', json_encode($intents, JSON_PRETTY_PRINT));
 
-    //         return redirect()->back()->with('success', 'Intent added successfully, click the train button to refresh the data.');
+            return redirect()->back()->with('success', 'Intent added successfully, click the train button to refresh the data.');
 
-    //     }
-    // }
-
-
+        }
+    }
 
 }

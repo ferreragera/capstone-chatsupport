@@ -85,18 +85,18 @@
                     </div>
                     <form id="editForm" action="{{ route('editIntent') }}" method="POST"> 
                         @csrf
-                        <div class="modal-body">
+                        <div class="modal-body px-5 pt-3">
                             <div class="form-group">
                                 <label for="editTag" class="form-label">Tag:</label>
-                                <input type="text" class="form-control" id="editTag" name="newTagValue">
+                                <input type="text" class="form-control" id="editTag" name="newTagValue" readonly>
                             </div>
-                            <div class="form-group">
-                                <label for="editPatterns" class="form-label">Patterns:</label>
-                                <textarea class="form-control" id="editPatterns" name="patternsToEdit" rows="3"></textarea>
+                            <label for="editPatterns" class="form-label">Patterns:</label>
+                            <div class="form-group" id="editpatternsContainer">
+                                
                             </div>
-                            <div class="form-group">
-                                <label for="editResponses" class="form-label">Responses:</label>
-                                <textarea class="form-control" id="editResponses" name="responsesToEdit" rows="3"></textarea>
+                            <label for="editResponses" class="form-label">Responses:</label>
+                            <div class="form-group" id="editresponsesContainer">
+                                
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -107,6 +107,7 @@
                 </div>
             </div>
         </div>
+        
         
 
         <!-- end of create & edit modal -->
@@ -163,14 +164,8 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <button class="btn btn-primary btn-sm text-light edit-btn"
-                                                        data-tag="{{ $intent['tag'] }}"
-                                                        data-patterns="{{ json_encode($intent['patterns']) }}"
-                                                        data-responses="{{ json_encode($intent['responses']) }}">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-
-                                                <button class="btn btn-success btn-sm text-light archive-btn" data-tag="{{ $intent['tag'] }}"><i class="fas fa-archive"></i></button>
+                                                <button class="btn btn-primary btn-sm text-light edit-btn" data-tag="{{ $intent['tag'] }}" data-patterns="{{ json_encode($intent['patterns']) }}" data-responses="{{ json_encode($intent['responses']) }}"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-success btn-sm text-light archive-btn" data-tag="{{ $intent['tag'] }}" data-patterns="{{ json_encode($intent['patterns']) }}" data-responses="{{ json_encode($intent['responses']) }}"><i class="fas fa-archive"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -238,9 +233,30 @@
                     confirmButtonText: 'Yes, archive it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        
-                        
-
+                        $.ajax({
+                        url: "{{ route('archive') }}", 
+                        method: 'POST',
+                        data: 
+                            {
+                                "_token": "{{ csrf_token() }}",
+                                tag,
+                                patterns,
+                                responses
+                            },
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Data Archived Successfully!",
+                                icon: "success"
+                            }).then(function (result){
+                                if(result.isConfirmed){
+                                    window.location = "{{ route('dashboard') }}";
+                                }
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            alert('Failed to update intent: ' + error);
+                        }
+                    });
 
 
                         Swal.fire('Archived!', 'The intent with tag: ' + tag + ' has been archived.', 'success');
@@ -250,7 +266,7 @@
 
             $('#intentsTable').on('click', '.edit-btn', function() {
                 var tag = $(this).data('tag');
-                
+
                 var intent = intentsData.find(function(intent) {
                     return intent.tag === tag;
                 });
@@ -260,44 +276,27 @@
                     var responses = intent.responses;
 
                     $('#editTag').val(tag); 
-                    $('#editPatterns').val(patterns.join('\n'));
-                    $('#editResponses').val(responses.join('\n'));
 
                     console.log("Tag:", tag);
-                    console.log("Patterns array:", patterns);
-                    console.log("Responses array:", responses);
+                    $('#editpatternsContainer').empty();
+                    $('#editresponsesContainer').empty();
+
+                    console.log("Patterns:", patterns);
+                    patterns.forEach(function(pattern) {
+                        var textarea = $('<textarea class="form-control mt-2" rows="2">' + pattern + '</textarea>');
+                        $('#editpatternsContainer').append(textarea);
+                    });
+
+                    console.log("Responses:", responses);
+                    responses.forEach(function(response) {
+                        var textarea = $('<textarea class="form-control mt-2" rows="3">' + response + '</textarea>');
+                        $('#editresponsesContainer').append(textarea);
+                    });
 
                     $('#editModal').modal('show');
                 }
-
-                // $('editForm').submit(function (e) {
-                //     e.preventDefault();
-                //     $('saveChangesBtn').prop('disabled', true);
-
-                //     $.ajax({
-                //         url: "{{ route('editIntent') }}", 
-                //         method: "POST",
-                //         data: {
-                //             "_token": "{{ csrf_token() }}",
-                //             updatedTag: $('editTag').val();
-                //             updatedPatterns: $('editPatterns').val();
-                //             updatedResponses: $('editResponses').val();
-                //         },
-                //         dataType: 'JSON',
-                //         success: function (response) {
-                //             Swal.fire({
-                //                 icon: response.status,
-                //                 title: response.title,
-                //                 text: response.message
-                //             }).then(function (result) {
-                //                 if(response.status == "success") {
-                //                     window.location = "{{ route('dashboard') }}";
-                //                 }
-                //                 $('#saveChangesBtn').prop('disabled', false)});
-                //         }
-                //     });
-                // });
             });
+
 
         @if(session('success'))
             Swal.fire({
@@ -415,16 +414,50 @@
 
     // End of Edit Intent Modal
 
+  
+    // Handle form submission for editing intent
+    $('#editForm').submit(function(event) {
+        event.preventDefault(); 
 
+        var tag = $('#editTag').val();
+        var patterns = [];
+        var responses = [];
 
+        $('#editpatternsContainer textarea').each(function() {
+            patterns.push($(this).val());
+        });
 
+        $('#editresponsesContainer textarea').each(function() {
+            responses.push($(this).val());
+        });
 
-
-
-
-
-
-
+        $.ajax({
+            url: "{{ route('editIntent') }}", 
+            method: 'POST',
+            data: 
+                {
+                    "_token": "{{ csrf_token() }}",
+                    tag,
+                    patterns,
+                    responses
+                },
+            success: function(response) {
+                Swal.fire({
+                    title: "Data Updated Successfully!",
+                    icon: "success"
+                }).then(function (result){
+                    if(result.isConfirmed){
+                        window.location = "{{ route('dashboard') }}";
+                    }
+                });
+                // $('#editModal').modal('hide');
+                // window.location = "{{ route('dashboard') }}";
+            },
+            error: function(xhr, status, error) {
+                alert('Failed to update intent: ' + error);
+            }
+        });
+    });
 
     </script>
 @endsection

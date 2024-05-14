@@ -28,15 +28,15 @@
           <li class="nav-item">
               <a href="{{ route('dashboard') }}" class="nav-link active">
                   <i class="fas fa-file-alt"></i>
-                  <p>Datasets</p>
+                  <p>Datasets</p> 
               </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('train') }}" class="nav-link">
                 <i class="fas fa-stream"></i>
                 <p>Train</p>
             </a>
-        </li>
+        </li> --}}
           <li class="nav-item">
               <a href="{{ route('reports') }}" class="nav-link">
                   <i class="fas fa-chart-line"></i>

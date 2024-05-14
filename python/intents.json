@@ -1037,7 +1037,7 @@
                 "What is the academic calendar?",
                 "Are there important dates for the academic year?"
             ],
-            "responses": [
+            "responses": [ 
                 "The academic calendar contains important dates such as start and end of classes, holidays, and examination periods. You can find the academic calendar on the official CvSU website."
             ]
         },
@@ -1105,6 +1105,27 @@
             ],
             "responses": [
                 "resp"
+            ]
+        },
+        {
+            "id": 98,
+            "tag": "may_7",
+            "patterns": [
+                "try"
+            ],
+            "responses": [
+                "resp"
+            ]
+        },
+        {
+            "id": 99,
+            "tag": "May_13",
+            "patterns": [
+                "What's your name?",
+                "name"
+            ],
+            "responses": [
+                "Toji Fushiguro"
             ]
         }
     ]
