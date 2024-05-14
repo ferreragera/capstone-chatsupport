@@ -5,18 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
+use App\Models\Archive;
 
 class IntentsController extends Controller
 {
 
     public function index()
     {
-        // Fetch data from the JSON file
         $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
         $data = json_decode($json_data, true);
         $paginated_intents = $data['intents'];
 
-        // Pass the data to the view
         return view('dashboard', compact('paginated_intents'));
     }
 
@@ -93,41 +92,41 @@ class IntentsController extends Controller
                 return redirect()->back()->with('error', 'Failed to update intent: Intent not found');
             }
         }
-
         return redirect()->back()->with('error', 'Invalid request');
     }
 
+    
 
-    public function archive(Request $request)
+    public function archiveIntent(Request $request)
     {
         if ($request->isMethod('post')) {
+            $tag = $request->input('tag');
+            $patterns = $request->input('patterns');
+            $responses = $request->input('responses');
 
-            $tag = $request->input('createTag');
-            $patterns = $request->input('createPatterns');
-            $responses = $request->input('createResponses');
+            $archive = new Archive();
+            $archive->tag = $tag;
+            $archive->patterns = json_encode($patterns); 
+            $archive->responses = json_encode($responses);
+            $archive->save();
 
-            $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
+            $json_file = 'C:\xampp\htdocs\capstone-chatsupport\python\intents.json';
+            $json_data = file_get_contents($json_file);
             $intents = json_decode($json_data, true);
 
-            $last_entry = end($intents['intents']);
+            $index = array_search($tag, array_column($intents['intents'], 'tag'));
 
-            $last_id = isset($last_entry['id']) ? $last_entry['id'] : 0;
+            if ($index !== false) {
+                array_splice($intents['intents'], $index, 1);
 
-            $new_id = ++$last_id;
+                file_put_contents($json_file, json_encode($intents, JSON_PRETTY_PRINT));
 
-            $new_intent = [
-                "id" => $new_id,
-                "tag" => $tag,
-                "patterns" => $patterns,
-                "responses" => $responses
-            ];
-
-            $intents['intents'][] = $new_intent;
-
-            file_put_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json', json_encode($intents, JSON_PRETTY_PRINT));
-
-            return redirect()->back()->with('success', 'Intent added successfully, click the train button to refresh the data.');
-
+                return response()->json(['message' => 'Intent archived successfully']);
+            } else {
+                return response()->json(['error' => 'Intent not found in JSON file'], 404);
+            }
+        } else {
+            return response()->json(['error' => 'Invalid request method'], 405);
         }
     }
 

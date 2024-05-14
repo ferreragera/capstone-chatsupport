@@ -9,7 +9,7 @@ class Chatbox {
         this.state = false;
         this.messages = [];
       
-        this.predictEndpoint = 'http://192.168.77.148/predict';
+        // this.predictEndpoint = 'http://192.168.77.148/predict';
     }
 
     display() {
@@ -20,7 +20,7 @@ class Chatbox {
         const node = chatBox.querySelector('input');
         node.addEventListener('keyup', ({ key }) => {
             if (key === 'Enter') {
-                this.onSendButton(chatBox);
+                // this.onSendButton(chatBox);
             }
         });
         this.addGreetingMessage(chatBox);
@@ -37,49 +37,49 @@ class Chatbox {
         }
     }
 
-    onSendButton(chatbox) {
-        var textField = chatbox.querySelector('input');
-        let text1 = textField.value;
-        if (text1 === '') {
-            return;
-        }
+    // onSendButton(chatbox) {
+    //     var textField = chatbox.querySelector('input');
+    //     let text1 = textField.value;
+    //     if (text1 === '') {
+    //         return;
+    //     }
 
-        // Disable input field
-        textField.disabled = true;
+    //     // Disable input field
+    //     textField.disabled = true;
 
-        // Simulate delay before sending response
-        setTimeout(() => {
-            // Add user's message to the chat history
-            let msg1 = { name: 'User', message: text1, timestamp: new Date() };
-            this.messages.push(msg1);
+    //     // Simulate delay before sending response
+    //     setTimeout(() => {
+    //         // Add user's message to the chat history
+    //         let msg1 = { name: 'User', message: text1, timestamp: new Date() };
+    //         this.messages.push(msg1);
 
-            // Send the user's message to the server
-            fetch(this.predictEndpoint, {
-                method: 'POST',
-                body: JSON.stringify({ message: text1 }),
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-            .then(r => r.json())
-            .then(r => {
-                let msg2 = { name: 'CVSU Admission System', message: r.answer, timestamp: new Date(), fullyDisplayed: false };
-                this.messages.push(msg2);
+    //         // Send the user's message to the server
+    //         fetch(this.predictEndpoint, {
+    //             method: 'POST',
+    //             body: JSON.stringify({ message: text1 }),
+    //             mode: 'cors',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //         })
+    //         .then(r => r.json())
+    //         .then(r => {
+    //             let msg2 = { name: 'CVSU Admission System', message: r.answer, timestamp: new Date(), fullyDisplayed: false };
+    //             this.messages.push(msg2);
 
-                this.updateChatText(chatbox);
-                textField.value = '';
-                textField.disabled = false; 
-            })
-            .catch((error) => {
-                console.error('Error:', error);
+    //             this.updateChatText(chatbox);
+    //             textField.value = '';
+    //             textField.disabled = false; 
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error:', error);
 
-                this.updateChatText(chatbox);
-                textField.value = '';
-                textField.disabled = false; 
-            });
-        }, 500); 
-    }
+    //             this.updateChatText(chatbox);
+    //             textField.value = '';
+    //             textField.disabled = false; 
+    //         });
+    //     }, 500); 
+    // }
 
     
     updateChatText(chatbox) {

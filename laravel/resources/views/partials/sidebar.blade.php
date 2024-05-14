@@ -43,6 +43,12 @@
                   <p>Reports</p>
               </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('archivePage') }}" class="nav-link">
+                <i class="fas fa-stream"></i>
+                <p>Archive</p>
+            </a>
+          </li>
           <li class="nav-header text-uppercase">External Links</li>
           <li class="nav-item">
               <a href="https://apps.cvsu.edu.ph/admission/sign-in/" class="nav-link" target="_blank">

@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class feedback extends Model
+class archive extends Model
 {
-    protected $table = 'feedback';
-
     use HasFactory;
+
+    protected $table = 'archive';
 }

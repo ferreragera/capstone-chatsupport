@@ -4,7 +4,7 @@
 @section('main-content-header')
 <div class="content-header" style="background-image: url('/images/bg-gray.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container-fluid">
-        <div class="row px-4">
+        <div class="row px-5">
             <div class="col-sm-6">
                 <br><br>
                 <h1 class="m-0" style="text-shadow: 4px 4px 6px #fdfdfd;"><i class="fas fa-stream"></i> Train</h1>
@@ -18,7 +18,7 @@
 @section('main-content')
 
 <div class="content">
-    <div class="container-fluid px-3">
+    <div class="container-fluid px-5">
         <div class="">
             <div class="d-flex justify-content-end">
                 <div class="col-sm-1 d-block mt-3 rounded text-lg">
