@@ -1,11 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\IntentsController;
 use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleAuthController;
 
 /*
@@ -30,16 +28,14 @@ Route::get('/dashboard', [IntentsController::class, 'index'])->name('dashboard')
 Route::get('/train', function () {
     return view('train');
 })->name('train');
-// Route::get('/archivePage', function () {
-//     return view('archivePage');
-// })->name('archivePage');
 Route::get('/archivePage', [ArchiveController::class, 'index'])->name('archivePage');
 Route::get('/reports', [FeedbackController::class, 'index'])->name('reports');
 Route::post('/create-intent', [IntentsController::class, 'store'])->name('createIntent');
 Route::post('/edit-intent', [IntentsController::class, 'editIntent'])->name('editIntent');
 Route::post('/archive-intent', [IntentsController::class, 'archiveIntent'])->name('archiveIntent');
+Route::post('/add-back', [ArchiveController::class, 'restoreIntent'])->name('restoreIntent');
+Route::post('/del-archive', [ArchiveController::class, 'deleteArchive'])->name('deleteArchive');
 Route::get('/chart-data', [FeedbackController::class, 'fetchChartData']);//rating
-Route::get('/feedback-chart-data', [FeedbackController::class, 'fetchFeedbackData']);
 
 
 

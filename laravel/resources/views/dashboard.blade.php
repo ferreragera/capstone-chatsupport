@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('main-content-header')
-<div class="content-header" style="background-image: url('#'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+<div class="content-header" style="background-image: url('/images/bg-gray.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container-fluid">
         <div class="row px-5">
             <div class="col-sm-6">
@@ -261,7 +261,6 @@
                             alert('Failed to update intent: ' + error);
                         }
                     });
-
 
                         Swal.fire('Archived!', 'The intent with tag: ' + tag + ' has been archived.', 'success');
                     }

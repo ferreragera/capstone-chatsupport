@@ -47,8 +47,8 @@
                             <div id="patternsContainer">
                                 <textarea class="form-control" id="addPatterns" name="addPatterns[]" rows="2" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="addPattern1()"><i class="fas fa-plus mr-1"></i></button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="removePattern1()"><i class="fas fa-trash mr-1"></i></button>
+                            <button type="button" class="btn btn-primary mt-2" onclick="addPattern1()"><i class="fas fa-plus"></i></button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="removePattern1()"><i class="fas fa-trash"></i></button>
                         </div>
 
                         <div class="mb-3">
@@ -63,7 +63,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Add New Intent</button>
+                    <button class="btn btn-success" type="submit">Add As New Intent</button>
                 </div>
             </form>
             </div>
