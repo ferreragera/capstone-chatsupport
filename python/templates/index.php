@@ -136,12 +136,11 @@
             
                 <div class="chatbox__header">
                     <div class="chatbox__image--header">
-                        <img src="static/images/CvSU-logo-trans.png" alt="image" width="60" height="50" >
+                        <img src="static/images/CvSU-logo-trans.png" alt="image" width="60" height="50">
                     </div>
                     <div class="chatbox__content--header">
                         <h5 class="chatbox__heading--header text-light">Chat support</h5>
                         <p class="chatbox__description--header">CvSU Admission Response System</p>
-                        <i class="fas fa-chevron-down"></i>
                     </div> 
                     <br><br><br>
                 </div>
@@ -149,10 +148,9 @@
                     <div class="chatbox__under--description mt-1 ml-4">
                         <p>Remember: This chat support only understands English.</p>
                     </div>
-                    
                 </div>
                 <div class="chatbox__messages">
-                    <div></div>
+                    <div class="msg_content"></div>
                 </div>
                 <div class="chatbox__footer">
                     <button class="rating-button" data-toggle="modal" data-target="#ratingModal" style="font-size: 18px; padding: 4px 8px;">

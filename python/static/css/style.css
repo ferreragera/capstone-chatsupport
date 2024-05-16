@@ -114,20 +114,19 @@ button i.fas {
   display: flex;
   flex-direction: column-reverse;
   overflow-y: auto; 
-  max-height: 300px;
 }
 
 .messages__item {
-  max-width: 70%;
   position: relative;
   margin-top: 10px;
-  padding: 8px 12px;
   background: #f0f0f0;
   margin-bottom: 10px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .messages__item--operator {
@@ -218,9 +217,12 @@ button i.fas {
   margin-top: 10px;
   background: #f0f0f0;
   padding: 8px 12px;
-  max-width: 70%;
   
   transition: background-color 0.3s ease;
+}
+
+.msg_content {
+  max-width: 70%;
 }
 
 
@@ -247,8 +249,6 @@ button i.fas {
   padding: 20px 20px;
   background: var(--secondaryGradient);
   box-shadow: var(--secondaryBoxShadow);
-
-  margin-top: 20px;
 }
 
 .chatbox__footer input {
@@ -579,35 +579,35 @@ button i.fas {
 /* Message container */
 .messages__item {
   display: flex;
+  flex-direction: column; /* Stack timestamp on top of message */
   margin-bottom: 10px;
-  justify-content: space-between; /* Align items to the start and end of the flex container */
+  max-width: 65%;
 }
 
 /* Message bubble for visitors */
 .messages__item--visitor {
-  background-color: #e9e9e9; 
+  background-color: #e9e9e9;
   border-radius: 20px;
   padding: 10px;
-  max-width: 70%; 
+  /* max-width: 60%; */
   word-wrap: break-word;
 }
 
 /* Message bubble for operators */
 .messages__item--operator {
-  background-color: #376d1d; 
+  background-color: #376d1d;
   border-radius: 20px;
   padding: 10px;
-  max-width: 70%;
+  /* max-width: 60%; */
   word-wrap: break-word;
-  color: white; 
+  color: white;
 }
-
 /* Timestamp */
 .message__timestamp {
   font-size: 0.8em;
-  color: #999; /* Light gray */
+  color: #999; 
   margin-bottom: 10px;
-  margin-left: 10px; /* Add left margin to separate timestamp from message */
+  margin-left: auto;
 }
 
 /* Avatar */
@@ -634,4 +634,17 @@ button i.fas {
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
+}
+
+/* Button */
+
+.btn {
+  word-wrap: break-word;
+}
+
+/* Hover effect */
+.btn:hover {
+  background-color: #04AA6D;
+  color: white;
+  word-break: break-all; 
 }

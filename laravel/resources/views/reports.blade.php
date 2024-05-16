@@ -47,8 +47,8 @@
                             <div id="patternsContainer">
                                 <textarea class="form-control" id="addPatterns" name="addPatterns[]" rows="2" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="addPattern1()"><i class="fas fa-plus mr-1"></i></button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="removePattern1()"><i class="fas fa-trash mr-1"></i></button>
+                            {{-- <button type="button" class="btn btn-primary mt-2" onclick="addPattern1()"><i class="fas fa-plus"></i></button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="removePattern1()"><i class="fas fa-trash"></i></button> --}}
                         </div>
 
                         <div class="mb-3">
@@ -56,14 +56,14 @@
                             <div id="responsesContainer">
                                 <textarea class="form-control" id="addResponses" name="addResponses[]" rows="3" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="addResponse1()"><i class="fas fa-plus mr-1"></i></button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="removeResponse1()"><i class="fas fa-trash mr-1"></i></button>
+                            {{-- <button type="button" class="btn btn-primary mt-2" onclick="addResponse1()"><i class="fas fa-plus mr-1"></i></button>
+                            <button type="button" class="btn btn-danger mt-2" onclick="removeResponse1()"><i class="fas fa-trash mr-1"></i></button> --}}
                         </div>
                     
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Add New Intent</button>
+                    <button class="btn btn-success" type="submit">Add As New Intent</button>
                 </div>
             </form>
             </div>
@@ -76,11 +76,11 @@
 
             <div class="col-lg-6 d-flex justify-content-center">
                 <div class="card p-3">
-                    <div class="card-body" style="position: relative; height:65vh; width:35vw">
+                    <div class="card-body" style="position: relative; height:25vh; width:40vw">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">Chat Support Ratings</h3>
                         </div>
-                        <canvas id="ratingsChart" width="400" height="200"></canvas>
+                        <canvas id="ratingsChart" width="300" height="200"></canvas>
 
                     </div>
                 </div>
@@ -88,22 +88,37 @@
             
             <div class="col-lg-6 d-flex justify-content-center">
                 <div class="card p-3">
-                    <div class="card-body" style="position: relative; height:65vh; width:35vw">
+                    <div class="card-body" style="position: relative; max-height: 25vh; width:40vw">
                         <div class="d-flex justify-content-between">
-                            <h3 class="card-title mb-4" style="font-weight: bold; color: rgb(61, 63, 61); ">Unanswered Queries</h3>
+                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">Chat Support Ratings</h3>
                         </div>
+                        <canvas id="ratingsChart" width="300" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-lg-12 d-flex justify-content-center">
+                <div class="card p-3">
+                    <div class="card-body" style="position: relative; max-height: 35vh;">
                         <table class="table hover" id="queriesTable">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col" style="width:70%">Queries</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col" >Queries</th>
+                                    <th scope="col" width="100px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($feedback as $value)
                                     <tr>
                                         <th>{{ $value->id }}</th>
+                                        <th>{{ $value->created_at }}</th>
                                         <td>{{ $value->feedback }}</td>
                                         <td>
                                             <button class="btn btn-primary text-light add-btn">
@@ -122,7 +137,6 @@
             </div>
 
         </div>
-
 
     </div>
 </div>
@@ -173,8 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         fontSize: 20,
                         fontColor: '#333',
                         fontStyle: 'bold',
-                        fontFamily: 'Arial',
-                        padding: 20
+                        fontFamily: 'Arial'
                     },
                     legend: {
                         display: false 
@@ -201,7 +214,10 @@ document.addEventListener('DOMContentLoaded', function() {
             var editModal = $('#queriesModal');
             var table = $('#queriesTable').DataTable({
                 "pageLength": 5,
-                "lengthMenu": [5, 15, 25, 50]
+                "lengthMenu": [5, 15, 25, 50],
+                "autoWidth": false,
+                "scrollY": "400px",
+                "scrollCollapse": true,
             });
 
             $('#queriesTable').on('click', '.add-btn', function() {
