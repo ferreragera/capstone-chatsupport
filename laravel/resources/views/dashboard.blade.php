@@ -37,7 +37,7 @@
                     <form action="{{ route('createIntent') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="createTag" class="form-label">Tag:</label>
+                            <label for="createT ag" class="form-label">Tag:</label>
                             <input type="text" class="form-control" id="createTag" name="createTag" required>
                         </div>
 

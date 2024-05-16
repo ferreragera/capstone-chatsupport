@@ -7,7 +7,6 @@ import mysql.connector
 import json
 from chat import get_response
 from better_profanity import profanity
-from difflib import SequenceMatcher
 
 conn = mysql.connector.connect(
     host='127.0.0.1',
@@ -21,42 +20,34 @@ app = Flask(__name__)
 
 CORS(app, resources={r"/train": {"origins": "*"}}) 
 
-with open('intents.json', 'r') as file:
-    intents = json.load(file)
+with open('intents.json', 'r') as intents_file:
+    intents = json.load(intents_file)
 
 @app.get("/")
 def index_get():
     return render_template("index.php")
 
 
-def get_response(user_input):
-    # Initialize variables to store the best match and its similarity score
-    best_match = None
-    best_score = 0
-    
-    # Iterate through intents and find the one with the closest match to the user input
-    for intent in intents['intents']:
-        for pattern in intent['patterns']:
-            # Compute the similarity score between the user input and the pattern
-            score = SequenceMatcher(None, user_input, pattern).ratio()
-            # Update the best match if the current score is higher
-            if score > best_score:
-                best_match = intent
-                best_score = score
-    
-    # If the best score is above a certain threshold, return the response from the best match
-    if best_score > 0.6:  # Adjust the threshold as needed
-        return best_match['responses']
-    else:
-        # If no matching intent is found or the score is below the threshold, return a default response
-        return ["I'm sorry, I don't understand that."]
-
-@app.route('/predict', methods=['POST'])
+@app.post("/predict")
 def predict():
-    user_input = request.json.get('message')
-    response = get_response(user_input)
-    return jsonify({'response': response})
+    text = escape(request.get_json().get("message"))
+    matching_intent = find_matching_intent(text)
 
+    if matching_intent:
+        responses = matching_intent["responses"]
+        response = "\n".join(responses)
+    else:
+        response = "I don't have specific information for that topic."
+ 
+    censored_response = profanity.censor(response)
+    message = {"answer": censored_response}
+    return jsonify(message)
+
+def find_matching_intent(text):
+    for intent in intents["intents"]:
+        if text.lower() in [pattern.lower() for pattern in intent["patterns"]]:
+            return intent
+    return None
 
 from flask import request
 
@@ -106,9 +97,7 @@ def save_feedback():
         return f"An error occurred: {str(e)}"
     
 
-@app.route('/test_intents', methods=['GET'])
-def test_intents():
-    return jsonify(intents)
+    
 
 
 

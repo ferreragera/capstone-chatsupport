@@ -371,17 +371,6 @@
             ]
         },
         {
-            "id": 32,
-            "tag": "admission_criteria",
-            "patterns": [
-                "What criteria does CvSU consider for admission?",
-                "How are applicants evaluated for admission?"
-            ],
-            "responses": [
-                "CvSU considers factors like academic performance, entrance exam scores, extracurricular activities, and relevant qualifications for admission. Each program may have specific criteria."
-            ]
-        },
-        {
             "id": 33,
             "tag": "application_status_check",
             "patterns": [
@@ -1092,6 +1081,26 @@
             ],
             "responses": [
                 "The academic calendar contains important dates such as start and end of classes, holidays, and examination periods. You can find the academic calendar on the official CvSU website."
+            ]
+        },
+        {
+            "id": 1,
+            "tag": "tag_May",
+            "patterns": [
+                "how are you?"
+            ],
+            "responses": [
+                "i'm fine!"
+            ]
+        },
+        {
+            "tag": "admission_criteria",
+            "patterns": [
+                "What criteria does CvSU consider for admission?",
+                "How are applicants evaluated for admission?"
+            ],
+            "responses": [
+                "CvSU considers factors like academic performance, entrance exam scores, extracurricular activities, and relevant qualifications for admission. Each program may have specific criteria."
             ]
         }
     ]
