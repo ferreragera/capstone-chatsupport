@@ -5,6 +5,7 @@ from markupsafe import escape
 import subprocess
 import mysql.connector
 import json
+import random
 from chat import get_response
 from better_profanity import profanity
 from difflib import SequenceMatcher
@@ -28,34 +29,54 @@ with open('intents.json', 'r') as file:
 def index_get():
     return render_template("index.php")
 
-
 def get_response(user_input):
-    # Initialize variables to store the best match and its similarity score
     best_match = None
     best_score = 0
-    
-    # Iterate through intents and find the one with the closest match to the user input
+    threshold = 0.6
+
+    if len(user_input.split()) == 1:
+        threshold = 0.4
+
     for intent in intents['intents']:
         for pattern in intent['patterns']:
-            # Compute the similarity score between the user input and the pattern
             score = SequenceMatcher(None, user_input, pattern).ratio()
-            # Update the best match if the current score is higher
-            if score > best_score:
+            if score > best_score and score > threshold:
                 best_match = intent
                 best_score = score
-    
-    # If the best score is above a certain threshold, return the response from the best match
-    if best_score > 0.6:  # Adjust the threshold as needed
-        return best_match['responses']
+
+    if best_match:
+        responses = best_match['responses']
+        return [random.choice(responses)] 
     else:
-        # If no matching intent is found or the score is below the threshold, return a default response
         return ["I'm sorry, I don't understand that."]
 
 @app.route('/predict', methods=['POST'])
 def predict():
     user_input = request.json.get('message')
+
+    # Check for profanity
+    if contains_profanity(user_input):
+        return jsonify({'response': ["I'm sorry, but I cannot respond to profane language."]})
+
     response = get_response(user_input)
     return jsonify({'response': response})
+
+
+def contains_profanity(text):
+    # Load profanity from better_profanity library
+    profanity.load_censor_words()
+    if profanity.contains_profanity(text):
+        return True
+    
+    # Load profanity from profanity_wordlist.txt file
+    with open('profanity_wordlist.txt', 'r') as file:
+        profanity_list = [line.strip() for line in file]
+
+    for word in profanity_list:
+        if word.lower() in text.lower():
+            return True
+
+    return False
 
 
 from flask import request

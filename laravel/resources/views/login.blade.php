@@ -1,53 +1,4 @@
-<?php
-// session_start();
-// include "db_conn.php";
 
-// if ($_SERVER["REQUEST_METHOD"] === "POST") {
-//     function validate($data)
-//     {
-//         $data = trim($data);
-//         $data = stripslashes($data);
-//         $data = htmlspecialchars($data);
-//         return $data;
-//     }
-
-//     $uname = validate($_POST['uname']);
-//     $pass = validate($_POST['password']);
-
-//     if (empty($uname)) {
-//         header("Location: loginAdmin.php?error=Username is required");
-//         exit();
-//     } elseif (empty($pass)) {
-//         header("Location: loginAdmin.php?error=Password is required");
-//         exit();
-//     } else {
-//         // Use MySQLi with prepared statements for improved security
-//         $sql = "SELECT * FROM users WHERE user_name = ?";
-
-//         $stmt = mysqli_prepare($conn, $sql);
-//         mysqli_stmt_bind_param($stmt, "s", $uname);
-//         mysqli_stmt_execute($stmt);
-//         $result = mysqli_stmt_get_result($stmt);
-//         $user = mysqli_fetch_assoc($result);
-
-//         if ($user && password_verify($pass, $user['password'])) {
-//             // Password matches; set session variables
-//             $_SESSION['user_name'] = $user['user_name'];
-//             $_SESSION['name'] = $user['name'];
-//             $_SESSION['id'] = $user['id'];
-
-//             // Regenerate session ID for security
-//             session_regenerate_id();
-            
-//             header("Location: dashboardAdmin.php");
-//             exit();
-//         } else {
-//             header("Location: loginAdmin.php?error=Incorrect username or password");
-//             exit();
-//         }
-//     }
-// }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,7 +41,7 @@
 
         img {
             max-width: 100%;
-            height: 80px;
+            height: 100px;
             display: block;
             margin: 0 auto 20px;
         }
@@ -176,37 +127,19 @@
 </head>
 
 <body>
-    <div class="outer">
+    <div class="outer text-center">
         <img src="images/CvSU-logo-trans.png" alt="image">
-        <span class="text-white m-3">AUTOMATED RESPONSE INQUIRY SYSTEM </span>
+        <span class="text-white text-center">AUTOMATED RESPONSE INQUIRY SYSTEM </span>
             <div class="container mt-3">
                 <h2 class="d-flex justify-content-center">Login</h2>
                 <form>
+                    <p class="desc text-center fst-italic mt-4 mb-4">
+                        Please sign in to access the dashboard and manage admission inquiries efficiently. <br>We prioritize your data privacy, ensuring a secure and seamless login experience.
+                    </p>
                     <a href="{{ route('google-auth') }}" class="login-with-google-btn d-flex justify-content-center">
                         Sign in with Google
                     </a>
                 </form>
-
-                {{-- <div id="my-signin2"></div>
-                <script>
-                    function onSuccess(googleUser) {
-                    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-                    }
-                    function onFailure(error) { 
-                    console.log(error);
-                    }
-                    function renderButton() {
-                    gapi.signin2.render('my-signin2', {
-                        'scope': 'profile email',
-                        'width': 240,
-                        'height': 50,
-                        'longtitle': true,
-                        'theme': 'dark',
-                        'onsuccess': onSuccess,
-                        'onfailure': onFailure
-                    });
-                    }
-                </script> --}}
 
                 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
             </div>

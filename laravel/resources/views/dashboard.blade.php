@@ -249,8 +249,9 @@
                             },
                         success: function(response) {
                             Swal.fire({
+                                icon:"success",
                                 title: "Data Archived Successfully!",
-                                icon: "success"
+                                text: "The intent with tag: " + tag + " has been archived."
                             }).then(function (result){
                                 if(result.isConfirmed){
                                     window.location = "{{ route('dashboard') }}";
@@ -261,8 +262,6 @@
                             alert('Failed to update intent: ' + error);
                         }
                     });
-
-                        Swal.fire('Archived!', 'The intent with tag: ' + tag + ' has been archived.', 'success');
                     }
                 });
             });

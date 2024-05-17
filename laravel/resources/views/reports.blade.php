@@ -75,7 +75,7 @@
         <div class="row">
 
             <div class="col-lg-6 d-flex justify-content-center">
-                <div class="card p-3">
+                <div class="card">
                     <div class="card-body" style="position: relative; height:25vh; width:40vw">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">Chat Support Ratings</h3>
@@ -87,12 +87,12 @@
             </div>
             
             <div class="col-lg-6 d-flex justify-content-center">
-                <div class="card p-3">
+                <div class="card p-2">
                     <div class="card-body" style="position: relative; max-height: 25vh; width:40vw">
                         <div class="d-flex justify-content-between">
-                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">Chat Support Ratings</h3>
+                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">Monthly Summary of Inquiries</h3>
                         </div>
-                        <canvas id="ratingsChart" width="300" height="200"></canvas>
+                        <canvas id="feedbackChart" width="950" height="230"></canvas>
                     </div>
                 </div>
             </div>
@@ -103,8 +103,8 @@
         <div class="row">
 
             <div class="col-lg-12 d-flex justify-content-center">
-                <div class="card p-3">
-                    <div class="card-body" style="position: relative; max-height: 35vh;">
+                <div class="card ">
+                    <div class="card-body" style="position: relative; max-height: 45vh;">
                         <table class="table hover" id="queriesTable">
                             <thead class="thead-dark">
                                 <tr>
@@ -147,68 +147,91 @@
     @parent
     <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('/chart-data')
-        .then(response => response.json())
-        .then(data => {
-            let labels = data.labels;
-            let values = data.values;
-            console.log(labels);
-            
-            var ctx = document.getElementById('ratingsChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Number of Ratings',
-                        data: values, 
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.5)',
-                            'rgba(54, 162, 235, 0.5)',
-                            'rgba(255, 206, 86, 0.5)',
-                            'rgba(75, 192, 192, 0.5)',
-                            'rgba(153, 102, 255, 0.5)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: 'Monthly Ratings Distribution',
-                        fontSize: 20,
-                        fontColor: '#333',
-                        fontStyle: 'bold',
-                        fontFamily: 'Arial'
-                    },
-                    legend: {
-                        display: false 
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/chart-data')
+                .then(response => response.json())
+                .then(data => {
+                    let labels = data.labels;
+                    let values = data.values;
+                    console.log(labels);
+                    
+                    var ctx = document.getElementById('ratingsChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Number of Ratings',
+                                data: values, 
+                                backgroundColor: [
+                                    'rgba(242, 242, 235, 1)',
+                                    'rgba(210, 220, 230, 1)',
+                                    'rgba(156, 171, 180, 1)',
+                                    'rgba(171, 100, 75, 1)',
+                                    'rgba(114, 56, 61, 1)'
+                                ],
+                                borderColor: [
+                                    'rgba(242, 242, 235, 1)',
+                                    'rgba(210, 220, 230, 1)',
+                                    'rgba(156, 171, 180, 1)',
+                                    'rgba(171, 100, 75, 1)',
+                                    'rgba(114, 56, 61, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Monthly Ratings Distribution',
+                                fontSize: 20,
+                                fontColor: '#333',
+                                fontStyle: 'bold',
+                                fontFamily: 'Arial'
+                            },
+                            legend: {
+                                display: false 
+                            },
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
                             }
-                        }]
-                    }
-                }
-            });
+                        }
+                    });
+                });
+
+                fetch('feedback-data')
+                    .then(response => response.json())
+                    .then(data => {
+                        const labels = data.labels;
+                        const values = data.values;
+                        console.log(data.values);
+
+                        const feedbackChart = new Chart(document.getElementById('feedbackChart').getContext('2d'), {
+                            type: 'line',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Weekly Feedback Count',
+                                    data: values,
+                                    borderColor: 'rgba(64, 27, 27, 1)',
+                                    backgroundColor: 'rgba(64, 27, 27, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching feedback data:', error);
+                    });
         });
-});
-
-
-
-
 
         $(document).ready(function() {
             var editModal = $('#queriesModal');
@@ -216,12 +239,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 "pageLength": 5,
                 "lengthMenu": [5, 15, 25, 50],
                 "autoWidth": false,
-                "scrollY": "400px",
-                "scrollCollapse": true,
+                "scrollY": "200px",
+                "scrollCollapse": true
             });
 
             $('#queriesTable').on('click', '.add-btn', function() {
-
                 $('#queriesModal').modal('show');
             });
 
