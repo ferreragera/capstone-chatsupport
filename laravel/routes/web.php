@@ -36,6 +36,7 @@ Route::post('/archive-intent', [IntentsController::class, 'archiveIntent'])->nam
 Route::post('/add-back', [ArchiveController::class, 'restoreIntent'])->name('restoreIntent');
 Route::post('/del-archive', [ArchiveController::class, 'deleteArchive'])->name('deleteArchive');
 Route::get('/chart-data', [FeedbackController::class, 'fetchChartData']);//rating
+Route::get('/feedback-data', [FeedbackController::class, 'fetchFeedbackData']);//feedback
 
 
 

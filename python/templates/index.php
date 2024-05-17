@@ -154,11 +154,11 @@
                 </div>
                 <div class="chatbox__footer">
                     <button class="rating-button" data-toggle="modal" data-target="#ratingModal" style="font-size: 18px; padding: 4px 8px;">
-                        <i class="fas fa-star-half-alt"></i> Rating
+                        <i class="fas fa-star-half-alt fa-sm"></i>
                     </button>
 
                     <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" style="font-size: 18px; padding: 4px 8px;">
-                        <i class="fas fa-comment-alt"></i> Feedback
+                        <i class="fas fa-comment-alt fa-sm"></i>
                     </button>
 
                     <input type="text" class="w-75" placeholder="Write a message..." style="font-size: 16px; padding: 12px;" oninput="validateInput(this)" required>

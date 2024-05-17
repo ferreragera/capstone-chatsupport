@@ -283,17 +283,6 @@
             ]
         },
         {
-            "id": 23,
-            "tag": "accommodation",
-            "patterns": [
-                "Is on-campus accommodation available?",
-                "Can I get housing facilities?"
-            ],
-            "responses": [
-                "On-campus accommodation options are available. Find details on the CvSU website."
-            ]
-        },
-        {
             "id": 24,
             "tag": "orientation",
             "patterns": [
@@ -459,17 +448,6 @@
             ]
         },
         {
-            "id": 41,
-            "tag": "admission_cancelation",
-            "patterns": [
-                "Can my admission be canceled after acceptance?",
-                "Under what circumstances can admission be revoked?"
-            ],
-            "responses": [
-                "Admission may be canceled for reasons like providing false information or disciplinary issues."
-            ]
-        },
-        {
             "id": 42,
             "tag": "application_inquiry",
             "patterns": [
@@ -624,17 +602,6 @@
             ]
         },
         {
-            "id": 56,
-            "tag": "admission_acceptance_deadline",
-            "patterns": [
-                "Is there a deadline for accepting the admission offer?",
-                "When do I need to confirm my enrollment?"
-            ],
-            "responses": [
-                "Admitted students are typically required to accept the admission offer by a specified deadline. The deadline for accepting the offer will be communicated along with the admission notification."
-            ]
-        },
-        {
             "id": 57,
             "tag": "application_rejection_feedback",
             "patterns": [
@@ -742,17 +709,6 @@
             ],
             "responses": [
                 "If there's a delay in reviewing your application, the CvSU admission office will notify you of the situation and provide updates on the expected timeline for application review."
-            ]
-        },
-        {
-            "id": 67,
-            "tag": "admission_confirmation_requirement",
-            "patterns": [
-                "Is there any action required to confirm my admission acceptance?",
-                "What do I need to do after receiving the admission offer?"
-            ],
-            "responses": [
-                "Upon receiving the admission offer, you'll typically need to confirm your acceptance by following the instructions provided in the admission offer letter. This may involve submitting a confirmation form or paying an admission deposit."
             ]
         },
         {
@@ -1064,26 +1020,6 @@
             ]
         },
         {
-            "tag": "academic_support",
-            "patterns": [
-                "Is there academic support available for students?",
-                "How can I get tutoring help?"
-            ],
-            "responses": [
-                "CvSU Main Campus provides academic support services like tutoring, advising, and workshops. Please visit the Academic Support Center or contact them for assistance."
-            ]
-        },
-        {
-            "tag": "academic_calendar",
-            "patterns": [
-                "What is the academic calendar?",
-                "Are there important dates for the academic year?"
-            ],
-            "responses": [
-                "The academic calendar contains important dates such as start and end of classes, holidays, and examination periods. You can find the academic calendar on the official CvSU website."
-            ]
-        },
-        {
             "id": 1,
             "tag": "tag_May",
             "patterns": [
@@ -1101,6 +1037,80 @@
             ],
             "responses": [
                 "CvSU considers factors like academic performance, entrance exam scores, extracurricular activities, and relevant qualifications for admission. Each program may have specific criteria."
+            ]
+        },
+        {
+            "tag": "academic_support",
+            "patterns": [
+                "Is there academic support available for students?",
+                "How can I get tutoring help?"
+            ],
+            "responses": [
+                "CvSU Main Campus provides academic support services like tutoring, advising, and workshops. Please visit the Academic Support Center or contact them for assistance."
+            ]
+        },
+        {
+            "tag": "accommodation",
+            "patterns": [
+                "Is on-campus accommodation available?",
+                "Can I get housing facilities?"
+            ],
+            "responses": [
+                "On-campus accommodation options are available. Find details on the CvSU website."
+            ]
+        },
+        {
+            "tag": "admission_acceptance_deadline",
+            "patterns": [
+                "Is there a deadline for accepting the admission offer?",
+                "When do I need to confirm my enrollment?"
+            ],
+            "responses": [
+                "Admitted students are typically required to accept the admission offer by a specified deadline. The deadline for accepting the offer will be communicated along with the admission notification."
+            ]
+        },
+        {
+            "tag": "admission_cancelation",
+            "patterns": [
+                "Can my admission be canceled after acceptance?",
+                "Under what circumstances can admission be revoked?"
+            ],
+            "responses": [
+                "Admission may be canceled for reasons like providing false information or disciplinary issues."
+            ]
+        },
+        {
+            "tag": "admission_confirmation_requirement",
+            "patterns": [
+                "Is there any action required to confirm my admission acceptance?",
+                "What do I need to do after receiving the admission offer?"
+            ],
+            "responses": [
+                "Upon receiving the admission offer, you'll typically need to confirm your acceptance by following the instructions provided in the admission offer letter. This may involve submitting a confirmation form or paying an admission deposit."
+            ]
+        },
+        {
+            "id": 1,
+            "tag": "japanese",
+            "patterns": [
+                "hai",
+                "konnichiwa",
+                "konbanwa",
+                "oyasumi",
+                "ohayou",
+                "arigatou",
+                "domo",
+                "iie",
+                "iyada",
+                "yamete",
+                "osoi",
+                "dare",
+                "nani",
+                "doko",
+                "aniki"
+            ],
+            "responses": [
+                "nANIIII?!?!?!?!?"
             ]
         }
     ]

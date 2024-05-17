@@ -9,10 +9,11 @@ class Chatbox {
         this.state = false;
         this.messages = [];
 
-        this.predictEndpoint = 'http:192.168.173.148/predict';
+        this.predictEndpoint = 'http://10.10.100.147:5000/predict';
+        this.setupEventListeners();
     }
 
-    display() {
+    setupEventListeners() {
         const { openButton, chatBox, sendButton } = this.args;
 
         openButton.addEventListener('click', () => this.toggleState(chatBox));
@@ -23,6 +24,7 @@ class Chatbox {
                 this.onSendButton(chatBox);
             }
         });
+
         this.addGreetingMessage(chatBox);
     }
 
@@ -39,13 +41,13 @@ class Chatbox {
     updateChatText(chatbox) {
         const container = chatbox.querySelector('.chatbox__messages');
         container.innerHTML = '';
-    
+
         // Iterate over messages in reverse order
         for (let i = this.messages.length - 1; i >= 0; i--) {
             const msg = this.messages[i];
             const messageElement = document.createElement('div');
             messageElement.classList.add('messages__item');
-    
+
             if (msg.name === 'User') {
                 messageElement.classList.add('messages__item--visitor');
                 messageElement.innerHTML = msg.message;
@@ -59,26 +61,24 @@ class Chatbox {
             } else {
                 messageElement.classList.add('messages__item--operator');
                 messageElement.innerHTML = msg.message;
-                container.appendChild(messageElement);
+                container.insertBefore(messageElement, container.firstChild);
             }
-    
+
             // Add timestamp message indicator
             const timestamp = document.createElement('div');
             timestamp.classList.add('message__timestamp');
             timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString();
             messageElement.appendChild(timestamp);
-    
+
             // Apply word-break property to message content
             const messageContent = messageElement.querySelector('.msg_content');
             if (messageContent) {
                 messageContent.style.wordBreak = 'break-word';
             }
         }
-    
+
         container.scrollTop = container.scrollHeight;
     }
-    
-    
 
     startStreamingEffect(container, message) {
         if (message.message.includes('<')) {
@@ -245,7 +245,7 @@ class Chatbox {
                 options: ['Back to FAQs']
             }
         };
-    
+
         const data = dynamicResponses[prompt];
         let response = data.message;
         if (data.options.length > 0) {
@@ -255,21 +255,16 @@ class Chatbox {
             });
             response += '</div>';
         }
-      
+    
         const message = {
             name: 'CVSU Admission System',
             message: response,
             timestamp: new Date(),
             fullyDisplayed: false
         };
-        this.messages.push(message);
-        this.updatePrompt(this.args.chatBox);
-    
-        if (prompt === 'Visit Official Website') {
-            window.open('https://www.cvsu.edu.ph', '_blank');
-        }
+        this.messages.push(message); // Push the message to the end of the array
+        this.updatePrompt(this.args.chatBox); // Update the chatbox display
     }
-    
 
     handleUnknownPrompt() {
         const message = {
@@ -278,7 +273,7 @@ class Chatbox {
             timestamp: new Date(),
             fullyDisplayed: false
         };
-        this.messages.push(message);
+        this.messages.unshift(message);
         this.updatePrompt(this.args.chatBox);
     }
 
@@ -288,66 +283,67 @@ class Chatbox {
         if (text === "") {
             return;
         }
-    
-        fetch('http://192.168.173.148:5000/predict', { // Make sure to include the correct URL for your backend
+
+        fetch('http://10.10.100.147:5000/predict', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ message: text })
         })
-        .then(response => response.json())
-        .then(data => {
-            const response = data.response.join('<br>'); // Join responses with '<br>' for multiple lines
-            this.displayBotMessage(text, response); // Pass both user input and bot response to displayBotMessage
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    
+            .then(response => response.json())
+            .then(data => {
+                const response = data.response.join('<br>'); // Join responses with '<br>' for multiple lines
+                this.displayBotMessage(text, response); // Pass both user input and bot response to displayBotMessage
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
         textField.value = '';
     }
+
+    displayBotMessage(userInput, botResponse) {
+        const chatboxMessages = document.querySelector('.chatbox__messages');
     
-   
-displayBotMessage(userInput, botResponse) {
-    const chatboxMessages = document.querySelector('.chatbox__messages');
+        // Create and prepend user message
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.classList.add('messages__item', 'messages__item--operator');
+        userMessageDiv.innerHTML = userInput;
+        chatboxMessages.insertBefore(userMessageDiv, chatboxMessages.firstChild);
     
-    for (let i = this.messages.length - 1; i >= 0; i--) {
+        // Create and prepend bot response
         const botMessageDiv = document.createElement('div');
         botMessageDiv.classList.add('messages__item', 'messages__item--visitor');
-
+    
         const avatar = document.createElement('img');
         avatar.classList.add('message__avatar');
         avatar.src = `static/images/avatar1.png`;
         botMessageDiv.appendChild(avatar);
-
+    
         const contentElement = document.createElement('div');
         contentElement.innerHTML = botResponse;
         botMessageDiv.appendChild(contentElement);
-
+    
         const timestamp = document.createElement('div');
         timestamp.classList.add('message__timestamp');
         timestamp.textContent = new Date().toLocaleTimeString();
         botMessageDiv.appendChild(timestamp);
-
-        chatboxMessages.appendChild(botMessageDiv);
-
-        // Then display user input
-        const userMessageDiv = document.createElement('div');
-        userMessageDiv.classList.add('messages__item', 'messages__item--operator');
-        userMessageDiv.innerHTML = userInput;
-        chatboxMessages.appendChild(userMessageDiv);
-
+    
+        // Check if suggestions are present in the response
+        const suggestions = botResponse.match(/Did you mean: '([^']+)'\?/);
+        if (suggestions) {
+            const suggestionDiv = document.createElement('div');
+            suggestionDiv.classList.add('suggestion');
+            suggestionDiv.textContent = suggestions[0]; // Display the suggestion
+            botMessageDiv.appendChild(suggestionDiv);
+        }
+    
+        chatboxMessages.insertBefore(botMessageDiv, chatboxMessages.firstChild);
+    
+        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
     }
-    chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-}
-
     
-    
-    
-    
-    
-
 }
 
 const chatbox = new Chatbox();

@@ -72,16 +72,22 @@ body {
 
 }
 button i.fas {
-  font-size: 15px;
+  font-size: 25px;
   /* Adjust the size as needed */
   color: #4cbb18;
   /* Change the color to your preference */
 }
 
+button i.fas:hover {
+  font-size: 25px;
+  /* Adjust the size as needed */
+  color: #fcfffa;
+  /* Change the color to your preference */
+}
+
+
 .send__button {
   background-color: #f9fff6;
- 
-  color: #fff;
   border: none;
   padding: 10px 15px;
   font-size: 16px;
@@ -252,7 +258,7 @@ button i.fas {
 }
 
 .chatbox__footer input {
-  width: 90%;
+  width: 50%; /* Adjust the width as needed */
   border: none;
   padding: 10px 10px;
   border-radius: 30px;
@@ -574,7 +580,6 @@ button i.fas {
       opacity: 1;
   }
 }
-
 
 /* Message container */
 .messages__item {
