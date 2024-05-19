@@ -101,9 +101,9 @@
         </div>
 
         <div class="row">
-            <div class="col-lg d-flex justify-content-center">
+            <div class="col-lg-12 d-flex justify-content-center">
                 <div class="card">
-                    <div class="card-body" style="position: relative; max-height: 45vh;">
+                    <div class="card-body" style="position: relative; max-height: 45vh; width:85vw">
                         <table class="table table-hover" id="queriesTable">
                             <thead class="thead-dark">
                                 <tr>
