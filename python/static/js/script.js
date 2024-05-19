@@ -9,7 +9,7 @@ class Chatbox {
         this.state = false;
         this.messages = [];
 
-        this.predictEndpoint = 'http://192.168.1.20:5000/predict';
+        this.predictEndpoint = 'http://10.10.100.147:5000/predict';
 
         this.setupEventListeners();
     }
@@ -285,7 +285,7 @@ class Chatbox {
             return;
         }
 
-        fetch('http://192.168.1.20:5000/predict', { 
+        fetch('http://10.10.100.147:5000/predict', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -331,19 +331,37 @@ class Chatbox {
         timestamp.textContent = new Date().toLocaleTimeString();
         botMessageDiv.appendChild(timestamp);
     
-        // Check if suggestions are present in the response
-        const suggestions = botResponse.match(/Did you mean: '([^']+)'\?/);
-        if (suggestions) {
-            const suggestionDiv = document.createElement('div');
-            suggestionDiv.classList.add('suggestion');
-            suggestionDiv.textContent = suggestions[0]; // Display the suggestion
-            botMessageDiv.appendChild(suggestionDiv);
-        }
-    
         chatboxMessages.insertBefore(botMessageDiv, chatboxMessages.firstChild);
+    
+        // Add "Did that response answer your question?" prompt
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.classList.add('messages__item', 'messages__item--visitor');
+        feedbackDiv.innerHTML = `
+            Did that response answer your question?
+            <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handleFeedback(true)">Yes</button>
+            <button class="btn btn-sm border-danger mt-2" style="border-radius: 20px;" onclick="chatbox.handleFeedback(false)">No</button>
+        `;
+        chatboxMessages.insertBefore(feedbackDiv, chatboxMessages.firstChild);
     
         chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
     }
+    
+    handleFeedback(isHelpful) {
+        const chatboxMessages = document.querySelector('.chatbox__messages');
+        const feedbackResponseDiv = document.createElement('div');
+        feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
+        
+        if (isHelpful) {
+            feedbackResponseDiv.innerHTML = "Glad to help!";
+        } else {
+            feedbackResponseDiv.innerHTML = "Sorry about that. Could you please rephrase your question or choose from the suggestions below:";
+            // Here you can add logic to show suggestions
+        }
+        
+        chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+    }
+    
     
 }
 
