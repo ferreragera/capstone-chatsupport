@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeedback extends Migration
+class CreateIntents extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateFeedback extends Migration
      */
     public function up()
     {
-        Schema::create('feedback', function (Blueprint $table) {
+        Schema::create('intents', function (Blueprint $table) {
             $table->id();
-            $table->string("feedback");
+            $table->string('intent');
+            $table->string('pattern');
+            $table->string('response');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateFeedback extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feedback');
+        Schema::dropIfExists('intents');
     }
 }
