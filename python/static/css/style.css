@@ -587,7 +587,21 @@ button i.fas:hover {
   flex-direction: column; /* Stack timestamp on top of message */
   margin-bottom: 10px;
   max-width: 65%;
+  animation: fadeInMessage 0.5s forwards;
 }
+
+/* Keyframes for fadeInMessage */
+@keyframes fadeInMessage {
+  from {
+    opacity: 0;
+    transform: translateY(10px); /* Slight upward movement */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* Message bubble for visitors */
 .messages__item--visitor {
