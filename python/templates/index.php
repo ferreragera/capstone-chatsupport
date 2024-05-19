@@ -131,37 +131,36 @@
     </form>
 
   </div>
-        <div class="chatbox resizable">
-            <div class="chatbox__support">
-            
-                <div class="chatbox__header">
-                    <div class="chatbox__image--header">
-                        <img src="static/images/CvSU-logo-trans.png" alt="image" width="60" height="50">
-                    </div>
-                    <div class="chatbox__content--header">
-                        <h5 class="chatbox__heading--header text-light">Chat support</h5>
-                        <p class="chatbox__description--header">CvSU Admission Response System</p>
-                    </div> 
-                    <br><br><br>
+  <div class="chatbox resizable">
+        <div class="chatbox__support">
+            <div class="chatbox__header">
+                <div class="chatbox__image--header">
+                    <img src="static/images/CvSU-logo-trans.png" alt="image" width="60" height="50">
                 </div>
-                <div class="chatbox__under">
-                    <div class="chatbox__under--description mt-1 ml-4">
-                        <p>Remember: This chat support only understands English.</p>
-                    </div>
+                <div class="chatbox__content--header">
+                    <h5 class="chatbox__heading--header text-light">Chat support</h5>
+                    <p class="chatbox__description--header">CvSU Admission Response System</p>
                 </div>
-                <div class="chatbox__messages">
-                    <div class="msg_content"></div>
+                <br><br><br>
+            </div>
+            <div class="chatbox__under">
+                <div class="chatbox__under--description mt-1 ml-4">
+                    <p>Remember: This chat support only understands English.</p>
                 </div>
-                <div class="chatbox__footer">
-                    <button class="rating-button" data-toggle="modal" data-target="#ratingModal" style="font-size: 18px; padding: 4px 8px;">
-                        <i class="fas fa-star-half-alt fa-sm"></i>
-                    </button>
+            </div>
+            <div class="chatbox__messages">
+                <div class="msg_content"></div>
+            </div>
+            <div class="chatbox__footer">
+                <button class="rating-button" data-toggle="modal" data-target="#ratingModal" data-toggle="tooltip" data-placement="top" title="Rate us!" style="font-size: 18px; padding: 4px 8px;">
+                    <i class="fas fa-star-half-alt fa-sm"></i>
+                </button>
 
-                    <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" style="font-size: 18px; padding: 4px 8px;">
-                        <i class="fas fa-comment-alt fa-sm"></i>
-                    </button>
+                <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" data-toggle="tooltip" data-placement="top" title="Give feedback!" style="font-size: 18px; padding: 4px 8px;">
+                    <i class="fas fa-comment-alt fa-sm"></i>
+                </button>
 
-                    <input type="text" class="w-75" placeholder="Write a message..." style="font-size: 16px; padding: 12px;" oninput="validateInput(this)" required>
+                <input type="text" class="w-75" placeholder="Write a message..." style="font-size: 16px; padding: 12px;" oninput="validateInput(this)" required>
 
                 <script>
                     function validateInput(input) {
@@ -176,22 +175,17 @@
                         }
                     }
                 </script>
-                    <button class="chatbox__send--footer send__button" id="sendMessageButton" >
-                        <i class="fas sm fa-paper-plane"></i> 
-                    </button>
-                </div>
-                
-                <div class="chatbox__feedback">
-                </div>
-
+                <button class="chatbox__send--footer send__button" id="sendMessageButton" data-toggle="tooltip" data-placement="top" title="Send message">
+                    <i class="fas sm fa-paper-plane"></i>
+                </button>
             </div>
-            <div class="chatbox__button">
-           
-                <button id="chatboxButton"><img src="static/images/CvSU-logo-trans.png" width="60" height="50" /></button>
-                
-            </div>
+            <div class="chatbox__feedback"></div>
+        </div>
+        <div class="chatbox__button">
+            <button id="chatboxButton"><img src="static/images/CvSU-logo-trans.png" width="60" height="50" /></button>
         </div>
     </div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script> 
