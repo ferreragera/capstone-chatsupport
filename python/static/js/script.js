@@ -1,11 +1,13 @@
 class Chatbox {
-    constructor() {
+    constructor(intents) {
+        
         this.args = {
             openButton: document.querySelector('.chatbox__button'),
             chatBox: document.querySelector('.chatbox__support'),
             sendButton: document.querySelector('.send__button')
         };
 
+        this.intents = intents;
         this.state = false;
         this.messages = [];
 
@@ -284,7 +286,16 @@ class Chatbox {
         if (text === "") {
             return;
         }
-
+    
+        // Store the user input message in the messages array
+        const userMessage = {
+            name: 'User',
+            message: text,
+            timestamp: new Date(),
+            fullyDisplayed: true
+        };
+        this.messages.unshift(userMessage); // Add the user message to the beginning of the array
+    
         fetch('http://10.10.100.147:5000/predict', { 
             method: 'POST',
             headers: {
@@ -292,15 +303,15 @@ class Chatbox {
             },
             body: JSON.stringify({ message: text })
         })
-            .then(response => response.json())
-            .then(data => {
-                const response = data.response.join('<br>'); // Join responses with '<br>' for multiple lines
-                this.displayBotMessage(text, response); // Pass both user input and bot response to displayBotMessage
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-
+        .then(response => response.json())
+        .then(data => {
+            const response = data.response.join('<br>'); // Join responses with '<br>' for multiple lines
+            this.displayBotMessage(text, response); // Pass both user input and bot response to displayBotMessage
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    
         textField.value = '';
     }
 
@@ -337,33 +348,182 @@ class Chatbox {
         const feedbackDiv = document.createElement('div');
         feedbackDiv.classList.add('messages__item', 'messages__item--visitor');
         feedbackDiv.innerHTML = `
+        <style>
+            #no-btn:hover {
+                color: white;
+                background: #dc3545;
+            }
+        </style>
             Did that response answer your question?
             <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handleFeedback(true)">Yes</button>
-            <button class="btn btn-sm border-danger mt-2" style="border-radius: 20px;" onclick="chatbox.handleFeedback(false)">No</button>
+            <button class="btn btn-sm border-danger mt-2" id="no-btn" style="border-radius: 20px;" onclick="chatbox.handleFeedback(false)">No</button>
         `;
         chatboxMessages.insertBefore(feedbackDiv, chatboxMessages.firstChild);
     
         chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
     }
-    
-    handleFeedback(isHelpful) {
-        const chatboxMessages = document.querySelector('.chatbox__messages');
-        const feedbackResponseDiv = document.createElement('div');
-        feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
-        
-        if (isHelpful) {
-            feedbackResponseDiv.innerHTML = "Glad to help!";
-        } else {
-            feedbackResponseDiv.innerHTML = "Sorry about that. Could you please rephrase your question or choose from the suggestions below:";
-            // Here you can add logic to show suggestions
-        }
-        
-        chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
-        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+    matchUserInputWithPatterns(userInput) {
+        return new Promise((resolve, reject) => {
+            fetch('/match_pattern', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userInput: userInput })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to match pattern');
+                }
+                return response.json();
+            })
+            .then(data => {
+                resolve([data.matchedPattern]);
+            })
+            .catch(error => {
+                console.error('Error matching pattern:', error);
+                reject(error);
+            });
+        });
     }
     
-    
+//     handleFeedback(isHelpful) {
+//     const chatboxMessages = document.querySelector('.chatbox__messages');
+//     const feedbackResponseDiv = document.createElement('div');
+//     feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
+
+//     if (isHelpful) {
+//         feedbackResponseDiv.innerHTML = "Glad to help!";
+//     } else {
+//         feedbackResponseDiv.innerHTML = "Sorry about that. Could you please rephrase your question or choose from the suggestions below?";
+
+//         // Retrieve previous user input
+//         const previousUserInput = this.messages[0].message;
+//         console.log(previousUserInput);
+//         // Call matchUserInputWithPatterns asynchronously
+//         this.matchUserInputWithPatterns(previousUserInput)
+//             .then(matchedSuggestions => {
+//                 console.log(matchedSuggestions);
+//                 if (matchedSuggestions.length > 0) {
+//                     feedbackResponseDiv.innerHTML += "<br><br><strong>Suggestions:</strong>";
+//                     matchedSuggestions.forEach(suggestion => {
+//                         feedbackResponseDiv.innerHTML += `<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;  word-break: break-all;">${suggestion}</button>`;
+//                     });
+//                 } else {
+//                     feedbackResponseDiv.innerHTML += "<br>No suggestions available.";
+//                 }
+
+//                 // Append the feedback response to the chatbox
+//                 chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+//                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+//             })
+//             .catch(error => {
+//                 console.error('Error fetching suggestions:', error);
+//                 feedbackResponseDiv.innerHTML += "<br>Error fetching suggestions.";
+
+//                 // Append the feedback response to the chatbox even if there's an error
+//                 chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+//                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+//             });
+//     }
+//     chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+//     chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+// }
+
+handleFeedback(isHelpful) {
+    const chatboxMessages = document.querySelector('.chatbox__messages');
+    const feedbackResponseDiv = document.createElement('div');
+    feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
+
+    if (isHelpful) {
+        feedbackResponseDiv.innerHTML = "Glad to help!";
+    } else {
+        feedbackResponseDiv.innerHTML = "Sorry about that. Could you please rephrase your question or choose from the suggestions below?";
+
+        // Retrieve previous user input
+        const previousUserInput = this.messages[0].message;
+        console.log(previousUserInput);
+        // Call matchUserInputWithPatterns asynchronously
+        this.matchUserInputWithPatterns(previousUserInput)
+            .then(matchedSuggestions => {
+                console.log(matchedSuggestions);
+                if (matchedSuggestions.length > 0) {
+                    feedbackResponseDiv.innerHTML += "<br><br><strong>Suggestions:</strong>";
+                    matchedSuggestions.forEach(suggestion => {
+                        const suggestionButton = document.createElement('button');
+                        suggestionButton.classList.add('btn', 'btn-sm', 'border-success', 'mt-2');
+                        suggestionButton.style.borderRadius = '20px';
+                        suggestionButton.style.wordBreak = 'break-all';
+                        suggestionButton.textContent = suggestion;
+                        suggestionButton.addEventListener('click', () => {
+                            this.displayPatternResponse(suggestion);
+                        });
+                        feedbackResponseDiv.appendChild(suggestionButton);
+                    });
+                } else {
+                    feedbackResponseDiv.innerHTML += "<br>No suggestions available.";
+                }
+
+                // Append the feedback response to the chatbox
+                chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+                chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+            })
+            .catch(error => {
+                console.error('Error fetching suggestions:', error);
+                feedbackResponseDiv.innerHTML += "<br>Error fetching suggestions.";
+
+                // Append the feedback response to the chatbox even if there's an error
+                chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+                chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+            });
+    }
+    chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+    chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
 }
+
+displayPatternResponse(pattern) {
+
+    fetch('http://10.10.100.147:5000/predict', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message: pattern })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch pattern response');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Display the response in the chatbox
+        const chatboxMessages = document.querySelector('.chatbox__messages');
+
+        const botMessageDiv = document.createElement('div');
+        botMessageDiv.classList.add('messages__item', 'messages__item--visitor');
+
+        const contentElement = document.createElement('div');
+        contentElement.innerHTML = data.response;
+        botMessageDiv.appendChild(contentElement);
+
+        const timestamp = document.createElement('div');
+        timestamp.classList.add('message__timestamp');
+        timestamp.textContent = new Date().toLocaleTimeString();
+        botMessageDiv.appendChild(timestamp);
+
+        chatboxMessages.insertBefore(botMessageDiv, chatboxMessages.firstChild);
+        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+    })
+    .catch(error => {
+        console.error('Error displaying pattern response:', error);
+    });
+}
+
+}
+
 
 const chatbox = new Chatbox();
 chatbox.display();
+
