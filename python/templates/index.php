@@ -36,56 +36,55 @@
             </form>
         </div>
     </nav>
-    <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ratingModalLabel">Rate Us!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="rating" name="rating" action="/save_rating" method="POST">
-                <div class="modal-body d-flex justify-content-center">
-                    <div class="form-group">
-                        <label for="ratingMessage">Rating:</label>
-                        <div id="rateYo"></div>
-                        <input type="hidden" name="rating" id="ratingValue">
-                    </div>
+    <!-- Rating Modal -->
+<div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ratingModalLabel">Rate Us!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="rating" name="rating" action="/save_rating" method="POST">
+                <div class="modal-body text-center">
+                    <p>Please rate your experience with us.</p>
+                    <center><div id="rateYo"></div></center>
+                    <input type="hidden" name="rating" id="ratingValue">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success"><i class="fas sm fa-paper-plane"></i> Submit Rating</button>
+                    <button type="submit" class="btn btn-success">Submit Rating</button>
                 </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="feedbackModalLabel">Feedback:</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="feedback" name="feedback" action="/save_feedback" method="POST">
+<!-- Feedback Modal -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbackModalLabel">Feedback:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="feedback" name="feedback" action="/save_feedback" method="POST">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="feedbackMessage">Feedback:</label>
-                        <input type="text" name="feedback" id="feedback">
-                    </div>
+                    <p>If you have any feedback or unanswered questions, please feel free to share them with us below:</p>
+                    <textarea id="feedback" name="feedback" rows="6" class="form-control" placeholder="Your question..." required></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success"><i class="fas sm fa-paper-plane"></i> Submit Feedback</button>
+                    <button type="submit" class="btn btn-success">Submit Feedback</button>
                 </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
+</div>
+
 
  <div class="container ">
     
@@ -209,6 +208,7 @@
         var chatboxButton = document.getElementById('chatboxButton');
         chatboxButton.addEventListener('click', function () { 
         });
+        
         var chatboxMessages = document.querySelector('.chatbox__messages');
         chatboxMessages.textContent = "{{ chatbot_response }}";
 

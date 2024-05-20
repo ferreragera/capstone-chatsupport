@@ -6,111 +6,110 @@
         <div class="row px-5">
             <div class="col-sm-6">
                 <br><br>
-                <h1 class="m-0" style="text-shadow: 4px 4px 6px #fdfdfd;"><i class="fas fa-chart-line"></i> Reports</h1>
+                <h1 class="m-0" style="text-shadow: 4px 4px 6px #fdfdfd;">
+                    <i class="fas fa-chart-line"></i> Reports
+                </h1>
             </div>
         </div>
     </div>
 </div>
-
 @endsection 
 
 @section('main-content')
 <div class="content">
     <div class="container-fluid px-5">
-        <div class="">
-            <div class="d-flex justify-content-end">
-                <div class="col-sm-1 d-block mt-3 rounded text-lg">
-                </div>
-            </div>
+        <div class="d-flex justify-content-end">
+            <div class="col-sm-1 d-block mt-3 rounded text-lg"></div>
         </div>
 
-        
         <div class="modal fade" id="queriesModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Unanswered Query</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body px-5 py-5">
-                    <form action="" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="addTag" class="form-label">Tag:</label>
-                            <input type="text" class="form-control" id="addTag" name="addTag" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="addPatterns" class="form-label">Patterns:</label>
-                            <div id="patternsContainer">
-                                <textarea class="form-control" id="addPatterns" name="addPatterns[]" rows="2" required></textarea>
+                <div class="modal-content">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title" id="staticBackdropLabel">Edit Unanswered Query</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-5 py-5">
+                        <form action="{{ route('feedback.store') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="addTag" class="form-label">Tag:</label>
+                                <input type="text" class="form-control" id="addTag" name="addTag" required>
                             </div>
-                            {{-- <button type="button" class="btn btn-primary mt-2" onclick="addPattern1()"><i class="fas fa-plus"></i></button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="removePattern1()"><i class="fas fa-trash"></i></button> --}}
-                        </div>
 
-                        <div class="mb-3">
-                            <label for="addResponses" class="form-label">Responses:</label>
-                            <div id="responsesContainer">
-                                <textarea class="form-control" id="addResponses" name="addResponses[]" rows="3" required></textarea>
+                            <div class="mb-3">
+                                <label for="addPatterns" class="form-label">Patterns:</label>
+                                <div id="patternsContainer">
+                                    <textarea class="form-control" id="addPatterns" name="addPatterns[]" rows="2" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary mt-2" onclick="addPattern1()">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger mt-2" onclick="removePattern1()">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>
-                            {{-- <button type="button" class="btn btn-primary mt-2" onclick="addResponse1()"><i class="fas fa-plus mr-1"></i></button>
-                            <button type="button" class="btn btn-danger mt-2" onclick="removeResponse1()"><i class="fas fa-trash mr-1"></i></button> --}}
-                        </div>
-                    
+
+                            <div class="mb-3">
+                                <label for="addResponses" class="form-label">Responses:</label>
+                                <div id="responsesContainer">
+                                    <textarea class="form-control" id="addResponses" name="addResponses[]" rows="3" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary mt-2" onclick="addResponse1()">
+                                    <i class="fas fa-plus mr-1"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger mt-2" onclick="removeResponse1()">
+                                    <i class="fas fa-trash mr-1"></i>
+                                </button>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button class="btn btn-success" type="submit">Add As New Feedback</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Add As New Intent</button>
-                </div>
-            </form>
-            </div>
             </div>
         </div>
-
 
         <hr>
         <div class="row">
-
             <div class="col-lg-6 d-flex justify-content-center">
                 <div class="card">
                     <div class="card-body" style="position: relative; height:25vh; width:40vw">
                         <div class="d-flex justify-content-between">
-                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">Chat Support Ratings</h3>
+                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61);">Chat Support Ratings</h3>
                         </div>
                         <canvas id="ratingsChart" width="300" height="200"></canvas>
-
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-lg-6 d-flex justify-content-center">
-                <div class="card p-2">
+                <div class="card">
                     <div class="card-body" style="position: relative; max-height: 25vh; width:40vw">
                         <div class="d-flex justify-content-between">
-                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61); ">Monthly Summary of Inquiries</h3>
+                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61);">Monthly Summary of Inquiries</h3>
                         </div>
                         <canvas id="feedbackChart" width="950" height="230"></canvas>
                     </div>
                 </div>
             </div>
-
         </div>
 
-
         <div class="row">
-
             <div class="col-lg-12 d-flex justify-content-center">
-                <div class="card ">
-                    <div class="card-body" style="position: relative; max-height: 45vh;">
-                        <table class="table hover" id="queriesTable">
+                <div class="card">
+                    <div class="card-body" style="position: relative; max-height: 45vh; width:80vw">
+                        <table class="table table-hover" id="queriesTable">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Date</th>
-                                    <th scope="col" >Queries</th>
+                                    <th scope="col">Queries</th>
                                     <th scope="col" width="100px">Action</th>
                                 </tr>
                             </thead>
@@ -121,7 +120,7 @@
                                         <th>{{ $value->created_at }}</th>
                                         <td>{{ $value->feedback }}</td>
                                         <td>
-                                            <button class="btn btn-primary text-light add-btn">
+                                            <button class="btn btn-primary text-light add-btn" data-feedback="{{ $value->feedback }}">
                                                 <i class="fas fa-plus-circle"></i>
                                             </button>
                                             <button class="btn btn-danger text-light del-btn">
@@ -135,140 +134,181 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
 </div>
-
 @endsection
 
 @section('script')
-    @parent
-    <script>
+@parent
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/chart-data')
+            .then(response => response.json())
+            .then(data => {
+                let labels = data.labels;
+                let values = data.values;
 
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('/chart-data')
-                .then(response => response.json())
-                .then(data => {
-                    let labels = data.labels;
-                    let values = data.values;
-                    console.log(labels);
-                    
-                    var ctx = document.getElementById('ratingsChart').getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Number of Ratings',
-                                data: values, 
-                                backgroundColor: [
-                                    'rgba(242, 242, 235, 1)',
-                                    'rgba(210, 220, 230, 1)',
-                                    'rgba(156, 171, 180, 1)',
-                                    'rgba(171, 100, 75, 1)',
-                                    'rgba(114, 56, 61, 1)'
-                                ],
-                                borderColor: [
-                                    'rgba(242, 242, 235, 1)',
-                                    'rgba(210, 220, 230, 1)',
-                                    'rgba(156, 171, 180, 1)',
-                                    'rgba(171, 100, 75, 1)',
-                                    'rgba(114, 56, 61, 1)'
-                                ],
-                                borderWidth: 1
-                            }]
+                var ctx = document.getElementById('ratingsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Number of Ratings',
+                            data: values,
+                            backgroundColor: [
+                                'rgba(242, 242, 235, 1)',
+                                'rgba(210, 220, 230, 1)',
+                                'rgba(156, 171, 180, 1)',
+                                'rgba(171, 100, 75, 1)',
+                                'rgba(114, 56, 61, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(242, 242, 235, 1)',
+                                'rgba(210, 220, 230, 1)',
+                                'rgba(156, 171, 180, 1)',
+                                'rgba(171, 100, 75, 1)',
+                                'rgba(114, 56, 61, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Monthly Ratings Distribution',
+                            fontSize: 20,
+                            fontColor: '#333',
+                            fontStyle: 'bold',
+                            fontFamily: 'Arial'
                         },
-                        options: {
-                            title: {
-                                display: true,
-                                text: 'Monthly Ratings Distribution',
-                                fontSize: 20,
-                                fontColor: '#333',
-                                fontStyle: 'bold',
-                                fontFamily: 'Arial'
-                            },
-                            legend: {
-                                display: false 
-                            },
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
-                            }
+                        legend: {
+                            display: false 
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
                         }
-                    });
-                });
-
-                fetch('feedback-data')
-                    .then(response => response.json())
-                    .then(data => {
-                        const labels = data.labels;
-                        const values = data.values;
-                        console.log(data.values);
-
-                        const feedbackChart = new Chart(document.getElementById('feedbackChart').getContext('2d'), {
-                            type: 'line',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'Weekly Feedback Count',
-                                    data: values,
-                                    borderColor: 'rgba(64, 27, 27, 1)',
-                                    backgroundColor: 'rgba(64, 27, 27, 1)',
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                            }
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error fetching feedback data:', error);
-                    });
-        });
-
-        $(document).ready(function() {
-            var editModal = $('#queriesModal');
-            var table = $('#queriesTable').DataTable({
-                "pageLength": 5,
-                "lengthMenu": [5, 15, 25, 50],
-                "autoWidth": false,
-                "scrollY": "200px",
-                "scrollCollapse": true
-            });
-
-            $('#queriesTable').on('click', '.add-btn', function() {
-                $('#queriesModal').modal('show');
-            });
-
-            $('#queriesTable').on('click', '.del-btn', function() {
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                        });
                     }
                 });
             });
+
+        fetch('/feedback-data')
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.labels;
+                const values = data.values;
+
+                new Chart(document.getElementById('feedbackChart').getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Weekly Feedback Count',
+                            data: values,
+                            borderColor: 'rgba(64, 27, 27, 1)',
+                            backgroundColor: 'rgba(64, 27, 27, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {}
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching feedback data:', error);
+            });
+    });
+
+    $(document).ready(function() {
+        var editModal = $('#queriesModal');
+        var table = $('#queriesTable').DataTable({
+            "pageLength": 5,
+            "lengthMenu": [5, 15, 25, 50],
+            "autoWidth": false,
+            "scrollY": "200px",
+            "scrollCollapse": true
         });
 
-    // Add Intent Modal
+        $('#queriesTable').on('click', '.add-btn', function() {
+            var feedback = $(this).data('feedback');
+            $('#addPatterns').val(feedback); // Set the feedback data into the textarea
+            $('#queriesModal').modal('show');
+        });
+
+        // $('#queriesTable').on('click', '.del-btn', function() {
+        //     Swal.fire({
+        //         title: "Are you sure?",
+        //         text: "You won't be able to revert this!",
+        //         icon: "warning",
+        //         showCancelButton: true,
+        //         confirmButtonColor: "#3085d6",
+        //         cancelButtonColor: "#d33",
+        //         confirmButtonText: "Yes, remove it!"
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             Swal.fire({
+        //                 title: "Deleted!",
+        //                 text: "Your file has been deleted.",
+        //                 icon: "success"
+        //             });
+        //         }
+        //     });
+        // });
+
+        $('#queriesTable').on('click', '.del-btn', function() {
+            var row = $(this).closest('tr');
+            var feedbackId = row.find('th:first').text(); 
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, remove it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Make an AJAX request to update the remarks to 1
+                    $.ajax({
+                        url: '/feedback/' + feedbackId, // Assuming your update route is something like /feedback/{id}
+                        type: 'PUT',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            _method: 'PUT', // Using PUT method to update
+                            remarks: '1' // Set the remarks to 1
+                        },
+                        success: function(response) {
+                            // If update is successful, remove the row from the table
+                            row.remove();
+                            // Show success message
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "The feedback has been removed.",
+                                icon: "success"
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            // Show error message if update fails
+                            Swal.fire({
+                                title: "Error!",
+                                text: "An error occurred while deleting the feedback.",
+                                icon: "error"
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
+
     function addPattern1() {
         var patternsContainer = document.getElementById('patternsContainer');
         var textarea = document.createElement('textarea');
@@ -290,16 +330,16 @@
     }
 
     function removePattern1() {
-    var patternsContainer = document.getElementById('patternsContainer');
-    var patterns = patternsContainer.getElementsByTagName('textarea');
+        var patternsContainer = document.getElementById('patternsContainer');
+        var patterns = patternsContainer.getElementsByTagName('textarea');
 
         if (patterns.length > 1) {
             patterns[patterns.length - 1].remove();
         } else {
             Swal.fire({
-            title: "?",
-            title: "At least one pattern is required.",
-            icon: "warning"
+                title: "?",
+                title: "At least one pattern is required.",
+                icon: "warning"
             });
         }
     }
@@ -312,12 +352,11 @@
             responses[responses.length - 1].remove();
         } else {
             Swal.fire({
-            title: "?",
-            title: "At least one response is required.",
-            icon: "warning"
+                title: "?",
+                title: "At least one response is required.",
+                icon: "warning"
             });
         }
     }
-
-    </script>
+</script>
 @endsection

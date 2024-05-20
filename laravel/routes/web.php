@@ -37,6 +37,8 @@ Route::post('/add-back', [ArchiveController::class, 'restoreIntent'])->name('res
 Route::post('/del-archive', [ArchiveController::class, 'deleteArchive'])->name('deleteArchive');
 Route::get('/chart-data', [FeedbackController::class, 'fetchChartData']);//rating
 Route::get('/feedback-data', [FeedbackController::class, 'fetchFeedbackData']);//feedback
+Route::post('/feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
+Route::put('/feedback/{id}', [FeedbackController::class, 'update'])->name('feedback.update');
 
 
 

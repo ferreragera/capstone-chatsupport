@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\ratings;
 use App\Models\feedback;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class FeedbackController extends Controller
 {
     public function index()
     {
-        $feedback = DB::table('feedback')->get();
+        $feedback = DB::table('feedback')->where('remarks', '0')->get();
         return view('reports', compact('feedback')); 
     }
     
@@ -67,5 +70,58 @@ class FeedbackController extends Controller
 
         return response()->json($feedbackData);
     }
+
+    public function store(Request $request)
+    {
+        if ($request->isMethod('post')) {
+
+            $tag = $request->input('addTag');
+            $patterns = $request->input('addPatterns');
+            $responses = $request->input('addResponses');
+
+            // Save the data to intents.json
+            $json_data = file_get_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json');
+            $intents = json_decode($json_data, true);
+
+            $last_entry = end($intents['intents']);
+
+            $last_id = isset($last_entry['id']) ? $last_entry['id'] : 0;
+
+            $new_id = ++$last_id;
+
+            $new_intent = [
+                "id" => $new_id,
+                "tag" => $tag,
+                "patterns" => $patterns,
+                "responses" => $responses
+            ];
+
+            $intents['intents'][] = $new_intent;
+
+            file_put_contents('C:\xampp\htdocs\capstone-chatsupport\python\intents.json', json_encode($intents, JSON_PRETTY_PRINT));
+
+            // Update the remarks column to '1' for the added feedback
+            Feedback::where('feedback', $patterns)->update(['remarks' => '1']);
+
+            // SweetAlert2 for success message
+            return response()->json(['success' => 'Intent added successfully, click the train button to refresh the data.']);
+
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        // Validate the request data if necessary
+        $request->validate([
+            'remarks' => 'required|string'
+        ]);
+
+        // Find the feedback by ID and update the remarks
+        $feedback = Feedback::findOrFail($id);
+        $feedback->remarks = $request->remarks;
+        $feedback->save();
+
+        return response()->json(['message' => 'Feedback updated successfully']);
+    }
+
 
 }
