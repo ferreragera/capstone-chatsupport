@@ -1080,36 +1080,6 @@
             ]
         },
         {
-            "id": 1,
-            "tag": "exam_date",
-            "patterns": [
-                "when is the date of the exam?"
-            ],
-            "responses": [
-                "it will be posted"
-            ]
-        },
-        {
-            "id": 2,
-            "tag": "exam_date",
-            "patterns": [
-                "how do i know if i passed the exam?"
-            ],
-            "responses": [
-                "test"
-            ]
-        },
-        {
-            "id": 3,
-            "tag": "exam_date",
-            "patterns": [
-                "when is the date of the exam?"
-            ],
-            "responses": [
-                "test"
-            ]
-        },
-        {
             "tag": "academic_support",
             "patterns": [
                 "Is there academic support available for students?",
@@ -1117,6 +1087,17 @@
             ],
             "responses": [
                 "CvSU Main Campus provides academic support services like tutoring, advising, and workshops. Please visit the Academic Support Center or contact them for assistance."
+            ]
+        },
+        {
+            "id": 1,
+            "tag": "exam_date",
+            "patterns": [
+                "when is the exam date?",
+                "examination date"
+            ],
+            "responses": [
+                "The examination date will be given when the prospective student finishes filling up their application form."
             ]
         }
     ]

@@ -6,9 +6,14 @@ import subprocess
 import mysql.connector
 import json
 import random
+from chat import get_response
 from better_profanity import profanity
-from difflib import SequenceMatcher, get_close_matches
-from datetime import datetime
+from difflib import SequenceMatcher
+from flask import send_file
+from flask import Flask, jsonify, request
+import json
+from fuzzywuzzy import process
+
 
 conn = mysql.connector.connect(
     host='127.0.0.1',
@@ -20,7 +25,7 @@ conn = mysql.connector.connect(
 cursor = conn.cursor()
 app = Flask(__name__)
 
-CORS(app, resources={r"/train": {"origins": "*"}})
+CORS(app, resources={r"/train": {"origins": "*"}}) 
 
 with open('intents.json', 'r') as file:
     intents = json.load(file)
@@ -28,11 +33,6 @@ with open('intents.json', 'r') as file:
 @app.get("/")
 def index_get():
     return render_template("index.php")
-
-def suggest_alternatives(user_input):
-    patterns = [pattern for intent in intents['intents'] for pattern in intent['patterns']]
-    suggestions = get_close_matches(user_input, patterns, n=3, cutoff=0.6)
-    return suggestions
 
 def get_response(user_input):
     best_match = None
@@ -51,13 +51,9 @@ def get_response(user_input):
 
     if best_match:
         responses = best_match['responses']
-        return [random.choice(responses)]
+        return [random.choice(responses)] 
     else:
-        suggestions = suggest_alternatives(user_input)
-        if suggestions:
-            return ["I'm sorry, I don't understand that. Did you mean:"] + suggestions
-        else:
-            return ["I'm sorry, I don't understand that."]
+        return ["I'm sorry, I don't understand that."]
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -70,12 +66,13 @@ def predict():
     response = get_response(user_input)
     return jsonify({'response': response})
 
+
 def contains_profanity(text):
     # Load profanity from better_profanity library
     profanity.load_censor_words()
     if profanity.contains_profanity(text):
         return True
-
+    
     # Load profanity from profanity_wordlist.txt file
     with open('profanity_wordlist.txt', 'r') as file:
         profanity_list = [line.strip() for line in file]
@@ -86,10 +83,18 @@ def contains_profanity(text):
 
     return False
 
+
+from flask import request
+
 @app.route('/train', methods=['POST'])
 def train_chatbot():
     subprocess.run(['python', 'train.py'])
     return 'Training started'
+
+def contains_profanity(text):
+    return profanity.contains_profanity(text)
+
+from datetime import datetime
 
 @app.route('/save_rating', methods=['POST'])
 def save_rating():
@@ -125,10 +130,36 @@ def save_feedback():
         '''
     except Exception as e:
         return f"An error occurred: {str(e)}"
-
+    
 @app.route('/test_intents', methods=['GET'])
 def test_intents():
     return jsonify(intents)
+
+@app.route('/get_intents', methods=['GET'])
+def get_intents():
+    with open('intents.json', 'r') as file:
+        intents = json.load(file)
+    return jsonify(intents)
+
+@app.route('/match_pattern', methods=['POST'])
+def match_pattern():
+    user_input = request.json['userInput']
+    with open('intents.json', 'r') as file:
+        intents = json.load(file)
+    
+    all_patterns = [(pattern, intent['tag'], intent['responses']) for intent in intents['intents'] for pattern in intent['patterns']]
+    patterns, tags, responses = zip(*all_patterns)
+    best_match, score = process.extractOne(user_input, patterns)
+    matched_tag = tags[patterns.index(best_match)]
+    matched_response = responses[patterns.index(best_match)]
+    
+    return jsonify({
+        'matchedPattern': best_match,
+        'matchedTag': matched_tag,
+        'matchedResponse': random.choice(matched_response),  # Randomly select a response
+        'score': score
+    })
+
 
 if __name__ == "__main__":
     http_server = WSGIServer(('0.0.0.0', 5000), app)
