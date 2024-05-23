@@ -92,7 +92,7 @@
                 <div class="card">
                     <div class="card-body" style="position: relative; max-height: 25vh; width:40vw">
                         <div class="d-flex justify-content-between">
-                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61);">Monthly Summary of Inquiries</h3>
+                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61);">Weekly Summary of Inquiries</h3>
                         </div>
                         <canvas id="feedbackChart" width="950" height="230"></canvas>
                     </div>

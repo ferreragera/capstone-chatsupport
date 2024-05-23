@@ -186,7 +186,7 @@ class Chatbox {
 
                 const avatar = document.createElement('img');
                 avatar.classList.add('message__avatar');
-                avatar.src = `static/images/avatar1.png`;
+                avatar.src = `static/images/chat2.png`;
                 messageElement.appendChild(avatar);
 
                 const contentElement = document.createElement('div');
@@ -218,7 +218,7 @@ class Chatbox {
            
             'Entrance Examination': {
                 message: 'Here are some frequently asked questions about the Entrance Examination:',
-                options: ['Can we reschedule our selected date for the entrance exam?', 'Do they still do interviews in the admission process?', 'Do they accept re-apply students if they fail the entrance exam?',' When is the entrance exam?','Where will the entrance exam be held?','What kind of questions will appear in the entrance exam?', 'Back']
+                options: ['Can we reschedule our selected date for the entrance exam?', 'Do they still do interviews in the admission process?', 'Do they accept re-apply students if they fail the entrance exam?','Where will the entrance exam be held?','What kind of questions will appear in the entrance exam?', 'Back']
             },
             'Transferees': {
                 message: 'Here are some frequently asked questions about Transferees:',
@@ -241,9 +241,7 @@ class Chatbox {
                 options: ['What are the requirements for re-application?', 'Is it possible to give my slot to another student who failed the entrance exam?', 'How many applicants will be accepted for admission?', 'Back']
             },
             'Visit Official Website': {
-                
                 message: 'Opening the official website in a new tab...',
-                
                 options: ['Back']
             },
             'Contact Us': {
@@ -307,7 +305,7 @@ class Chatbox {
                 message: ' Hello! The deadline for submitting the requirements is posted in the official announcement. Please check the CVSU website for more details: <br><a href="https://cvsu.edu.ph/category/announcements/" target="_blank">Official Announcement</a>. Thank you!',
                 options: ['Back']
             },
-            ' Is it possible for the students who cannot submit the requirements personally?': {
+            'Is it possible for the students who cannot submit the requirements personally?': {
                 message: ' Yes, if the applicant cannot submit the application personally, he/she can have his/her parents to submit his/her application. If it will be submitted by a friend or a classmate, the applicant must provide an authorization letter.',
                 options: ['Back']
             },
@@ -319,7 +317,7 @@ class Chatbox {
                 message: '  Once there is a control number in the application form, information details are locked and cannot be edited.',
                 options: ['Back']
             },
-            ' Is it possible for the submitted original documents to be returned?': {
+            'Is it possible for the submitted original documents to be returned?': {
                 message: ' All requirements submitted at Admission Process cannot be returned to the applicant.',
                 options: ['Back']
             },
@@ -410,11 +408,11 @@ class Chatbox {
 
             //Tuition 
             'Does the university have a tuition fee?': {
-                message: 'Yes, Cavite State University (CvSU) typically charges tuition fees for its academic programs. However, as mentioned in the letter, students enrolled in courses leading to a bachelor’s degree are exempted from paying tuition and other school fees due to the full implementation of Republic Act No. 10931, the "Universal Access to Quality Tertiary Education Act of 2017."About Tuition Fee - all queries regarding scholarship concerns can be addressed thru registrarmain@cvsu.edu.ph',
+                message: 'Yes, Cavite State University (CvSU) typically charges tuition fees for its academic programs. However, as mentioned in the letter, students enrolled in courses leading to a bachelor degree are exempted from paying tuition and other school fees due to the full implementation of Republic Act No. 10931, the "Universal Access to Quality Tertiary Education Act of 2017."About Tuition Fee - all queries regarding scholarship concerns can be addressed thru registrarmain@cvsu.edu.ph',
                 options: ['Back']
             },
             'Is everyone qualified for Free Tuition Law?': {
-                message: "All (eligible) Filipino students enrolled in courses leading to a bachelor's degree in state universities and colleges (SUCs), local universities and colleges (LUCs) and technical-vocational schools will be exempted from paying tuition and other school fees",
+                message: 'All (eligible) Filipino students enrolled in courses leading to a bachelor degree in state universities and colleges (SUCs), local universities and colleges (LUCs) and technical-vocational schools will be exempted from paying tuition and other school fees',
                 options: ['Back']
             },
 
@@ -523,7 +521,7 @@ class Chatbox {
     
         const avatar = document.createElement('img');
         avatar.classList.add('message__avatar');
-        avatar.src = `static/images/avatar1.png`;
+        avatar.src = `static/images/chat2.png`;
         botMessageDiv.appendChild(avatar);
     
         const contentElement = document.createElement('div');
@@ -540,6 +538,9 @@ class Chatbox {
         // Add "Did that response answer your question?" prompt
         const feedbackDiv = document.createElement('div');
         feedbackDiv.classList.add('messages__item', 'messages__item--visitor');
+        
+
+        
         feedbackDiv.innerHTML = `
         <style>
             #no-btn:hover {
@@ -572,7 +573,7 @@ class Chatbox {
                 return response.json();
             })
             .then(data => {
-                resolve([data.matchedPattern]);
+                resolve(data.map(match => match.pattern)); // Resolve with an array of matched patterns
             })
             .catch(error => {
                 console.error('Error matching pattern:', error);
@@ -580,142 +581,106 @@ class Chatbox {
             });
         });
     }
+
+    handleFeedback(isHelpful) {
+        const chatboxMessages = document.querySelector('.chatbox__messages');
+        const feedbackResponseDiv = document.createElement('div');
+        feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
+
+        
     
-//     handleFeedback(isHelpful) {
-//     const chatboxMessages = document.querySelector('.chatbox__messages');
-//     const feedbackResponseDiv = document.createElement('div');
-//     feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
-
-//     if (isHelpful) {
-//         feedbackResponseDiv.innerHTML = "Glad to help!";
-//     } else {
-//         feedbackResponseDiv.innerHTML = "Sorry about that. Could you please rephrase your question or choose from the suggestions below?";
-
-//         // Retrieve previous user input
-//         const previousUserInput = this.messages[0].message;
-//         console.log(previousUserInput);
-//         // Call matchUserInputWithPatterns asynchronously
-//         this.matchUserInputWithPatterns(previousUserInput)
-//             .then(matchedSuggestions => {
-//                 console.log(matchedSuggestions);
-//                 if (matchedSuggestions.length > 0) {
-//                     feedbackResponseDiv.innerHTML += "<br><br><strong>Suggestions:</strong>";
-//                     matchedSuggestions.forEach(suggestion => {
-//                         feedbackResponseDiv.innerHTML += `<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;  word-break: break-all;">${suggestion}</button>`;
-//                     });
-//                 } else {
-//                     feedbackResponseDiv.innerHTML += "<br>No suggestions available.";
-//                 }
-
-//                 // Append the feedback response to the chatbox
-//                 chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
-//                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-//             })
-//             .catch(error => {
-//                 console.error('Error fetching suggestions:', error);
-//                 feedbackResponseDiv.innerHTML += "<br>Error fetching suggestions.";
-
-//                 // Append the feedback response to the chatbox even if there's an error
-//                 chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
-//                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-//             });
-//     }
-//     chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
-//     chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-// }
-
-handleFeedback(isHelpful) {
-    const chatboxMessages = document.querySelector('.chatbox__messages');
-    const feedbackResponseDiv = document.createElement('div');
-    feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
-
-    if (isHelpful) {
-        feedbackResponseDiv.innerHTML = "Glad to help!";
-    } else {
-        feedbackResponseDiv.innerHTML = "Sorry about that. Could you please rephrase your question or choose from the suggestions below?";
-
-        // Retrieve previous user input
-        const previousUserInput = this.messages[0].message;
-        console.log(previousUserInput);
-        // Call matchUserInputWithPatterns asynchronously
-        this.matchUserInputWithPatterns(previousUserInput)
-            .then(matchedSuggestions => {
-                console.log(matchedSuggestions);
-                if (matchedSuggestions.length > 0) {
-                    feedbackResponseDiv.innerHTML += "<br><br><strong>Suggestions:</strong>";
-                    matchedSuggestions.forEach(suggestion => {
-                        const suggestionButton = document.createElement('button');
-                        suggestionButton.classList.add('btn', 'btn-sm', 'border-success', 'mt-2');
-                        suggestionButton.style.borderRadius = '20px';
-                        suggestionButton.style.wordBreak = 'break-all';
-                        suggestionButton.textContent = suggestion;
-                        suggestionButton.addEventListener('click', () => {
-                            this.displayPatternResponse(suggestion);
+        if (isHelpful) {
+            feedbackResponseDiv.innerHTML = "Glad to help!";
+        } else {
+            feedbackResponseDiv.innerHTML = "Sorry about that. Could you please rephrase your question or choose from the suggestions below?";
+    
+            // Retrieve previous user input
+            const previousUserInput = this.messages[0].message;
+            console.log(previousUserInput);
+            // Call matchUserInputWithPatterns asynchronously
+            this.matchUserInputWithPatterns(previousUserInput)
+                .then(matchedSuggestions => {
+                    console.log(matchedSuggestions);
+                    if (matchedSuggestions.length > 0) {
+                        feedbackResponseDiv.innerHTML += "<br><br><strong>Suggestions:</strong>";
+                        matchedSuggestions.forEach(suggestion => {
+                            const suggestionButton = document.createElement('button');
+                            suggestionButton.classList.add('btn', 'btn-sm', 'border-success', 'mt-2');
+                            suggestionButton.style.borderRadius = '20px';
+                            suggestionButton.style.wordBreak = 'break-all';
+                            suggestionButton.textContent = suggestion;
+                            suggestionButton.addEventListener('click', () => {
+                                this.displayPatternResponse(suggestion);
+                                suggestionButton.disabled = true; // Disable the button after click
+                            });
+                            feedbackResponseDiv.appendChild(suggestionButton);
                         });
-                        feedbackResponseDiv.appendChild(suggestionButton);
-                    });
-                } else {
-                    feedbackResponseDiv.innerHTML += "<br>No suggestions available.";
-                }
-
-                // Append the feedback response to the chatbox
-                chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
-                chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-            })
-            .catch(error => {
-                console.error('Error fetching suggestions:', error);
-                feedbackResponseDiv.innerHTML += "<br>Error fetching suggestions.";
-
-                // Append the feedback response to the chatbox even if there's an error
-                chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
-                chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-            });
+                    } else {
+                        feedbackResponseDiv.innerHTML += "<br>No suggestions available.";
+                    }
+    
+                    // Append the feedback response to the chatbox
+                    chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+                    chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+                })
+                .catch(error => {
+                    console.error('Error fetching suggestions:', error);
+                    feedbackResponseDiv.innerHTML += "<br>Error fetching suggestions.";
+    
+                    // Append the feedback response to the chatbox even if there's an error
+                    chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+                    chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+                });
+        }
+        chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
     }
-    chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
-    chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-}
-
-displayPatternResponse(pattern) {
-
-    fetch('http://10.10.100.147:5000/predict', { 
+    
+    displayPatternResponse(pattern) {
+        fetch('http://10.10.100.147:5000/predict', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ message: pattern })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to fetch pattern response');
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Display the response in the chatbox
-        const chatboxMessages = document.querySelector('.chatbox__messages');
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch pattern response');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Display the response in the chatbox
+            const chatboxMessages = document.querySelector('.chatbox__messages');
+    
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.classList.add('messages__item', 'messages__item--visitor');
+            
+            const avatar = document.createElement('img');
+            avatar.classList.add('message__avatar');
+            avatar.src = `static/images/chat2.png`;
+            botMessageDiv.appendChild(avatar);
+    
+            const contentElement = document.createElement('div');
+            contentElement.innerHTML = data.response.join('<br>'); // Join responses with '<br>' for multiple lines
+            botMessageDiv.appendChild(contentElement);
+    
+            const timestamp = document.createElement('div');
+            timestamp.classList.add('message__timestamp');
+            timestamp.textContent = new Date().toLocaleTimeString();
+            botMessageDiv.appendChild(timestamp);
+    
+            chatboxMessages.insertBefore(botMessageDiv, chatboxMessages.firstChild);
+            chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+        })
+        .catch(error => {
+            console.error('Error displaying pattern response:', error);
+        });
+    }
+    
 
-        const botMessageDiv = document.createElement('div');
-        botMessageDiv.classList.add('messages__item', 'messages__item--visitor');
-
-        const contentElement = document.createElement('div');
-        contentElement.innerHTML = data.response;
-        botMessageDiv.appendChild(contentElement);
-
-        const timestamp = document.createElement('div');
-        timestamp.classList.add('message__timestamp');
-        timestamp.textContent = new Date().toLocaleTimeString();
-        botMessageDiv.appendChild(timestamp);
-
-        chatboxMessages.insertBefore(botMessageDiv, chatboxMessages.firstChild);
-        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-    })
-    .catch(error => {
-        console.error('Error displaying pattern response:', error);
-    });
 }
-
-}
-
 
 const chatbox = new Chatbox();
 chatbox.display();

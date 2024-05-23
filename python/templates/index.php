@@ -144,7 +144,7 @@
             </div>
             <div class="chatbox__under">
                 <div class="chatbox__under--description mt-1 ml-4">
-                    <p>Remember: This chat support only understands English.</p>
+                    <p>Chat support only understands English.</p><br>
                 </div>
             </div>
             <div class="chatbox__messages">

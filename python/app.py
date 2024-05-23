@@ -6,7 +6,6 @@ import subprocess
 import mysql.connector
 import json
 import random
-from chat import get_response
 from better_profanity import profanity
 from difflib import SequenceMatcher
 from flask import send_file
@@ -141,6 +140,25 @@ def get_intents():
         intents = json.load(file)
     return jsonify(intents)
 
+# @app.route('/match_pattern', methods=['POST'])
+# def match_pattern():
+#     user_input = request.json['userInput']
+#     with open('intents.json', 'r') as file:
+#         intents = json.load(file)
+    
+#     all_patterns = [(pattern, intent['tag'], intent['responses']) for intent in intents['intents'] for pattern in intent['patterns']]
+#     patterns, tags, responses = zip(*all_patterns)
+#     best_match, score = process.extractOne(user_input, patterns)
+#     matched_tag = tags[patterns.index(best_match)]
+#     matched_response = responses[patterns.index(best_match)]
+    
+#     return jsonify({
+#         'matchedPattern': best_match,
+#         'matchedTag': matched_tag,
+#         'matchedResponse': random.choice(matched_response),  # Randomly select a response
+#         'score': score
+#     })
+
 @app.route('/match_pattern', methods=['POST'])
 def match_pattern():
     user_input = request.json['userInput']
@@ -149,16 +167,25 @@ def match_pattern():
     
     all_patterns = [(pattern, intent['tag'], intent['responses']) for intent in intents['intents'] for pattern in intent['patterns']]
     patterns, tags, responses = zip(*all_patterns)
-    best_match, score = process.extractOne(user_input, patterns)
-    matched_tag = tags[patterns.index(best_match)]
-    matched_response = responses[patterns.index(best_match)]
     
-    return jsonify({
-        'matchedPattern': best_match,
-        'matchedTag': matched_tag,
-        'matchedResponse': random.choice(matched_response),  # Randomly select a response
-        'score': score
-    })
+    # Use fuzzy matching to find the best matches
+    matches = process.extract(user_input, patterns, limit=5)
+    
+    matched_patterns = []
+    for match in matches:
+        best_match = match[0]
+        score = match[1]
+        matched_tag = tags[patterns.index(best_match)]
+        matched_response = random.choice(responses[patterns.index(best_match)])
+        matched_patterns.append({
+            'pattern': best_match,
+            'tag': matched_tag,
+            'response': matched_response,
+            'score': score
+        })
+    
+    return jsonify(matched_patterns)
+
 
 
 if __name__ == "__main__":
