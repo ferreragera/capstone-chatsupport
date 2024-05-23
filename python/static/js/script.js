@@ -70,7 +70,8 @@ class Chatbox {
             // Add timestamp message indicator
             const timestamp = document.createElement('div');
             timestamp.classList.add('message__timestamp');
-            timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString();
+            // timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             messageElement.appendChild(timestamp);
 
             // Apply word-break property to message content
@@ -195,7 +196,7 @@ class Chatbox {
 
                 const timestamp = document.createElement('div');
                 timestamp.classList.add('message__timestamp');
-                timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString();
+                timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                 messageElement.appendChild(timestamp);
 
                 container.appendChild(messageElement);
@@ -241,7 +242,9 @@ class Chatbox {
                 options: ['What are the requirements for re-application?', 'Is it possible to give my slot to another student who failed the entrance exam?', 'How many applicants will be accepted for admission?', 'Back']
             },
             'Visit Official Website': {
+                
                 message: 'Opening the official website in a new tab...',
+                
                 options: ['Back']
             },
             'Contact Us': {
@@ -317,7 +320,7 @@ class Chatbox {
                 message: '  Once there is a control number in the application form, information details are locked and cannot be edited.',
                 options: ['Back']
             },
-            'Is it possible for the submitted original documents to be returned?': {
+            ' Is it possible for the submitted original documents to be returned?': {
                 message: ' All requirements submitted at Admission Process cannot be returned to the applicant.',
                 options: ['Back']
             },
@@ -408,11 +411,11 @@ class Chatbox {
 
             //Tuition 
             'Does the university have a tuition fee?': {
-                message: 'Yes, Cavite State University (CvSU) typically charges tuition fees for its academic programs. However, as mentioned in the letter, students enrolled in courses leading to a bachelor degree are exempted from paying tuition and other school fees due to the full implementation of Republic Act No. 10931, the "Universal Access to Quality Tertiary Education Act of 2017."About Tuition Fee - all queries regarding scholarship concerns can be addressed thru registrarmain@cvsu.edu.ph',
+                message: 'Yes, Cavite State University (CvSU) typically charges tuition fees for its academic programs. However, as mentioned in the letter, students enrolled in courses leading to a bachelor’s degree are exempted from paying tuition and other school fees due to the full implementation of Republic Act No. 10931, the "Universal Access to Quality Tertiary Education Act of 2017."About Tuition Fee - all queries regarding scholarship concerns can be addressed thru registrarmain@cvsu.edu.ph',
                 options: ['Back']
             },
             'Is everyone qualified for Free Tuition Law?': {
-                message: 'All (eligible) Filipino students enrolled in courses leading to a bachelor degree in state universities and colleges (SUCs), local universities and colleges (LUCs) and technical-vocational schools will be exempted from paying tuition and other school fees',
+                message: "All (eligible) Filipino students enrolled in courses leading to a bachelor's degree in state universities and colleges (SUCs), local universities and colleges (LUCs) and technical-vocational schools will be exempted from paying tuition and other school fees",
                 options: ['Back']
             },
 
@@ -445,7 +448,7 @@ class Chatbox {
         if (data.options.length > 0) {
             response += '<div class="d-flex flex-column text-left">';
             data.options.forEach(option => {
-                response += `<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;  word-break: break-all;" onclick="chatbox.handlePrompt('${option === 'Back' ? 'FAQs' : option}')">${option}</button>`;
+                response += `<button class="btn btn-sm border-success mt-2" style="border-radius: 20px;  word-break: normal;" onclick="chatbox.handlePrompt('${option === 'Back' ? 'FAQs' : option}')">${option}</button>`;
             });
             response += '</div>';
         }
@@ -530,7 +533,7 @@ class Chatbox {
     
         const timestamp = document.createElement('div');
         timestamp.classList.add('message__timestamp');
-        timestamp.textContent = new Date().toLocaleTimeString();
+        timestamp.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         botMessageDiv.appendChild(timestamp);
     
         chatboxMessages.insertBefore(botMessageDiv, chatboxMessages.firstChild);
@@ -607,7 +610,7 @@ class Chatbox {
                             const suggestionButton = document.createElement('button');
                             suggestionButton.classList.add('btn', 'btn-sm', 'border-success', 'mt-2');
                             suggestionButton.style.borderRadius = '20px';
-                            suggestionButton.style.wordBreak = 'break-all';
+                            suggestionButton.style.wordBreak = 'normal';
                             suggestionButton.textContent = suggestion;
                             suggestionButton.addEventListener('click', () => {
                                 this.displayPatternResponse(suggestion);
@@ -668,7 +671,7 @@ class Chatbox {
     
             const timestamp = document.createElement('div');
             timestamp.classList.add('message__timestamp');
-            timestamp.textContent = new Date().toLocaleTimeString();
+            timestamp.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             botMessageDiv.appendChild(timestamp);
     
             chatboxMessages.insertBefore(botMessageDiv, chatboxMessages.firstChild);

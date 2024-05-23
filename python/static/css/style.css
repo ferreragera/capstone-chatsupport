@@ -190,8 +190,6 @@ button i.fas:hover {
   border-radius: 50%;
 }
 
-
-
 .chatbox__heading--header {
   font-size: 1rem;
   justify-content: center;
@@ -208,21 +206,20 @@ button i.fas:hover {
 /* Messages */
 .chatbox__messages {
   font-weight: 500;
-  padding: 0 20px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 /*Kulay ng chat message*/
 .messages__item {
   margin-top: 10px;
   background: #f0f0f0;
   padding: 8px 16px;
-  
   transition: background-color 0.3s ease;
 }
 
 .msg_content {
   max-width: 70%;
 }
-
 
 .messages__item--visitor {
   border-top-left-radius: 20px;
