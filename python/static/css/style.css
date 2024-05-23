@@ -164,8 +164,12 @@ button i.fas:hover {
   background: var(--primaryGradient);
   display: flex;
   flex-direction: row;
-  padding: 10px;
+  padding: 20px;
   box-shadow: var(--primaryBoxShadow);
+}
+
+.chatbox__content--header p {
+  font-size: 12px;
 }
  
 .chatbox__under {
@@ -173,22 +177,9 @@ button i.fas:hover {
   color: #dddbdb;
   display: flex;
   justify-content: center;
+  font-size: 13px;
   box-shadow: var(--primaryBoxShadow);
 }
-
-/* .chatbox__under::after {
-  content: "";
-  position: relative;
-  left: -3rem;
-  top: calc( 3rem - 4rem / 2);
-  float: left;
-  display: block;
-  height: 4rem;
-  width: 100vw;
-  background-image: url("/image/wave-haikei.png");
-  background: hsla(0, 0%, 100%, 0.5);
-  background-size: 100% 100%;
-} */
 
 .chatbox__image--header {
   float: left;
@@ -216,13 +207,14 @@ button i.fas:hover {
 
 /* Messages */
 .chatbox__messages {
+  font-weight: 500;
   padding: 0 20px;
 }
 /*Kulay ng chat message*/
 .messages__item {
   margin-top: 10px;
   background: #f0f0f0;
-  padding: 8px 12px;
+  padding: 8px 16px;
   
   transition: background-color 0.3s ease;
 }
@@ -607,8 +599,7 @@ button i.fas:hover {
 .messages__item--visitor {
   background-color: #e9e9e9;
   border-radius: 20px;
-  padding: 10px;
-  /* max-width: 60%; */
+  padding: 15px;
   word-wrap: break-word;
 }
 
@@ -664,7 +655,11 @@ button i.fas:hover {
 /* Hover effect */
 .btn:hover {
   background-color: #04AA6D;
+  /* text-shadow: 3px 1px 1px rgba(0, 0, 0, 1),
+             -2px -1px 3px rgba(255, 255, 255, 0.14);
+  background: rgb(50,157,75); */
+  /* background: linear-gradient(90deg, rgba(50,157,75,1) 0%, rgba(168,251,171,1) 30%, rgba(158,240,94,1) 79%); */
   color: white;
-  word-break: break-all; 
+  /* word-break: break-all;  */
 }
 

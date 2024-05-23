@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark- elevation-4">
     <!-- Brand Logo -->
     <div class="brand-link d-flex justify-content-between align-items-center">
-      <a class="brand-link" href="index3.html">
+      <a class="brand-link" href="#">
         <img src="{{ asset('images/CVSU-logo-trans.png')}}" alt="CVSU Logo" class="brand-image img-circle elevation-3">
         <span class="brand-text font-weight-light">Admin</span>
       </a>
@@ -31,12 +31,12 @@
                   <p>Datasets</p> 
               </a>
           </li>
-          {{-- <li class="nav-item">
+          <li class="nav-item">
             <a href="{{ route('train') }}" class="nav-link">
-                <i class="fas fa-stream"></i>
+              <i class="fas fa-cogs"></i>
                 <p>Train</p>
             </a>
-        </li> --}}
+        </li>
           <li class="nav-item">
               <a href="{{ route('reports') }}" class="nav-link">
                   <i class="fas fa-chart-line"></i>
