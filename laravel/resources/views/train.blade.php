@@ -35,7 +35,7 @@
                 <div class="card">
                     <div class="card-body" style="max-height: 80vh;">
                         <div class="div">
-                            <h3 class="card-title">Train Chat Support</h3>
+                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61);">Train Chat Support</h3>
                         </div>
                         <div id="training-console" class="" style="height: 60vh;">
                             <br>
@@ -61,7 +61,7 @@
         }
 
         function fetchUpdates() {
-            fetch('/train', {
+            fetch('', {
                 method: 'POST'
             }).then(function (response) {
                 if (response.ok) {

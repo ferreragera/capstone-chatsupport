@@ -137,8 +137,8 @@
                     <img src="static/images/CvSU-logo-trans.png" alt="image" width="60" height="50">
                 </div>
                 <div class="chatbox__content--header">
-                    <h5 class="chatbox__heading--header text-light">Chat support</h5>
-                    <p class="chatbox__description--header">CvSU Admission Response System</p>
+                    <p id="chat-title" class="chatbox__heading--header text-light mb-0">Chat support</p>
+                    <p id="chat-desc" class="chatbox__description--header">CvSU Admission Response System</p>
                 </div>
                 <br><br><br>
             </div>

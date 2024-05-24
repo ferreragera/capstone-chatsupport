@@ -70,14 +70,13 @@ class Chatbox {
             // Add timestamp message indicator
             const timestamp = document.createElement('div');
             timestamp.classList.add('message__timestamp');
-            // timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             timestamp.textContent = new Date(msg.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             messageElement.appendChild(timestamp);
 
             // Apply word-break property to message content
             const messageContent = messageElement.querySelector('.msg_content');
             if (messageContent) {
-                messageContent.style.wordBreak = 'break-word';
+                messageContent.style.wordBreak = 'normal';
             }
         }
 
@@ -127,25 +126,7 @@ class Chatbox {
         }
     }
 
-    startStreamingEffectInternal(streamingText, cursor, message) {
-        let index = 0;
-        const speed = 30;
-        const text = message.message;
 
-        const typeWriter = () => {
-            if (index < text.length) {
-                cursor.style.visibility = 'visible';
-                streamingText.textContent = text.slice(0, index + 1);
-                index++;
-                setTimeout(typeWriter, speed);
-            } else {
-                cursor.style.visibility = 'hidden';
-                message.fullyDisplayed = true;
-            }
-        };
-
-        typeWriter();
-    }
 
     addGreetingMessage(chatbox) {
         const greetingMessage = {
@@ -666,7 +647,7 @@ class Chatbox {
             botMessageDiv.appendChild(avatar);
     
             const contentElement = document.createElement('div');
-            contentElement.innerHTML = data.response.join('<br>'); // Join responses with '<br>' for multiple lines
+            contentElement.innerHTML = data.response.join('<br>');
             botMessageDiv.appendChild(contentElement);
     
             const timestamp = document.createElement('div');

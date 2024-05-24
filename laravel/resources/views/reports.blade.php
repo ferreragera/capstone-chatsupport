@@ -101,7 +101,7 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-12 d-flex justify-content-center">
+            <div class="col-lg d-flex justify-content-center">
                 <div class="card">
                     <div class="card-body" style="position: relative; max-height: 45vh; width:80vw">
                         <table class="table table-hover" id="queriesTable">
@@ -242,26 +242,6 @@
             $('#queriesModal').modal('show');
         });
 
-        // $('#queriesTable').on('click', '.del-btn', function() {
-        //     Swal.fire({
-        //         title: "Are you sure?",
-        //         text: "You won't be able to revert this!",
-        //         icon: "warning",
-        //         showCancelButton: true,
-        //         confirmButtonColor: "#3085d6",
-        //         cancelButtonColor: "#d33",
-        //         confirmButtonText: "Yes, remove it!"
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             Swal.fire({
-        //                 title: "Deleted!",
-        //                 text: "Your file has been deleted.",
-        //                 icon: "success"
-        //             });
-        //         }
-        //     });
-        // });
-
         $('#queriesTable').on('click', '.del-btn', function() {
             var row = $(this).closest('tr');
             var feedbackId = row.find('th:first').text(); 
@@ -276,19 +256,17 @@
                 confirmButtonText: "Yes, remove it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Make an AJAX request to update the remarks to 1
                     $.ajax({
-                        url: '/feedback/' + feedbackId, // Assuming your update route is something like /feedback/{id}
+                        url: '/feedback/' + feedbackId, 
                         type: 'PUT',
                         data: {
                             _token: '{{ csrf_token() }}',
-                            _method: 'PUT', // Using PUT method to update
-                            remarks: '1' // Set the remarks to 1
+                            _method: 'PUT',
+                            remarks: '1' 
                         },
                         success: function(response) {
-                            // If update is successful, remove the row from the table
                             row.remove();
-                            // Show success message
+
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "The feedback has been removed.",
@@ -296,7 +274,6 @@
                             });
                         },
                         error: function(xhr, status, error) {
-                            // Show error message if update fails
                             Swal.fire({
                                 title: "Error!",
                                 text: "An error occurred while deleting the feedback.",

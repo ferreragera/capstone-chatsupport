@@ -72,20 +72,6 @@
             ]
         },
         {
-            "id": 5,
-            "tag": "assistance",
-            "patterns": [
-                "How can you assist me?",
-                "Can you help me?",
-                "What assistance can you provide?",
-                "I need assistance.",
-                "Help me please."
-            ],
-            "responses": [
-                "I can assist you with various aspects of CVSU online admissions. You can ask me about the admissions process, requirements, application deadline, or any other questions related to CVSU admissions."
-            ]
-        },
-        {
             "id": 6,
             "tag": "thanks",
             "patterns": [
