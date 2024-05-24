@@ -20,7 +20,7 @@
         <div class="">
             <div class="d-flex justify-content-end">
                 <div class="col-sm-1 d-block mt-3 rounded text-lg">
-                    <button class="btn btn-sm bg-gradient-success mr-1" data-toggle="modal" data-target="#createIntent"><i class="fas fa-plus mr-1"></i>Create Intent</button>
+                    <button class="btn btn-sm bg-gradient-success mr-1" data-toggle="modal" data-target="#createIntent"><i class="fas fa-plus mr-2"></i>Create Intent</button>
                 </div>
             </div>
         </div>
