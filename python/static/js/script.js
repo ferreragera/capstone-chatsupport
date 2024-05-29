@@ -126,8 +126,6 @@ class Chatbox {
         }
     }
 
-
-
     addGreetingMessage(chatbox) {
         const greetingMessage = {
             name: 'CVSU Admission System',
@@ -560,18 +558,84 @@ class Chatbox {
         });
     }
 
+    // handleFeedback(isHelpful) {
+    //     const chatboxMessages = document.querySelector('.chatbox__messages');
+    //     const feedbackResponseDiv = document.createElement('div');
+    //     feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
+
+        
+    
+    //     if (isHelpful) {
+    //         feedbackResponseDiv.innerHTML = "Glad to help!";
+    //     } else {
+    //         feedbackResponseDiv.innerHTML = "Sorry about that. Could you please rephrase your question or choose from the suggestions below?";
+    
+    //         // Retrieve previous user input
+    //         const previousUserInput = this.messages[0].message;
+    //         console.log(previousUserInput);
+    //         // Call matchUserInputWithPatterns asynchronously
+    //         this.matchUserInputWithPatterns(previousUserInput)
+    //             .then(matchedSuggestions => {
+    //                 console.log(matchedSuggestions);
+    //                 if (matchedSuggestions.length > 0) {
+    //                     feedbackResponseDiv.innerHTML += "<br><br><strong>Suggestions:</strong>";
+    //                     matchedSuggestions.forEach(suggestion => {
+    //                         const suggestionButton = document.createElement('button');
+    //                         suggestionButton.classList.add('btn', 'btn-sm', 'border-success', 'mt-2');
+    //                         suggestionButton.style.borderRadius = '20px';
+    //                         suggestionButton.style.wordBreak = 'normal';
+    //                         suggestionButton.textContent = suggestion;
+    //                         suggestionButton.addEventListener('click', () => {
+    //                             this.displayPatternResponse(suggestion);
+    //                             suggestionButton.disabled = true; // Disable the button after click
+    //                         });
+    //                         feedbackResponseDiv.appendChild(suggestionButton);
+    //                     });
+    //                 } else {
+    //                     feedbackResponseDiv.innerHTML += "<br>No suggestions available.";
+    //                 }
+    
+    //                 // Append the feedback response to the chatbox
+    //                 chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+    //                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+    //                 // Add additional prompt
+    //     const additionalPromptDiv = document.createElement('div');
+    //     additionalPromptDiv.classList.add('messages__item', 'messages__item--visitor');
+    //     additionalPromptDiv.innerHTML = `
+    //         If your question is unanswered properly, you can submit it in the feedback box below.
+    //     `;
+    //     chatboxMessages.insertBefore(additionalPromptDiv, chatboxMessages.firstChild);
+    
+    //     chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error fetching suggestions:', error);
+    //                 feedbackResponseDiv.innerHTML += "<br>Error fetching suggestions.";
+    
+    //                 // Append the feedback response to the chatbox even if there's an error
+    //                 chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+    //                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+    //             });
+
+            
+    //     }
+    //     chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+    //     chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+    // }
+
     handleFeedback(isHelpful) {
         const chatboxMessages = document.querySelector('.chatbox__messages');
         const feedbackResponseDiv = document.createElement('div');
         feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
 
-        
-    
         if (isHelpful) {
             feedbackResponseDiv.innerHTML = "Glad to help!";
+            chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+            chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
         } else {
             feedbackResponseDiv.innerHTML = "Sorry about that. Could you please rephrase your question or choose from the suggestions below?";
-    
+
             // Retrieve previous user input
             const previousUserInput = this.messages[0].message;
             console.log(previousUserInput);
@@ -596,33 +660,48 @@ class Chatbox {
                     } else {
                         feedbackResponseDiv.innerHTML += "<br>No suggestions available.";
                     }
-    
+
                     // Append the feedback response to the chatbox
                     chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
                     chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
 
                     // Add additional prompt
-        const additionalPromptDiv = document.createElement('div');
-        additionalPromptDiv.classList.add('messages__item', 'messages__item--visitor');
-        additionalPromptDiv.innerHTML = `
-            If your question is unanswered properly, you can submit it in the feedback box below.
-        `;
-        chatboxMessages.insertBefore(additionalPromptDiv, chatboxMessages.firstChild);
-    
-        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+                    const additionalPromptDiv = document.createElement('div');
+                    additionalPromptDiv.classList.add('messages__item', 'messages__item--visitor');
+                    additionalPromptDiv.innerHTML = `
+                        If your question is unanswered properly, you can submit it in the feedback box below.
+                    `;
+                    chatboxMessages.insertBefore(additionalPromptDiv, chatboxMessages.firstChild);
+
+                    chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+                    // Loop until the user responds with "Yes"
+                    
                 })
                 .catch(error => {
                     console.error('Error fetching suggestions:', error);
                     feedbackResponseDiv.innerHTML += "<br>Error fetching suggestions.";
-    
+
                     // Append the feedback response to the chatbox even if there's an error
                     chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
                     chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-                });
 
-            
+                    // Loop until the user responds with "Yes"
+                    
+                });
         }
-        chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+    }
+
+    askFeedbackAgain() {
+        const chatboxMessages = document.querySelector('.chatbox__messages');
+        const feedbackPromptDiv = document.createElement('div');
+        feedbackPromptDiv.classList.add('messages__item', 'messages__item--visitor');
+        feedbackPromptDiv.innerHTML = `
+            Did that response answer your question?
+            <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handleFeedback(true)">Yes</button>
+            <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handleFeedback(false)">No</button>
+        `;
+        chatboxMessages.insertBefore(feedbackPromptDiv, chatboxMessages.firstChild);
         chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
     }
     
@@ -663,6 +742,7 @@ class Chatbox {
     
             chatboxMessages.insertBefore(botMessageDiv, chatboxMessages.firstChild);
             chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+            this.askFeedbackAgain();
         })
         .catch(error => {
             console.error('Error displaying pattern response:', error);

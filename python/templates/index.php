@@ -154,7 +154,6 @@
                 </div>
             </div> -->
 
-
             <div class="chatbox__messages">
                 <div class="msg_content"></div>
             </div>
