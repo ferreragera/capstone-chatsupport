@@ -137,6 +137,7 @@ class Chatbox {
                     word-wrap: normal; /* Disable normal word wrapping */
                     overflow-wrap: break-word; /* Allow breaking long words */
                     white-space: normal;
+                    font-size: 16px;
                 }
                 .btn:hover {
                     background-color: #04AA6D;
@@ -204,11 +205,11 @@ class Chatbox {
             },
             'Transferees': {
                 message: 'Here are some frequently asked questions about Transferees:',
-                options: ['Do they accept transferees in the second semester?', 'What is the process of transferring to CvSU?', 'What are the needed requirements when transferring to other schools?', 'How can I apply or transfer to satellite campuses if I pass in the main campus?', 'Back']
+                options: ['Do they accept transferees in the second semester?', 'What are the needed requirements when transferring to other schools?', 'How can I apply or transfer to satellite campuses if I pass in the main campus?', 'Back']
             },
             'Scholarship': {
                 message: 'Here are some frequently asked questions about Scholarship:',
-                options: ['What are the available scholarships in CvSU?','Is there a maintaining grade for scholarship?','how do I apply to scholarship programs?','What are the needed requirements for obtaining a scholarship?','Is there a student assistance scholarship?','Where do I get the certificate of enrolment for scholarship?','Back']
+                options: ['What are the available scholarships in CvSU?','Is there a maintaining grade for scholarship?','How do I apply to scholarship programs?','What are the needed requirements for obtaining a scholarship?','Is there a student assistance scholarship?','Where do I get the certificate of enrolment for scholarship?','Back']
             },
             'Shifting': {
                 message: 'Here are some frequently asked questions about Shifting:',
@@ -216,7 +217,7 @@ class Chatbox {
             },
             'Tuition Fee': {
                 message: 'Here are some frequently asked questions about Tuition Fee:<br>If you have specific questions, feel free to ask.',
-                options: ['Does the university have a tuition fee?',' Is everyone qualified for Free Tuition Law?','Back']
+                options: ['Does the university have a tuition fee?','Is everyone qualified for Free Tuition Law?','Back']
             },
             'Re-application': {
                 message: 'Here are some frequently asked questions about Re-application:',
@@ -301,7 +302,7 @@ class Chatbox {
                 message: '  Once there is a control number in the application form, information details are locked and cannot be edited.',
                 options: ['Back']
             },
-            ' Is it possible for the submitted original documents to be returned?': {
+            'Is it possible for the submitted original documents to be returned?': {
                 message: ' All requirements submitted at Admission Process cannot be returned to the applicant.',
                 options: ['Back']
             },
@@ -329,7 +330,7 @@ class Chatbox {
                 options: ['Back']
             },
             //Transferee
-            ' Do they accept transferees in the second semester': {
+            'Do they accept transferees in the second semester?': {
                 message: "Transferee admissions in the second semester vary depending on program availability and specific course requirements. It's recommended to check with the respective department or program coordinator for information on whether they accept transferees during this period.",
                 options: ['Back']
             },
@@ -352,7 +353,7 @@ class Chatbox {
                 message: 'To inquire about the grade requirements for maintaining a scholarship at CvSU, kindly reach out to osasmain.scholarship@cvsu.edu.ph. They can provide you with information on any GPA or academic performance criteria associated with scholarships.',
                 options: ['Back']
             },
-            ' How do I apply to scholarship programs?': {
+            'How do I apply to scholarship programs?': {
                 message: 'To apply for scholarship programs at CvSU, please contact osasmain.scholarship@cvsu.edu.ph for guidance on the application process. They will assist you with the necessary steps and requirements for applying to scholarships offered by the university.',
                 options: ['Back']
             },
@@ -400,7 +401,6 @@ class Chatbox {
                 options: ['Back']
             },
 
-
             //Re-application
             'What are the requirements for re-application?': {
                 message: 'For re-application, applicants are advised to await the announcement that will be posted in the future for guidance on the necessary requirements.',
@@ -443,6 +443,8 @@ class Chatbox {
         this.messages.push(message); // Push the message to the end of the array
         this.updatePrompt(this.args.chatBox); // Update the chatbox display
     }
+
+    
 
     handleUnknownPrompt() {
         const message = {
@@ -489,7 +491,6 @@ class Chatbox {
     
         textField.value = '';
     }
-
     displayBotMessage(userInput, botResponse) {
         const chatboxMessages = document.querySelector('.chatbox__messages');
     
@@ -522,24 +523,17 @@ class Chatbox {
         // Add "Did that response answer your question?" prompt
         const feedbackDiv = document.createElement('div');
         feedbackDiv.classList.add('messages__item', 'messages__item--visitor');
-        
-
-        
         feedbackDiv.innerHTML = `
-        <style>
-            #no-btn:hover {
-                color: white;
-                background: #dc3545;
-            }
-        </style>
             Did that response answer your question?
             <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handleFeedback(true)">Yes</button>
-            <button class="btn btn-sm border-danger mt-2" id="no-btn" style="border-radius: 20px;" onclick="chatbox.handleFeedback(false)">No</button>
+            <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handleFeedback(false)">No</button>
         `;
         chatboxMessages.insertBefore(feedbackDiv, chatboxMessages.firstChild);
     
-        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+        
     }
+    
+
 
     matchUserInputWithPatterns(userInput) {
         return new Promise((resolve, reject) => {
@@ -606,6 +600,16 @@ class Chatbox {
                     // Append the feedback response to the chatbox
                     chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
                     chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+                    // Add additional prompt
+        const additionalPromptDiv = document.createElement('div');
+        additionalPromptDiv.classList.add('messages__item', 'messages__item--visitor');
+        additionalPromptDiv.innerHTML = `
+            If your question is unanswered properly, you can submit it in the feedback box below.
+        `;
+        chatboxMessages.insertBefore(additionalPromptDiv, chatboxMessages.firstChild);
+    
+        chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
                 })
                 .catch(error => {
                     console.error('Error fetching suggestions:', error);
@@ -615,6 +619,8 @@ class Chatbox {
                     chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
                     chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
                 });
+
+            
         }
         chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
         chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
@@ -665,6 +671,7 @@ class Chatbox {
     
 
 }
+
 
 const chatbox = new Chatbox();
 chatbox.display();

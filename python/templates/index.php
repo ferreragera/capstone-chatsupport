@@ -147,6 +147,14 @@
                     <p>Chat support only understands English.</p><br>
                 </div>
             </div>
+
+            <!-- <div class="chatbox__prompt d-flex justify-content-end mr-5">
+                <div class="chatbox__prompt--description mt-1 ml-3">
+                    <button><i class="fas fa-sync-alt"></i></button>
+                </div>
+            </div> -->
+
+
             <div class="chatbox__messages">
                 <div class="msg_content"></div>
             </div>

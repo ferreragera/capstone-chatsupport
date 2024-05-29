@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 
-
 @section('main-content-header')
 <div class="content-header" style="background-image: url('/images/bg-gray.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container-fluid">
@@ -12,11 +11,9 @@
         </div>
     </div>
 </div>
-
-@endsection 
+@endsection
 
 @section('main-content')
-
 <div class="content">
     <div class="container-fluid px-5">
         <div class="">
@@ -26,7 +23,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- end of create & edit modal -->
 
         <hr>
@@ -43,40 +40,41 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
     </div>
 </div>
-
 @endsection
 
-
 @section('script')
-    <script>
+<script>
+    let isTraining = false;
 
-        function updateTrainingConsole(text) {
-            const trainingConsole = document.getElementById("training-console");
-            trainingConsole.innerHTML += text;
-        }
+    function updateTrainingConsole(text) {
+        const trainingConsole = document.getElementById("training-console");
+        trainingConsole.innerHTML += text;
+    }
 
-        function fetchUpdates() {
-            fetch('', {
-                method: 'POST'
-            }).then(function (response) {
-                if (response.ok) {
-                    return response.text(); 
-                } else {
-                    console.error('Error starting training:', response.statusText);
-                }
-            })
-            .then(function (data) {
-                updateTrainingConsole(data);
-                setTimeout(fetchUpdates, 1000);
-            });
-        }
+    function fetchStatus() {
+        fetch('http://10.10.100.147:5000/status', {
+            method: 'GET'
+        }).then(response => response.json())
+          .then(data => {
+              if (data.status === "training") {
+                  updateTrainingConsole("Training in progress...\n");
+                  setTimeout(fetchStatus, 1000);
+              } else if (data.status === "completed") {
+                  updateTrainingConsole("Training completed.\n");
+                  isTraining = false;
+              } else if (data.status.startsWith("error")) {
+                  updateTrainingConsole(`Training failed: ${data.status}\n`);
+                  isTraining = false;
+              }
+          });
+    }
 
-        function warningFunction() {
+    function warningFunction() {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: "btn btn-success",
@@ -84,7 +82,7 @@
             },
             buttonsStyling: false
         });
-        
+
         swalWithBootstrapButtons.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -96,19 +94,23 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById("training-console").innerHTML = "";
-                fetch('/train', {
-                    method: 'POST'
-                }).then(function (response) {
-                    if (response.ok) {
-                        return response.text();
-                    } else {
-                        console.error('Error starting training:', response.statusText);
-                    }
-                }).then(function (data) {
-                    updateTrainingConsole(data);
-                    setTimeout(fetchUpdates, 1000);
-                });
-                
+                if (!isTraining) {
+                    isTraining = true;
+                    fetch('http://10.10.100.147:5000/train', {
+                        method: 'POST'
+                    }).then(response => {
+                        if (response.ok) {
+                            updateTrainingConsole("Training started...\n");
+                            fetchStatus();
+                        } else {
+                            response.text().then(text => {
+                                updateTrainingConsole(`Failed to start training: ${text}\n`);
+                                isTraining = false;
+                            });
+                        }
+                    });
+                }
+
                 swalWithBootstrapButtons.fire({
                     title: "Training!",
                     text: "Chat support will be updated to the latest dataset.",
@@ -123,9 +125,5 @@
             }
         });
     }
-
-
-        
-
-    </script>
+</script>
 @endsection

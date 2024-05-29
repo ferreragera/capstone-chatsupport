@@ -4,7 +4,7 @@
   <div class="brand-link d-flex justify-content-between align-items-center">
     <a class="brand-link" href="#">
       <img src="{{ asset('images/CVSU-logo-trans.png')}}" alt="CVSU Logo" class="brand-image img-circle elevation-3">
-      <span class="brand-text font-weight-light">Admin</span>
+      <span class="brand-text font-weight-light">Admin Panel</span>
     </a>
   </div>
 
@@ -31,12 +31,12 @@
                 <p>Datasets</p> 
             </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="{{ route('train') }}" class="nav-link" data-url="{{ route('train') }}">
             <i class="fas fa-cogs"></i>
               <p>Train</p>
           </a>
-      </li>
+        </li> --}}
         <li class="nav-item">
             <a href="{{ route('reports') }}" class="nav-link" data-url="{{ route('reports') }}">
                 <i class="fas fa-chart-line"></i>

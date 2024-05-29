@@ -55,23 +55,6 @@
             ]
         },
         {
-            "id": 4,
-            "tag": "bot_identity",
-            "patterns": [
-                "What are you?",
-                "Who are you?",
-                "Tell me about yourself.",
-                "Introduce yourself.",
-                "What's your role?",
-                "Explain your purpose."
-            ],
-            "responses": [
-                "I'm here to assist with CVSU admission information.",
-                "I provide support for CVSU admissions.",
-                "I help with CVSU admission inquiries."
-            ]
-        },
-        {
             "id": 6,
             "tag": "thanks",
             "patterns": [
@@ -477,17 +460,6 @@
             ]
         },
         {
-            "id": 47,
-            "tag": "application_interview",
-            "patterns": [
-                "Do I need to attend an interview as part of the admission process?",
-                "Will there be an interview session for applicants?"
-            ],
-            "responses": [
-                "Some programs at CvSU Main Campus may require applicants to participate in an interview as part of the admission process. You'll be notified if an interview is required."
-            ]
-        },
-        {
             "id": 48,
             "tag": "admission_notification_format",
             "patterns": [
@@ -785,17 +757,6 @@
             ]
         },
         {
-            "id": 77,
-            "tag": "admission_deferral_reasons",
-            "patterns": [
-                "What are the reasons for requesting admission deferral?",
-                "Under what circumstances can I defer my admission offer?"
-            ],
-            "responses": [
-                "Admission deferral may be requested under circumstances such as medical emergencies, personal reasons, or unforeseen circumstances that prevent immediate enrollment. Contact the CvSU admission office to discuss your specific situation."
-            ]
-        },
-        {
             "id": 78,
             "tag": "application_review_delay_explanation",
             "patterns": [
@@ -1031,16 +992,6 @@
             ],
             "responses": [
                 "Admitted students are typically required to accept the admission offer by a specified deadline. The deadline for accepting the offer will be communicated along with the admission notification."
-            ]
-        },
-        {
-            "tag": "admission_cancelation",
-            "patterns": [
-                "Can my admission be canceled after acceptance?",
-                "Under what circumstances can admission be revoked?"
-            ],
-            "responses": [
-                "Admission may be canceled for reasons like providing false information or disciplinary issues."
             ]
         },
         {
