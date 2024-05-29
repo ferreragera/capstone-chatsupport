@@ -11,6 +11,7 @@ from difflib import SequenceMatcher
 from flask import send_file
 from flask import Flask, jsonify, request
 import json
+import threading
 from fuzzywuzzy import process
 
 
@@ -85,10 +86,36 @@ def contains_profanity(text):
 
 from flask import request
 
-@app.route('/train', methods=['POST'])
+# @app.route('/train', methods=['POST'])
+# def train_chatbot():
+#     subprocess.run(['python', 'train.py'])
+#     return 'Training started'
+
+# Global variable to store the training status
+training_status = {"status": "idle"}
+
 def train_chatbot():
-    subprocess.run(['python', 'train.py'])
-    return 'Training started'
+    global training_status
+    training_status["status"] = "training"
+    try:
+        subprocess.run(['python', 'train.py'])
+        training_status["status"] = "completed"
+    except Exception as e:
+        training_status["status"] = f"error: {e}"
+
+@app.route('/train', methods=['POST'])
+def start_training():
+    global training_status
+    if training_status["status"] == "training":
+        return 'Training already in progress', 409
+
+    training_thread = threading.Thread(target=train_chatbot)
+    training_thread.start()
+    return 'Training started', 200
+
+@app.route('/status', methods=['GET'])
+def get_status():
+    return jsonify(training_status)
 
 def contains_profanity(text):
     return profanity.contains_profanity(text)

@@ -17,10 +17,27 @@
 @section('main-content')
 <div class="content">
     <div class="container-fluid px-5">
-        <div class="">
+        {{-- <div class="">
             <div class="d-flex justify-content-end">
                 <div class="col-sm-1 d-block mt-3 rounded text-lg">
-                    <button class="btn btn-sm bg-gradient-success mr-1" data-toggle="modal" data-target="#createIntent"><i class="fas fa-plus mr-2"></i>Create Intent</button>
+                    <div class="row">
+                        <button class="btn btn-sm col-sm-12 bg-gradient-success mr-1" data-toggle="modal" data-target="#createIntent"><i class="fas fa-plus mr-2"></i>Create Intent</button>
+                        <button class="btn btn-sm col-sm-12 bg-gradient-primary" id="trainButton" data-toggle="modal" data-target="#trainIntent" type="submit" name="train_chatbot" onclick="warningFunction()"><i class="fas fa-cogs mr-2"></i>Train Chat Support</button>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <div class="">
+            <div class="d-flex justify-content-end">
+                <div class="col-sm-3 d-block mt-3 rounded text-lg">
+                    <div class="row">
+                        <button class="btn btn-sm col-sm bg-gradient-success mr-1 py-2" data-toggle="modal" data-target="#createIntent">
+                            <i class="fas fa-plus mr-2"></i>Create Intent
+                        </button>
+                        <button class="btn btn-sm col-sm bg-gradient-primary py-2" id="trainButton" data-toggle="modal" data-target="#trainIntent" type="submit" name="train_chatbot" onclick="warningFunction()">
+                            <i class="fas fa-cogs mr-2"></i>Train Chat Support
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -458,6 +475,88 @@
             }
         });
     });
+
+
+
+    // train button //
+
+    let isTraining = false;
+
+    function updateTrainingConsole(text) {
+        Swal.fire({
+            title: text,
+            icon: "success"
+        });
+    }
+
+    function fetchStatus() {
+        fetch('http://10.10.100.147:5000/status', {
+            method: 'GET'
+        }).then(response => response.json())
+        .then(data => {
+            if (data.status === "training") {
+                updateTrainingConsole("Training in progress...\n");
+                setTimeout(fetchStatus, 1000);
+            } else if (data.status === "completed") {
+                updateTrainingConsole("Training completed.\n");
+                isTraining = false;
+            } else if (data.status.startsWith("error")) {
+                updateTrainingConsole(`Training failed: ${data.status}\n`);
+                isTraining = false;
+            }
+        });
+    }
+
+    function warningFunction() {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (!isTraining) {
+                    isTraining = true;
+                    fetch('http://10.10.100.147:5000/train', {
+                        method: 'POST'
+                    }).then(response => {
+                        if (response.ok) {
+                            updateTrainingConsole("Training started...\n");
+                            fetchStatus();
+                        } else {
+                            response.text().then(text => {
+                                updateTrainingConsole(`Failed to start training: ${text}\n`);
+                                isTraining = false;
+                            });
+                        }
+                    });
+                }
+
+                swalWithBootstrapButtons.fire({
+                    title: "Training!",
+                    text: "Chat support will be updated to the latest dataset.",
+                    icon: "success"
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire({
+                    title: "Cancelled",
+                    text: "The chat support will not be updated to the latest dataset.",
+                    icon: "error"
+                });
+            }
+        });
+    }
 
     </script>
 @endsection
