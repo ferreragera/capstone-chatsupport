@@ -32,7 +32,9 @@
                         </button>
                     </div>
                     <div class="modal-body px-5 py-5">
-                        <form action="{{ route('feedback.store') }}" method="POST">
+                        {{-- <form action="{{ route('feedback.store') }}" method="POST"> --}}
+                        <form id="addIntentForm" action="{{ route('feedback.store') }}" method="POST">
+
                             @csrf
                             <div class="mb-3">
                                 <label for="addTag" class="form-label">Tag:</label>
@@ -227,64 +229,96 @@
     });
 
     $(document).ready(function() {
-        var editModal = $('#queriesModal');
-        var table = $('#queriesTable').DataTable({
-            "pageLength": 5,
-            "lengthMenu": [5, 15, 25, 50],
-            "autoWidth": false,
-            "scrollY": "200px",
-            "scrollCollapse": true
-        });
+    var editModal = $('#queriesModal');
+    var table = $('#queriesTable').DataTable({
+        "pageLength": 5,
+        "lengthMenu": [5, 15, 25, 50],
+        "autoWidth": false,
+        "scrollY": "200px",
+        "scrollCollapse": true
+    });
 
-        $('#queriesTable').on('click', '.add-btn', function() {
-            var feedback = $(this).data('feedback');
-            $('#addPatterns').val(feedback); // Set the feedback data into the textarea
-            $('#queriesModal').modal('show');
-        });
+    $('#queriesTable').on('click', '.add-btn', function() {
+        var feedback = $(this).data('feedback');
+        $('#addPatterns').val(feedback); // Set the feedback data into the textarea
+        $('#queriesModal').modal('show');
+    });
 
-        $('#queriesTable').on('click', '.del-btn', function() {
-            var row = $(this).closest('tr');
-            var feedbackId = row.find('th:first').text(); 
+    $('#queriesTable').on('click', '.del-btn', function() {
+        var row = $(this).closest('tr');
+        var feedbackId = row.find('th:first').text(); 
 
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, remove it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: '/feedback/' + feedbackId, 
-                        type: 'PUT',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            _method: 'PUT',
-                            remarks: '1' 
-                        },
-                        success: function(response) {
-                            row.remove();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, remove it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/feedback/' + feedbackId, 
+                    type: 'PUT',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        _method: 'PUT',
+                        remarks: '1' 
+                    },
+                    success: function(response) {
+                        row.remove();
 
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "The feedback has been removed.",
-                                icon: "success"
-                            });
-                        },
-                        error: function(xhr, status, error) {
-                            Swal.fire({
-                                title: "Error!",
-                                text: "An error occurred while deleting the feedback.",
-                                icon: "error"
-                            });
-                        }
-                    });
-                }
-            });
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "The feedback has been removed.",
+                            icon: "success"
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: "Error!",
+                            text: "An error occurred while deleting the feedback.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
         });
     });
+
+    $('#queriesModal form').on('submit', function(event) {
+        event.preventDefault();
+        var form = $(this);
+
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: form.serialize(),
+            success: function(response) {
+                if(response.success) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.success,
+                        icon: 'success'
+                    }).then(() => {
+                        $('#queriesModal').modal('hide');
+                        // Optionally, refresh the table or page
+                        location.reload();
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'An error occurred while adding the intent.',
+                    icon: 'error'
+                });
+            }
+        });
+    });
+});
+
 
     function addPattern1() {
         var patternsContainer = document.getElementById('patternsContainer');
