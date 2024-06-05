@@ -1,73 +1,6 @@
 {
     "intents": [
         {
-            "id": 1,
-            "tag": "greeting",
-            "patterns": [
-                "Hi",
-                "Hey",
-                "Hello",
-                "Hello there",
-                "What's up",
-                "Hi there",
-                "How are you",
-                "Is anyone there?",
-                "Hey",
-                "Hello",
-                "Good day",
-                "yo"
-            ],
-            "responses": [
-                "Hello!",
-                "Hi there!",
-                "How can I assist you?",
-                "Hello there!"
-            ]
-        },
-        {
-            "id": 2,
-            "tag": "greeting2",
-            "patterns": [
-                "Hello How are you",
-                "Hi How are you",
-                "Hello what's up",
-                "How are you"
-            ],
-            "responses": [
-                "Welcome to the CVSU Online Admission System . How can I assist you?",
-                "I'm here to help with your admission questions.",
-                "How can I assist you?",
-                "Feel free to ask your admission questions."
-            ]
-        },
-        {
-            "id": 3,
-            "tag": "goodbye",
-            "patterns": [
-                "Bye",
-                "See you later",
-                "Goodbye"
-            ],
-            "responses": [
-                "Goodbye! Have a great day.",
-                "Take care!",
-                "Until next time!"
-            ]
-        },
-        {
-            "id": 6,
-            "tag": "thanks",
-            "patterns": [
-                "Thanks",
-                "Thank you"
-            ],
-            "responses": [
-                "You're welcome!",
-                "No problem!",
-                "Glad I could help."
-            ]
-        },
-        {
             "id": 7,
             "tag": "admissions_process",
             "patterns": [
@@ -955,16 +888,6 @@
             ]
         },
         {
-            "id": 1,
-            "tag": "tag_May",
-            "patterns": [
-                "how are you?"
-            ],
-            "responses": [
-                "i'm fine!"
-            ]
-        },
-        {
             "tag": "admission_criteria",
             "patterns": [
                 "What criteria does CvSU consider for admission?",
@@ -1008,8 +931,7 @@
             "id": 1,
             "tag": "exam_date",
             "patterns": [
-                "when is the exam date?",
-                "examination date"
+                "When is the exam date?"
             ],
             "responses": [
                 "The examination date will be given when the prospective student finishes filling up their application form."
@@ -1023,6 +945,46 @@
             ],
             "responses": [
                 "CvSU Main Campus provides admission counseling services. Schedule an appointment through the website."
+            ]
+        },
+        {
+            "id": 2,
+            "tag": "courses",
+            "patterns": [
+                "What are the available courses?"
+            ],
+            "responses": [
+                "BSIT"
+            ]
+        },
+        {
+            "tag": "academic_support",
+            "patterns": [
+                "Is there academic support available for students?",
+                "How can I get tutoring help?"
+            ],
+            "responses": [
+                "CvSU Main Campus provides academic support services like tutoring, advising, and workshops. Please visit the Academic Support Center or contact them for assistance."
+            ]
+        },
+        {
+            "tag": "admission_cancelation",
+            "patterns": [
+                "Can my admission be canceled after acceptance?",
+                "Under what circumstances can admission be revoked?"
+            ],
+            "responses": [
+                "Admission may be canceled for reasons like providing false information or disciplinary issues."
+            ]
+        },
+        {
+            "id": 1,
+            "tag": "exam_time",
+            "patterns": [
+                "What is the time of exam?"
+            ],
+            "responses": [
+                "Please refer to posted updates."
             ]
         }
     ]

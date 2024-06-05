@@ -31,11 +31,20 @@
             <div class="d-flex justify-content-end">
                 <div class="col-sm-3 d-block mt-3 rounded text-lg">
                     <div class="row">
+                        {{-- <div class="progress">
+                            <div class="progress-bar col-12 progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div> --}}
                         <button class="btn btn-sm col-sm bg-gradient-success mr-1 py-2" data-toggle="modal" data-target="#createIntent">
                             <i class="fas fa-plus mr-2"></i>Create Intent
                         </button>
-                        <button class="btn btn-sm col-sm bg-gradient-primary py-2" id="trainButton" data-toggle="modal" data-target="#trainIntent" type="submit" name="train_chatbot" onclick="warningFunction()">
+                        <button class="btn btn-sm col-sm bg-gradient-primary mr-1 py-2" id="trainButton" data-toggle="modal" data-target="#trainIntent" type="submit" name="train_chatbot" onclick="warningFunction()">
                             <i class="fas fa-cogs mr-2"></i>Train Chat Support
+                        </button>
+                        <button class="btn btn-sm col-sm bg-gradient-dark mr-1 py-2" id="onButton" data-toggle="modal" data-target="#onChatSupport" type="submit" name="on_chatbot" onclick="onFunction()">
+                            <i class="fas fa-power-off mr-2"></i>Turn On Chat Support
+                        </button>
+                        <button class="btn btn-sm col-sm bg-gradient-warning py-2" id="offButton" data-toggle="modal" data-target="#offChatSupport" type="submit" name="off_chatbot" onclick="offFunction()">
+                            <i class="fas fa-power-off mr-2"></i>Turn Off Chat Support
                         </button>
                     </div>
                 </div>
@@ -482,12 +491,12 @@
 
     let isTraining = false;
 
-    function updateTrainingConsole(text) {
-        Swal.fire({
-            title: text,
-            icon: "success"
-        });
-    }
+    // function updateTrainingConsole(text) {
+    //     Swal.fire({
+    //         title: text,
+    //         icon: "success"
+    //     });
+    // }
 
     function fetchStatus() {
         fetch('http://10.10.100.147:5000/status', {
@@ -507,6 +516,8 @@
         });
     }
 
+    
+
     function warningFunction() {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -516,14 +527,15 @@
             buttonsStyling: false
         });
 
-        swalWithBootstrapButtons.fire({
-            title: "Are you sure?",
+        Swal.fire({
+            title: "Train Chat Support?",
             text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Yes",
             cancelButtonText: "No",
-            reverseButtons: true
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
         }).then((result) => {
             if (result.isConfirmed) {
                 if (!isTraining) {
@@ -543,20 +555,95 @@
                     });
                 }
 
-                swalWithBootstrapButtons.fire({
+                Swal.fire({
                     title: "Training!",
-                    text: "Chat support will be updated to the latest dataset.",
+                    text: "Chat support will be updated to the latest dataset. Please restart the chat support upon completion.",
                     icon: "success"
                 });
             } else if (result.dismiss === Swal.DismissReason.cancel) {
-                swalWithBootstrapButtons.fire({
+                Swal.fire({
                     title: "Cancelled",
-                    text: "The chat support will not be updated to the latest dataset.",
+                    text: "The chat support will no longer update to the latest dataset.",
                     icon: "error"
                 });
             }
         });
     }
+
+    function offFunction() {
+        Swal.fire({
+            title: 'Are you sure?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, turn it off!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch('http://10.10.100.147:5001/off', { 
+                    method: 'POST' 
+                }).then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire(
+                            'Restarting!',
+                            'Your application is restarting.',
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Failed!',
+                            'Failed to restart the application.',
+                            'error'
+                        );
+                    }
+                }).catch(error => {
+                    Swal.fire(
+                        'Error!',
+                        'There was an error processing your request.',
+                        'error'
+                    );
+                });
+            }
+        });
+    }
+
+    function onFunction() {
+    Swal.fire({
+        title: "Chat Support started!",
+        text: "The Chat Support has been turned on!",
+        icon: "success"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('http://10.10.100.147:5000/on', { 
+                method: 'POST' 
+            }).then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire(
+                        'Turning on!',
+                        'Your application is starting.',
+                        'success'
+                    );
+                } else {
+                    Swal.fire(
+                        'Failed!',
+                        data.message || 'Failed to start the application.',
+                        'error'
+                    );
+                }
+            }).catch(error => {
+                Swal.fire(
+                    'Error!',
+                    'There was an error processing your request.',
+                    'error'
+                );
+            });
+        }
+    });
+}
+
+
 
     </script>
 @endsection

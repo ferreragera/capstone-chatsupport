@@ -37,7 +37,7 @@ def index_get():
 def get_response(user_input):
     best_match = None
     best_score = 0
-    threshold = 0.6
+    threshold = 0.4
 
     if len(user_input.split()) == 1:
         threshold = 0.4
@@ -86,12 +86,7 @@ def contains_profanity(text):
 
 from flask import request
 
-# @app.route('/train', methods=['POST'])
-# def train_chatbot():
-#     subprocess.run(['python', 'train.py'])
-#     return 'Training started'
 
-# Global variable to store the training status
 training_status = {"status": "idle"}
 
 def train_chatbot():

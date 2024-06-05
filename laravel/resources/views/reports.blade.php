@@ -32,7 +32,6 @@
                         </button>
                     </div>
                     <div class="modal-body px-5 py-5">
-                        {{-- <form action="{{ route('feedback.store') }}" method="POST"> --}}
                         <form id="addIntentForm" action="{{ route('feedback.store') }}" method="POST">
 
                             @csrf
@@ -105,7 +104,10 @@
         <div class="row">
             <div class="col-lg d-flex justify-content-center">
                 <div class="card">
-                    <div class="card-body" style="position: relative; max-height: 45vh; width:80vw">
+                    <div class="card-body" style="position: relative; height: 45vh; max-height: 45vh; width:82vw">
+                        <div class="d-flex justify-content-between mb-4">
+                            <h3 class="card-title" style="font-weight: bold; color: rgb(61, 63, 61);">Unanswered Questions</h3>
+                        </div>
                         <table class="table table-hover" id="queriesTable">
                             <thead class="thead-dark">
                                 <tr>

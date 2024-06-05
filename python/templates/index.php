@@ -66,14 +66,14 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="feedbackModalLabel">Feedback:</h5>
+                <h5 class="modal-title" id="feedbackModalLabel">Submit Unanswered Question:</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form id="feedback" name="feedback" action="/save_feedback" method="POST">
                 <div class="modal-body">
-                    <p>If you have any feedback or unanswered questions, please feel free to share them with us below:</p>
+                    <p>If you have any unanswered questions, please feel free to share them with us below:</p>
                     <textarea id="feedback" name="feedback" rows="6" class="form-control" placeholder="Your question..." required></textarea>
                 </div>
                 <div class="modal-footer">
@@ -162,7 +162,7 @@
                     <i class="fas fa-star-half-alt fa-sm"></i>
                 </button>
 
-                <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" data-toggle="tooltip" data-placement="top" title="Give feedback!" style="font-size: 18px; padding: 4px 8px;">
+                <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" data-toggle="tooltip" data-placement="top" title="Submit Unanswered Question!" style="font-size: 18px; padding: 4px 8px;">
                     <i class="fas fa-comment-alt fa-sm"></i>
                 </button>
 
