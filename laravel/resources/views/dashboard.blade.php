@@ -15,41 +15,198 @@
 @endsection 
 
 @section('main-content')
+<style>
+    /* Button Colors */
+    .btn-default-color {
+        color: #6b7381;
+    }
+    .btn-default-bg {
+        background: #b3b7bb;
+    }
+
+    /* Toggle Sizes */
+    .toggle-default-size {
+        width: 2.5rem;  /* Increased width */
+        height: 2.5rem; /* Increased height */
+    }
+
+    .toggle-default-label-width {
+        width: 6rem;  /* Increased label width */
+    }
+
+    .toggle-default-font-size {
+        font-size: 1rem;  /* Increased font size */
+    }
+
+    /* Mixin for Switch Colors */
+    .toggle-color {
+        color: #6b7381;
+        background: #b3b7bb;
+    }
+
+    .toggle-color.active {
+        background-color: #29b5a8;
+    }
+
+    /* Mixin for Default Switch Styles */
+    .toggle-mixin {
+        margin: 0 1rem;  /* Adjusted margin */
+        padding: 0;
+        position: relative;
+        border: none;
+        height: 2.5rem;  /* Adjusted height */
+        width: 5rem;  /* Adjusted width */
+        border-radius: 2.5rem;
+        background: #b3b7bb; /* Default background color */
+        transition: background-color .25s;
+    }
+
+    .toggle-mixin:focus,
+    .toggle-mixin.focus {
+        outline: none;
+    }
+
+    .toggle-mixin:before,
+    .toggle-mixin:after {
+        line-height: 2.5rem;  /* Adjusted line-height */
+        width: 5rem;  /* Adjusted width */
+        text-align: center;
+        font-weight: 600;
+        font-size: 1rem;  /* Adjusted font-size */
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: absolute;
+        bottom: 0;
+        transition: opacity .25s;
+    }
+
+    .toggle-mixin:before {
+        content: 'Off';
+        left: -5rem;  /* Adjusted position */
+    }
+
+    .toggle-mixin:after {
+        content: 'On';
+        right: -5rem;  /* Adjusted position */
+        opacity: .5;
+    }
+
+    .toggle-mixin > .handle {
+        position: absolute;
+        top: .375rem;
+        left: .375rem;
+        width: 1.75rem;  /* Adjusted width */
+        height: 1.75rem;  /* Adjusted height */
+        border-radius: 1.75rem;
+        background: #fff;
+        transition: left .25s;
+    }
+
+    .toggle-mixin.active > .handle {
+        left: 2.875rem;  /* Adjusted left position */
+        transition: left .25s;
+    }
+
+    .toggle-mixin.active {
+        background-color: #29b5a8; /* Active background color */
+    }
+
+    .toggle-mixin.active:before {
+        opacity: .5;
+    }
+
+    .toggle-mixin.active:after {
+        opacity: 1;
+    }
+
+    .btn-toggle {
+        margin: 0 1rem;  /* Adjusted margin */
+        padding: 0;
+        position: relative;
+        border: none;
+        height: 2.5rem;  /* Adjusted height */
+        width: 5rem;  /* Adjusted width */
+        border-radius: 2.5rem;
+        background: #b3b7bb; /* Default background color */
+        transition: background-color .25s;
+    }
+
+    .btn-toggle.active {
+        background-color: #29b5a8; /* Active background color */
+    }
+
+    .btn-toggle .handle {
+        position: absolute;
+        top: .375rem;
+        left: .375rem;
+        width: 1.75rem;  /* Adjusted width */
+        height: 1.75rem;  /* Adjusted height */
+        border-radius: 1.75rem;
+        background: #fff;
+        transition: left .25s;
+    }
+
+    .btn-toggle.active .handle {
+        left: 2.875rem;  /* Adjusted left position */
+        transition: left .25s;
+    }
+
+    .btn-toggle:before,
+    .btn-toggle:after {
+        line-height: 2.5rem;  /* Adjusted line-height */
+        width: 5rem;  /* Adjusted width */
+        text-align: center;
+        font-weight: 600;
+        font-size: 1rem;  /* Adjusted font-size */
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: absolute;
+        bottom: 0;
+        transition: opacity .25s;
+    }
+
+    .btn-toggle:before {
+        content: 'Off';
+        left: -4rem;  /* Adjusted position */
+    }
+
+    .btn-toggle:after {
+        content: 'On';
+        right: -4rem;  /* Adjusted position */
+        opacity: .5;
+    }
+
+    .btn-toggle.active:before {
+        opacity: .5;
+    }
+
+    .btn-toggle.active:after {
+        opacity: 1;
+    }
+</style>
+
+
+</style>
 <div class="content">
     <div class="container-fluid px-5">
-        {{-- <div class="">
-            <div class="d-flex justify-content-end">
-                <div class="col-sm-1 d-block mt-3 rounded text-lg">
-                    <div class="row">
-                        <button class="btn btn-sm col-sm-12 bg-gradient-success mr-1" data-toggle="modal" data-target="#createIntent"><i class="fas fa-plus mr-2"></i>Create Intent</button>
-                        <button class="btn btn-sm col-sm-12 bg-gradient-primary" id="trainButton" data-toggle="modal" data-target="#trainIntent" type="submit" name="train_chatbot" onclick="warningFunction()"><i class="fas fa-cogs mr-2"></i>Train Chat Support</button>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="">
-            <div class="d-flex justify-content-end">
-                <div class="col-sm-3 d-block mt-3 rounded text-lg">
-                    <div class="row">
-                        {{-- <div class="progress">
-                            <div class="progress-bar col-12 progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> --}}
-                        <button class="btn btn-sm col-sm bg-gradient-success mr-1 py-2" data-toggle="modal" data-target="#createIntent">
-                            <i class="fas fa-plus mr-2"></i>Create Intent
-                        </button>
-                        <button class="btn btn-sm col-sm bg-gradient-primary mr-1 py-2" id="trainButton" data-toggle="modal" data-target="#trainIntent" type="submit" name="train_chatbot" onclick="warningFunction()">
-                            <i class="fas fa-cogs mr-2"></i>Train Chat Support
-                        </button>
-                        <button class="btn btn-sm col-sm bg-gradient-dark mr-1 py-2" id="onButton" data-toggle="modal" data-target="#onChatSupport" type="submit" name="on_chatbot" onclick="onFunction()">
-                            <i class="fas fa-power-off mr-2"></i>Turn On Chat Support
-                        </button>
-                        <button class="btn btn-sm col-sm bg-gradient-warning py-2" id="offButton" data-toggle="modal" data-target="#offChatSupport" type="submit" name="off_chatbot" onclick="offFunction()">
-                            <i class="fas fa-power-off mr-2"></i>Turn Off Chat Support
-                        </button>
-                    </div>
+            <div class="d-flex justify-content-between mt-4 rounded text-lg">
+                <div id="refreshDiv" class="col-sm-3 ml-4">
+                    <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        <div class="handle"></div>
+                    </button>
+                </div>
+                <div class="col-sm-6 d-flex justify-content-end">
+                    <button class="btn btn-sm bg-gradient-success mr-1 py-2" data-toggle="modal" data-target="#createIntent">
+                        <i class="fas fa-plus mr-2"></i>Create Intent
+                    </button>
+                    <button class="btn btn-sm bg-gradient-primary mr-1 py-2" id="trainButton" data-toggle="modal" data-target="#trainIntent" type="submit" name="train_chatbot" onclick="warningFunction()">
+                        <i class="fas fa-cogs mr-2"></i>Train Chat Support
+                    </button>
                 </div>
             </div>
         </div>
+
         <div class="modal fade" id="createIntent" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -114,14 +271,14 @@
                             <div>
                                 <label for="editPatterns" class="form-label">Patterns:</label>
                                     <div class="form-group" id="editpatternsContainer">
-                                    </div>
+                                </div>
                                 <button type="button" class="btn btn-primary" onclick="addEditPattern()"><i class="fas fa-plus mr-1"></i></button>
                                 <button type="button" class="btn btn-danger" onclick="removeEditPattern()"><i class="fas fa-trash mr-1"></i></button>
                             </div>
                             <div>
                                 <label for="editResponses" class="form-label">Responses:</label>
                                     <div class="form-group" id="editresponsesContainer">
-                                    </div>
+                                </div>
                                 <button type="button" class="btn btn-primary" onclick="addEditResponse()"><i class="fas fa-plus mr-1"></i></button>
                                 <button type="button" class="btn btn-danger" onclick="removeEditResponse()"><i class="fas fa-trash mr-1"></i></button>
                             </div>
@@ -142,8 +299,8 @@
         <hr>
         <div class="row">
             <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body" style="max-height: 80vh; overflow-y: auto;">
+                <div class="card mt-2">
+                    <div class="card-body" style="height: 60vh; max-height: 80vh; overflow-y: auto; margin-top: 10px;">
                         <div class="position-relative mb-4">
                             <table id="intentsTable" class="table hover">
                                 <thead>
@@ -570,78 +727,118 @@
         });
     }
 
-    function offFunction() {
-        Swal.fire({
-            title: 'Are you sure?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, turn it off!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch('http://10.10.100.147:5001/off', { 
-                    method: 'POST' 
-                }).then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire(
-                            'Restarting!',
-                            'Your application is restarting.',
-                            'success'
-                        );
-                    } else {
-                        Swal.fire(
-                            'Failed!',
-                            'Failed to restart the application.',
-                            'error'
-                        );
-                    }
-                }).catch(error => {
-                    Swal.fire(
-                        'Error!',
-                        'There was an error processing your request.',
-                        'error'
-                    );
-                });
-            }
-        });
+    // Power button 
+    $(document).ready(function() {
+    // Function to set the initial state of the toggle button
+    function setButtonState(isPressed) {
+        $('.btn-toggle').attr('aria-pressed', isPressed);
+        if (isPressed) {
+            // If the button is pressed, add the 'active' class
+            $('.btn-toggle').addClass('active');
+        } else {
+            // If the button is not pressed, remove the 'active' class
+            $('.btn-toggle').removeClass('active');
+        }
     }
+    
+    // Check if the toggle state is stored in localStorage
+    var isPressed = localStorage.getItem('toggleState') === 'true';
+    
+    // Set the initial state of the toggle button
+    setButtonState(isPressed);
+    
+    $('.btn-toggle').click(function(event) {
+        event.preventDefault();
 
-    function onFunction() {
-    Swal.fire({
-        title: "Chat Support started!",
-        text: "The Chat Support has been turned on!",
-        icon: "success"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            fetch('http://10.10.100.147:5000/on', { 
-                method: 'POST' 
-            }).then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    Swal.fire(
-                        'Turning on!',
-                        'Your application is starting.',
-                        'success'
-                    );
-                } else {
-                    Swal.fire(
-                        'Failed!',
-                        data.message || 'Failed to start the application.',
-                        'error'
-                    );
+        var $button = $(this);
+        var isPressed = $button.attr('aria-pressed') === 'true';
+
+        // Toggle the aria-pressed attribute
+        $button.attr('aria-pressed', !isPressed);
+
+        // Toggle the 'active' class based on the state
+        $button.toggleClass('active');
+
+        // Store the toggle state in localStorage
+        localStorage.setItem('toggleState', !isPressed);
+
+        // Enable or disable the "Train Chat Support" button based on the toggle state
+        if (!isPressed) {
+            disableTrainButton(); // Disable the button if the toggle button is turned off
+        } else {
+            enableTrainButton(); // Enable the button if the toggle button is turned on
+        }
+
+        // Perform other actions based on the toggle state (e.g., making AJAX requests)
+        if (!isPressed) {
+            // Make the AJAX request to start the app
+            $.ajax({
+                url: 'http://10.10.100.147:5001/start_app', // Change to the appropriate URL
+                type: 'GET', 
+                success: function(response) {
+                    Swal.fire({
+                        title: "Chat Support Turned On",
+                        text: "app.py has been executed",
+                        icon: "success"
+                    }).then(function() {
+                        location.reload();  // Refresh the page after the alert
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Failed to execute app.py:', error);
+                    Swal.fire({
+                        title: "Error",
+                        text: "Failed to execute app.py",
+                        icon: "error"
+                    }).then(function() {
+                        location.reload();  // Refresh the page after the alert
+                    });
                 }
-            }).catch(error => {
-                Swal.fire(
-                    'Error!',
-                    'There was an error processing your request.',
-                    'error'
-                );
+            });
+        } else {
+            $.ajax({
+                url: 'http://10.10.100.147:5001/stop_app', // Change to the appropriate URL
+                type: 'GET', 
+                success: function(response) {
+                    Swal.fire({
+                        title: "Chat Support Turned Off",
+                        icon: "info"
+                    }).then(function() {
+                        location.reload(); 
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Failed to stop app.py:', error);
+                    Swal.fire({
+                        title: "Error",
+                        text: "Failed to stop app.py",
+                        icon: "error"
+                    }).then(function() {
+                        location.reload(); 
+                    });
+                }
             });
         }
+
+        console.log("Button state toggled:", !isPressed);
     });
-}
+
+    function disableTrainButton() {
+        $('#trainButton').prop('disabled', true); 
+    }
+
+    function enableTrainButton() {
+        $('#trainButton').prop('disabled', false); 
+    }
+
+    if (isPressed) {
+        enableTrainButton(); 
+    } else {
+        disableTrainButton(); 
+    }
+});
+
+
 
 
 

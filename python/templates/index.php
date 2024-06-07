@@ -71,14 +71,14 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="feedback" name="feedback" action="/save_feedback" method="POST">
+            <form id="feedbackForm" name="feedbackForm" action="/save_feedback" method="POST">
                 <div class="modal-body">
                     <p>If you have any unanswered questions, please feel free to share them with us below:</p>
-                    <textarea id="feedback" name="feedback" rows="6" class="form-control" placeholder="Your question..." required></textarea>
+                    <textarea id="feedbackText" name="feedbackText" rows="6" class="form-control" placeholder="Your question..." required></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Submit Feedback</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="submitFeedbackBtn">Submit Feedback</button>
                 </div>
             </form>
         </div>
@@ -147,13 +147,6 @@
                     <p>Chat support only understands English.</p><br>
                 </div>
             </div>
-
-            <!-- <div class="chatbox__prompt d-flex justify-content-end mr-5">
-                <div class="chatbox__prompt--description mt-1 ml-3">
-                    <button><i class="fas fa-sync-alt"></i></button>
-                </div>
-            </div> -->
-
             <div class="chatbox__messages">
                 <div class="msg_content"></div>
             </div>

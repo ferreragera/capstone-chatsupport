@@ -190,7 +190,7 @@ class Chatbox {
         const dynamicResponses = {
             'FAQs': {
                 message: 'Please select a category:',
-                options: ['Admission Process', 'Entrance Examination', 'Transferees', 'Scholarship', 'Shifting', 'Tuition Fee', 'Re-application', 'Visit Official Website', 'Contact Us']
+                options: ['Admission Process', 'Entrance Examination', 'Transferees', 'Tuition Fee', 'Re-application', 'Visit Official Website', 'Contact Us']
             },
             'Admission Process': {
                 message: 'Here are some frequently asked questions about the Admission Process:',
@@ -204,14 +204,6 @@ class Chatbox {
             'Transferees': {
                 message: 'Here are some frequently asked questions about Transferees:',
                 options: ['Do they accept transferees in the second semester?', 'What are the needed requirements when transferring to other schools?', 'How can I apply or transfer to satellite campuses if I pass in the main campus?', 'Back']
-            },
-            'Scholarship': {
-                message: 'Here are some frequently asked questions about Scholarship:',
-                options: ['What are the available scholarships in CvSU?','Is there a maintaining grade for scholarship?','How do I apply to scholarship programs?','What are the needed requirements for obtaining a scholarship?','Is there a student assistance scholarship?','Where do I get the certificate of enrolment for scholarship?','Back']
-            },
-            'Shifting': {
-                message: 'Here are some frequently asked questions about Shifting:',
-                options: ['Is it possible to shift to a more than 4-year course without paying?','Is it possible to shift courses even if the strand is not inline?','What is the process of shifting to another program?','Does shifting need summer classes?','Back']
             },
             'Tuition Fee': {
                 message: 'Here are some frequently asked questions about Tuition Fee:<br>If you have specific questions, feel free to ask.',
@@ -341,57 +333,9 @@ class Chatbox {
                 options: ['Back']
             },
 
-            //Scholarship 
-
-            'What are the available scholarships in CvSU?': {
-                message: ' For information on available scholarships at Cavite State University (CvSU), please direct your inquiries to osasmain.scholarship@cvsu.edu.ph. They will provide you with details regarding the various scholarship opportunities offered by the university.',
-                options: ['Back']
-            },
-            'Is there a maintaining grade for scholarship?': {
-                message: 'To inquire about the grade requirements for maintaining a scholarship at CvSU, kindly reach out to osasmain.scholarship@cvsu.edu.ph. They can provide you with information on any GPA or academic performance criteria associated with scholarships.',
-                options: ['Back']
-            },
-            'How do I apply to scholarship programs?': {
-                message: 'To apply for scholarship programs at CvSU, please contact osasmain.scholarship@cvsu.edu.ph for guidance on the application process. They will assist you with the necessary steps and requirements for applying to scholarships offered by the university.',
-                options: ['Back']
-            },
-            'What are the needed requirements for obtaining a scholarship?': {
-                message: ' For details on the requirements for obtaining a scholarship at CvSU, please email osasmain.scholarship@cvsu.edu.ph. They will provide you with a list of required documents and any other criteria you need to fulfill to be eligible for scholarships.',
-                options: ['Back']
-            },
-            'Is there a student assistance scholarship?': {
-                message: ' To inquire about student assistance scholarships at CvSU, please contact osasmain.scholarship@cvsu.edu.ph. They can provide you with information on any available financial aid or assistance programs for students in need.',
-                options: ['Back']
-            },
-            'Where do I get the certificate of enrolment for scholarship?': {
-                message: ' For assistance with obtaining a certificate of enrollment for scholarship purposes, please reach out to osasmain.scholarship@cvsu.edu.ph. They will guide you on how to obtain the necessary documentation for your scholarship application or requirements.',
-                options: ['Back']
-            },
-
-
-
-            //Shifting
-
-            'Is it possible to shift to a more than 4-year course without paying?': {
-                message: "For inquiries regarding shifting to a more than 4-year course without payment, please note that shifting concerns fall outside the scope of our office. It's recommended to consult directly with the Colleges handling the shifting process for specific information on any associated fees or financial considerations.",
-                options: ['Back']
-            },
-            'Is it possible to shift courses even if the strand is not inline?': {
-                message: 'The possibility of shifting courses, regardless of the alignment with your previous academic strand, is determined by the policies and guidelines of the respective Colleges. Please direct your shifting inquiries to them for clarification on this matter.',
-                options: ['Back']
-            },
-            'What is the process of shifting to another program?': {
-                message: "To understand the process of shifting to another program, it's best to contact the Colleges responsible for handling shifting matters. They will provide you with detailed information on the steps involved, any required documentation, and specific guidelines for initiating a program shift.",
-                options: ['Back']
-            },
-            'Does shifting need summer classes?': {
-                message: 'Whether shifting requires summer classes depends on various factors such as the curriculum of the new program, any credit transfer policies, and specific requirements set by the Colleges. For clarification on whether summer classes are needed for shifting, please consult directly with the relevant College overseeing the shifting process.',
-                options: ['Back']
-            },
-
             //Tuition 
             'Does the university have a tuition fee?': {
-                message: 'Yes, Cavite State University (CvSU) typically charges tuition fees for its academic programs. However, as mentioned in the letter, students enrolled in courses leading to a bachelor’s degree are exempted from paying tuition and other school fees due to the full implementation of Republic Act No. 10931, the "Universal Access to Quality Tertiary Education Act of 2017."About Tuition Fee - all queries regarding scholarship concerns can be addressed thru registrarmain@cvsu.edu.ph',
+                message: 'Yes, Cavite State University (CvSU) typically charges tuition fees for its academic programs. However, as mentioned in the letter, students enrolled in courses leading to a bachelor’s degree are exempted from paying tuition and other school fees due to the full implementation of Republic Act No. 10931, the "Universal Access to Quality Tertiary Education Act of 2017." All queries regarding scholarship concerns can be addressed thru registrarmain@cvsu.edu.ph',
                 options: ['Back']
             },
             'Is everyone qualified for Free Tuition Law?': {
@@ -404,7 +348,6 @@ class Chatbox {
                 message: 'For re-application, applicants are advised to await the announcement that will be posted in the future for guidance on the necessary requirements.',
                 options: ['Back']
             },
-            
 
             'Is it possible to give my slot to another student who failed the entrance exam?': {
                 message: 'No, applicants do not have the authority to transfer their slot to another applicant.',
@@ -558,6 +501,75 @@ class Chatbox {
         });
     }
 
+    // handleFeedback(isHelpful) {
+    //     const chatboxMessages = document.querySelector('.chatbox__messages');
+    //     const feedbackResponseDiv = document.createElement('div');
+    //     feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
+
+    //     if (isHelpful) {
+    //         feedbackResponseDiv.innerHTML = "I'm glad to help! :)";
+    //         chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+    //         chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+    //     } else {
+    //         feedbackResponseDiv.innerHTML = "I apologize, but I didn't quite understand that. Could you please rephrase your question or choose from the suggestions below?";
+
+    //         // Retrieve previous user input
+    //         const previousUserInput = this.messages[0].message;
+    //         console.log(previousUserInput);
+    //         // Call matchUserInputWithPatterns asynchronously
+    //         this.matchUserInputWithPatterns(previousUserInput)
+    //             .then(matchedSuggestions => {
+    //                 console.log(matchedSuggestions);
+    //                 if (matchedSuggestions.length > 0) {
+    //                     matchedSuggestions.forEach(suggestion => {
+    //                         const suggestionButton = document.createElement('button');
+    //                         suggestionButton.classList.add('btn', 'btn-sm', 'border-success', 'mt-2');
+    //                         suggestionButton.style.borderRadius = '20px';
+    //                         suggestionButton.style.wordBreak = 'normal';
+    //                         suggestionButton.textContent = suggestion;
+    //                         suggestionButton.addEventListener('click', () => {
+    //                             this.displayPatternResponse(suggestion);
+    //                             suggestionButton.disabled = true; // Disable the button after click
+    //                         });
+                            
+    //                         feedbackResponseDiv.appendChild(suggestionButton);
+    //                     });
+                        
+                      
+    //                 } else {
+    //                     feedbackResponseDiv.innerHTML += "<br>No suggestions available.";
+    //                 }
+                    
+    //                 // Append the feedback response to the chatbox
+    //                 chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+    //                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+    //                 // Add additional prompt
+    //                 const additionalPromptDiv = document.createElement('div');
+    //                 additionalPromptDiv.classList.add('messages__item', 'messages__item--visitor');
+    //                 additionalPromptDiv.innerHTML = `
+    //                     If your question is unanswered properly, you can submit it in the feedback box below.
+    //                 `;
+    //                 chatboxMessages.insertBefore(additionalPromptDiv, chatboxMessages.firstChild);
+
+    //                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+    //                 // Loop until the user responds with "Yes"
+                    
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error fetching suggestions:', error);
+    //                 feedbackResponseDiv.innerHTML += "<br>Error fetching suggestions.";
+
+    //                 // Append the feedback response to the chatbox even if there's an error
+    //                 chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
+    //                 chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+
+    //                 // Loop until the user responds with "Yes"
+                    
+    //             });
+    //     }
+    // }
 
     handleFeedback(isHelpful) {
         const chatboxMessages = document.querySelector('.chatbox__messages');
@@ -565,7 +577,7 @@ class Chatbox {
         feedbackResponseDiv.classList.add('messages__item', 'messages__item--visitor');
 
         if (isHelpful) {
-            feedbackResponseDiv.innerHTML = "Glad to help!";
+            feedbackResponseDiv.innerHTML = "I'm glad to help! :)";
             chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
             chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
         } else {
@@ -591,6 +603,19 @@ class Chatbox {
                             });
                             feedbackResponseDiv.appendChild(suggestionButton);
                         });
+
+                        // Add "Something else?" button
+                            const somethingElseButton = document.createElement('button');
+                            somethingElseButton.classList.add('btn', 'btn-sm', 'border-success', 'mt-2');
+                            somethingElseButton.style.borderRadius = '20px';
+                            somethingElseButton.style.wordBreak = 'normal';
+                            somethingElseButton.textContent = "Something else?";
+                            somethingElseButton.addEventListener('click', () => {
+                                // Open the feedback modal
+                                $('#feedbackModal').modal('show');
+                            });
+                            feedbackResponseDiv.appendChild(somethingElseButton);
+
                     } else {
                         feedbackResponseDiv.innerHTML += "<br>No suggestions available.";
                     }
@@ -609,8 +634,6 @@ class Chatbox {
 
                     chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
 
-                    // Loop until the user responds with "Yes"
-                    
                 })
                 .catch(error => {
                     console.error('Error fetching suggestions:', error);
@@ -619,9 +642,6 @@ class Chatbox {
                     // Append the feedback response to the chatbox even if there's an error
                     chatboxMessages.insertBefore(feedbackResponseDiv, chatboxMessages.firstChild);
                     chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-
-                    // Loop until the user responds with "Yes"
-                    
                 });
         }
     }
@@ -632,7 +652,7 @@ class Chatbox {
         feedbackPromptDiv.classList.add('messages__item', 'messages__item--visitor');
         feedbackPromptDiv.innerHTML = `
             Did that response answer your question?
-            <button class="btn btn-sm border-success mt-2 bg-light" style="border-radius: 20px;" onclick="chatbox.handleFeedback(true)">Yes, thank you.</button>
+            <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handleFeedback(true)">Yes, thank you.</button>
             <button class="btn btn-sm border-success mt-2" style="border-radius: 20px;" onclick="chatbox.handleFeedback(false)">No, I need more help.</button>
         `;
         
