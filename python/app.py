@@ -8,12 +8,10 @@ import json
 import random
 from better_profanity import profanity
 from difflib import SequenceMatcher
-from flask import send_file
 from flask import Flask, jsonify, request
-import json
 import threading
-from fuzzywuzzy import process
-
+from fuzzywuzzy import process, fuzz
+from nltk_utils import tokenize
 
 conn = mysql.connector.connect(
     host='127.0.0.1',
@@ -25,7 +23,9 @@ conn = mysql.connector.connect(
 cursor = conn.cursor()
 app = Flask(__name__)
 
-CORS(app, resources={r"/train": {"origins": "*"}}) 
+# Enable CORS for all routes
+CORS(app)
+CORS(app, resources={r"/train": {"origins": "*"}})
 
 with open('intents.json', 'r') as file:
     intents = json.load(file)
@@ -37,17 +37,28 @@ def index_get():
 def get_response(user_input):
     best_match = None
     best_score = 0
-    threshold = 0.4
+    threshold = 0.4  # Adjusted threshold for better matching
 
-    if len(user_input.split()) == 1:
-        threshold = 0.4
+    # Tokenize the input
+    user_input_words = set(tokenize(user_input.lower()))
 
     for intent in intents['intents']:
         for pattern in intent['patterns']:
-            score = SequenceMatcher(None, user_input, pattern).ratio()
-            if score > best_score and score > threshold:
+            # Tokenize the pattern
+            pattern_words = set(tokenize(pattern.lower()))
+            
+            # Calculate word match score
+            word_match_score = len(user_input_words & pattern_words) / len(pattern_words)
+            
+            # Calculate fuzzy match score
+            fuzzy_score = fuzz.partial_ratio(user_input, pattern)
+            
+            # Combine scores (you can adjust the weights as needed)
+            combined_score = (0.5 * word_match_score) + (0.5 * (fuzzy_score / 100))
+            
+            if combined_score > best_score and combined_score > threshold:
                 best_match = intent
-                best_score = score
+                best_score = combined_score
 
     if best_match:
         responses = best_match['responses']
@@ -66,14 +77,11 @@ def predict():
     response = get_response(user_input)
     return jsonify({'response': response})
 
-
 def contains_profanity(text):
-    # Load profanity from better_profanity library
     profanity.load_censor_words()
     if profanity.contains_profanity(text):
         return True
     
-    # Load profanity from profanity_wordlist.txt file
     with open('profanity_wordlist.txt', 'r') as file:
         profanity_list = [line.strip() for line in file]
 
@@ -82,10 +90,6 @@ def contains_profanity(text):
             return True
 
     return False
-
-
-from flask import request
-
 
 training_status = {"status": "idle"}
 
@@ -108,12 +112,9 @@ def start_training():
     training_thread.start()
     return 'Training started', 200
 
-@app.route('/status', methods=['GET'])
-def get_status():
+@app.route('/training_status', methods=['GET'])  # Renamed this endpoint
+def get_training_status():
     return jsonify(training_status)
-
-def contains_profanity(text):
-    return profanity.contains_profanity(text)
 
 from datetime import datetime
 
@@ -189,6 +190,31 @@ def match_pattern():
     
     return jsonify(matched_patterns)
 
+# Status of the chatbot
+chatbot_status = {"status": "off"}
+import sys
+@app.route('/off', methods=['POST'])
+def turn_off():
+    global chatbot_status
+    chatbot_status["status"] = "off"
+    return jsonify(success=True)
+
+@app.route('/status', methods=['GET'])  # This is the status of the chatbot
+def get_chatbot_status():
+    return jsonify(chatbot_status)
+
+
+import subprocess
+
+@app.route('/on', methods=['POST'])
+def turn_on():
+    global chatbot_status
+    chatbot_status["status"] = "on"
+    
+    # Start the Flask application using subprocess
+    subprocess.Popen(['python', 'app.py'])
+    
+    return jsonify(success=True)
 
 
 if __name__ == "__main__":
