@@ -11,7 +11,7 @@ class Chatbox {
         this.state = false;
         this.messages = [];
 
-        this.predictEndpoint = 'http://10.10.100.147:5000/predict';
+        this.predictEndpoint = 'http://192.168.1.25:5000/predict';
 
         this.setupEventListeners();
     }
@@ -414,7 +414,7 @@ class Chatbox {
         };
         this.messages.unshift(userMessage); // Add the user message to the beginning of the array
     
-        fetch('http://10.10.100.147:5000/predict', { 
+        fetch('http://192.168.1.25:5000/predict', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -661,7 +661,7 @@ class Chatbox {
     }
     
     displayPatternResponse(pattern) {
-        fetch('http://10.10.100.147:5000/predict', { 
+        fetch('http://192.168.1.25:5000/predict', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

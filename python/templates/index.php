@@ -60,7 +60,6 @@
         </div>
     </div>
 </div>
-
 <!-- Feedback Modal -->
 <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -74,11 +73,11 @@
             <form id="feedbackForm" name="feedbackForm" action="/save_feedback" method="POST">
                 <div class="modal-body">
                     <p>If you have any unanswered questions, please feel free to share them with us below:</p>
-                    <textarea id="feedbackText" name="feedbackText" rows="6" class="form-control" placeholder="Your question..." required></textarea>
+                    <textarea id="feedbackText" name="feedback" rows="6" class="form-control" placeholder="Your question..." required></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-success" id="submitFeedbackBtn">Submit Feedback</button>
+                    <button type="submit" class="btn btn-success">Submit Feedback</button>
                 </div>
             </form>
         </div>
@@ -155,7 +154,7 @@
                     <i class="fas fa-star-half-alt fa-sm"></i>
                 </button>
 
-                <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" data-toggle="tooltip" data-placement="top" title="Submit Unanswered Question!" style="font-size: 18px; padding: 4px 8px;">
+                <button class="feedback-button" data-toggle="modal" data-target="#feedbackModal" data-toggle="tooltip" data-placement="top" title="Submit Unanswered Question!" style="font-size: 18px; padding: 4px 8px;" hidden>
                     <i class="fas fa-comment-alt fa-sm"></i>
                 </button>
 

@@ -191,8 +191,9 @@
     <div class="container-fluid px-5">
         <div class="">
             <div class="d-flex justify-content-between mt-4 rounded text-lg">
-                <div id="refreshDiv" class="col-sm-3 ml-4">
-                    <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+                <div id="refreshDiv" class="col-sm-3">
+                <label for="chatSupportToggle" class="form-label mr-5">Chat Support</label>
+                    <button id="chatSupportToggle" type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
                         <div class="handle"></div>
                     </button>
                 </div>
@@ -656,7 +657,7 @@
     // }
 
     function fetchStatus() {
-        fetch('http://10.10.100.147:5000/status', {
+        fetch('http://192.168.1.25:5000/status', {
             method: 'GET'
         }).then(response => response.json())
         .then(data => {
@@ -697,7 +698,7 @@
             if (result.isConfirmed) {
                 if (!isTraining) {
                     isTraining = true;
-                    fetch('http://10.10.100.147:5000/train', {
+                    fetch('http://192.168.1.25:5000/train', {
                         method: 'POST'
                     }).then(response => {
                         if (response.ok) {
@@ -773,7 +774,7 @@
         if (!isPressed) {
             // Make the AJAX request to start the app
             $.ajax({
-                url: 'http://10.10.100.147:5001/start_app', // Change to the appropriate URL
+                url: 'http://192.168.1.25:5001/start_app', // Change to the appropriate URL
                 type: 'GET', 
                 success: function(response) {
                     Swal.fire({
@@ -797,7 +798,7 @@
             });
         } else {
             $.ajax({
-                url: 'http://10.10.100.147:5001/stop_app', // Change to the appropriate URL
+                url: 'http://192.168.1.25:5001/stop_app', // Change to the appropriate URL
                 type: 'GET', 
                 success: function(response) {
                     Swal.fire({
